@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xlerion – Soluciones Disruptivas</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom styles to apply the Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+        }
+        body.modal-open {
+            overflow: hidden;
+        }
+        /* Custom gradient text */
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        /* Styling for the interactive infographic */
+        .infographic-node {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .infographic-node:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.6));
+        }
+        .infographic-line {
+            transition: stroke 0.3s ease-in-out;
+        }
+        .infographic-group:hover > .infographic-line {
+             stroke: #38bdf8;
+        }
+        /* Modal styles */
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .modal-panel {
+            transition: transform 0.3s ease;
+        }
+        /* Card interactivity */
+        .interactive-card {
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.1), 0 4px 6px -2px rgba(56, 189, 248, 0.05);
+        }
+        /* Animated Timeline */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: #334155;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -38px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #0a0a0a;
+            border: 3px solid #334155;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            z-index: 1;
+        }
+        .timeline-item:last-child::before {
+            display: none;
+        }
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .timeline-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-item.is-visible .timeline-dot {
+            background-color: #38bdf8;
+            border-color: #38bdf8;
+        }
+        .timeline-item-content {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .timeline-item-content:hover {
+            background-color: rgba(56, 189, 248, 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-300">
+
+    <!-- Header & Navigation -->
+    <header class="bg-black bg-opacity-50 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold tracking-tighter text-white uppercase">
+                Xlerion<span class="text-sky-400">.</span>
+            </a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#soluciones" class="hover:text-sky-400 transition-colors" data-translate="nav_solutions">Soluciones</a>
+                <a href="#producto" class="hover:text-sky-400 transition-colors" data-translate="nav_product">Producto</a>
+                <a href="#diferenciales" class="hover:text-sky-400 transition-colors" data-translate="nav_differentiators">Diferenciales</a>
+                <a href="#hoja-de-ruta" class="hover:text-sky-400 transition-colors" data-translate="nav_roadmap">Hoja de Ruta</a>
+                <a href="total-darkness/totalDarkness.html" class="font-semibold text-sky-400 hover:text-sky-300 transition-colors" data-translate="nav_total_darkness">Total Darkness</a>
+                <a href="#contacto" class="hover:text-sky-400 transition-colors" data-translate="nav_contact">Contacto</a>
+                <!-- Language Switcher -->
+                <div class="flex items-center space-x-2 border-l border-gray-700 ml-6 pl-6">
+                    <button id="lang-es" class="font-semibold text-sky-400 transition-colors">ES</button>
+                    <span class="text-gray-500">/</span>
+                    <button id="lang-en" class="text-gray-400 hover:text-sky-400 transition-colors">EN</button>
+                </div>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-black/80 backdrop-blur-lg">
+            <a href="#soluciones" class="block py-2 hover:text-sky-400 transition-colors" data-translate="nav_solutions_mobile">Soluciones</a>
+            <a href="#producto" class="block py-2 hover:text-sky-400 transition-colors" data-translate="nav_product_mobile">Producto</a>
+            <a href="#diferenciales" class="block py-2 hover:text-sky-400 transition-colors" data-translate="nav_differentiators_mobile">Diferenciales</a>
+            <a href="#hoja-de-ruta" class="block py-2 hover:text-sky-400 transition-colors" data-translate="nav_roadmap_mobile">Hoja de Ruta</a>
+            <a href="total-darkness/totalDarkness.html" class="block py-2 font-semibold text-sky-400 hover:text-sky-300 transition-colors" data-translate="nav_total_darkness_mobile">Total Darkness</a>
+            <a href="#contacto" class="block py-2 hover:text-sky-400 transition-colors" data-translate="nav_contact_mobile">Contacto</a>
+             <!-- Language Switcher Mobile -->
+            <div class="flex items-center space-x-2 pt-4 mt-4 border-t border-gray-700">
+                <button id="lang-es-mobile" class="font-semibold text-sky-400 transition-colors">ES</button>
+                <span class="text-gray-500">/</span>
+                <button id="lang-en-mobile" class="text-gray-400 hover:text-sky-400 transition-colors">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section 
+            class="min-h-screen bg-cover bg-center bg-fixed" 
+            style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop');">
+            <div class="min-h-screen flex items-center justify-center bg-black/70">
+                <div class="container mx-auto px-6 text-center z-10">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white leading-tight" data-translate="hero_title">
+                        La <span class='gradient-text'>Diversidad Cognitiva</span> Construye la Mejor Ingeniería.
+                    </h1>
+                    <p class="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-400" data-translate="hero_subtitle">
+                        Aprovechamos perspectivas únicas para construir toolkits modulares que optimizan, diagnostican y automatizan los entornos técnicos más complejos.
+                    </p>
+                    <div class="mt-10">
+                        <a href="#soluciones" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105" data-translate="hero_button">
+                            Explorar Soluciones
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Section with Interactive Infographic -->
+        <section id="soluciones" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white" data-translate="solutions_title">Un Ecosistema de Soluciones</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-gray-400" data-translate="solutions_subtitle">
+                        Más que herramientas, ofrecemos un sistema integrado de servicios. Haz clic en cada nodo para explorar cómo podemos ayudarte.
+                    </p>
+                </div>
+
+                <div class="w-full max-w-3xl mx-auto p-8">
+                    <svg viewBox="-20 -20 440 390" id="infographic">
+                        <!-- Grouped elements for better hover interaction -->
+                        <g class="infographic-group">
+                            <line class="infographic-line" x1="200" y1="175" x2="100" y2="50" stroke="#334155" stroke-width="2"/>
+                            <g class="infographic-node" data-service="videojuegos">
+                                <circle cx="100" cy="50" r="30" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+                                <path d="M93 52 L93 48 L97 48 L97 45 L103 45 L103 48 L107 48 L107 52 L103 52 L103 55 L97 55 L97 52 Z M98 49.5 h 4" fill="#38bdf8"/>
+                            </g>
+                        </g>
+                        <g class="infographic-group">
+                             <line class="infographic-line" x1="200" y1="175" x2="300" y2="50" stroke="#334155" stroke-width="2"/>
+                             <g class="infographic-node" data-service="multimedia">
+                                <circle cx="300" cy="50" r="30" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+                                <rect x="292" y="42" width="16" height="16" rx="2" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+                                <circle cx="296" cy="46" r="1" fill="#38bdf8"/> <circle cx="304" cy="54" r="1" fill="#38bdf8"/>
+                            </g>
+                        </g>
+                        <g class="infographic-group">
+                            <line class="infographic-line" x1="200" y1="175" x2="50" y2="175" stroke="#334155" stroke-width="2"/>
+                            <g class="infographic-node" data-service="consultoria">
+                                <circle cx="50" cy="175" r="30" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+                                <path d="M50 165 a5 5 0 0 1 5 5 v2 a3 3 0 0 1-10 0 v-2 a5 5 0 0 1 5-5zm0 15v3m-3-1.5h6" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
+                            </g>
+                        </g>
+                        <g class="infographic-group">
+                            <line class="infographic-line" x1="200" y1="175" x2="350" y2="175" stroke="#334155" stroke-width="2"/>
+                            <g class="infographic-node" data-service="desarrollo">
+                                <circle cx="350" cy="175" r="30" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+                                <path d="M343 170 l-3 5 3 5 M357 170 l3 5 -3 5" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
+                            </g>
+                        </g>
+                        <g class="infographic-group">
+                            <line class="infographic-line" x1="200" y1="175" x2="100" y2="300" stroke="#334155" stroke-width="2"/>
+                            <g class="infographic-node" data-service="automatizacion">
+                                <circle cx="100" cy="300" r="30" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+                                <circle cx="100" cy="300" r="5" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+                                <path d="M100 288 v-3 M100 312 v3 M112 300 h3 M88 300 h-3" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
+                            </g>
+                        </g>
+                        <g class="infographic-group">
+                            <line class="infographic-line" x1="200" y1="175" x2="300" y2="300" stroke="#334155" stroke-width="2"/>
+                            <g class="infographic-node" data-service="vision">
+                                <circle cx="300" cy="300" r="30" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+                                <circle cx="300" cy="300" r="12" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+                                <circle cx="300" cy="300" r="4" fill="#38bdf8"/>
+                            </g>
+                        </g>
+                        
+                        <!-- Center Node last, to be on top -->
+                        <g class="infographic-node" data-service="core">
+                            <circle cx="200" cy="175" r="50" fill="#1e293b"/>
+                            <text x="200" y="170" font-size="14" fill="#e2e8f0" text-anchor="middle" font-weight="bold" class="pointer-events-none">XLERION</text>
+                            <text x="200" y="188" font-size="10" fill="#94a3b8" text-anchor="middle" class="pointer-events-none">CORE</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Section -->
+        <section id="producto" class="py-20 md:py-32 bg-gray-900">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white" data-translate="product_title">Nuestro Producto: <span class="gradient-text">Xlerion Toolkit</span></h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-gray-400" data-translate="product_subtitle">
+                        Una solución integral que combina modularidad, autonomía y comportamiento adaptativo.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="interactive-card bg-gray-800 p-8 rounded-xl border border-gray-700" data-feature="modular">
+                        <div class="flex justify-center mb-4 pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"/><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M12 2v2"/><path d="M12 22v-2"/><path d="m17 20.66-1-1.73"/><path d="M11 10.27 7 3.34"/><path d="m20.66 17-1.73-1"/><path d="m3.34 7 1.73 1"/><path d="M14 12h8"/><path d="M2 12h2"/><path d="m20.66 7-1.73 1"/><path d="m3.34 17 1.73-1"/><path d="m17 3.34-1 1.73"/><path d="m11 13.73-4 6.93"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white pointer-events-none" data-translate="product_feature1_title">Filosofía Modular</h3>
+                        <p class="text-gray-400 mt-2 pointer-events-none" data-translate="product_feature1_desc">Cada componente es autónomo pero interconectado, permitiendo una escalabilidad y personalización sin precedentes.</p>
+                    </div>
+                    <div class="interactive-card bg-gray-800 p-8 rounded-xl border border-gray-700" data-feature="proactivo">
+                        <div class="flex justify-center mb-4 pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.94.11 2.5 2.5 0 0 1-2.91-2.11A2.5 2.5 0 0 1 4.5 15V10a2.5 2.5 0 0 1 2.5-2.5h3Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.94.11 2.5 2.5 0 0 0 2.91-2.11A2.5 2.5 0 0 0 19.5 15V10a2.5 2.5 0 0 0-2.5-2.5h-3Z"/><path d="M4.5 10a2.5 2.5 0 0 1 2.5-2.5h3"/><path d="M19.5 10a2.5 2.5 0 0 0-2.5-2.5h-3"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white pointer-events-none" data-translate="product_feature2_title">Diagnóstico Proactivo</h3>
+                        <p class="text-gray-400 mt-2 pointer-events-none" data-translate="product_feature2_desc">El toolkit anticipa problemas, valida dependencias dinámicamente y ofrece recomendaciones para evitar errores críticos.</p>
+                    </div>
+                    <div class="interactive-card bg-gray-800 p-8 rounded-xl border border-gray-700" data-feature="adaptativo">
+                        <div class="flex justify-center mb-4 pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400"><path d="M2 12h3"/><path d="M19 12h3"/><path d="M5 12a7 7 0 1 0 14 0 7 7 0 1 0-14 0Z"/><path d="M5 12a7 7 0 1 1 14 0 7 7 0 1 1-14 0Z"/><path d="M12 2v3"/><path d="M12 19v3"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white pointer-events-none" data-translate="product_feature3_title">Comportamiento Adaptativo</h3>
+                        <p class="text-gray-400 mt-2 pointer-events-none" data-translate="product_feature3_desc">Se ajusta a entornos técnicos complejos, asegurando compatibilidad y rendimiento óptimo en plataformas Windows (y próximamente Linux/macOS).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Differentiators Section -->
+        <section id="diferenciales" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white" data-translate="differentiators_title">Nuestra Ventaja Competitiva</h2>
+                        <p class="mt-4 text-gray-400 text-lg" data-translate="differentiators_subtitle">No solo creamos herramientas; diseñamos ecosistemas de desarrollo sostenibles. Nuestra ventaja radica en una fusión única de técnica y visión a largo plazo.</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="interactive-card flex items-start space-x-4 p-4 rounded-lg" data-feature="automatizacion-preventiva">
+                            <div class="flex-shrink-0 bg-gray-800 p-3 rounded-full pointer-events-none"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.59a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></div>
+                            <div class="pointer-events-none">
+                                <h4 class="font-semibold text-white" data-translate="differentiators_feature1_title">Automatización Preventiva</h4>
+                                <p class="text-gray-400" data-translate="differentiators_feature1_desc">Validamos y diagnosticamos antes de que los problemas escalen, ahorrando tiempo y recursos valiosos.</p>
+                            </div>
+                        </div>
+                        <div class="interactive-card flex items-start space-x-4 p-4 rounded-lg" data-feature="documentacion-reutilizable">
+                            <div class="flex-shrink-0 bg-gray-800 p-3 rounded-full pointer-events-none"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+                            <div class="pointer-events-none">
+                                <h4 class="font-semibold text-white" data-translate="differentiators_feature2_title">Documentación Reutilizable</h4>
+                                <p class="text-gray-400" data-translate="differentiators_feature2_desc">Creamos documentación clara, con nomenclaturas estandarizadas, pensada para el mantenimiento y la colaboración a largo plazo.</p>
+                            </div>
+                        </div>
+                         <div class="interactive-card flex items-start space-x-4 p-4 rounded-lg" data-feature="branding-tecnico">
+                            <div class="flex-shrink-0 bg-gray-800 p-3 rounded-full pointer-events-none"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+                            <div class="pointer-events-none">
+                                <h4 class="font-semibold text-white" data-translate="differentiators_feature3_title">Branding Técnico-Creativo</h4>
+                                <p class="text-gray-400" data-translate="differentiators_feature3_desc">Nuestras interfaces e íconos no son solo estéticos; reflejan la lógica modular y la inteligencia del sistema.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Traction and Roadmap Section -->
+        <section id="hoja-de-ruta" class="py-20 md:py-32 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white" data-translate="roadmap_title">Tracción y <span class="gradient-text">Hoja de Ruta</span></h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-gray-400" data-translate="roadmap_subtitle">
+                        Desde nuestra fundación, hemos alcanzado hitos clave y tenemos una visión clara para el futuro, impulsada por una filosofía de diseño inclusivo.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-16 items-start">
+                    <div class="space-y-12">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-4" data-translate="casestudy_title">Caso de Estudio: Videojuego 'Total Darkness'</h3>
+                             <div class="flex flex-col items-start space-y-4 bg-gray-800/50 p-6 rounded-xl border border-gray-700">
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0 text-sky-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11.5a1.5 1.5 0 0 1 0-3h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1 0-3h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1Z"/><path d="M18 12h2"/><path d="M12 18v2"/><path d="M12 4V2"/><path d="M6 12H4"/><path d="m16.5 16.5.5.5"/><path d="m7.5 7.5.5.5"/><path d="m16.5 7.5-.5.5"/><path d="m7.5 16.5-.5.5"/><circle cx="12" cy="12" r="4"/></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-white" data-translate="casestudy_subtitle">Optimización para un Mundo Inmersivo</h4>
+                                        <p class="text-gray-400 mt-1" data-translate="casestudy_desc">En colaboración con un estudio AAA, implementamos el Xlerion Toolkit para optimizar el pipeline de desarrollo de 'Total Darkness'. Nuestros módulos de diagnóstico de shaders y logging de eventos críticos redujeron el tiempo de depuración en un 50% y aumentaron el rendimiento del renderizado en un 30%.</p>
+                                    </div>
+                                </div>
+                                <div class="self-start pt-2">
+                                    <a href="total-darkness/totalDarkness.html" class="inline-block bg-sky-500/20 hover:bg-sky-500/40 text-sky-300 font-semibold py-2 px-5 rounded-lg transition-colors text-sm" data-translate="casestudy_button">
+                                        Conocer Más
+                                    </a>
+                                </div>
+                             </div>
+                        </div>
+
+                        <div class="interactive-card bg-gray-800/50 p-6 rounded-xl border border-gray-700" data-feature="neurodiversidad">
+                            <h3 class="text-2xl font-bold text-white mb-4 pointer-events-none" data-translate="philosophy_title">Nuestra Filosofía: Talento sin Etiquetas</h3>
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 text-sky-400 pointer-events-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10c0-4.42-2.87-8.17-7-9.59"/><path d="m14 6-4.3 4.3a2 2 0 0 0 0 2.83L14 18"/><path d="M18 12h-6"/></svg>
+                                </div>
+                                <div class="pointer-events-none">
+                                    <h4 class="font-semibold text-white" data-translate="philosophy_subtitle">Construimos desde la Neurodiversidad</h4>
+                                    <p class="text-gray-400 mt-1" data-translate="philosophy_desc">La innovación surge de perspectivas únicas. Haz clic para descubrir cómo nuestra cultura valora el talento real por encima de todo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Timeline -->
+                    <div id="timeline">
+                        <div class="relative pl-8">
+                            <div class="timeline-item relative pb-12">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-item-content p-4 rounded-lg" data-feature="lanzamiento-prototipo">
+                                    <p class="text-sm text-sky-400 pointer-events-none">2023</p>
+                                    <h4 class="font-bold text-white mt-1 pointer-events-none" data-translate="timeline_item1_title">Lanzamiento del Prototipo</h4>
+                                    <p class="text-gray-400 text-sm pointer-events-none" data-translate="timeline_item1_desc">Prototipo funcional con módulos activos de diagnóstico y logging.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item relative pb-12">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-item-content p-4 rounded-lg" data-feature="primeras-implementaciones">
+                                    <p class="text-sm text-sky-400 pointer-events-none">2024</p>
+                                    <h4 class="font-bold text-white mt-1 pointer-events-none" data-translate="timeline_item2_title">Primeras Implementaciones</h4>
+                                    <p class="text-gray-400 text-sm pointer-events-none" data-translate="timeline_item2_desc">Aplicaciones reales en consultorías para GovTech y entornos multimedia.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item relative pb-12">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-item-content p-4 rounded-lg" data-feature="reconocimiento-innovacion">
+                                    <p class="text-sm text-sky-400 pointer-events-none">2025</p>
+                                    <h4 class="font-bold text-white mt-1 pointer-events-none" data-translate="timeline_item3_title">Reconocimiento e Innovación</h4>
+                                    <p class="text-gray-400 text-sm pointer-events-none" data-translate="timeline_item3_desc">Selección en programas de innovación y consolidación del branding inclusivo.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item relative">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-item-content p-4 rounded-lg" data-feature="expansion-crecimiento">
+                                    <p class="text-sm text-indigo-400 pointer-events-none">2025 - 2027</p>
+                                    <h4 class="font-bold text-white mt-1 pointer-events-none" data-translate="timeline_item4_title">Expansión y Crecimiento</h4>
+                                    <p class="text-gray-400 text-sm pointer-events-none" data-translate="timeline_item4_desc">Desarrollo de modelo SaaS, licencias escalables y alianzas estratégicas con estudios creativos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Footer -->
+        <footer id="contacto" class="bg-black border-t border-gray-800">
+            <div class="container mx-auto px-6 py-16 text-center">
+                <h3 class="text-3xl font-bold text-white" data-translate="footer_title">Conecta con Nosotros</h3>
+                <p class="mt-4 max-w-xl mx-auto text-gray-400" data-translate="footer_subtitle">Estamos construyendo el futuro del desarrollo técnico. Síguenos, apóyanos o contáctanos para una demostración.</p>
+                <div class="mt-8">
+                    <a href="mailto:contactus@xlerion.com" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105">
+                        contactus@xlerion.com
+                    </a>
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
+                    <!-- Corporativo y Soporte -->
+                    <div>
+                        <h4 class="font-bold text-white mb-4" data-translate="footer_col1_title">Corporativo y Soporte</h4>
+                        <div class="space-y-4">
+                            <a href="https://www.linkedin.com/company/xlerion" target="_blank" class="flex items-center space-x-3 text-gray-400 hover:text-sky-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                <span data-translate="footer_col1_link1">LinkedIn Empresa</span>
+                            </a>
+                             <a href="https://www.linkedin.com/in/mikerodriguez84" target="_blank" class="flex items-center space-x-3 text-gray-400 hover:text-sky-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                <span data-translate="footer_col1_link2">LinkedIn Personal</span>
+                            </a>
+                            <a href="https://www.facebook.com/xlerionultimate" target="_blank" class="flex items-center space-x-3 text-gray-400 hover:text-sky-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                                <span data-translate="footer_col1_link3">Facebook Empresa</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Proyectos Creativos -->
+                    <div>
+                        <h4 class="font-bold text-white mb-4" data-translate="footer_col2_title">Proyectos Creativos</h4>
+                        <div class="space-y-4">
+                            <a href="https://www.patreon.com/xlerion" target="_blank" class="flex items-center space-x-3 text-gray-400 hover:text-sky-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 4.3c-2.9 0-5.2 2.3-5.2 5.2 0 2.9 2.3 5.2 5.2 5.2s5.2-2.3 5.2-5.2-2.3-5.2-5.2-5.2zM4 20h4V4H4v16z"/></svg>
+                                <span>Patreon</span>
+                            </a>
+                            <a href="https://xlerion.itch.io" target="_blank" class="flex items-center space-x-3 text-gray-400 hover:text-sky-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 15.6c.2.2.5.3.8.3s.6-.1.8-.3c.5-.5.5-1.2 0-1.7l-1.6-1.6c-.5-.5-.5-1.2 0-1.7s1.2-.5 1.7 0l1.6 1.6c.5.5 1.2.5 1.7 0s.5-1.2 0-1.7L5.4 9c-1.4-1.4-3.6-1.4-5 0s-1.4 3.6 0 5l2.2 2.2zm18.8 0c.2.2.5.3.8.3s.6-.1.8-.3c.5-.5.5-1.2 0-1.7l-1.6-1.6c-.5-.5-.5-1.2 0-1.7s1.2-.5 1.7 0l1.6 1.6c.5.5 1.2.5 1.7 0s.5-1.2 0-1.7L18.6 9c-1.4-1.4-3.6-1.4-5 0s-1.4 3.6 0 5l2.2 2.2zM9 18.2c.2.2.5.3.8.3s.6-.1.8-.3L21.4 7c.5-.5.5-1.2 0-1.7s-1.2-.5-1.7 0L8.8 16.2c-.5.5-.5 1.2 0 1.7.2.2.5.3.8.3z"/></svg>
+                                <span>Itch.io</span>
+                            </a>
+                             <a href="https://www.artstation.com/xlerion" target="_blank" class="flex items-center space-x-3 text-gray-400 hover:text-sky-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 12.5l-3 6-3-6h6z"/><path d="M2 18l4-12h12l4 12H2z"/></svg>
+                                <span>Artstation</span>
+                            </a>
+                            <a href="https://www.kickstarter.com/profile/xlerionstudios" target="_blank" class="flex items-center space-x-3 text-gray-400 hover:text-sky-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 11.5L14 4l-2.5 7.5L14 19l-4.5-7.5zM4 20V4h16v16H4z"/></svg>
+                                <span>Kickstarter</span>
+                            </a>
+                             <a href="https://www.indiegogo.com/individuals/32112766" target="_blank" class="flex items-center space-x-3 text-gray-400 hover:text-sky-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm-1-12h2v8h-2v-8zm-3 4h2v4H8v-4z"/></svg>
+                                <span>Indiegogo</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Banda Sonora -->
+                    <div>
+                        <h4 class="font-bold text-white mb-4" data-translate="footer_col3_title">Banda Sonora: Redemthor</h4>
+                        <div class="space-y-4">
+                            <a href="https://www.reverbnation.com/redemthor" target="_blank" class="flex items-center space-x-3 text-gray-400 hover:text-sky-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm12-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg>
+                                <span>ReverbNation</span>
+                            </a>
+                            <a href="https://www.facebook.com/Redemthor/" target="_blank" class="flex items-center space-x-3 text-gray-400 hover:text-sky-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="https://www.instagram.com/redemthor/" target="_blank" class="flex items-center space-x-3 text-gray-400 hover:text-sky-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                <span>Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="mt-16 pt-8 border-t border-gray-800 text-sm text-gray-500">
+                    <p data-translate="footer_copyright">&copy; 2025 Xlerion – Soluciones Disruptivas. Todos los derechos reservados.</p>
+                    <p class="mt-1" data-translate="footer_location">Nocaima, Cundinamarca, Colombia</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Service Detail Modal -->
+    <div id="service-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none">
+        <div id="modal-panel" class="modal-panel bg-gray-900 border border-gray-700 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 transform scale-95">
+            <div class="flex justify-between items-start">
+                <h3 id="modal-title" class="text-2xl font-bold text-white gradient-text"></h3>
+                <button id="modal-close-button" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            </div>
+            <div class="mt-6">
+                <p id="modal-description" class="text-gray-400"></p>
+                <div class="mt-6">
+                    <h4 id="modal-reel-title" class="text-lg font-semibold text-white mb-4"></h4>
+                    <div id="modal-reel" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <!-- Content is injected here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Translation data file -->
+    <script src="translations.js"></script>
+    
+    <!-- Main application script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Global State ---
+            let currentLang = 'es';
+
+            // --- Element Selectors ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const langEsButton = document.getElementById('lang-es');
+            const langEnButton = document.getElementById('lang-en');
+            const langEsButtonMobile = document.getElementById('lang-es-mobile');
+            const langEnButtonMobile = document.getElementById('lang-en-mobile');
+            
+            // --- Mobile Menu Toggle ---
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // --- Translation Logic ---
+            const setLanguage = (lang) => {
+                if (!translations[lang]) {
+                    console.error(`Language "${lang}" not found in translations.`);
+                    return;
+                }
+                currentLang = lang;
+                document.documentElement.lang = lang;
+
+                // Update button styles for desktop
+                langEsButton.classList.toggle('font-semibold', lang === 'es');
+                langEsButton.classList.toggle('text-sky-400', lang === 'es');
+                langEsButton.classList.toggle('text-gray-400', lang !== 'es');
+                langEnButton.classList.toggle('font-semibold', lang === 'en');
+                langEnButton.classList.toggle('text-sky-400', lang === 'en');
+                langEnButton.classList.toggle('text-gray-400', lang !== 'en');
+
+                // Update button styles for mobile
+                langEsButtonMobile.classList.toggle('font-semibold', lang === 'es');
+                langEsButtonMobile.classList.toggle('text-sky-400', lang === 'es');
+                langEsButtonMobile.classList.toggle('text-gray-400', lang !== 'es');
+                langEnButtonMobile.classList.toggle('font-semibold', lang === 'en');
+                langEnButtonMobile.classList.toggle('text-sky-400', lang === 'en');
+                langEnButtonMobile.classList.toggle('text-gray-400', lang !== 'en');
+
+                // Translate all elements with data-translate attribute
+                const elementsToTranslate = document.querySelectorAll('[data-translate]');
+                elementsToTranslate.forEach(el => {
+                    const key = el.dataset.translate;
+                    if (translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+            };
+
+            // --- Modal Data (using translation keys) ---
+            const modalData = {
+                videojuegos: {
+                    titleKey: 'modal_videojuegos_title',
+                    descriptionKey: 'modal_videojuegos_desc',
+                    reelTitleKey: 'modal_videojuegos_reel_title',
+                    reelContent: [
+                        { type: 'link', textKey: 'modal_videojuegos_reel_item1', url: '#' },
+                        { type: 'link', textKey: 'modal_videojuegos_reel_item2', url: '#' },
+                        { type: 'link', textKey: 'modal_videojuegos_reel_item3', url: '#' }
+                    ]
+                },
+                multimedia: {
+                    titleKey: 'modal_multimedia_title',
+                    descriptionKey: 'modal_multimedia_desc',
+                    reelTitleKey: 'modal_multimedia_reel_title',
+                    reelContent: [
+                        { type: 'link', textKey: 'modal_multimedia_reel_item1', url: '#' },
+                        { type: 'link', textKey: 'modal_multimedia_reel_item2', url: '#' },
+                        { type: 'link', textKey: 'modal_multimedia_reel_item3', url: '#' }
+                    ]
+                },
+                consultoria: {
+                    titleKey: 'modal_consultoria_title',
+                    descriptionKey: 'modal_consultoria_desc',
+                    reelTitleKey: 'modal_consultoria_reel_title',
+                    reelContent: [
+                        { type: 'link', textKey: 'modal_consultoria_reel_item1', url: '#' },
+                        { type: 'link', textKey: 'modal_consultoria_reel_item2', url: '#' },
+                        { type: 'link', textKey: 'modal_consultoria_reel_item3', url: '#' }
+                    ]
+                },
+                desarrollo: {
+                    titleKey: 'modal_desarrollo_title',
+                    descriptionKey: 'modal_desarrollo_desc',
+                    reelTitleKey: 'modal_desarrollo_reel_title',
+                    reelContent: [
+                        { type: 'link', textKey: 'modal_desarrollo_reel_item1', url: '#' },
+                        { type: 'link', textKey: 'modal_desarrollo_reel_item2', url: '#' },
+                        { type: 'link', textKey: 'modal_desarrollo_reel_item3', url: '#' }
+                    ]
+                },
+                automatizacion: {
+                    titleKey: 'modal_automatizacion_title',
+                    descriptionKey: 'modal_automatizacion_desc',
+                    reelTitleKey: 'modal_automatizacion_reel_title',
+                    reelContent: [
+                        { type: 'link', textKey: 'modal_automatizacion_reel_item1', url: '#' },
+                        { type: 'link', textKey: 'modal_automatizacion_reel_item2', url: '#' },
+                        { type: 'link', textKey: 'modal_automatizacion_reel_item3', url: '#' }
+                    ]
+                },
+                vision: {
+                    titleKey: 'modal_vision_title',
+                    descriptionKey: 'modal_vision_desc',
+                    reelTitleKey: 'modal_vision_reel_title',
+                    reelContent: [
+                        { type: 'link', textKey: 'modal_vision_reel_item1', url: '#' },
+                        { type: 'link', textKey: 'modal_vision_reel_item2', url: '#' },
+                        { type: 'link', textKey: 'modal_vision_reel_item3', url: '#' }
+                    ]
+                },
+                 core: {
+                    titleKey: 'modal_core_title',
+                    descriptionKey: 'modal_core_desc',
+                    reelTitleKey: 'modal_core_reel_title',
+                    reelContent: [
+                        { type: 'link', textKey: 'modal_core_reel_item1', url: '#' },
+                        { type: 'link', textKey: 'modal_core_reel_item2', url: '#' },
+                        { type: 'link', textKey: 'modal_core_reel_item3', url: '#' }
+                    ]
+                },
+                modular: {
+                    titleKey: 'modal_modular_title',
+                    descriptionKey: 'modal_modular_desc',
+                    reelTitleKey: 'modal_modular_reel_title',
+                    reelContent: [
+                        { type: 'image', textKey: 'modal_modular_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Blocks' },
+                        { type: 'image', textKey: 'modal_modular_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=API' },
+                        { type: 'image', textKey: 'modal_modular_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Scalability' }
+                    ]
+                },
+                proactivo: {
+                    titleKey: 'modal_proactivo_title',
+                    descriptionKey: 'modal_proactivo_desc',
+                    reelTitleKey: 'modal_proactivo_reel_title',
+                    reelContent: [
+                        { type: 'link', textKey: 'modal_proactivo_reel_item1', url: '#' },
+                        { type: 'link', textKey: 'modal_proactivo_reel_item2', url: '#' },
+                        { type: 'link', textKey: 'modal_proactivo_reel_item3', url: '#' }
+                    ]
+                },
+                adaptativo: {
+                    titleKey: 'modal_adaptativo_title',
+                    descriptionKey: 'modal_adaptativo_desc',
+                    reelTitleKey: 'modal_adaptativo_reel_title',
+                    reelContent: [
+                        { type: 'image', textKey: 'modal_adaptativo_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Windows' },
+                        { type: 'image', textKey: 'modal_adaptativo_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Linux' },
+                        { type: 'image', textKey: 'modal_adaptativo_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=macOS' }
+                    ]
+                },
+                 'automatizacion-preventiva': {
+                    titleKey: 'modal_automatizacion_preventiva_title',
+                    descriptionKey: 'modal_automatizacion_preventiva_desc',
+                    reelTitleKey: 'modal_automatizacion_preventiva_reel_title',
+                    reelContent: [
+                        { type: 'link', textKey: 'modal_automatizacion_preventiva_reel_item1', url: '#' },
+                        { type: 'link', textKey: 'modal_automatizacion_preventiva_reel_item2', url: '#' },
+                        { type: 'link', textKey: 'modal_automatizacion_preventiva_reel_item3', url: '#' }
+                    ]
+                },
+                'documentacion-reutilizable': {
+                    titleKey: 'modal_documentacion_title',
+                    descriptionKey: 'modal_documentacion_desc',
+                    reelTitleKey: 'modal_documentacion_reel_title',
+                    reelContent: [
+                        { type: 'image', textKey: 'modal_documentacion_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Docs+as+Code' },
+                        { type: 'image', textKey: 'modal_documentacion_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=API+Reference' },
+                        { type: 'image', textKey: 'modal_documentacion_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Knowledge+Base' }
+                    ]
+                },
+                'branding-tecnico': {
+                    titleKey: 'modal_branding_title',
+                    descriptionKey: 'modal_branding_desc',
+                    reelTitleKey: 'modal_branding_reel_title',
+                    reelContent: [
+                        { type: 'image', textKey: 'modal_branding_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Icon+System' },
+                        { type: 'image', textKey: 'modal_branding_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=UI/UX+Design' },
+                        { type: 'image', textKey: 'modal_branding_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Visual+Language' }
+                    ]
+                },
+                neurodiversidad: {
+                    titleKey: 'modal_neurodiversidad_title',
+                    descriptionKey: 'modal_neurodiversidad_desc',
+                    reelTitleKey: 'modal_neurodiversidad_reel_title',
+                    reelContent: [
+                        { type: 'image', textKey: 'modal_neurodiversidad_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Talento' },
+                        { type: 'image', textKey: 'modal_neurodiversidad_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Perspectiva' },
+                        { type: 'image', textKey: 'modal_neurodiversidad_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Innovaci%C3%B3n' }
+                    ]
+                },
+                'lanzamiento-prototipo': {
+                    titleKey: 'modal_lanzamiento_title',
+                    descriptionKey: 'modal_lanzamiento_desc',
+                    reelTitleKey: 'modal_lanzamiento_reel_title',
+                    reelContent: [
+                        { type: 'image', textKey: 'modal_lanzamiento_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=MVP+Launch' },
+                        { type: 'image', textKey: 'modal_lanzamiento_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Core+Modules' },
+                        { type: 'image', textKey: 'modal_lanzamiento_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Proof+of+Concept' }
+                    ]
+                },
+                'primeras-implementaciones': {
+                    titleKey: 'modal_implementaciones_title',
+                    descriptionKey: 'modal_implementaciones_desc',
+                    reelTitleKey: 'modal_implementaciones_reel_title',
+                    reelContent: [
+                        { type: 'link', textKey: 'modal_implementaciones_reel_item1', url: '#' },
+                        { type: 'link', textKey: 'modal_implementaciones_reel_item2', url: '#' },
+                        { type: 'link', textKey: 'modal_implementaciones_reel_item3', url: '#' }
+                    ]
+                },
+                'reconocimiento-innovacion': {
+                    titleKey: 'modal_reconocimiento_title',
+                    descriptionKey: 'modal_reconocimiento_desc',
+                    reelTitleKey: 'modal_reconocimiento_reel_title',
+                    reelContent: [
+                        { type: 'image', textKey: 'modal_reconocimiento_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Innovation+Award' },
+                        { type: 'image', textKey: 'modal_reconocimiento_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Branding' },
+                        { type: 'image', textKey: 'modal_reconocimiento_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Community' }
+                    ]
+                },
+                'expansion-crecimiento': {
+                    titleKey: 'modal_expansion_title',
+                    descriptionKey: 'modal_expansion_desc',
+                    reelTitleKey: 'modal_expansion_reel_title',
+                    reelContent: [
+                        { type: 'link', textKey: 'modal_expansion_reel_item1', url: '#' },
+                        { type: 'link', textKey: 'modal_expansion_reel_item2', url: '#' },
+                        { type: 'link', textKey: 'modal_expansion_reel_item3', url: '#' }
+                    ]
+                }
+            };
+
+            // --- Modal Logic ---
+            const modal = document.getElementById('service-modal');
+            const modalPanel = document.getElementById('modal-panel');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalReel = document.getElementById('modal-reel');
+            const modalReelTitle = document.getElementById('modal-reel-title');
+            const closeButton = document.getElementById('modal-close-button');
+            
+            const openModal = (dataKey) => {
+                const data = modalData[dataKey];
+                if (!data) return;
+
+                const lang = currentLang;
+                modalTitle.innerHTML = translations[lang][data.titleKey] || '';
+                modalDescription.innerHTML = translations[lang][data.descriptionKey] || '';
+                modalReelTitle.innerHTML = translations[lang][data.reelTitleKey] || '';
+                
+                modalReel.innerHTML = '';
+                data.reelContent.forEach(item => {
+                    const text = translations[lang][item.textKey] || '';
+                    if (item.type === 'image') {
+                        const img = document.createElement('img');
+                        // Update placeholder text with translated text if available
+                        const newSrc = item.src.replace(/text=[^&]*/, `text=${encodeURIComponent(text)}`);
+                        img.src = newSrc;
+                        img.alt = text;
+                        img.className = 'rounded-lg object-cover w-full h-32 bg-gray-800';
+                        modalReel.appendChild(img);
+                    } else if (item.type === 'link') {
+                        const link = document.createElement('a');
+                        link.href = item.url;
+                        link.target = '_blank';
+                        link.className = 'flex items-center justify-center text-center p-4 bg-gray-800 hover:bg-sky-500/20 text-sky-300 font-semibold rounded-lg transition-colors text-sm h-32';
+                        link.textContent = text;
+                        modalReel.appendChild(link);
+                    }
+                });
+                
+                document.body.classList.add('modal-open');
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modalPanel.classList.remove('scale-95');
+            }
+
+            const closeModal = () => {
+                document.body.classList.remove('modal-open');
+                modal.classList.add('opacity-0');
+                modalPanel.classList.add('scale-95');
+                setTimeout(() => {
+                   modal.classList.add('pointer-events-none');
+                }, 300); // Wait for transition to finish
+            }
+            
+            // --- Event Listeners ---
+            const interactiveElements = document.querySelectorAll('[data-service], [data-feature]');
+            interactiveElements.forEach(element => {
+                element.addEventListener('click', () => {
+                    const dataKey = element.dataset.service || element.dataset.feature;
+                    openModal(dataKey);
+                });
+            });
+
+            closeButton.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            langEsButton.addEventListener('click', () => setLanguage('es'));
+            langEnButton.addEventListener('click', () => setLanguage('en'));
+            langEsButtonMobile.addEventListener('click', () => setLanguage('es'));
+            langEnButtonMobile.addEventListener('click', () => setLanguage('en'));
+
+
+            // --- Animated Timeline Observer ---
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3
+            };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            timelineItems.forEach(item => {
+                observer.observe(item);
+            });
+
+            // --- Initial Load ---
+            setLanguage('es');
+        });
+    </script>
+
+</body>
+</html>
