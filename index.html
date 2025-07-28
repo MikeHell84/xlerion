@@ -34,6 +34,7 @@
         .infographic-node {
             transition: all 0.3s ease-in-out;
             cursor: pointer;
+            transform-origin: center;
         }
         .infographic-node:hover {
             transform: scale(1.1);
@@ -58,7 +59,7 @@
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
         .interactive-card:hover {
-            transform: translateY(-5px);
+            transform: scale(1.05);
             box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.1), 0 4px 6px -2px rgba(56, 189, 248, 0.05);
         }
         /* Animated Timeline */
@@ -106,6 +107,31 @@
         .timeline-item-content:hover {
             background-color: rgba(56, 189, 248, 0.1);
         }
+        /* Three.js particle container */
+        #particle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Behind hero content */
+            background: radial-gradient(ellipse at 50% 50%, #001a35 0%, #00050a 100%);
+            cursor: pointer;
+        }
+        #hero-content {
+            position: relative;
+            z-index: 2; /* In front of particles */
+            text-shadow: 0 0 15px rgba(0,0,0,0.7);
+        }
+        #loading-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #94a3b8;
+            font-size: 1.2rem;
+            z-index: 3;
+        }
     </style>
 </head>
 <body class="text-gray-300">
@@ -122,7 +148,7 @@
                 <a href="#producto" class="hover:text-sky-400 transition-colors" data-translate="nav_product">Producto</a>
                 <a href="#diferenciales" class="hover:text-sky-400 transition-colors" data-translate="nav_differentiators">Diferenciales</a>
                 <a href="#hoja-de-ruta" class="hover:text-sky-400 transition-colors" data-translate="nav_roadmap">Hoja de Ruta</a>
-                <a href="total-darkness/index.html" class="font-semibold text-sky-400 hover:text-sky-300 transition-colors" data-translate="nav_total_darkness">Total Darkness</a>
+                <a href="total-darkness/totaldarkness.html" class="font-semibold text-sky-400 hover:text-sky-300 transition-colors" data-translate="nav_total_darkness">Total Darkness</a>
                 <a href="#contacto" class="hover:text-sky-400 transition-colors" data-translate="nav_contact">Contacto</a>
                 <!-- Language Switcher -->
                 <div class="flex items-center space-x-2 border-l border-gray-700 ml-6 pl-6">
@@ -143,7 +169,7 @@
             <a href="#producto" class="block py-2 hover:text-sky-400 transition-colors" data-translate="nav_product_mobile">Producto</a>
             <a href="#diferenciales" class="block py-2 hover:text-sky-400 transition-colors" data-translate="nav_differentiators_mobile">Diferenciales</a>
             <a href="#hoja-de-ruta" class="block py-2 hover:text-sky-400 transition-colors" data-translate="nav_roadmap_mobile">Hoja de Ruta</a>
-            <a href="total-darkness/index.html" class="block py-2 font-semibold text-sky-400 hover:text-sky-300 transition-colors" data-translate="nav_total_darkness_mobile">Total Darkness</a>
+            <a href="total-darkness/totaldarkness.html" class="block py-2 font-semibold text-sky-400 hover:text-sky-300 transition-colors" data-translate="nav_total_darkness_mobile">Total Darkness</a>
             <a href="#contacto" class="block py-2 hover:text-sky-400 transition-colors" data-translate="nav_contact_mobile">Contacto</a>
              <!-- Language Switcher Mobile -->
             <div class="flex items-center space-x-2 pt-4 mt-4 border-t border-gray-700">
@@ -156,11 +182,12 @@
 
     <main>
         <!-- Hero Section -->
-        <section 
-            class="min-h-screen bg-cover bg-center bg-fixed" 
-            style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop');">
-            <div class="min-h-screen flex items-center justify-center bg-black/70">
-                <div class="container mx-auto px-6 text-center z-10">
+        <section class="min-h-screen relative">
+            <div id="particle-container">
+                 <div id="loading-message">Cargando animación...</div>
+            </div>
+            <div id="hero-content" class="min-h-screen flex items-center justify-center bg-black/40">
+                <div class="container mx-auto px-6 text-center">
                     <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white leading-tight" data-translate="hero_title">
                         La <span class='gradient-text'>Diversidad Cognitiva</span> Construye la Mejor Ingeniería.
                     </h1>
@@ -176,7 +203,7 @@
             </div>
         </section>
 
-        <!-- Solutions Section with Interactive Infographic -->
+        <!-- The rest of the company content sections -->
         <section id="soluciones" class="py-20 md:py-32">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
@@ -246,7 +273,6 @@
             </div>
         </section>
 
-        <!-- Product Section -->
         <section id="producto" class="py-20 md:py-32 bg-gray-900">
             <div class="container mx-auto px-6">
                  <div class="text-center mb-16">
@@ -281,7 +307,6 @@
             </div>
         </section>
 
-        <!-- Differentiators Section -->
         <section id="diferenciales" class="py-20 md:py-32">
             <div class="container mx-auto px-6">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -316,7 +341,6 @@
             </div>
         </section>
 
-        <!-- Traction and Roadmap Section -->
         <section id="hoja-de-ruta" class="py-20 md:py-32 bg-gray-900">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
@@ -341,7 +365,7 @@
                                     </div>
                                 </div>
                                 <div class="self-start pt-2">
-                                    <a href="total-darkness/index.html" class="inline-block bg-sky-500/20 hover:bg-sky-500/40 text-sky-300 font-semibold py-2 px-5 rounded-lg transition-colors text-sm" data-translate="casestudy_button">
+                                    <a href="total-darkness/totaldarkness.html" class="inline-block bg-sky-500/20 hover:bg-sky-500/40 text-sky-300 font-semibold py-2 px-5 rounded-lg transition-colors text-sm" data-translate="casestudy_button">
                                         Conocer Más
                                     </a>
                                 </div>
@@ -415,7 +439,7 @@
                     </a>
                 </div>
 
-                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
                     <!-- Corporativo y Soporte -->
                     <div>
                         <h4 class="font-bold text-white mb-4" data-translate="footer_col1_title">Corporativo y Soporte</h4>
@@ -480,7 +504,7 @@
                     </div>
                 </div>
 
-                 <div class="mt-16 pt-8 border-t border-gray-800 text-sm text-gray-500">
+                 <div class="mt-16 pt-8 border-t border-gray-800 text-sm text-gray-500 text-center">
                     <p data-translate="footer_copyright">&copy; 2025 Xlerion – Soluciones Disruptivas. Todos los derechos reservados.</p>
                     <p class="mt-1" data-translate="footer_location">Nocaima, Cundinamarca, Colombia</p>
                 </div>
@@ -509,14 +533,32 @@
     
     <!-- Translation data file -->
     <script src="translations.js"></script>
+
+    <!-- Three.js and dependencies -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
+        }
+    }
+    </script>
     
     <!-- Main application script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // --- Global State ---
-            let currentLang = 'es';
+    <script type="module">
+        // Import Three.js and necessary addons
+        import * as THREE from 'three';
+        import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+        import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+        import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+        import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';
 
-            // --- Element Selectors ---
+        // --- Main Page Logic (for modals, menu, etc.) ---
+        function initializePage() {
+            let currentLang = 'es';
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const langEsButton = document.getElementById('lang-es');
@@ -524,21 +566,18 @@
             const langEsButtonMobile = document.getElementById('lang-es-mobile');
             const langEnButtonMobile = document.getElementById('lang-en-mobile');
             
-            // --- Mobile Menu Toggle ---
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
 
-            // --- Translation Logic ---
             const setLanguage = (lang) => {
-                if (!translations[lang]) {
+                if (typeof translations === 'undefined' || !translations[lang]) {
                     console.error(`Language "${lang}" not found in translations.`);
                     return;
                 }
                 currentLang = lang;
                 document.documentElement.lang = lang;
 
-                // Update button styles for desktop
                 langEsButton.classList.toggle('font-semibold', lang === 'es');
                 langEsButton.classList.toggle('text-sky-400', lang === 'es');
                 langEsButton.classList.toggle('text-gray-400', lang !== 'es');
@@ -546,7 +585,6 @@
                 langEnButton.classList.toggle('text-sky-400', lang === 'en');
                 langEnButton.classList.toggle('text-gray-400', lang !== 'en');
 
-                // Update button styles for mobile
                 langEsButtonMobile.classList.toggle('font-semibold', lang === 'es');
                 langEsButtonMobile.classList.toggle('text-sky-400', lang === 'es');
                 langEsButtonMobile.classList.toggle('text-gray-400', lang !== 'es');
@@ -554,201 +592,36 @@
                 langEnButtonMobile.classList.toggle('text-sky-400', lang === 'en');
                 langEnButtonMobile.classList.toggle('text-gray-400', lang !== 'en');
 
-                // Translate all elements with data-translate attribute
                 const elementsToTranslate = document.querySelectorAll('[data-translate]');
                 elementsToTranslate.forEach(el => {
                     const key = el.dataset.translate;
-                    if (translations[lang][key]) {
+                    if (translations[lang] && translations[lang][key]) {
                         el.innerHTML = translations[lang][key];
                     }
                 });
             };
 
-            // --- Modal Data (using translation keys) ---
             const modalData = {
-                videojuegos: {
-                    titleKey: 'modal_videojuegos_title',
-                    descriptionKey: 'modal_videojuegos_desc',
-                    reelTitleKey: 'modal_videojuegos_reel_title',
-                    reelContent: [
-                        { type: 'link', textKey: 'modal_videojuegos_reel_item1', url: '#' },
-                        { type: 'link', textKey: 'modal_videojuegos_reel_item2', url: '#' },
-                        { type: 'link', textKey: 'modal_videojuegos_reel_item3', url: '#' }
-                    ]
-                },
-                multimedia: {
-                    titleKey: 'modal_multimedia_title',
-                    descriptionKey: 'modal_multimedia_desc',
-                    reelTitleKey: 'modal_multimedia_reel_title',
-                    reelContent: [
-                        { type: 'link', textKey: 'modal_multimedia_reel_item1', url: '#' },
-                        { type: 'link', textKey: 'modal_multimedia_reel_item2', url: '#' },
-                        { type: 'link', textKey: 'modal_multimedia_reel_item3', url: '#' }
-                    ]
-                },
-                consultoria: {
-                    titleKey: 'modal_consultoria_title',
-                    descriptionKey: 'modal_consultoria_desc',
-                    reelTitleKey: 'modal_consultoria_reel_title',
-                    reelContent: [
-                        { type: 'link', textKey: 'modal_consultoria_reel_item1', url: '#' },
-                        { type: 'link', textKey: 'modal_consultoria_reel_item2', url: '#' },
-                        { type: 'link', textKey: 'modal_consultoria_reel_item3', url: '#' }
-                    ]
-                },
-                desarrollo: {
-                    titleKey: 'modal_desarrollo_title',
-                    descriptionKey: 'modal_desarrollo_desc',
-                    reelTitleKey: 'modal_desarrollo_reel_title',
-                    reelContent: [
-                        { type: 'link', textKey: 'modal_desarrollo_reel_item1', url: '#' },
-                        { type: 'link', textKey: 'modal_desarrollo_reel_item2', url: '#' },
-                        { type: 'link', textKey: 'modal_desarrollo_reel_item3', url: '#' }
-                    ]
-                },
-                automatizacion: {
-                    titleKey: 'modal_automatizacion_title',
-                    descriptionKey: 'modal_automatizacion_desc',
-                    reelTitleKey: 'modal_automatizacion_reel_title',
-                    reelContent: [
-                        { type: 'link', textKey: 'modal_automatizacion_reel_item1', url: '#' },
-                        { type: 'link', textKey: 'modal_automatizacion_reel_item2', url: '#' },
-                        { type: 'link', textKey: 'modal_automatizacion_reel_item3', url: '#' }
-                    ]
-                },
-                vision: {
-                    titleKey: 'modal_vision_title',
-                    descriptionKey: 'modal_vision_desc',
-                    reelTitleKey: 'modal_vision_reel_title',
-                    reelContent: [
-                        { type: 'link', textKey: 'modal_vision_reel_item1', url: '#' },
-                        { type: 'link', textKey: 'modal_vision_reel_item2', url: '#' },
-                        { type: 'link', textKey: 'modal_vision_reel_item3', url: '#' }
-                    ]
-                },
-                 core: {
-                    titleKey: 'modal_core_title',
-                    descriptionKey: 'modal_core_desc',
-                    reelTitleKey: 'modal_core_reel_title',
-                    reelContent: [
-                        { type: 'link', textKey: 'modal_core_reel_item1', url: '#' },
-                        { type: 'link', textKey: 'modal_core_reel_item2', url: '#' },
-                        { type: 'link', textKey: 'modal_core_reel_item3', url: '#' }
-                    ]
-                },
-                modular: {
-                    titleKey: 'modal_modular_title',
-                    descriptionKey: 'modal_modular_desc',
-                    reelTitleKey: 'modal_modular_reel_title',
-                    reelContent: [
-                        { type: 'image', textKey: 'modal_modular_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Blocks' },
-                        { type: 'image', textKey: 'modal_modular_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=API' },
-                        { type: 'image', textKey: 'modal_modular_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Scalability' }
-                    ]
-                },
-                proactivo: {
-                    titleKey: 'modal_proactivo_title',
-                    descriptionKey: 'modal_proactivo_desc',
-                    reelTitleKey: 'modal_proactivo_reel_title',
-                    reelContent: [
-                        { type: 'link', textKey: 'modal_proactivo_reel_item1', url: '#' },
-                        { type: 'link', textKey: 'modal_proactivo_reel_item2', url: '#' },
-                        { type: 'link', textKey: 'modal_proactivo_reel_item3', url: '#' }
-                    ]
-                },
-                adaptativo: {
-                    titleKey: 'modal_adaptativo_title',
-                    descriptionKey: 'modal_adaptativo_desc',
-                    reelTitleKey: 'modal_adaptativo_reel_title',
-                    reelContent: [
-                        { type: 'image', textKey: 'modal_adaptativo_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Windows' },
-                        { type: 'image', textKey: 'modal_adaptativo_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Linux' },
-                        { type: 'image', textKey: 'modal_adaptativo_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=macOS' }
-                    ]
-                },
-                 'automatizacion-preventiva': {
-                    titleKey: 'modal_automatizacion_preventiva_title',
-                    descriptionKey: 'modal_automatizacion_preventiva_desc',
-                    reelTitleKey: 'modal_automatizacion_preventiva_reel_title',
-                    reelContent: [
-                        { type: 'link', textKey: 'modal_automatizacion_preventiva_reel_item1', url: '#' },
-                        { type: 'link', textKey: 'modal_automatizacion_preventiva_reel_item2', url: '#' },
-                        { type: 'link', textKey: 'modal_automatizacion_preventiva_reel_item3', url: '#' }
-                    ]
-                },
-                'documentacion-reutilizable': {
-                    titleKey: 'modal_documentacion_title',
-                    descriptionKey: 'modal_documentacion_desc',
-                    reelTitleKey: 'modal_documentacion_reel_title',
-                    reelContent: [
-                        { type: 'image', textKey: 'modal_documentacion_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Docs+as+Code' },
-                        { type: 'image', textKey: 'modal_documentacion_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=API+Reference' },
-                        { type: 'image', textKey: 'modal_documentacion_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Knowledge+Base' }
-                    ]
-                },
-                'branding-tecnico': {
-                    titleKey: 'modal_branding_title',
-                    descriptionKey: 'modal_branding_desc',
-                    reelTitleKey: 'modal_branding_reel_title',
-                    reelContent: [
-                        { type: 'image', textKey: 'modal_branding_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Icon+System' },
-                        { type: 'image', textKey: 'modal_branding_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=UI/UX+Design' },
-                        { type: 'image', textKey: 'modal_branding_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Visual+Language' }
-                    ]
-                },
-                neurodiversidad: {
-                    titleKey: 'modal_neurodiversidad_title',
-                    descriptionKey: 'modal_neurodiversidad_desc',
-                    reelTitleKey: 'modal_neurodiversidad_reel_title',
-                    reelContent: [
-                        { type: 'image', textKey: 'modal_neurodiversidad_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Talento' },
-                        { type: 'image', textKey: 'modal_neurodiversidad_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Perspectiva' },
-                        { type: 'image', textKey: 'modal_neurodiversidad_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Innovaci%C3%B3n' }
-                    ]
-                },
-                'lanzamiento-prototipo': {
-                    titleKey: 'modal_lanzamiento_title',
-                    descriptionKey: 'modal_lanzamiento_desc',
-                    reelTitleKey: 'modal_lanzamiento_reel_title',
-                    reelContent: [
-                        { type: 'image', textKey: 'modal_lanzamiento_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=MVP+Launch' },
-                        { type: 'image', textKey: 'modal_lanzamiento_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Core+Modules' },
-                        { type: 'image', textKey: 'modal_lanzamiento_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Proof+of+Concept' }
-                    ]
-                },
-                'primeras-implementaciones': {
-                    titleKey: 'modal_implementaciones_title',
-                    descriptionKey: 'modal_implementaciones_desc',
-                    reelTitleKey: 'modal_implementaciones_reel_title',
-                    reelContent: [
-                        { type: 'link', textKey: 'modal_implementaciones_reel_item1', url: '#' },
-                        { type: 'link', textKey: 'modal_implementaciones_reel_item2', url: '#' },
-                        { type: 'link', textKey: 'modal_implementaciones_reel_item3', url: '#' }
-                    ]
-                },
-                'reconocimiento-innovacion': {
-                    titleKey: 'modal_reconocimiento_title',
-                    descriptionKey: 'modal_reconocimiento_desc',
-                    reelTitleKey: 'modal_reconocimiento_reel_title',
-                    reelContent: [
-                        { type: 'image', textKey: 'modal_reconocimiento_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Innovation+Award' },
-                        { type: 'image', textKey: 'modal_reconocimiento_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Branding' },
-                        { type: 'image', textKey: 'modal_reconocimiento_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Community' }
-                    ]
-                },
-                'expansion-crecimiento': {
-                    titleKey: 'modal_expansion_title',
-                    descriptionKey: 'modal_expansion_desc',
-                    reelTitleKey: 'modal_expansion_reel_title',
-                    reelContent: [
-                        { type: 'link', textKey: 'modal_expansion_reel_item1', url: '#' },
-                        { type: 'link', textKey: 'modal_expansion_reel_item2', url: '#' },
-                        { type: 'link', textKey: 'modal_expansion_reel_item3', url: '#' }
-                    ]
-                }
+                videojuegos: { titleKey: 'modal_videojuegos_title', descriptionKey: 'modal_videojuegos_desc', reelTitleKey: 'modal_videojuegos_reel_title', reelContent: [ { type: 'link', textKey: 'modal_videojuegos_reel_item1', url: '#' }, { type: 'link', textKey: 'modal_videojuegos_reel_item2', url: '#' }, { type: 'link', textKey: 'modal_videojuegos_reel_item3', url: '#' } ] },
+                multimedia: { titleKey: 'modal_multimedia_title', descriptionKey: 'modal_multimedia_desc', reelTitleKey: 'modal_multimedia_reel_title', reelContent: [ { type: 'link', textKey: 'modal_multimedia_reel_item1', url: '#' }, { type: 'link', textKey: 'modal_multimedia_reel_item2', url: '#' }, { type: 'link', textKey: 'modal_multimedia_reel_item3', url: '#' } ] },
+                consultoria: { titleKey: 'modal_consultoria_title', descriptionKey: 'modal_consultoria_desc', reelTitleKey: 'modal_consultoria_reel_title', reelContent: [ { type: 'link', textKey: 'modal_consultoria_reel_item1', url: '#' }, { type: 'link', textKey: 'modal_consultoria_reel_item2', url: '#' }, { type: 'link', textKey: 'modal_consultoria_reel_item3', url: '#' } ] },
+                desarrollo: { titleKey: 'modal_desarrollo_title', descriptionKey: 'modal_desarrollo_desc', reelTitleKey: 'modal_desarrollo_reel_title', reelContent: [ { type: 'link', textKey: 'modal_desarrollo_reel_item1', url: '#' }, { type: 'link', textKey: 'modal_desarrollo_reel_item2', url: '#' }, { type: 'link', textKey: 'modal_desarrollo_reel_item3', url: '#' } ] },
+                automatizacion: { titleKey: 'modal_automatizacion_title', descriptionKey: 'modal_automatizacion_desc', reelTitleKey: 'modal_automatizacion_reel_title', reelContent: [ { type: 'link', textKey: 'modal_automatizacion_reel_item1', url: '#' }, { type: 'link', textKey: 'modal_automatizacion_reel_item2', url: '#' }, { type: 'link', textKey: 'modal_automatizacion_reel_item3', url: '#' } ] },
+                vision: { titleKey: 'modal_vision_title', descriptionKey: 'modal_vision_desc', reelTitleKey: 'modal_vision_reel_title', reelContent: [ { type: 'link', textKey: 'modal_vision_reel_item1', url: '#' }, { type: 'link', textKey: 'modal_vision_reel_item2', url: '#' }, { type: 'link', textKey: 'modal_vision_reel_item3', url: '#' } ] },
+                core: { titleKey: 'modal_core_title', descriptionKey: 'modal_core_desc', reelTitleKey: 'modal_core_reel_title', reelContent: [ { type: 'link', textKey: 'modal_core_reel_item1', url: '#' }, { type: 'link', textKey: 'modal_core_reel_item2', url: '#' }, { type: 'link', textKey: 'modal_core_reel_item3', url: '#' } ] },
+                modular: { titleKey: 'modal_modular_title', descriptionKey: 'modal_modular_desc', reelTitleKey: 'modal_modular_reel_title', reelContent: [ { type: 'image', textKey: 'modal_modular_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Blocks' }, { type: 'image', textKey: 'modal_modular_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=API' }, { type: 'image', textKey: 'modal_modular_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Scalability' } ] },
+                proactivo: { titleKey: 'modal_proactivo_title', descriptionKey: 'modal_proactivo_desc', reelTitleKey: 'modal_proactivo_reel_title', reelContent: [ { type: 'link', textKey: 'modal_proactivo_reel_item1', url: '#' }, { type: 'link', textKey: 'modal_proactivo_reel_item2', url: '#' }, { type: 'link', textKey: 'modal_proactivo_reel_item3', url: '#' } ] },
+                adaptativo: { titleKey: 'modal_adaptativo_title', descriptionKey: 'modal_adaptativo_desc', reelTitleKey: 'modal_adaptativo_reel_title', reelContent: [ { type: 'image', textKey: 'modal_adaptativo_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Windows' }, { type: 'image', textKey: 'modal_adaptativo_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Linux' }, { type: 'image', textKey: 'modal_adaptativo_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=macOS' } ] },
+                'automatizacion-preventiva': { titleKey: 'modal_automatizacion_preventiva_title', descriptionKey: 'modal_automatizacion_preventiva_desc', reelTitleKey: 'modal_automatizacion_preventiva_reel_title', reelContent: [ { type: 'link', textKey: 'modal_automatizacion_preventiva_reel_item1', url: '#' }, { type: 'link', textKey: 'modal_automatizacion_preventiva_reel_item2', url: '#' }, { type: 'link', textKey: 'modal_automatizacion_preventiva_reel_item3', url: '#' } ] },
+                'documentacion-reutilizable': { titleKey: 'modal_documentacion_title', descriptionKey: 'modal_documentacion_desc', reelTitleKey: 'modal_documentacion_reel_title', reelContent: [ { type: 'image', textKey: 'modal_documentacion_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Docs+as+Code' }, { type: 'image', textKey: 'modal_documentacion_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=API+Reference' }, { type: 'image', textKey: 'modal_documentacion_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Knowledge+Base' } ] },
+                'branding-tecnico': { titleKey: 'modal_branding_title', descriptionKey: 'modal_branding_desc', reelTitleKey: 'modal_branding_reel_title', reelContent: [ { type: 'image', textKey: 'modal_branding_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Icon+System' }, { type: 'image', textKey: 'modal_branding_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=UI/UX+Design' }, { type: 'image', textKey: 'modal_branding_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Visual+Language' } ] },
+                neurodiversidad: { titleKey: 'modal_neurodiversidad_title', descriptionKey: 'modal_neurodiversidad_desc', reelTitleKey: 'modal_neurodiversidad_reel_title', reelContent: [ { type: 'image', textKey: 'modal_neurodiversidad_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Talento' }, { type: 'image', textKey: 'modal_neurodiversidad_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Perspectiva' }, { type: 'image', textKey: 'modal_neurodiversidad_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Innovaci%C3%B3n' } ] },
+                'lanzamiento-prototipo': { titleKey: 'modal_lanzamiento_title', descriptionKey: 'modal_lanzamiento_desc', reelTitleKey: 'modal_lanzamiento_reel_title', reelContent: [ { type: 'image', textKey: 'modal_lanzamiento_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=MVP+Launch' }, { type: 'image', textKey: 'modal_lanzamiento_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Core+Modules' }, { type: 'image', textKey: 'modal_lanzamiento_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Proof+of+Concept' } ] },
+                'primeras-implementaciones': { titleKey: 'modal_implementaciones_title', descriptionKey: 'modal_implementaciones_desc', reelTitleKey: 'modal_implementaciones_reel_title', reelContent: [ { type: 'link', textKey: 'modal_implementaciones_reel_item1', url: '#' }, { type: 'link', textKey: 'modal_implementaciones_reel_item2', url: '#' }, { type: 'link', textKey: 'modal_implementaciones_reel_item3', url: '#' } ] },
+                'reconocimiento-innovacion': { titleKey: 'modal_reconocimiento_title', descriptionKey: 'modal_reconocimiento_desc', reelTitleKey: 'modal_reconocimiento_reel_title', reelContent: [ { type: 'image', textKey: 'modal_reconocimiento_reel_item1', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Innovation+Award' }, { type: 'image', textKey: 'modal_reconocimiento_reel_item2', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Branding' }, { type: 'image', textKey: 'modal_reconocimiento_reel_item3', src: 'https://placehold.co/600x400/0f172a/38bdf8?text=Community' } ] },
+                'expansion-crecimiento': { titleKey: 'modal_expansion_title', descriptionKey: 'modal_expansion_desc', reelTitleKey: 'modal_expansion_reel_title', reelContent: [ { type: 'link', textKey: 'modal_expansion_reel_item1', url: '#' }, { type: 'link', textKey: 'modal_expansion_reel_item2', url: '#' }, { type: 'link', textKey: 'modal_expansion_reel_item3', url: '#' } ] }
             };
 
-            // --- Modal Logic ---
             const modal = document.getElementById('service-modal');
             const modalPanel = document.getElementById('modal-panel');
             const modalTitle = document.getElementById('modal-title');
@@ -759,7 +632,7 @@
             
             const openModal = (dataKey) => {
                 const data = modalData[dataKey];
-                if (!data) return;
+                if (!data || typeof translations === 'undefined') return;
 
                 const lang = currentLang;
                 modalTitle.innerHTML = translations[lang][data.titleKey] || '';
@@ -771,7 +644,6 @@
                     const text = translations[lang][item.textKey] || '';
                     if (item.type === 'image') {
                         const img = document.createElement('img');
-                        // Update placeholder text with translated text if available
                         const newSrc = item.src.replace(/text=[^&]*/, `text=${encodeURIComponent(text)}`);
                         img.src = newSrc;
                         img.alt = text;
@@ -790,7 +662,7 @@
                 document.body.classList.add('modal-open');
                 modal.classList.remove('opacity-0', 'pointer-events-none');
                 modalPanel.classList.remove('scale-95');
-            }
+            };
 
             const closeModal = () => {
                 document.body.classList.remove('modal-open');
@@ -798,10 +670,9 @@
                 modalPanel.classList.add('scale-95');
                 setTimeout(() => {
                    modal.classList.add('pointer-events-none');
-                }, 300); // Wait for transition to finish
-            }
+                }, 300);
+            };
             
-            // --- Event Listeners ---
             const interactiveElements = document.querySelectorAll('[data-service], [data-feature]');
             interactiveElements.forEach(element => {
                 element.addEventListener('click', () => {
@@ -812,9 +683,7 @@
 
             closeButton.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModal();
-                }
+                if (e.target === modal) closeModal();
             });
 
             langEsButton.addEventListener('click', () => setLanguage('es'));
@@ -822,29 +691,332 @@
             langEsButtonMobile.addEventListener('click', () => setLanguage('es'));
             langEnButtonMobile.addEventListener('click', () => setLanguage('en'));
 
-
-            // --- Animated Timeline Observer ---
             const timelineItems = document.querySelectorAll('.timeline-item');
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.3
-            };
-            const observer = new IntersectionObserver((entries, observer) => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
                         observer.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
-            timelineItems.forEach(item => {
-                observer.observe(item);
+            }, { threshold: 0.3 });
+            timelineItems.forEach(item => observer.observe(item));
+
+            setLanguage('es');
+        }
+
+        // --- Three.js Logo Animation Logic ---
+        let scene, camera, renderer, particles, composer;
+        let clock = new THREE.Clock();
+        const particleCount = 50000;
+        let font;
+
+        let currentPattern = 0;
+        let patterns = [];
+        let targetPositions = {};
+        let animationSequence = [];
+        
+        let isTransitioning = false;
+        let transitionProgress = 0;
+        const transitionSpeed = 0.02;
+
+        const colorPalettes = [
+            [new THREE.Color(0x38bdf8), new THREE.Color(0x6366f1)], // X
+            [new THREE.Color(0x4ade80), new THREE.Color(0x22c55e)], // L
+            [new THREE.Color(0xfacc15), new THREE.Color(0xeab308)], // E
+            [new THREE.Color(0xf97316), new THREE.Color(0xea580c)], // R
+            [new THREE.Color(0xec4899), new THREE.Color(0xdb2777)], // I
+            [new THREE.Color(0x8b5cf6), new THREE.Color(0x7c3aed)], // O
+            [new THREE.Color(0xef4444), new THREE.Color(0xdc2626)], // N
+            [new THREE.Color(0xffffff), new THREE.Color(0x94a3b8)], // XLERION Full
+            [new THREE.Color(0x00FF7F), new THREE.Color(0x55A630)], // Circuit
+            [new THREE.Color(0xFFD700), new THREE.Color(0xFFA500)], // EllipticalOrbit
+        ];
+
+        function initAnimation() {
+            const container = document.getElementById('particle-container');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+            camera.position.z = 100;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            composer = new EffectComposer(renderer);
+            composer.addPass(new RenderPass(scene, camera));
+            const bloomPass = new UnrealBloomPass( new THREE.Vector2(window.innerWidth, window.innerHeight), 0.6, 0.5, 0.85 );
+            composer.addPass(bloomPass);
+            composer.addPass(new OutputPass());
+
+            const fontLoader = new FontLoader();
+            fontLoader.load(
+                'https://cdn.jsdelivr.net/npm/three/examples/fonts/helvetiker_bold.typeface.json',
+                (loadedFont) => {
+                    font = loadedFont;
+                    document.getElementById('loading-message').style.display = 'none';
+                    
+                    preparePatterns();
+                    createParticleSystem();
+                    animate();
+                }
+            );
+
+            window.addEventListener('resize', onWindowResize, false);
+            container.addEventListener('pointerdown', onInteraction, false);
+        }
+        
+        function preparePatterns() {
+            const letters = ['X', 'L', 'E', 'R', 'I', 'O', 'N'];
+            letters.forEach(letter => {
+                targetPositions[letter] = createTextPoints(letter, 80);
+            });
+            targetPositions['XLERION'] = createTextPoints('XLERION', 40);
+            targetPositions['Circuit'] = createCircuitPoints();
+            targetPositions['EllipticalOrbit'] = createEllipticalOrbitPoints();
+
+            animationSequence = [...letters, 'XLERION', 'Circuit', 'EllipticalOrbit'];
+        }
+
+        function createParticleSystem() {
+            const initialKey = animationSequence[0];
+            const initialPositions = targetPositions[initialKey];
+
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(initialPositions, 3));
+            
+            const colors = new Float32Array(particleCount * 3);
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            const material = new THREE.ShaderMaterial({
+                uniforms: { time: { value: 0 } },
+                vertexShader: `
+                    varying vec3 vColor;
+                    void main() {
+                        vColor = color;
+                        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                        gl_PointSize = 1.5 * (300.0 / -mvPosition.z);
+                        gl_Position = projectionMatrix * mvPosition;
+                    }`,
+                fragmentShader: `
+                    varying vec3 vColor;
+                    void main() {
+                        float dist = length(gl_PointCoord - vec2(0.5));
+                        if (dist > 0.5) discard;
+                        gl_FragColor = vec4(vColor, 1.0 - dist * 2.0);
+                    }`,
+                transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, vertexColors: true
             });
 
-            // --- Initial Load ---
-            setLanguage('es');
-        });
+            particles = new THREE.Points(geometry, material);
+            updateParticleColors();
+            scene.add(particles);
+        }
+        
+        // --- Pattern Generation Functions ---
+        function createTextPoints(text, size) {
+            const geometry = new TextGeometry(text, {
+                font: font, size: size, height: 2, curveSegments: 12,
+                bevelEnabled: true, bevelThickness: 0.5, bevelSize: 0.5, bevelOffset: 0, bevelSegments: 5
+            });
+            geometry.center();
+            const sampler = new MeshSurfaceSampler(new THREE.Mesh(geometry)).build();
+            const positions = new Float32Array(particleCount * 3);
+            const tempPosition = new THREE.Vector3();
+            for (let i = 0; i < particleCount; i++) {
+                sampler.sample(tempPosition);
+                positions.set([tempPosition.x, tempPosition.y, tempPosition.z], i * 3);
+            }
+            return positions;
+        }
+
+        function createCircuitPoints() {
+            const points = [];
+            const bounds = { x: 120, y: 120, z: 20 };
+            let particlesLeft = particleCount;
+
+            // Create pads (circular areas)
+            const numPads = 50;
+            const particlesPerPad = Math.floor(particleCount * 0.2 / numPads);
+            for (let i = 0; i < numPads; i++) {
+                const padCenter = new THREE.Vector3(
+                    (Math.random() - 0.5) * bounds.x,
+                    (Math.random() - 0.5) * bounds.y,
+                    (Math.random() - 0.5) * bounds.z
+                );
+                const padRadius = 2 + Math.random() * 4;
+                for (let j = 0; j < particlesPerPad; j++) {
+                    const theta = Math.random() * Math.PI * 2;
+                    const r = Math.random() * padRadius;
+                    points.push(new THREE.Vector3(
+                        padCenter.x + r * Math.cos(theta),
+                        padCenter.y + r * Math.sin(theta),
+                        padCenter.z
+                    ));
+                }
+            }
+            particlesLeft -= points.length;
+
+            // Create traces (lines)
+            const numTraces = 200;
+            const particlesPerTrace = Math.floor(particlesLeft / numTraces);
+            for (let i = 0; i < numTraces; i++) {
+                let currentPoint = new THREE.Vector3(
+                    (Math.random() - 0.5) * bounds.x,
+                    (Math.random() - 0.5) * bounds.y,
+                    (Math.random() - 0.5) * bounds.z
+                );
+                let direction = Math.floor(Math.random() * 4); // 0: +x, 1: -x, 2: +y, 3: -y
+                
+                const numSegments = 2 + Math.floor(Math.random() * 3);
+
+                for (let j = 0; j < numSegments; j++) {
+                    const nextPoint = currentPoint.clone();
+                    const length = 10 + Math.random() * 30;
+                    if (direction === 0) nextPoint.x += length;
+                    else if (direction === 1) nextPoint.x -= length;
+                    else if (direction === 2) nextPoint.y += length;
+                    else if (direction === 3) nextPoint.y -= length;
+
+                    // Clamp to bounds
+                    nextPoint.x = THREE.MathUtils.clamp(nextPoint.x, -bounds.x / 2, bounds.x / 2);
+                    nextPoint.y = THREE.MathUtils.clamp(nextPoint.y, -bounds.y / 2, bounds.y / 2);
+
+                    const line = new THREE.Line3(currentPoint, nextPoint);
+                    for (let k = 0; k < particlesPerTrace / numSegments; k++) {
+                        points.push(line.at(Math.random(), new THREE.Vector3()));
+                    }
+                    
+                    currentPoint = nextPoint;
+                    // Turn 90 degrees
+                    direction = (direction < 2) ? 2 + Math.floor(Math.random() * 2) : Math.floor(Math.random() * 2);
+                }
+            }
+            
+            while (points.length < particleCount) {
+                points.push(new THREE.Vector3()); // Fill remaining with empty points
+            }
+
+            const positions = new Float32Array(particleCount * 3);
+            points.forEach((p, i) => p.toArray(positions, i * 3));
+            return positions;
+        }
+
+        function createEllipticalOrbitPoints() {
+            const points = [];
+            const numOrbits = 12;
+            const particlesPerOrbit = Math.floor(particleCount / numOrbits);
+            for (let orbit = 0; orbit < numOrbits; orbit++) {
+                const a = 15 + orbit * 4;
+                const b = a * (0.5 + Math.random() * 0.4);
+                const tilt = new THREE.Euler( (Math.random() - 0.5) * Math.PI, (Math.random() - 0.5) * Math.PI, 0 );
+                for (let i = 0; i < particlesPerOrbit; i++) {
+                    const theta = (i / particlesPerOrbit) * Math.PI * 2;
+                    const point = new THREE.Vector3(a * Math.cos(theta), b * Math.sin(theta), 0).applyEuler(tilt);
+                    points.push(point);
+                }
+            }
+            while (points.length < particleCount) {
+                 points.push(points[Math.floor(Math.random() * points.length)].clone());
+            }
+            const positions = new Float32Array(particleCount * 3);
+            points.forEach((p, i) => p.toArray(positions, i*3));
+            return positions;
+        }
+
+        // --- Interaction and Update Functions ---
+        function onInteraction() {
+            if (isTransitioning) return;
+            currentPattern = (currentPattern + 1) % animationSequence.length;
+            startTransition();
+        }
+
+        function startTransition() {
+            isTransitioning = true;
+            transitionProgress = 0;
+            
+            const nextKey = animationSequence[currentPattern];
+            const nextPositions = targetPositions[nextKey];
+
+            if (!particles.userData.fromPositions) {
+                 particles.userData.fromPositions = new Float32Array(particleCount * 3);
+            }
+            particles.userData.fromPositions.set(particles.geometry.attributes.position.array);
+            particles.userData.toPositions = nextPositions;
+        }
+
+        function updateTransition() {
+            if (!isTransitioning) return;
+            transitionProgress += transitionSpeed;
+            const easedProgress = 0.5 - Math.cos(transitionProgress * Math.PI) * 0.5;
+
+            const currentPos = particles.geometry.attributes.position.array;
+            const fromPos = particles.userData.fromPositions;
+            const toPos = particles.userData.toPositions;
+
+            for (let i = 0; i < particleCount; i++) {
+                const i3 = i * 3;
+                currentPos[i3] = fromPos[i3] + (toPos[i3] - fromPos[i3]) * easedProgress;
+                currentPos[i3 + 1] = fromPos[i3 + 1] + (toPos[i3 + 1] - fromPos[i3 + 1]) * easedProgress;
+                currentPos[i3 + 2] = fromPos[i3 + 2] + (toPos[i3 + 2] - fromPos[i3 + 2]) * easedProgress;
+            }
+            particles.geometry.attributes.position.needsUpdate = true;
+
+            if (transitionProgress >= 1) {
+                isTransitioning = false;
+                updateParticleColors();
+            }
+        }
+        
+        function updateParticleColors() {
+            if (!particles) return;
+            const palette = colorPalettes[currentPattern];
+            const colors = particles.geometry.attributes.color.array;
+            for (let i = 0; i < particleCount; i++) {
+                const color = palette[i % palette.length];
+                colors.set([color.r, color.g, color.b], i * 3);
+            }
+            particles.geometry.attributes.color.needsUpdate = true;
+        }
+
+        function onWindowResize() {
+            if (!camera || !renderer || !composer) return;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const elapsedTime = clock.getElapsedTime();
+            
+            updateTransition();
+            
+            if (particles) {
+                particles.rotation.y = elapsedTime * 0.03;
+                particles.rotation.x = elapsedTime * 0.02;
+            }
+            
+            camera.position.x = Math.sin(elapsedTime * 0.1) * 30;
+            camera.position.y = Math.cos(elapsedTime * 0.1) * 20;
+            camera.lookAt(scene.position);
+
+            if (composer) composer.render();
+        }
+
+        // --- Initialize everything ---
+        // Wait for translations to be ready (or page load as a fallback)
+        if (typeof translations !== 'undefined') {
+            initializePage();
+            initAnimation();
+        } else {
+            window.addEventListener('load', () => {
+                initializePage();
+                initAnimation();
+            });
+        }
     </script>
 
 </body>

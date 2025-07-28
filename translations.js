@@ -64,9 +64,20 @@ const translations = {
     "timeline_item4_title": "Expansión y Crecimiento",
     "timeline_item4_desc": "Desarrollo de modelo SaaS, licencias escalables y alianzas estratégicas con estudios creativos.",
     
-    // --- Footer ---
+    // --- Footer & Contact Form ---
     "footer_title": "Conecta con Nosotros",
     "footer_subtitle": "Estamos construyendo el futuro del desarrollo técnico. Síguenos, apóyanos o contáctanos para una demostración.",
+    "form_name": "Nombre",
+    "form_company": "Empresa (Opcional)",
+    "form_subject": "Asunto",
+    "form_subject_demo": "Solicitar una Demo",
+    "form_subject_consulting": "Consultoría Técnica",
+    "form_subject_collaboration": "Oportunidades de Colaboración",
+    "form_subject_general": "Consulta General",
+    "form_message": "Mensaje",
+    "form_submit": "Enviar Mensaje",
+    "form_success": "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.",
+    "form_error": "Lo sentimos, ocurrió un error al generar el mensaje. Por favor, inténtalo de nuevo o escríbelo manualmente.",
     "footer_col1_title": "Corporativo y Soporte",
     "footer_col1_link1": "LinkedIn Empresa",
     "footer_col1_link2": "LinkedIn Personal",
@@ -266,9 +277,20 @@ const translations = {
     "timeline_item4_title": "Expansion and Growth",
     "timeline_item4_desc": "Development of a SaaS model, scalable licenses, and strategic alliances with creative studios.",
 
-    // --- Footer ---
+    // --- Footer & Contact Form ---
     "footer_title": "Connect with Us",
     "footer_subtitle": "We are building the future of technical development. Follow us, support us, or contact us for a demonstration.",
+    "form_name": "Name",
+    "form_company": "Company (Optional)",
+    "form_subject": "Subject",
+    "form_subject_demo": "Request a Demo",
+    "form_subject_consulting": "Technical Consulting",
+    "form_subject_collaboration": "Collaboration Opportunities",
+    "form_subject_general": "General Inquiry",
+    "form_message": "Message",
+    "form_submit": "Send Message",
+    "form_success": "Thank you for your message! We will get in touch with you shortly.",
+    "form_error": "Sorry, an error occurred while generating the message. Please try again or write it manually.",
     "footer_col1_title": "Corporate and Support",
     "footer_col1_link1": "Company LinkedIn",
     "footer_col1_link2": "Personal LinkedIn",
