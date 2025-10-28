@@ -1,0 +1,159 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // <-- Asegúrate de que esta línea esté presente
+}
+
+enum UserRole {
+  ADMIN
+  USER
+  EDITOR
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          UserRole  @default(USER)
+  accounts      Account[]
+  lastLogin     DateTime?
+  sessions      Session[]
+  comments      Comment[] // Relación con comentarios
+  images        Image[]   // Relación con imágenes
+  posts         Post[]    // Un usuario puede escribir muchos posts
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  email     String
+  token     String   @unique
+  expires   DateTime
+
+  @@unique([email, token])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  content   String   @db.Text
+  published Boolean  @default(false) // Para controlar si es visible o un borrador
+  slug      String   @unique // Para URLs amigables (ej: /blog/mi-primer-post)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relación con el autor
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+}
+
+model Image {
+  id        String   @id @default(cuid())
+  url       String // URL donde se almacena la imagen (local o en la nube)
+  altText   String? // Texto alternativo para accesibilidad (SEO)
+  title     String? // Título opcional para la imagen
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relación con el usuario que subió la imagen
+  uploader   User   @relation(fields: [uploaderId], references: [id])
+  uploaderId String
+}
+
+enum ProjectStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+model Client {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  phone     String?
+  company   String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  projects  Project[] // Un cliente puede tener muchos proyectos
+}
+
+model Project {
+  id          String        @id @default(cuid())
+  name        String        @unique
+  description String?       @db.Text
+  status      ProjectStatus @default(PENDING)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  // Relación con el cliente
+  client      Client        @relation(fields: [clientId], references: [id])
+  clientId    String
+}
+
+model HomepageSection {
+  id      String @id @default(cuid())
+  order   Int    @default(0)
+  type    String // Por ejemplo: 'hero', 'featuredPosts', 'callToAction'
+  title   String
+  content Json?
+}
