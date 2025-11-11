@@ -1,34 +1,37 @@
-<x-app-layout>
-    <div class="relative py-12" style="background-image: url('{{ asset('images/parallax/proyectos-parallax.jpg') }}'); background-size: cover; background-position: center; background-attachment: fixed;">
-        <div class="absolute inset-0 bg-black opacity-50"></div>
-        <div class="relative max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white bg-opacity-75 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h2 class="text-4xl font-extrabold text-gray-900 mb-6">Proyectos</h2>
+@extends('layouts.app')
 
-                    <p class="text-lg text-gray-700 mb-8">
-                        Cada proyecto de Xlerion es una manifestación de su filosofía: modularidad, documentación y empoderamiento técnico. Aquí presentamos nuestras iniciativas más representativas.
-                    </p>
-
-                    <div>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Proyectos destacados:</h3>
-                        <ul class="list-disc list-inside text-lg text-gray-700 space-y-2">
-                            <li>
-                                <span class="font-medium">Total Darkness – Pelijuego Interactivo:</span> Adaptación de obra literaria original a experiencia narrativa inmersiva con decisiones ramificadas, entornos 3D y cinemáticas filosóficas.
-                            </li>
-                            <li>
-                                <span class="font-medium">Xlerion Toolkit:</span> Conjunto de módulos activos para diagnóstico, logging y rendimiento, diseñado para entornos técnicos complejos.
-                            </li>
-                            <li>
-                                <span class="font-medium">Participación en Colombia 4.0:</span> Presentación institucional y pitch de impacto cultural y técnico.
-                            </li>
-                            <li>
-                                <span class="font-medium">Postulación a CoCrea 2025:</span> Proyecto cultural con enfoque empírico, neurodivergente y territorial.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+@section('content')
+    {{-- Parallax Banner for Proyectos --}}
+    <div class="relative h-96 overflow-hidden parallax-banner-container">
+        <img src="{{ asset('images/parallax/proyectos-parallax.jpg') }}" alt="Proyectos Parallax Banner" class="absolute top-0 left-0 w-full h-full object-cover parallax-banner-image">
+        <div class="absolute inset-0 bg-black/50 z-1"></div> {{-- Overlay --}}
+        <div class="relative z-10 flex items-center justify-center h-full text-center px-4">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white">Proyectos</h1>
         </div>
     </div>
-</x-app-layout>
+
+    {{-- Main Content for Proyectos --}}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12">
+        <section>
+            <h2 class="text-4xl font-bold text-center mb-12 text-teal-400">🎮 Proyectos</h2>
+            <div class="space-y-12">
+                <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-white mb-2">Total Darkness – Pelijuego Interactivo</h3>
+                    <p class="text-gray-400">Adaptación de obra literaria original a experiencia narrativa inmersiva con decisiones ramificadas, entornos 3D y cinemáticas filosóficas.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-white mb-2">Xlerion Toolkit</h3>
+                    <p class="text-gray-400">Conjunto de módulos activos para diagnóstico, logging y rendimiento, diseñado para entornos técnicos complejos.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-white mb-2">Participación en Colombia 4.0</h3>
+                    <p class="text-gray-400">Presentación institucional y pitch de impacto cultural y técnico.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-white mb-2">Postulación a CoCrea 2025</h3>
+                    <p class="text-gray-400">Proyecto cultural con enfoque empírico, neurodivergente y territorial.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+@endsection

@@ -13,7 +13,7 @@
             <span class="text-xl font-bold text-teal-400">Xlerion</span>
             <div class="hidden sm:flex space-x-4">
                 @foreach ($navigationLinks as $link)
-                    <a href="#{{ strtolower(str_replace(' ', '-', $link->name)) }}" class="text-gray-300 hover:text-teal-400">{{ $link->name }}</a>
+                    <a href="{{ $link->route }}" class="text-gray-300 hover:text-teal-400">{{ $link->name }}</a>
                 @endforeach
             </div>
         </nav>

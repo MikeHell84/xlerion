@@ -4,6 +4,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   height: 100vh;
+  padding-top: -100%;
 }
 
 .parallax-video {

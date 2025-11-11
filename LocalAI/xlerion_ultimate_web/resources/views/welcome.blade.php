@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 pt-10">
-
-        @include('sections.inicio')
+    <div class="space-y-24 pt-10">
+        <div id="inicio">@include('sections.inicio')</div>
         <div id="filosofia" class="pt-12">@include('sections.filosofia')</div>
         <div id="soluciones" class="pt-12">@include('sections.soluciones')</div>
         <div id="proyectos" class="pt-12">@include('sections.proyectos')</div>
@@ -12,6 +11,5 @@
         <div id="alianzas" class="pt-12">@include('sections.alianzas')</div>
         <div id="blog" class="pt-12">@include('sections.blog')</div>
         <div id="contacto" class="pt-12">@include('sections.contacto')</div>
-
     </div>
 @endsection
