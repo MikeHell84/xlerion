@@ -1,0 +1,57 @@
+.video-parallax-container {
+  perspective: 1px;
+  transform-style: preserve-3d;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.parallax-video {
+  transform: translateZ(-1px) scale(2);
+  z-index: -1;
+}
+/* Estilos de la sección principal para asegurar que el contenido se vea */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white; /* Para que el texto se vea sobre el video */
+    background: rgba(0, 0, 0, 0.4); /* Overlay oscuro para mejor legibilidad */
+}
+
+.hero-content {
+    z-index: 1; /* Asegura que el contenido esté sobre el overlay del video */
+}
+
+/* Estilos básicos para las secciones de contenido */
+.content-section {
+    padding: 100px 50px;
+    min-height: 50vh;
+    border-bottom: 1px solid #eee;
+}
+
+/* Estilos del Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.contact-form input, .contact-form textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+html {
+    scroll-behavior: smooth; /* Esto gestiona automáticamente el desplazamiento fluido */
+}
