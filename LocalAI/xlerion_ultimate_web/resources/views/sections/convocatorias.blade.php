@@ -1,3 +1,7 @@
+<div class="parallax-image-container">
+    <img src="{{ asset('images/parallax/convocatorias-alianzas-parallax.jpg') }}" alt="Convocatorias y Alianzas Parallax">
+</div>
+
 <section>
     <h2 class="text-4xl font-bold text-center mb-12 text-teal-400">🤝 Convocatorias y Alianzas</h2>
     <div class="space-y-8">

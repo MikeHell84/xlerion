@@ -1,3 +1,7 @@
+<div class="parallax-image-container">
+    <img src="{{ asset('images/parallax/soluciones-parallax.jpg') }}" alt="Soluciones Parallax">
+</div>
+
 <section>
     <h2 class="text-4xl font-bold text-center mb-6 text-teal-400">🛠️ Soluciones</h2>
     <p class="text-center mb-12 text-gray-400 max-w-3xl mx-auto">

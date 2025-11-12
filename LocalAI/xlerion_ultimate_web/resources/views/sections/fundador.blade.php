@@ -1,3 +1,7 @@
+<div class="parallax-image-container">
+    <img src="{{ asset('images/parallax/fundador-parallax.jpg') }}" alt="Fundador Parallax">
+</div>
+
 <section>
     <h2 class="text-4xl font-bold text-center mb-12 text-teal-400">🧠 Sobre el Fundador</h2>
     

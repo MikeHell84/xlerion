@@ -1,3 +1,7 @@
+<div class="parallax-image-container">
+    <img src="{{ asset('images/parallax/filosofia-parallax.jpg') }}" alt="Filosofía Parallax">
+</div>
+
 <section>
     <h2 class="text-4xl font-bold text-center mb-12 text-teal-400">🧬 Filosofía</h2>
     <div class="grid md:grid-cols-3 gap-8 text-center">

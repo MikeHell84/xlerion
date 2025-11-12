@@ -1,3 +1,7 @@
+<div class="parallax-image-container">
+    <img src="{{ asset('images/parallax/contacto-parallax.jpg') }}" alt="Contacto Parallax">
+</div>
+
 <section>
     <h2 class="text-4xl font-bold text-center mb-6 text-teal-400">🤝 Contáctanos</h2>
     <p class="text-center mb-10 text-gray-400 max-w-xl mx-auto">
