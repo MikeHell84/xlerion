@@ -33,14 +33,13 @@
 
                     {{-- COLUMNA 1: FOTO --}}
                                         <div class="lg:col-span-1 flex flex-col items-center order-first lg:order-last">
-                                            <div class="w-full max-w-xs sm:max-w-sm p-4 bg-gray-900 rounded-3xl shadow-2xl transform hover:scale-[1.02] transition duration-300 border-2 border-indigo-500/30">
+                                            <div class="w-full max-w-xs sm:max-w-sm p-4 bg-gray-900 rounded-3xl shadow-2xl overflow-hidden border-2 border-indigo-500/30">
                                                 <img
-                                                    src="{{ $founderImage }}"
-                                                    alt="Foto del Fundador: Miguel Eduardo Rodríguez Martínez (Mike)"
-                                                    class="w-full h-auto object-cover rounded-2xl"
-                                                    loading="lazy"
-                                                >
-                                            </div>
+                                                                                    src="{{ $founderImage }}"
+                                                                                    alt="Foto del Fundador: Miguel Eduardo Rodríguez Martínez (Mike)"
+                                                                                    class="w-full h-auto object-cover rounded-2xl grayscale hover:grayscale-0 transform transition-all duration-[3000ms] hover:scale-110"
+                                                                                    loading="lazy"
+                                                                                >                                            </div>
                                             <div class="mt-6 flex space-x-6">
                                                 <a href="https://www.linkedin.com/in/mikerodriguez84/?locale=en_US" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-xlerion-tech-bright-blue transition-colors duration-300">
                                                     <i class="fab fa-linkedin fa-2x"></i>
