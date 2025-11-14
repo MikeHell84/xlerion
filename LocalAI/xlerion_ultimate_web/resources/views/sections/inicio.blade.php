@@ -1,7 +1,7 @@
     <div class="relative h-screen overflow-hidden video-parallax-container">
         <!-- Video de fondo -->
         <video class="absolute top-0 left-0 w-auto min-w-full min-h-full object-cover parallax-video" autoplay loop muted playsinline>
-            <source src="{{ asset('videos/intro web.mp4') }}" type="video/mp4">
+            <source src="{{ asset('videos/intro.mp4') }}" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
 

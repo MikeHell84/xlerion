@@ -1,57 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- Parallax Banner for Documentacion --}}
-    <div class="relative h-96 overflow-hidden parallax-banner-container">
-        <img src="{{ asset('images/parallax/documentacion-parallax.jpg') }}" alt="Documentación Parallax Banner" class="absolute top-0 left-0 w-full h-full object-cover parallax-banner-image">
-        <div class="absolute inset-0 bg-black/50 z-1"></div> {{-- Overlay --}}
-        <div class="relative z-10 flex items-center justify-center h-full text-center px-4">
-            <h1 class="text-5xl md:text-6xl font-extrabold text-white">Documentación</h1>
+    {{-- Hero Section with Parallax Video --}}
+    <div class="relative overflow-hidden video-parallax-container">
+        <!-- Video de fondo -->
+        <video class="parallax-video filter-subtle" autoplay loop muted playsinline>
+            <source src="{{ asset('videos/intro.mp4') }}" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+
+        <!-- Capa oscura sobre el video -->
+        <div class="absolute inset-0 bg-black/50 z-0"></div>
+
+        <!-- Contenido principal del Hero -->
+        <div class="relative z-1 flex flex-col items-center justify-center h-full text-center px-4">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white uppercase font-heading">Documentación</h1>
         </div>
     </div>
 
     {{-- Main Content for Documentacion --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12">
-        <section>
-            <h2 class="text-4xl font-bold text-center mb-6 text-teal-400">📚 Documentación: El Legado</h2>
-            <p class="text-center mb-10 text-gray-400 max-w-3xl mx-auto">
-                La documentación es parte esencial del legado de Xlerion. Cada solución incluye guías claras, diagramas modulares y manuales de uso que permiten su mantenimiento, réplica y evolución.
+        <section class="mb-12">
+            <h2 class="text-4xl font-bold text-center mb-6 text-teal-400 uppercase font-heading">📚 Documentación</h2>
+            <p class="text-center mb-12 text-gray-400 max-w-3xl mx-auto text-lg">
+                La documentación es un componente esencial del legado de Xlerion. Cada solución incluye manuales modulares, diagramas técnicos y guías operativas que garantizan su mantenimiento, réplica y evolución.
             </p>
 
-            <div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <ul class="space-y-4">
-                        <li class="flex items-start space-x-3">
-                            <span class="text-teal-400 text-xl font-bold">#</span>
-                            <div>
-                                <h4 class="font-semibold text-white">Manuales Técnicos por Módulo</h4>
-                                <p class="text-sm text-gray-400">Instrucciones detalladas y específicas para cada componente.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <span class="text-teal-400 text-xl font-bold">#</span>
-                            <div>
-                                <h4 class="font-semibold text-white">Diagramas de Flujo y Arquitectura</h4>
-                                <p class="text-sm text-gray-400">Representaciones visuales para entender la lógica interna.</p>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="space-y-4">
-                        <li class="flex items-start space-x-3">
-                            <span class="text-teal-400 text-xl font-bold">#</span>
-                            <div>
-                                <h4 class="font-semibold text-white">Guías de Instalación y Configuración</h4>
-                                <p class="text-sm text-gray-400">Procedimientos optimizados para la puesta en marcha.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <span class="text-teal-400 text-xl font-bold">#</span>
-                            <div>
-                                <h4 class="font-semibold text-white">Filosofía de Empoderamiento</h4>
-                                <p class="text-sm text-gray-400">Documentación pensada como herramienta de réplica y autosuficiencia.</p>
-                            </div>
-                        </li>
-                    </ul>
+            <h3 class="text-3xl font-bold text-center mb-8 text-white uppercase font-heading">Servicios de Documentación Estratégica</h3>
+            <div class="space-y-8">
+                <div class="bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700">
+                    <h4 class="text-2xl font-semibold text-teal-400 mb-2">8. Manualización Técnica Modular</h4>
+                    <p class="text-gray-300 mb-2">Creación de manuales por módulo para facilitar mantenimiento y transferencia de conocimiento.</p>
+                    <p class="text-gray-500 text-sm">Ejemplo: Documentación de sistema de captura de movimiento con diagramas, instrucciones y flujos de calibración.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700">
+                    <h4 class="text-2xl font-semibold text-teal-400 mb-2">9. Diagramación de Arquitectura Técnica</h4>
+                    <p class="text-gray-300 mb-2">Diseño de diagramas de flujo y arquitectura para proyectos complejos.</p>
+                    <p class="text-gray-500 text-sm">Ejemplo: Mapeo de sistema de logging distribuido para producción multimedia.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700">
+                    <h4 class="text-2xl font-semibold text-teal-400 mb-2">10. Guías de Instalación y Configuración</h4>
+                    <p class="text-gray-300 mb-2">Redacción de guías claras para usuarios técnicos y no técnicos.</p>
+                    <p class="text-gray-500 text-sm">Ejemplo: Guía paso a paso para instalar y configurar el Xlerion Toolkit en múltiples sistemas operativos.</p>
                 </div>
             </div>
         </section>

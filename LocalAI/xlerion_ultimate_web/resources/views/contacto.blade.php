@@ -1,28 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- Parallax Banner for Contacto --}}
-    <div class="relative h-96 overflow-hidden parallax-banner-container">
-        <img src="{{ asset('images/parallax/contacto-parallax.jpg') }}" alt="Contacto Parallax Banner" class="absolute top-0 left-0 w-full h-full object-cover parallax-banner-image">
-        <div class="absolute inset-0 bg-black/50 z-1"></div> {{-- Overlay --}}
-        <div class="relative z-10 flex items-center justify-center h-full text-center px-4">
-            <h1 class="text-5xl md:text-6xl font-extrabold text-white">Contacto</h1>
+    {{-- Hero Section with Parallax Video --}}
+    <div class="relative overflow-hidden video-parallax-container">
+        <!-- Video de fondo -->
+        <video class="parallax-video filter-subtle" autoplay loop muted playsinline>
+            <source src="{{ asset('videos/intro.mp4') }}" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+
+        <!-- Capa oscura sobre el video -->
+        <div class="absolute inset-0 bg-black/50 z-0"></div>
+
+        <!-- Contenido principal del Hero -->
+        <div class="relative z-1 flex flex-col items-center justify-center h-full text-center px-4">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white uppercase font-heading">Contacto</h1>
         </div>
     </div>
 
     {{-- Main Content for Contacto --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12">
-        <section>
-            <h2 class="text-4xl font-bold text-center mb-6 text-teal-400">🤝 Contáctanos</h2>
-            <p class="text-center mb-10 text-gray-400 max-w-xl mx-auto">
-                ¿Quieres colaborar, invertir o conocer más sobre Xlerion? Estamos listos para conversar.
+        <section class="mb-12">
+            <h2 class="text-4xl font-bold text-center mb-6 text-teal-400 uppercase font-heading">📩 Contacto</h2>
+            <p class="text-center mb-12 text-gray-400 max-w-3xl mx-auto text-lg">
+                ¿Deseas colaborar, invertir o conocer más sobre Xlerion? Estamos abiertos al diálogo y la co-creación.
             </p>
 
             <div class="grid lg:grid-cols-3 gap-8">
                 
                 {{-- Columna 1: Formulario --}}
                 <div class="lg:col-span-2 bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700">
-                    <h3 class="text-2xl font-semibold mb-6">Envíanos un mensaje</h3>
+                    <h3 class="text-2xl font-semibold mb-6 text-white">Envíanos un mensaje</h3>
                     <form action="#" method="POST" class="space-y-4">
                         {{-- Esto sería un placeholder. En Laravel, usarías @csrf --}}
                         <input type="text" placeholder="Nombre" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-teal-400 focus:border-teal-400 text-white">
@@ -34,34 +42,72 @@
                     </form>
                 </div>
 
-                {{-- Columna 2: Datos y Redes --}}
+                {{-- Columna 2: Datos de Contacto --}}
                 <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700">
-                    <h3 class="text-2xl font-semibold mb-6">Conexiones Directas</h3>
+                    <h3 class="text-2xl font-semibold mb-6 text-white">Conexiones Directas</h3>
                     
-                    {{-- WhatsApp --}}
-                    <a href="https://wa.me/573208605600" target="_blank" class="flex items-center space-x-3 p-3 bg-green-600 rounded-lg hover:bg-green-700 mb-4 transition duration-200">
-                        <span class="text-xl">📞</span>
-                        <span class="font-bold">+57 320 8605600</span>
-                    </a>
-
-                    {{-- Emails --}}
-                    <div class="space-y-2 mb-6">
-                        <p class="text-teal-400 font-semibold mt-4">Correos Especializados:</p>
-                        <p class="text-sm text-gray-400">contactus@xlerion.com</p>
-                        <p class="text-sm text-gray-400">toolkit@xlerion.com</p>
-                        <p class="text-sm text-gray-400">support@xlerion.com</p>
-                        {{-- Se pueden añadir los demás emails aquí --}}
-                    </div>
-
-                    {{-- Redes Sociales --}}
-                    <div class="mt-6">
-                        <p class="text-teal-400 font-semibold mb-3">Redes Sociales:</p>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="https://www.linkedin.com/company/xlerion" target="_blank" class="text-white hover:text-teal-400 text-2xl transition duration-200" title="LinkedIn">in</a>
-                            <a href="https://www.instagram.com/ultimatexlerion/" target="_blank" class="text-white hover:text-teal-400 text-2xl transition duration-200" title="Instagram">ig</a>
-                            {{-- Y los demás enlaces (Facebook, Behance, etc.) --}}
-                        </div>
-                    </div>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="mailto:contactus@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
+                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
+                                <span>contactus@xlerion.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:totaldarkness@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
+                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
+                                <span>totaldarkness@xlerion.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:support@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
+                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
+                                <span>support@xlerion.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:sales@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
+                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
+                                <span>sales@xlerion.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:admin@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
+                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
+                                <span>admin@xlerion.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:branding@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
+                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
+                                <span>branding@xlerion.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:toolkit@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
+                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
+                                <span>toolkit@xlerion.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:neuro@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
+                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
+                                <span>neuro@xlerion.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:mike@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
+                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
+                                <span>mike@xlerion.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/573208605600" target="_blank" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
+                                <i class="fa-brands fa-whatsapp w-6 text-center mr-3"></i>
+                                <span>+57 320 860 5600</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
