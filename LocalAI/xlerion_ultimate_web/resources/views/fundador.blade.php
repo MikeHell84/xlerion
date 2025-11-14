@@ -19,15 +19,15 @@
 
         <!-- Contenido principal del Hero -->
         <div class="relative z-1 flex flex-col items-center justify-center h-full text-center px-4">
-            <h1 class="text-5xl md:text-6xl font-extrabold text-white uppercase font-heading">El Fundador: Visión y Trayectoria</h1>
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white uppercase font-heading"> Visión y Trayectoria</h1>
         </div>
     </div>
 
     {{-- Main Content for Fundador --}}
-    <div class="bg-gray-900 py-16 sm:py-24">
+    <div class="content-container py-16 sm:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <section id="fundador-content" class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700">
+            <section id="fundador-content" class="p-8 rounded-xl shadow-lg border border-gray-700">
                 {{-- Diseño Distribuido: Grid responsivo --}}
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start lg:items-center">
 
@@ -41,6 +41,14 @@
                                 loading="lazy"
                             >
                         </div>
+                        <div class="mt-6 flex justify-center space-x-6">
+                            <a href="https://www.linkedin.com/in/mikerodriguez84/?locale=en_US" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-xlerion-tech-bright-blue transition-colors duration-300">
+                                <i class="fab fa-linkedin fa-2x"></i>
+                            </a>
+                            <a href="https://github.com/MikeHell84" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-xlerion-tech-bright-blue transition-colors duration-300">
+                                <i class="fab fa-github fa-2x"></i>
+                            </a>
+                        </div>
                     </div>
 
                     {{-- COLUMNA 2: TEXTO Y BIOGRAFÍA --}}
@@ -50,16 +58,16 @@
                             Sobre el Fundador
                         </h3>
                         
-                        <p class="text-lg leading-relaxed">
+                        <p class="text-lg leading-relaxed text-left">
                             Miguel Eduardo Rodríguez Martínez es un creador autodidacta con enfoque neurodivergente, especializado en arte digital, modelado 3D, scripting técnico y defensa legal. Desde territorios no centralizados, ha desarrollado soluciones técnicas con impacto cultural, integrando modularidad, documentación y autonomía.
                         </p>
 
-                        <blockquote class="text-xl italic font-semibold text-gray-200 border-l-4 border-teal-400 pl-4">
+                        <blockquote class="text-xl italic font-semibold text-gray-200 border-l-4 border-teal-400 pl-4 text-left">
                             “La frustración técnica y burocrática es mi combustible para crear soluciones que empoderan.”
                         </blockquote>
 
-                        <h4 class="text-2xl font-bold text-white mt-8 mb-4">Datos Adicionales</h4>
-                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <h4 class="text-2xl font-bold text-white mt-8 mb-4 text-left">Datos Adicionales</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300 text-left">
                             <li>Fundador de Xlerion TechLab</li>
                             <li>Autodidacta en entornos técnicos y creativos</li>
                             <li>Defensor de derechos del consumidor y procesos autosuficientes</li>
