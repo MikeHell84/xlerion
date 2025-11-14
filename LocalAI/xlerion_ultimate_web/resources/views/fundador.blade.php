@@ -58,9 +58,35 @@
                         
                         <p class="text-lg leading-relaxed text-left">
                             Miguel Eduardo Rodríguez Martínez es un desarrollador autodidacta con enfoque neurodivergente, especializado en videojuegos, software inteligente y soluciones web. Fundador de Xlerion TechLab, ha construido una trayectoria diversa en programación, modelado 3D, inteligencia artificial y blockchain, integrando herramientas como Unity, Unreal Engine, Python, ReactJS y Docker en proyectos de alto impacto.
-                            Desde Nocaima, Cundinamarca, ha liderado iniciativas técnicas para instituciones públicas, empresas tecnológicas y plataformas culturales, siempre con una filosofía modular, autosuficiente y profundamente documentada. Su obra literaria Total Darkness y su participación en convocatorias como CoCrea 2025 y Colombia 4.0 reflejan su compromiso con la innovación cultural y la inclusión creativa.
+                            Desde Nocaima, Cundinamarca, ha liderado iniciativas técnicas para instituciones públicas, empresas tecnológicas y plataformas culturales, siempre con una filosofía modular, autosuficiente y profundamente documentada. Su obra literaria Total Darkness reflejan su compromiso con la innovación cultural y la inclusión creativa.
                             Miguel transforma la frustración técnica en soluciones que empoderan, combinando arte, ingeniería y narrativa para crear herramientas que anticipan errores, optimizan procesos y promueven la colaboración sostenible.
                         </p>
+
+                        <h4 class="text-2xl font-bold text-white mt-8 mb-4 text-left">Habilidades Clave</h4>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Desarrollo de Videojuegos</span>
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Software Inteligente</span>
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Soluciones Web</span>
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Programación</span>
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Modelado 3D</span>
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Inteligencia Artificial</span>
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Blockchain</span>
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Liderazgo Técnico</span>
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Innovación Cultural</span>
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Inclusión Creativa</span>
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Arte Digital</span>
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Ingeniería de Software</span>
+                            <span class="bg-xlerion-deep-blue text-white px-3 py-1 rounded-full text-sm font-medium">Narrativa Interactiva</span>
+                        </div>
+
+                        <h4 class="text-2xl font-bold text-white mt-8 mb-4 text-left">Tecnologías y Herramientas</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-xlerion-tech-bright-blue text-white px-3 py-1 rounded-full text-sm font-medium">Unity</span>
+                            <span class="bg-xlerion-tech-bright-blue text-white px-3 py-1 rounded-full text-sm font-medium">Unreal Engine</span>
+                            <span class="bg-xlerion-tech-bright-blue text-white px-3 py-1 rounded-full text-sm font-medium">Python</span>
+                            <span class="bg-xlerion-tech-bright-blue text-white px-3 py-1 rounded-full text-sm font-medium">ReactJS</span>
+                            <span class="bg-xlerion-tech-bright-blue text-white px-3 py-1 rounded-full text-sm font-medium">Docker</span>
+                        </div>
                     </div>
                     
                 </div>
