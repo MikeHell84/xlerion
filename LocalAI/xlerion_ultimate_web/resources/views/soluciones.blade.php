@@ -84,16 +84,16 @@ $services = [
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         @foreach ($services as $index => $service)
             <?php $randomImage = getRandomImage($availableImages); ?>
-            <div class="content-container rounded-lg shadow-xl border border-gray-700 overflow-hidden flex flex-col open-service-modal-btn cursor-pointer hover:border-xlerion-tech-bright-blue transition-all duration-300"
-                 data-service-id="service-{{ $index }}"
-                 data-title="{{ $service['title'] }}"
-                 data-image="{{ asset('images/' . $randomImage) }}"
-                 data-full-content="{{ $service['full_content'] }}">
+            <div class="content-container rounded-lg shadow-xl border border-gray-700 overflow-hidden flex flex-col cursor-pointer hover:border-xlerion-tech-bright-blue transition-all duration-300">
                 <img src="{{ asset('images/' . $randomImage) }}" alt="{{ $service['title'] }}" class="w-full h-48 object-cover">
                 <div class="p-6 flex flex-col flex-grow">
                     <h4 class="text-2xl font-semibold text-xlerion-tech-bright-blue mb-2 text-left">{{ $service['title'] }}</h4>
                     <p class="text-gray-300 mb-4 flex-grow text-left">{{ $service['short_description'] }}</p>
-                    <button class="mt-auto px-4 py-2 bg-xlerion-deep-blue hover:bg-xlerion-tech-bright-blue text-white rounded-md font-medium transition">Ver más</button>
+                    <button class="mt-auto px-4 py-2 bg-xlerion-deep-blue hover:bg-xlerion-tech-bright-blue text-white rounded-md font-medium transition open-service-modal-btn"
+                            data-service-id="service-{{ $index }}"
+                            data-title="{{ $service['title'] }}"
+                            data-image="{{ asset('images/' . $randomImage) }}"
+                            data-full-content="{{ $service['full_content'] }}">Ver más</button>
                 </div>
             </div>
         @endforeach
