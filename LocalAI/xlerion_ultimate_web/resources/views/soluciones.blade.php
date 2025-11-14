@@ -101,8 +101,7 @@ $services = [
 </section>
 
 {{-- Modal Structure --}}
-<div id="service-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden p-4">
-    <div class="bg-gray-900 rounded-lg shadow-2xl max-w-3xl w-full mx-auto p-6 relative border border-gray-700">
+<div class="bg-gray-900 rounded-lg shadow-2xl max-w-3xl w-full mx-auto p-6 relative border border-gray-700 h-auto max-h-[90vh] overflow-y-auto">
         <button class="absolute top-3 right-3 text-gray-400 hover:text-white text-3xl close-service-modal-btn">&times;</button>
         <h2 id="modal-service-title" class="text-3xl font-bold text-xlerion-tech-bright-blue mb-4 uppercase font-heading"></h2>
         <img id="modal-service-image" src="" alt="Service Image" class="w-full h-64 object-cover rounded-md mb-4">
