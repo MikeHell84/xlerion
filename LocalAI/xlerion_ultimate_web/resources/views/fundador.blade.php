@@ -32,25 +32,24 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start lg:items-center">
 
                     {{-- COLUMNA 1: FOTO --}}
-                    <div class="lg:col-span-1 flex justify-center order-first lg:order-last">
-                        <div class="w-full max-w-xs sm:max-w-sm p-4 bg-gray-900 rounded-3xl shadow-2xl transform hover:scale-[1.02] transition duration-300 border-2 border-indigo-500/30">
-                            <img 
-                                src="{{ $founderImage }}" 
-                                alt="Foto del Fundador: Miguel Eduardo Rodríguez Martínez (Mike)"
-                                class="w-full h-auto object-cover rounded-2xl"
-                                loading="lazy"
-                            >
-                        </div>
-                        <div class="mt-6 flex justify-center space-x-6">
-                            <a href="https://www.linkedin.com/in/mikerodriguez84/?locale=en_US" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-xlerion-tech-bright-blue transition-colors duration-300">
-                                <i class="fab fa-linkedin fa-2x"></i>
-                            </a>
-                            <a href="https://github.com/MikeHell84" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-xlerion-tech-bright-blue transition-colors duration-300">
-                                <i class="fab fa-github fa-2x"></i>
-                            </a>
-                        </div>
-                    </div>
-
+                                        <div class="lg:col-span-1 flex flex-col items-center order-first lg:order-last">
+                                            <div class="w-full max-w-xs sm:max-w-sm p-4 bg-gray-900 rounded-3xl shadow-2xl transform hover:scale-[1.02] transition duration-300 border-2 border-indigo-500/30">
+                                                <img
+                                                    src="{{ $founderImage }}"
+                                                    alt="Foto del Fundador: Miguel Eduardo Rodríguez Martínez (Mike)"
+                                                    class="w-full h-auto object-cover rounded-2xl"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+                                            <div class="mt-6 flex space-x-6">
+                                                <a href="https://www.linkedin.com/in/mikerodriguez84/?locale=en_US" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-xlerion-tech-bright-blue transition-colors duration-300">
+                                                    <i class="fab fa-linkedin fa-2x"></i>
+                                                </a>
+                                                <a href="https://github.com/MikeHell84" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-xlerion-tech-bright-blue transition-colors duration-300">
+                                                    <i class="fab fa-github fa-2x"></i>
+                                                </a>
+                                            </div>
+                                        </div>
                     {{-- COLUMNA 2: TEXTO Y BIOGRAFÍA --}}
                     <div class="lg:col-span-2 space-y-8 order-last lg:order-first text-gray-300">
                         
@@ -59,7 +58,7 @@
                         </h3>
                         
                         <p class="text-lg leading-relaxed text-left">
-                            Miguel Eduardo Rodríguez Martínez es un creador autodidacta con enfoque neurodivergente, especializado en arte digital, modelado 3D, scripting técnico y defensa legal. Desde territorios no centralizados, ha desarrollado soluciones técnicas con impacto cultural, integrando modularidad, documentación y autonomía.
+                            Miguel E. Rodríguez Martínez es un creador autodidacta con enfoque neurodivergente, especializado en arte digital, modelado 3D, scripting técnico y defensa legal. Desde territorios no centralizados, ha desarrollado soluciones técnicas con impacto cultural, integrando modularidad, documentación y autonomía.
                         </p>
 
                         <blockquote class="text-xl italic font-semibold text-gray-200 border-l-4 border-teal-400 pl-4 text-left">
