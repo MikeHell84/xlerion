@@ -52,25 +52,15 @@
                     {{-- COLUMNA 2: TEXTO Y BIOGRAFÍA --}}
                     <div class="lg:col-span-2 space-y-8 order-last lg:order-first text-gray-300">
                         
-                        <h3 class="text-3xl font-bold text-indigo-400 border-l-4 border-indigo-500 pl-4 uppercase font-heading">
-                            Sobre el Fundador
+                        <h3 class="text-3xl font-bold text-xlerion-tech-bright-blue border-l-4 border-xlerion-tech-bright-blue pl-4 uppercase font-heading">
+                            Acerca del Creador
                         </h3>
                         
                         <p class="text-lg leading-relaxed text-left">
-                            Miguel E. Rodríguez Martínez es un creador autodidacta con enfoque neurodivergente, especializado en arte digital, modelado 3D, scripting técnico y defensa legal. Desde territorios no centralizados, ha desarrollado soluciones técnicas con impacto cultural, integrando modularidad, documentación y autonomía.
+                            Miguel Eduardo Rodríguez Martínez es un desarrollador autodidacta con enfoque neurodivergente, especializado en videojuegos, software inteligente y soluciones web. Fundador de Xlerion TechLab, ha construido una trayectoria diversa en programación, modelado 3D, inteligencia artificial y blockchain, integrando herramientas como Unity, Unreal Engine, Python, ReactJS y Docker en proyectos de alto impacto.
+                            Desde Nocaima, Cundinamarca, ha liderado iniciativas técnicas para instituciones públicas, empresas tecnológicas y plataformas culturales, siempre con una filosofía modular, autosuficiente y profundamente documentada. Su obra literaria Total Darkness y su participación en convocatorias como CoCrea 2025 y Colombia 4.0 reflejan su compromiso con la innovación cultural y la inclusión creativa.
+                            Miguel transforma la frustración técnica en soluciones que empoderan, combinando arte, ingeniería y narrativa para crear herramientas que anticipan errores, optimizan procesos y promueven la colaboración sostenible.
                         </p>
-
-                        <blockquote class="text-xl italic font-semibold text-gray-200 border-l-4 border-teal-400 pl-4 text-left">
-                            “La frustración técnica y burocrática es mi combustible para crear soluciones que empoderan.”
-                        </blockquote>
-
-                        <h4 class="text-2xl font-bold text-white mt-8 mb-4 text-left">Datos Adicionales</h4>
-                        <ul class="list-disc list-inside space-y-2 text-gray-300 text-left">
-                            <li>Fundador de Xlerion TechLab</li>
-                            <li>Autodidacta en entornos técnicos y creativos</li>
-                            <li>Defensor de derechos del consumidor y procesos autosuficientes</li>
-                            <li>Autor de la obra literaria interactiva Total Darkness</li>
-                        </ul>
                     </div>
                     
                 </div>
