@@ -2,26 +2,19 @@
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div class="footer-columna">
-                <h3 class="footer-titulo flex items-center"><i class="fas fa-phone mr-2"></i>Contacto</h3>
+                <a href="/contacto" class="footer-titulo flex items-center hover:text-teal-400 transition"><i class="fas fa-phone mr-2"></i>Contacto</a>
                 <ul class="space-y-2">
                     <li class="flex items-center"><i class="fas fa-phone-alt mr-2"></i>Teléfono: +57 320 860 5600</li>
                     <li class="flex items-center"><a href="https://wa.me/573208605600" target="_blank" class="flex items-center hover:text-teal-400 transition"><i class="fab fa-whatsapp mr-2"></i>WhatsApp: +57 320 860 5600</a></li>
                 </ul>
-                <h3 class="footer-titulo flex items-center"><i class="fas fa-envelope mr-2"></i>Email</h3>
+                <a href="/contacto" class="footer-titulo flex items-center hover:text-teal-400 transition"><i class="fas fa-envelope mr-2"></i>Email</a>
                 <ul class="space-y-2">
                     <li><a href="mailto:contactus@xlerion.com" class="flex items-center hover:text-teal-400 transition"><i class="fas fa-at mr-2"></i>contactus@xlerion.com</a></li>
-                    <li><a href="mailto:totaldarkness@xlerion.com" class="flex items-center hover:text-teal-400 transition"><i class="fas fa-at mr-2"></i>totaldarkness@xlerion.com</a></li>
                     <li><a href="mailto:support@xlerion.com" class="flex items-center hover:text-teal-400 transition"><i class="fas fa-at mr-2"></i>support@xlerion.com</a></li>
-                    <li><a href="mailto:sales@xlerion.com" class="flex items-center hover:text-teal-400 transition"><i class="fas fa-at mr-2"></i>sales@xlerion.com</a></li>
-                    <li><a href="mailto:admin@xlerion.com" class="flex items-center hover:text-teal-400 transition"><i class="fas fa-at mr-2"></i>admin@xlerion.com</a></li>
-                    <li><a href="mailto:branding@xlerion.com" class="flex items-center hover:text-teal-400 transition"><i class="fas fa-at mr-2"></i>branding@xlerion.com</a></li>
-                    <li><a href="mailto:toolkit@xlerion.com" class="flex items-center hover:text-teal-400 transition"><i class="fas fa-at mr-2"></i>toolkit@xlerion.com</a></li>
-                    <li><a href="mailto:neuro@xlerion.com" class="flex items-center hover:text-teal-400 transition"><i class="fas fa-at mr-2"></i>neuro@xlerion.com</a></li>
-                    <li><a href="mailto:mike@xlerion.com" class="flex items-center hover:text-teal-400 transition"><i class="fas fa-at mr-2"></i>mike@xlerion.com</a></li>
                 </ul>
             </div>
             <div class="footer-columna">
-                <h3 class="footer-titulo flex items-center"><i class="fas fa-gavel mr-2"></i>Legal</h3>
+                <a href="/legal" class="footer-titulo flex items-center hover:text-teal-400 transition"><i class="fas fa-gavel mr-2"></i>Legal</a>
                 <ul class="space-y-2">
                     <li><a href="/legal/privacidad" class="flex items-center hover:text-teal-400 transition"><i class="fas fa-shield-alt mr-2"></i>Políticas de Privacidad</a></li>
                     <li><a href="/legal/terminos" class="flex items-center hover:text-teal-400 transition"><i class="fas fa-file-contract mr-2"></i>Términos de Uso</a></li>
