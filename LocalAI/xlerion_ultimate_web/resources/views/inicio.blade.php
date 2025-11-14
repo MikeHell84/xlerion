@@ -15,7 +15,7 @@
         <!-- Contenido principal del Hero -->
         <div class="relative z-1 flex flex-col items-center justify-center h-full text-center px-4">
             <h1 class="text-4xl md:text-6xl font-extrabold text-white font-heading uppercase">
-                Xlerion
+                <img src="{{ asset('img/LogoX.svg') }}" alt="Xlerion Logo" class="h-12 md:h-16 mx-auto">
                 <span class="block text-2xl md:text-4xl text-xlerion-tech-bright-blue mt-2">Soluciones modulares para un futuro escalable</span>
             </h1>
 
@@ -24,10 +24,10 @@
                     Explorar portafolio
                 </a>
                 <a href="/fundador" class="px-8 py-3 bg-white hover:bg-gray-100 text-xlerion-deep-blue rounded-md font-medium transition">
-                    Contactar al fundador
+                    Equipo
                 </a>
                 <a href="#" class="px-8 py-3 bg-white hover:bg-gray-100 text-xlerion-deep-blue rounded-md font-medium transition">
-                    Descargar dossier institucional
+                    Dossier institucional
                 </a>
             </div>
         </div>
