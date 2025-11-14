@@ -24,7 +24,7 @@
                 <h3 class="footer-titulo font-bold text-lg pb-2">Redes Sociales</h3>
                 <ul class="flex space-x-4 justify-center md:justify-start">
                     <li><a href="https://www.linkedin.com/company/xlerion" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin text-2xl hover:text-teal-400 transition"></i></a></li>
-                    <li><a href="https://www.indiegogo.com/es/profile/miguel_rodriguez-martinez_edb9?redirect_reason#/overview" target="_blank" aria-label="Indiegogo"><i class="fab fa-indiegogo text-2xl hover:text-teal-400 transition"></i></a></li>
+                    <li><a href="https://www.indiegogo.com/es/profile/miguel_rodriguez-martinez_edb9?redirect_reason#/overview" target="_blank" aria-label="Indiegogo"><img src="{{ asset('img/indiegogo.svg') }}" alt="Indiegogo" class="h-6 w-6 inline-block fill-current text-gray-300 hover:text-teal-400 transition duration-300 ease-in-out"></a></li>
                     <li><a href="https://www.kickstarter.com/profile/xlerionstudios" target="_blank" aria-label="Kickstarter"><i class="fab fa-kickstarter-k text-2xl hover:text-teal-400 transition"></i></a></li>
                     <li><a href="https://www.patreon.com/xlerionstudios" target="_blank" aria-label="Patreon"><i class="fab fa-patreon text-2xl hover:text-teal-400 transition"></i></a></li>
                     <li><a href="https://www.instagram.com/ultimatexlerion/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram text-2xl hover:text-teal-400 transition"></i></a></li>
