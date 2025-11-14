@@ -21,74 +21,187 @@
     {{-- Main Content for Soluciones --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12">
         <section class="mb-12">
-            <h2 class="text-4xl font-bold text-center mb-6 text-teal-400 uppercase font-heading">🛠️ Soluciones</h2>
-            <p class="text-center mb-12 text-gray-400 max-w-3xl mx-auto text-lg">
-                Xlerion desarrolla herramientas técnicas especializadas para entornos de alta exigencia como videojuegos AAA, multimedia avanzada, visión computacional y producción interactiva. Cada solución se diseña bajo principios de modularidad, escalabilidad y autonomía operativa, garantizando que cada componente pueda integrarse fácilmente, adaptarse a diferentes necesidades y operar de manera independiente para maximizar eficiencia y flexibilidad.
-            </p>
+            <div class="flex flex-col md:flex-row items-center gap-12 p-8 bg-gray-800/50 rounded-lg border border-gray-700">
+                {{-- Columna de Texto --}}
+                <div class="md:w-2/3">
+                    <p class="text-gray-300 text-lg leading-relaxed text-left">
+                        Xlerion desarrolla herramientas técnicas especializadas para entornos de alta exigencia como videojuegos AAA, multimedia avanzada, visión computacional y producción interactiva. Cada solución se diseña bajo principios de modularidad, escalabilidad y autonomía operativa, garantizando que cada componente pueda integrarse fácilmente, adaptarse a diferentes necesidades y operar de manera independiente para maximizar eficiencia y flexibilidad.
+                    </p>
+                </div>
+                {{-- Columna de Imagen --}}
+                <div class="md:w-1/3">
+                    <img src="{{ asset('images/parallax/soluciones-parallax.jpg') }}" alt="Soluciones Xlerion" class="rounded-lg shadow-xl border border-gray-600 w-full h-auto">
+                </div>
+            </div>
+        </section>
 
+<?php
+$availableImages = [
+    'Diseño de logotipo X.png',
+    'Diseño-de-logotipo-X.png',
+    'DroneX.png',
+    'mecatron.png',
+    'MikeProfile.jpg',
+    'Planos.png',
+    'Planos1.png',
+];
+
+function getRandomImage($images) {
+    return $images[array_rand($images)];
+}
+
+$services = [
+    [
+        'title' => 'Toolkits Modulares',
+        'short_description' => 'Diseñados para facilitar la interacción intuitiva y la personalización según el contexto de uso, permitiendo una gestión eficiente de funciones complejas.',
+        'full_content' => 'Los toolkits de Xlerion son sistemas técnicos inteligentes que integran diagnóstico, automatización y documentación en una arquitectura modular. Cada módulo está pensado para adaptarse a entornos exigentes como videojuegos AAA, multimedia avanzada, visión por computadora y flujos de trabajo colaborativos. 🔧 Características clave: - Interfaz jerárquica y visual: Íconos personalizados (cerebro, fibras, engranajes) que comunican función y estado. - Comportamiento adaptativo: Los módulos responden al entorno, anticipan errores y recomiendan acciones correctivas. - Configuración contextual: Cada función puede activarse, desactivarse o modificarse según el tipo de proyecto o usuario. - Documentación integrada: Cada módulo incluye guías claras, diagramas y ejemplos para facilitar su implementación y mantenimiento. - Compatibilidad técnica: Diseñados para integrarse con motores como Unreal Engine, Unity, Blender y sistemas Linux. 🧩 Módulos disponibles: - Diagnóstico técnico: Identifica cuellos de botella, errores críticos y oportunidades de optimización. - Logging inteligente: Registra eventos en JSON estructurado, facilitando auditoría y análisis. - Comparadores de rendimiento: Evalúan versiones, configuraciones o entornos para tomar decisiones informadas. - Validación automática: Previene fallos antes de la ejecución, protegiendo tiempo y recursos. 🌐 Aplicaciones: - Estudios de videojuegos y multimedia - Plataformas educativas y culturales - Proyectos de investigación técnica - Equipos de desarrollo colaborativo',
+    ],
+    [
+        'title' => 'Sistemas de Diagnóstico',
+        'short_description' => 'Herramientas avanzadas que permiten monitorear, registrar y evaluar el comportamiento de sistemas en tiempo real para la detección de fallos y optimización.',
+        'full_content' => 'Los sistemas de diagnóstico de Xlerion están diseñados para anticipar errores antes de que ocurran, identificar cuellos de botella y ofrecer recomendaciones automatizadas que mejoran el rendimiento técnico y la experiencia del usuario. Son el núcleo de una filosofía que prioriza la prevención, la transparencia y la autosuficiencia operativa. 🔍 Funcionalidades principales: - Monitoreo en tiempo real: Observa el comportamiento del sistema durante la ejecución, detectando anomalías, bloqueos o degradaciones de rendimiento. - Registro estructurado: Captura eventos clave en formatos legibles y reutilizables (como JSON), facilitando auditorías, análisis y mantenimiento. - Alertas inteligentes: Notificaciones automáticas ante condiciones críticas, con sugerencias de solución basadas en patrones previos. - Análisis comparativo: Evalúa versiones, configuraciones o entornos para identificar mejoras o regresiones. - Integración modular: Compatible con motores de juego, entornos de desarrollo y plataformas multimedia. 🧠 Aplicaciones prácticas: - Validación de builds en videojuegos y simuladores - Optimización de pipelines creativos y técnicos - Diagnóstico de entornos colaborativos o distribuidos - Soporte técnico autosuficiente para usuarios avanzados 📘 Documentación incluida: Cada sistema de diagnóstico viene acompañado de diagramas de flujo, ejemplos de configuración y guías de interpretación, permitiendo que cualquier equipo técnico o creativo pueda integrarlo sin depender de soporte externo.',
+    ],
+    [
+        'title' => 'Branding Técnico-Creativo',
+        'short_description' => 'Desarrollo de identidades visuales y conceptuales que integran elementos técnicos y creativos, reforzando la coherencia y el impacto cultural de cada proyecto.',
+        'full_content' => 'En Xlerion, el branding no es solo estética: es arquitectura simbólica. Cada identidad visual se construye desde la lógica funcional del proyecto, integrando íconos, colores, estructuras y narrativas que comunican robustez, modularidad y propósito cultural. 🧠 Principios de diseño: - Simbología técnica: Íconos como engranajes, fibras, cerebros y nodos representan funciones internas, estados del sistema y relaciones entre módulos. - Coherencia modular: Cada elemento visual está diseñado para escalar, adaptarse y mantenerse funcional en distintos entornos (interfaces, documentación, presentaciones). - Narrativa integrada: El diseño comunica la filosofía del proyecto: autosuficiencia, diagnóstico, colaboración y legado. - Impacto cultural: Las identidades se adaptan al contexto territorial y social, respetando la diversidad y promoviendo la inclusión creativa. 🧩 Aplicaciones: - Interfaces gráficas de toolkits - Portadas de proyectos interactivos - Documentación técnica con identidad visual - Presentaciones institucionales y convocatorias - Material educativo y cultural 🎯 Ejemplo destacado: - Total Darkness – Pelijuego Interactivo: Identidad visual basada en la oscuridad como conciencia, con símbolos que representan tiempo, memoria y decisión.',
+    ],
+    [
+        'title' => 'Documentación Estructurada',
+        'short_description' => 'Guías detalladas, diagramas y manuales que aseguran la continuidad operativa y la capacitación efectiva, promoviendo la autosuficiencia y la colaboración.',
+        'full_content' => 'En Xlerion, la documentación no es un complemento: es parte esencial del diseño. Cada solución técnica incluye materiales claros, accesibles y modulares que permiten su implementación, mantenimiento y evolución sin depender de soporte externo. Esta filosofía garantiza que el conocimiento se transfiera de forma efectiva entre equipos, territorios y generaciones. 🧩 Componentes clave: - Guías paso a paso: Instrucciones detalladas para instalación, configuración, uso y resolución de problemas. - Diagramas modulares: Visualización de arquitectura, flujo de datos y relaciones entre componentes. - Manual técnico por módulo: Especificaciones, funciones, parámetros y casos de uso. - Ejemplos aplicados: Casos reales, simulaciones y buenas prácticas para facilitar la adopción. - Glosario simbólico: Interpretación de íconos, colores y estructuras visuales del sistema. 🎯 Beneficios: - Continuidad operativa: Equipos técnicos pueden mantener y escalar soluciones sin depender del creador original. - Capacitación efectiva: Nuevos usuarios pueden aprender e implementar con autonomía. - Colaboración sostenible: La documentación facilita la integración entre perfiles técnicos, creativos y administrativos. - Legado cultural: Cada guía es una herramienta de empoderamiento territorial y profesional. 🌐 Aplicaciones: - Estudios de desarrollo técnico y multimedia - Proyectos educativos y de formación cultural - Equipos distribuidos o remotos - Iniciativas autosuficientes en territorios no centralizados',
+    ],
+    [
+        'title' => 'Integración Avanzada con Motores Gráficos',
+        'short_description' => 'Adaptación y optimización de soluciones para trabajar fluidamente con los principales motores gráficos, facilitando la implementación en proyectos de alto nivel y la interoperabilidad entre plataformas.',
+        'full_content' => 'Xlerion desarrolla herramientas y flujos de trabajo que se integran de forma nativa con motores gráficos líderes como Unreal Engine, Unity y 3DS Max, permitiendo a estudios, desarrolladores y creadores implementar soluciones técnicas sin fricciones ni dependencias externas. 🔧 Capacidades técnicas: - Adaptación modular: Los toolkits se configuran para responder a las estructuras internas de cada motor, respetando jerarquías, eventos y ciclos de ejecución. - Optimización de rendimiento: Scripts y configuraciones que reducen carga innecesaria, mejoran la eficiencia de renderizado y evitan errores comunes. - Interoperabilidad entre plataformas: Los módulos pueden migrarse entre entornos sin pérdida de funcionalidad, facilitando el trabajo colaborativo y multiplataforma. - Compatibilidad con plugins y extensiones: Integración con sistemas de animación, física, iluminación y lógica de juego. - Soporte para modelado y animación 3D: Conversión fluida entre formatos, retopología, texturizado y rigging. 🧠 Aplicaciones destacadas: - Desarrollo de videojuegos AAA con lógica adaptativa - Simuladores técnicos y educativos en tiempo real - Proyectos multimedia con narrativa interactiva - Prototipado arquitectónico y visualización avanzada 📘 Documentación incluida: Cada integración incluye guías específicas por motor, ejemplos aplicados, diagramas de flujo y recomendaciones de configuración para garantizar una implementación eficiente y autosuficiente.',
+    ],
+];
+?>
+
+<section class="mb-12">
+    <h3 class="text-3xl font-bold text-center mb-8 text-white uppercase font-heading">Servicios Destacados</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @foreach ($services as $index => $service)
+            <?php $randomImage = getRandomImage($availableImages); ?>
+            <div class="content-container rounded-lg shadow-xl border border-gray-700 overflow-hidden flex flex-col open-service-modal-btn cursor-pointer hover:border-xlerion-tech-bright-blue transition-all duration-300"
+                 data-service-id="service-{{ $index }}"
+                 data-title="{{ $service['title'] }}"
+                 data-image="{{ asset('images/' . $randomImage) }}"
+                 data-full-content="{{ $service['full_content'] }}">
+                <img src="{{ asset('images/' . $randomImage) }}" alt="{{ $service['title'] }}" class="w-full h-48 object-cover">
+                <div class="p-6 flex flex-col flex-grow">
+                    <h4 class="text-2xl font-semibold text-xlerion-tech-bright-blue mb-2 text-left">{{ $service['title'] }}</h4>
+                    <p class="text-gray-300 mb-4 flex-grow text-left">{{ $service['short_description'] }}</p>
+                    <button class="mt-auto px-4 py-2 bg-xlerion-deep-blue hover:bg-xlerion-tech-bright-blue text-white rounded-md font-medium transition">Ver más</button>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</section>
+
+{{-- Modal Structure --}}
+<div id="service-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden p-4">
+    <div class="bg-gray-900 rounded-lg shadow-2xl max-w-3xl w-full mx-auto p-6 relative border border-gray-700">
+        <button class="absolute top-3 right-3 text-gray-400 hover:text-white text-3xl close-service-modal-btn">&times;</button>
+        <h2 id="modal-service-title" class="text-3xl font-bold text-xlerion-tech-bright-blue mb-4 uppercase font-heading"></h2>
+        <img id="modal-service-image" src="" alt="Service Image" class="w-full h-64 object-cover rounded-md mb-4">
+        <p id="modal-service-full-content" class="text-gray-300 mb-2 text-lg"></p>
+    </div>
+</div>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const serviceModal = document.getElementById('service-modal');
+        const openServiceModalBtns = document.querySelectorAll('.open-service-modal-btn');
+        const closeServiceModalBtns = serviceModal.querySelectorAll('.close-service-modal-btn');
+
+        const modalServiceTitle = document.getElementById('modal-service-title');
+        const modalServiceImage = document.getElementById('modal-service-image');
+        const modalServiceFullContent = document.getElementById('modal-service-full-content');
+
+        openServiceModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const title = btn.dataset.title;
+                const image = btn.dataset.image;
+                const fullContent = btn.dataset.fullContent;
+
+                modalServiceTitle.textContent = title;
+                modalServiceImage.src = image;
+                modalServiceFullContent.innerHTML = fullContent.replace(/\n/g, '<br>'); // Reemplazar saltos de línea por <br> para HTML
+
+                serviceModal.classList.remove('hidden');
+            });
+        });
+
+        closeServiceModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                serviceModal.classList.add('hidden');
+            });
+        });
+
+        serviceModal.addEventListener('click', (e) => {
+            if (e.target === serviceModal) {
+                serviceModal.classList.add('hidden');
+            }
+        });
+    });
+</script>
+@endpush
+
+        <section>
             <h3 class="text-3xl font-bold text-center mb-8 text-white uppercase font-heading">Servicios Técnicos de Alto Impacto</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {{-- Card 1: Toolkits Modulares Personalizados --}}
-                <div class="bg-gray-800 rounded-lg shadow-xl border border-gray-700 overflow-hidden flex flex-col">
+                <div class="content-container rounded-lg shadow-xl border border-gray-700 overflow-hidden flex flex-col open-modal-btn cursor-pointer hover:border-teal-500 transition-all duration-300"
+                     data-title="Toolkits Modulares Personalizados"
+                     data-image="{{ asset('images/solution-placeholder-1.jpg') }}"
+                     data-description="Desarrollo de conjuntos de herramientas adaptativas para entornos técnicos complejos."
+                     data-example="Ejemplo: Toolkit para estudios de animación con módulos de diagnóstico, logging de errores y visualización de métricas en tiempo real.">
                     <img src="{{ asset('images/solution-placeholder-1.jpg') }}" alt="Toolkits Modulares Personalizados" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h4 class="text-2xl font-semibold text-teal-400 mb-2">Toolkits Modulares Personalizados</h4>
-                        <p class="text-gray-300 mb-4 flex-grow">Desarrollo de conjuntos de herramientas adaptativas para entornos técnicos complejos.</p>
-                        <button class="mt-auto bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 open-modal-btn"
-                                data-title="Toolkits Modulares Personalizados"
-                                data-image="{{ asset('images/solution-placeholder-1.jpg') }}"
-                                data-description="Desarrollo de conjuntos de herramientas adaptativas para entornos técnicos complejos."
-                                data-example="Ejemplo: Toolkit para estudios de animación con módulos de diagnóstico, logging de errores y visualización de métricas en tiempo real.">
-                            Ver más
-                        </button>
+                        <h4 class="text-2xl font-semibold text-teal-400 mb-2 text-left">Toolkits Modulares Personalizados</h4>
+                        <p class="text-gray-300 mb-4 flex-grow text-left">Desarrollo de conjuntos de herramientas adaptativas para entornos técnicos complejos.</p>
                     </div>
                 </div>
 
                 {{-- Card 2: Sistemas de Diagnóstico y Rendimiento --}}
-                <div class="bg-gray-800 rounded-lg shadow-xl border border-gray-700 overflow-hidden flex flex-col">
+                <div class="content-container rounded-lg shadow-xl border border-gray-700 overflow-hidden flex flex-col open-modal-btn cursor-pointer hover:border-teal-500 transition-all duration-300"
+                     data-title="Sistemas de Diagnóstico y Rendimiento"
+                     data-image="{{ asset('images/solution-placeholder-2.jpg') }}"
+                     data-description="Implementación de comparadores de rendimiento y sistemas de logging para proyectos técnicos."
+                     data-example="Ejemplo: Sistema de logging en Unreal Engine para detectar cuellos de botella en la carga de assets 3D.">
                     <img src="{{ asset('images/solution-placeholder-2.jpg') }}" alt="Sistemas de Diagnóstico y Rendimiento" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h4 class="text-2xl font-semibold text-teal-400 mb-2">Sistemas de Diagnóstico y Rendimiento</h4>
-                        <p class="text-gray-300 mb-4 flex-grow">Implementación de comparadores de rendimiento y sistemas de logging para proyectos técnicos.</p>
-                        <button class="mt-auto bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 open-modal-btn"
-                                data-title="Sistemas de Diagnóstico y Rendimiento"
-                                data-image="{{ asset('images/solution-placeholder-2.jpg') }}"
-                                data-description="Implementación de comparadores de rendimiento y sistemas de logging para proyectos técnicos."
-                                data-example="Ejemplo: Sistema de logging en Unreal Engine para detectar cuellos de botella en la carga de assets 3D.">
-                            Ver más
-                        </button>
+                        <h4 class="text-2xl font-semibold text-teal-400 mb-2 text-left">Sistemas de Diagnóstico y Rendimiento</h4>
+                        <p class="text-gray-300 mb-4 flex-grow text-left">Implementación de comparadores de rendimiento y sistemas de logging para proyectos técnicos.</p>
                     </div>
                 </div>
 
                 {{-- Card 3: Branding Técnico-Creativo --}}
-                <div class="bg-gray-800 rounded-lg shadow-xl border border-gray-700 overflow-hidden flex flex-col">
+                <div class="content-container rounded-lg shadow-xl border border-gray-700 overflow-hidden flex flex-col open-modal-btn cursor-pointer hover:border-teal-500 transition-all duration-300"
+                     data-title="Branding Técnico-Creativo"
+                     data-image="{{ asset('images/solution-placeholder-3.jpg') }}"
+                     data-description="Diseño de identidad visual con lógica simbólica, modular y funcional."
+                     data-example="Ejemplo: Marca para app de neurodivergencia con geometría adaptativa y paleta accesible para procesamiento cognitivo.">
                     <img src="{{ asset('images/solution-placeholder-3.jpg') }}" alt="Branding Técnico-Creativo" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h4 class="text-2xl font-semibold text-teal-400 mb-2">Branding Técnico-Creativo</h4>
-                        <p class="text-gray-300 mb-4 flex-grow">Diseño de identidad visual con lógica simbólica, modular y funcional.</p>
-                        <button class="mt-auto bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 open-modal-btn"
-                                data-title="Branding Técnico-Creativo"
-                                data-image="{{ asset('images/solution-placeholder-3.jpg') }}"
-                                data-description="Diseño de identidad visual con lógica simbólica, modular y funcional."
-                                data-example="Ejemplo: Marca para app de neurodivergencia con geometría adaptativa y paleta accesible para procesamiento cognitivo.">
-                            Ver más
-                        </button>
+                        <h4 class="text-2xl font-semibold text-teal-400 mb-2 text-left">Branding Técnico-Creativo</h4>
+                        <p class="text-gray-300 mb-4 flex-grow text-left">Diseño de identidad visual con lógica simbólica, modular y funcional.</p>
                     </div>
                 </div>
 
                 {{-- Card 4: Integración con Motores Gráficos --}}
-                <div class="bg-gray-800 rounded-lg shadow-xl border border-gray-700 overflow-hidden flex flex-col">
+                <div class="content-container rounded-lg shadow-xl border border-gray-700 overflow-hidden flex flex-col open-modal-btn cursor-pointer hover:border-teal-500 transition-all duration-300"
+                     data-title="Integración con Motores Gráficos"
+                     data-image="{{ asset('images/solution-placeholder-4.jpg') }}"
+                     data-description="Configuración avanzada y optimización de pipelines en motores gráficos."
+                     data-example="Ejemplo: Entorno de producción para cinemáticas interactivas en Unreal Engine con captura de movimiento y lógica de decisiones.">
                     <img src="{{ asset('images/solution-placeholder-4.jpg') }}" alt="Integración con Motores Gráficos" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h4 class="text-2xl font-semibold text-teal-400 mb-2">Integración con Motores Gráficos</h4>
-                        <p class="text-gray-300 mb-4 flex-grow">Configuración avanzada y optimización de pipelines en motores gráficos.</p>
-                        <button class="mt-auto bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 open-modal-btn"
-                                data-title="Integración con Motores Gráficos"
-                                data-image="{{ asset('images/solution-placeholder-4.jpg') }}"
-                                data-description="Configuración avanzada y optimización de pipelines en motores gráficos."
-                                data-example="Ejemplo: Entorno de producción para cinemáticas interactivas en Unreal Engine con captura de movimiento y lógica de decisiones.">
-                            Ver más
-                        </button>
+                        <h4 class="text-2xl font-semibold text-teal-400 mb-2 text-left">Integración con Motores Gráficos</h4>
+                        <p class="text-gray-300 mb-4 flex-grow text-left">Configuración avanzada y optimización de pipelines en motores gráficos.</p>
                     </div>
                 </div>
             </div>
@@ -106,3 +219,46 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('solution-modal');
+        const openModalBtns = document.querySelectorAll('.open-modal-btn');
+        const closeModalBtns = document.querySelectorAll('.close-modal-btn');
+
+        const modalTitle = document.getElementById('modal-title');
+        const modalImage = document.getElementById('modal-image');
+        const modalDescription = document.getElementById('modal-description');
+        const modalExample = document.getElementById('modal-example');
+
+        openModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const title = btn.dataset.title;
+                const image = btn.dataset.image;
+                const description = btn.dataset.description;
+                const example = btn.dataset.example;
+
+                modalTitle.textContent = title;
+                modalImage.src = image;
+                modalDescription.textContent = description;
+                modalExample.textContent = example;
+
+                modal.classList.remove('hidden');
+            });
+        });
+
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.classList.add('hidden');
+            });
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    });
+</script>
+@endpush
