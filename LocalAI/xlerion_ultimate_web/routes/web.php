@@ -38,4 +38,19 @@ Route::get('/contacto', function () {
     return view('contacto');
 });
 
+Route::prefix('legal')->group(function () {
+    Route::get('/', function () {
+        return redirect('/legal/privacidad');
+    });
+    Route::get('/privacidad', function () {
+        return view('legal.privacidad');
+    });
+    Route::get('/terminos', function () {
+        return view('legal.terminos');
+    });
+    Route::get('/avisos', function () {
+        return view('legal.avisos');
+    });
+});
+
 require __DIR__.'/auth.php';
