@@ -255,7 +255,7 @@
 
             const appendMessage = (message, sender) => {
                 const messageDiv = document.createElement('div');
-                const bubbleClass = sender === 'user' ? 'bg-fuchsia-500' : 'bg-gray-700';
+                const bubbleClass = sender === 'user' ? 'bg-xlerion-deep-blue' : 'bg-gray-700';
                 const justification = sender === 'user' ? 'justify-end' : 'justify-start';
                 
                 messageDiv.className = `flex ${justification} mb-4`;
@@ -360,7 +360,7 @@
         <!-- Widget 1: Contacto WhatsApp -->
         <button 
             onclick="window.open('https://wa.me/573208605600', '_blank')"
-            class="bg-lime-500 text-white flex items-center justify-center w-16 h-12 rounded-l-full shadow-lg hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:ring-offset-2 transition-all duration-300 ease-in-out transform hover:-translate-x-1"
+            class="bg-xlerion-tech-bright-blue text-white flex items-center justify-center w-16 h-12 rounded-l-full shadow-lg hover:bg-xlerion-deep-blue focus:outline-none focus:ring-2 focus:ring-xlerion-tech-bright-blue focus:ring-offset-2 transition-all duration-300 ease-in-out transform hover:-translate-x-1"
             aria-label="Contactar por WhatsApp"
         >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
@@ -371,7 +371,7 @@
         <!-- Widget 2: Chat Automatizado -->
         <button 
             id="chat-fab"
-            class="bg-fuchsia-500 text-white flex items-center justify-center w-16 h-12 rounded-l-full shadow-lg hover:bg-fuchsia-600 focus:outline-none focus:ring-2 focus:ring-fuchsia-400 focus:ring-offset-2 transition-all duration-300 ease-in-out transform hover:-translate-x-1"
+            class="bg-xlerion-deep-blue text-white flex items-center justify-center w-16 h-12 rounded-l-full shadow-lg hover:bg-xlerion-tech-bright-blue focus:outline-none focus:ring-2 focus:ring-xlerion-deep-blue focus:ring-offset-2 transition-all duration-300 ease-in-out transform hover:-translate-x-1"
             aria-label="Abrir chat automatizado"
         >
             <i class="fa-solid fa-robot text-xl"></i>
@@ -380,7 +380,7 @@
         <!-- Widget 3: Traducir Página -->
         <button 
             onclick="console.log('Acción ejecutada: Traducir Página')"
-            class="bg-yellow-400 text-black flex items-center justify-center w-16 h-12 rounded-l-full shadow-lg hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 transition-all duration-300 ease-in-out transform hover:-translate-x-1"
+            class="bg-xlerion-tech-bright-blue text-white flex items-center justify-center w-16 h-12 rounded-l-full shadow-lg hover:bg-xlerion-deep-blue focus:outline-none focus:ring-2 focus:ring-xlerion-tech-bright-blue focus:ring-offset-2 transition-all duration-300 ease-in-out transform hover:-translate-x-1"
             aria-label="Traducir esta página"
         >
             <i class="fa-solid fa-language text-xl"></i>
@@ -411,8 +411,8 @@
         <!-- Input -->
         <div class="p-3 bg-gray-700 rounded-b-lg">
             <div class="flex">
-                <input type="text" id="chat-input" placeholder="Escribe un mensaje..." class="flex-1 p-2 rounded-l-md bg-gray-600 text-white border-gray-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
-                <button id="chat-send" class="bg-fuchsia-500 text-white px-4 rounded-r-md hover:bg-fuchsia-600">Enviar</button>
+                <input type="text" id="chat-input" placeholder="Escribe un mensaje..." class="flex-1 p-2 rounded-l-md bg-gray-600 text-white border-gray-500 focus:outline-none focus:ring-2 focus:ring-xlerion-deep-blue">
+                <button id="chat-send" class="bg-xlerion-deep-blue text-white px-4 rounded-r-md hover:bg-xlerion-tech-bright-blue">Enviar</button>
             </div>
         </div>
     </div>
