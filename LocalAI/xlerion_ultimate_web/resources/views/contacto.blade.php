@@ -1,6 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
+    {{-- Banner for Contacto --}}
+    @include('partials.contact-banner')
+
+    {{-- Palette variables local to this page (from contenido.txt) --}}
+    <style>
+        :root {
+            --xlerion-accent: #00eeff; /* Azul brillante tecnológico */
+            --xlerion-deep: #004080;   /* Azul profundo */
+            --xlerion-black: #121212;  /* Negro carbón */
+            --xlerion-gray-dark: #2C2C2C;
+            --xlerion-cyan: #43ffff;   /* Toque de cian brillante */
+        }
+        /* small helper classes */
+        .btn-xlerion { background: linear-gradient(90deg,var(--xlerion-accent),var(--xlerion-cyan)); color: #041024; font-weight:700 }
+        .btn-xlerion-ghost { border:1px solid rgba(67,255,255,0.12); color:var(--xlerion-accent); background:transparent }
+    </style>
+
+    {{-- Flash success message --}}
+    @if(session('success'))
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+            <div class="p-4 rounded-lg bg-green-600 text-white">{{ session('success') }}</div>
+        </div>
+    @endif
+
     {{-- Hero Section with Parallax Video --}}
     <div class="relative overflow-hidden video-parallax-container">
         <!-- Video de fondo -->
@@ -14,102 +38,94 @@
 
         <!-- Contenido principal del Hero -->
         <div class="relative z-1 flex flex-col items-center justify-center h-full text-center px-4">
-            <h1 class="text-5xl md:text-6xl font-extrabold text-white uppercase font-heading">Contacto</h1>
+            <img src="{{ asset('img/Contacto.svg') }}" alt="Contacto" class="h-32 md:h-48 w-auto">
         </div>
+    </div>
+
+    {{-- Sección de Cotización --}}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12">
+        <section id="cotizar-servicio" class="mb-12">
+            @include('quotation.form')
+        </section>
     </div>
 
     {{-- Main Content for Contacto --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12">
         <section class="mb-12">
             <h2 class="text-4xl font-bold text-center mb-6 text-teal-400 uppercase font-heading">📩 Contacto</h2>
-            <p class="text-center mb-12 text-gray-400 max-w-3xl mx-auto text-lg">
-                ¿Deseas colaborar, invertir o conocer más sobre Xlerion? Estamos abiertos al diálogo y la co-creación.
-            </p>
+
+            {{-- Texto principal tomado de contenido.txt --}}
+            <div class="prose max-w-3xl mx-auto text-gray-300 mb-6">
+                <p>¿Deseas colaborar, invertir o conocer más sobre Xlerion? Estamos abiertos al diálogo y la co-creación.</p>
+            </div>
 
             <div class="grid lg:grid-cols-3 gap-8">
-                
-                {{-- Columna 1: Formulario --}}
-                <div class="lg:col-span-2 bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700">
-                    <h3 class="text-2xl font-semibold mb-6 text-white">Envíanos un mensaje</h3>
-                    <form action="#" method="POST" class="space-y-4">
-                        {{-- Esto sería un placeholder. En Laravel, usarías @csrf --}}
-                        <input type="text" placeholder="Nombre" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-teal-400 focus:border-teal-400 text-white">
-                        <input type="email" placeholder="Correo electrónico" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-teal-400 focus:border-teal-400 text-white">
-                        <textarea placeholder="Mensaje" rows="4" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-teal-400 focus:border-teal-400 text-white"></textarea>
-                        <button type="submit" class="w-full py-3 bg-teal-500 hover:bg-teal-600 rounded-lg font-semibold text-gray-900 transition duration-200">
-                            Enviar Mensaje
-                        </button>
+                {{-- Columna principal: Formulario y descripción breve --}}
+                <div class="lg:col-span-2 content-container p-8 rounded-xl shadow-lg border border-gray-700">
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Formulario de contacto</h3>
+                    <p class="text-gray-400 mb-4">Envía tu consulta usando el formulario. Campos: Nombre, Correo electrónico y Mensaje.</p>
+
+                    <form action="{{ route('contact.submit') }}" method="POST" class="space-y-4">
+                        @csrf
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input name="name" type="text" placeholder="Nombre" required class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white">
+                            <input name="email" type="email" placeholder="Correo electrónico" required class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white">
+                        </div>
+                        <textarea name="message" placeholder="Mensaje" rows="5" required class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white"></textarea>
+                        <div class="flex items-center justify-between">
+                                <button type="submit" class="py-3 px-6 rounded-lg btn-xlerion">Enviar Mensaje</button>
+                                <a href="https://wa.me/573208605600" target="_blank" class="text-sm text-gray-300 btn-xlerion-ghost py-2 px-3 rounded">Enviar por WhatsApp</a>
+                            </div>
                     </form>
+
+                    <div class="mt-8 pt-6 border-t border-gray-700">
+                        <h3 class="text-2xl font-semibold mb-4 text-white">Información adicional</h3>
+                        <p class="text-gray-400">Si buscas cotizar un servicio, utiliza la sección "Cotizar Servicio" más arriba. También puedes escribirnos directamente a cualquiera de los correos institucionales listados a la derecha.</p>
+
+                        <h4 class="mt-6 text-lg font-semibold text-white">Acerca del Creador</h4>
+                        <p class="text-gray-300">Miguel Eduardo Rodríguez Martínez es un desarrollador autodidacta con enfoque neurodivergente, especializado en videojuegos, software inteligente y soluciones web. Desde Nocaima, Cundinamarca, ha impulsado proyectos que integran técnica y narrativa.</p>
+
+                        <h4 class="mt-6 text-lg font-semibold text-white">Convocatorias y alianzas</h4>
+                        <ul class="text-gray-300 list-disc list-inside">
+                            <li>Postulación a CoCrea 2025 (modalidad PAT)</li>
+                            <li>Participación en Hackathon IA COL4.0</li>
+                            <li>Invitación abierta a inversionistas culturales</li>
+                        </ul>
+                    </div>
                 </div>
 
-                {{-- Columna 2: Datos de Contacto --}}
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700">
-                    <h3 class="text-2xl font-semibold mb-6 text-white">Conexiones Directas</h3>
-                    
-                    <ul class="space-y-3">
-                        <li>
-                            <a href="mailto:contactus@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
-                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
-                                <span>contactus@xlerion.com</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:totaldarkness@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
-                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
-                                <span>totaldarkness@xlerion.com</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:support@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
-                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
-                                <span>support@xlerion.com</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:sales@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
-                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
-                                <span>sales@xlerion.com</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:admin@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
-                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
-                                <span>admin@xlerion.com</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:branding@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
-                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
-                                <span>branding@xlerion.com</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:toolkit@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
-                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
-                                <span>toolkit@xlerion.com</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:neuro@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
-                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
-                                <span>neuro@xlerion.com</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:mike@xlerion.com" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
-                                <i class="fa-solid fa-envelope w-6 text-center mr-3"></i>
-                                <span>mike@xlerion.com</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://wa.me/573208605600" target="_blank" class="flex items-center text-gray-300 hover:text-teal-400 transition duration-200">
-                                <i class="fa-brands fa-whatsapp w-6 text-center mr-3"></i>
-                                <span>+57 320 860 5600</span>
-                            </a>
-                        </li>
+                {{-- Columna derecha: Correos, WhatsApp y redes (exacto de contenido.txt) --}}
+                <aside class="lg:col-span-1 content-container p-8 rounded-xl shadow-lg border border-gray-700">
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Correos institucionales</h3>
+                    <ul class="list-disc list-inside text-gray-300 space-y-1">
+                        <li>contactus@xlerion.com</li>
+                        <li>totaldarkness@xlerion.com</li>
+                        <li>support@xlerion.com</li>
+                        <li>sales@xlerion.com</li>
+                        <li>admin@xlerion.com</li>
+                        <li>branding@xlerion.com</li>
+                        <li>toolkit@xlerion.com</li>
+                        <li>neuro@xlerion.com</li>
+                        <li>mike@xlerion.com</li>
                     </ul>
-                </div>
+
+                    <h4 class="mt-6 text-lg font-semibold text-white">WhatsApp</h4>
+                    <p class="text-gray-300"><a href="https://wa.me/573208605600" target="_blank" class="text-teal-300 hover:underline">+57 320 860 5600 — Botón directo</a></p>
+
+                    <h4 class="mt-6 text-lg font-semibold text-white">Redes</h4>
+                    <ul class="mt-2 text-gray-300 list-none space-y-1">
+                        <li>LinkedIn: <a href="https://www.linkedin.com/company/xlerion" target="_blank" class="text-teal-300 hover:underline">https://www.linkedin.com/company/xlerion</a></li>
+                        <li>Indiegogo: <a href="https://www.indiegogo.com/es/profile/miguel_rodriguez-martinez_edb9?redirect_reason#/overview" target="_blank" class="text-teal-300 hover:underline">Indiegogo</a></li>
+                        <li>Kickstarter: <a href="https://www.kickstarter.com/profile/xlerionstudios" target="_blank" class="text-teal-300 hover:underline">Kickstarter</a></li>
+                        <li>Patreon: <a href="https://www.patreon.com/xlerionstudios" target="_blank" class="text-teal-300 hover:underline">https://www.patreon.com/xlerionstudios</a></li>
+                        <li>Instagram: <a href="https://www.instagram.com/ultimatexlerion/" target="_blank" class="text-teal-300 hover:underline">https://www.instagram.com/ultimatexlerion/</a></li>
+                        <li>Facebook: <a href="https://www.facebook.com/xlerionultimate" target="_blank" class="text-teal-300 hover:underline">https://www.facebook.com/xlerionultimate</a></li>
+                        <li>Behance: <a href="https://www.behance.net/xlerionultimate" target="_blank" class="text-teal-300 hover:underline">https://www.behance.net/xlerionultimate</a></li>
+                    </ul>
+                </aside>
             </div>
         </section>
     </div>
+
+{{-- legacy script removed - quotation form includes its own scripts --}}
 @endsection
