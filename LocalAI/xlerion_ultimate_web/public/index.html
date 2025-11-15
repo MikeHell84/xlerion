@@ -20,33 +20,31 @@
 
     <!-- 2. Sección de Inicio con Video Background -->
     <header id="inicio" class="hero-section">
-        
-        <!-- Contenedor del Video -->
-        <div class="video-background">
-            <!-- Asegúrese de que el video intro.mp4 esté en la misma carpeta o ruta especificada -->
-            <video autoplay muted loop id="introVideo">
-                <source src="intro.mp4" type="video/mp4">
-                Tu navegador no soporta el tag de video.
-            </video>
-        </div>
+    
+    <div class="video-parallax-container">
+        <video autoplay muted loop id="introVideo" class="parallax-video">
+            <source src="intro.mp4" type="video/mp4">
+            Tu navegador no soporta el tag de video.
+        </video>
+    </div>
 
-        <div class="hero-content">
-            <h1>Bienvenido a Nuestro Sitio</h1>
-            <p>Descubre lo que podemos hacer por ti.</p>
-        </div>
-    </header>
+    <div class="hero-content">
+        <h1>Bienvenido a Nuestro Sitio</h1>
+        <p>Descubre lo que podemos hacer por ti.</p>
+    </div>
+</header>
 
     <!-- 3. Otras Secciones Dinámicas -->
     <main>
-        <section id="servicios" class="content-section">
-            <h2>Nuestros Servicios</h2>
-            <p>Detalles de los servicios ofrecidos.</p>
-        </section>
-
         <section id="proyectos" class="content-section">
             <h2>Proyectos Recientes</h2>
-            <p>Galería de trabajos realizados.</p>
-        </section>
+
+            <div class="parallax-image-container">
+                <img src="https://picsum.photos/seed/picsum/1200/800" alt="Proyecto con parallax">
+            </div>
+
+        <p>Galería de trabajos realizados.</p>
+    </section>
     </main>
 
     <!-- 4. Footer con Datos de Contacto -->

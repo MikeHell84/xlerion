@@ -1,11 +1,4 @@
-.video-parallax-container {
-  perspective: 1px;
-  transform-style: preserve-3d;
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 100vh;
-  padding-top: -100%;
-}
+
 
 .parallax-video {
   transform: translateZ(-1px) scale(2);
@@ -32,6 +25,7 @@
     padding: 100px 50px;
     min-height: 50vh;
     border-bottom: 1px solid #eee;
+    margin-top: -5px;
 }
 
 /* Estilos del Footer */
@@ -42,17 +36,19 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+    margin-top: -50px; /* Adjust as needed to center the image */
 }
 
 .contact-form input, .contact-form textarea {
     display: block;
     width: 100%;
-    padding: 10px;
+    padding: -10px;
     margin-bottom: 10px;
     border: none;
     border-radius: 4px;
 }
 
 html {
-    scroll-behavior: smooth; /* Esto gestiona automáticamente el desplazamiento fluido */
+    scroll-behavior: smooth ; /* Esto gestiona automáticamente el desplazamiento fluido */
 }
+

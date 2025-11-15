@@ -1,0 +1,21 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-WWm7vY1-.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/fonts/Stack_Sans_Text/StackSansText-VariableFont_wght.ttf": {
+    "file": "assets/StackSansText-VariableFont_wght-DANniibb.ttf",
+    "src": "resources/fonts/Stack_Sans_Text/StackSansText-VariableFont_wght.ttf"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-BnpdPYP2.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}

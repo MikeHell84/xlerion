@@ -19,7 +19,7 @@
 
         <!-- Contenido principal del Hero -->
         <div class="relative z-1 flex flex-col items-center justify-center h-full text-center px-4">
-            <h1 class="text-5xl md:text-6xl font-extrabold text-white uppercase font-heading"> Visión y Trayectoria</h1>
+            <img src="{{ asset('img/Equipo.svg') }}" alt="Visión y Trayectoria" class="h-32 md:h-48 w-auto">
         </div>
     </div>
 

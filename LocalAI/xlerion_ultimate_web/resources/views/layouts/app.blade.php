@@ -118,6 +118,9 @@
         </div>
     </header>
 
+    {{-- Incluir chatbot en todo el sitio --}}
+    @include('partials.chatbot')
+
     @push('scripts')
     <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -217,7 +220,12 @@
 
         if (chatFab && chatWidget && closeChatWidget && chatInput && chatSend && chatMessages) {
             
-            const normalizeInput = (text) => text.toLowerCase().replace(/[^\w\s]/g, '').trim();
+                const normalizeInput = (text) => {
+                    if (!text) return '';
+                    // Normalize and remove diacritics (tildes) so 'menú' -> 'menu'
+                    const normalized = text.normalize('NFD').replace(/\p{Diacritic}/gu, '');
+                    return normalized.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, '').trim();
+                };
 
             const getBotResponse = (userInput) => {
                 const normalizedQuery = normalizeInput(userInput);
@@ -294,6 +302,7 @@
                 const isHidden = chatWidget.classList.contains('hidden');
                 if (isHidden) {
                     createQuestionButtons();
+                    chatWidget.style.display = 'flex';
                     chatWidget.classList.remove('hidden');
                     requestAnimationFrame(() => {
                         chatWidget.style.opacity = '1';
@@ -302,7 +311,10 @@
                 } else {
                     chatWidget.style.opacity = '0';
                     chatWidget.style.transform = 'scale(0.95) translateY(20px)';
-                    setTimeout(() => chatWidget.classList.add('hidden'), 200);
+                    setTimeout(() => {
+                        chatWidget.classList.add('hidden');
+                        chatWidget.style.display = '';
+                    }, 200);
                 }
             };
 
@@ -388,7 +400,7 @@
     </div>
 
     <!-- Chat Widget -->
-    <div id="chat-widget" class="hidden fixed bottom-5 right-5 w-80 h-96 bg-gray-800 rounded-lg shadow-2xl flex flex-col z-50 transition-all duration-300 ease-in-out">
+    <div id="chat-widget" class="hidden fixed bottom-5 right-5 w-80 h-96 bg-gray-800 rounded-lg shadow-2xl z-50 transition-all duration-300 ease-in-out">
         <!-- Header -->
         <div class="bg-gray-700 p-3 flex justify-between items-center rounded-t-lg cursor-move">
             <h3 class="text-white font-semibold">Asistente Virtual</h3>

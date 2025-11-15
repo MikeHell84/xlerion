@@ -13,9 +13,10 @@ class ContactController extends Controller
     {
     // Provide services config and multipliers used by the quotation form
     $quotationController = new \App\Http\Controllers\QuotationController();
-    extract($quotationController->getServicesConfig());
+    $quotationData = $quotationController->getServicesConfig();
 
-    return view('contacto', compact('servicesConfig', 'effortMultipliers', 'engineTypeMultipliers'));
+    // $quotationData is an associative array with keys: servicesConfig, effortMultipliers, engineTypeMultipliers
+    return view('contacto', $quotationData);
     }
 
     public function submit(ContactRequest $request)

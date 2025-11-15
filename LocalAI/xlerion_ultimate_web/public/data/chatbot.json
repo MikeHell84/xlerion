@@ -1,0 +1,20 @@
+{
+  "menuItems": [
+    "Toolkits Modulares",
+    "Sistemas de Diagnóstico",
+    "Branding técnico-creativo",
+    "Documentación estructurada",
+    "Integración con motores gráficos"
+  ],
+  "rules": [
+    { "keywords": ["toolkit", "toolkits", "toolkit"], "answer": "Los Toolkits Modulares son conjuntos de herramientas para diagnóstico, automatización y documentación. Puedes pedir: '¿Qué incluye un toolkit?' o solicitar número de módulos." },
+    { "keywords": ["diagnóstico", "diagnostico", "monitor"], "answer": "Los Sistemas de Diagnóstico ofrecen monitoreo en tiempo real, alertas y reporting. Puedes preguntar por monitoreo, alertas o informes." },
+    { "keywords": ["branding", "marca", "logotipo"], "answer": "Ofrecemos Branding técnico-creativo: logotipos, manual de marca y piezas gráficas. Indica si necesitas solo logo o paquete completo." },
+    { "keywords": ["documentación", "docs", "documentacion"], "answer": "Creamos documentación técnica: manuales, diagramas y guías. Pide el nivel (básico/medio/avanzado)." },
+    { "keywords": ["integración", "motor", "unity", "unreal", "3ds"], "answer": "Integración con motores gráficos: Unity, Unreal, 3DS Max. Indica el motor y si requieres optimización para VR." },
+    { "keywords": ["contacto", "contactar", "correo", "email"], "answer": "Puedes contactarnos en contactus@xlerion.com o usando el formulario en la página de contacto." },
+    { "keywords": ["precio", "cotización", "costo", "cotizar"], "answer": "Usa el formulario de cotización en la página para obtener un estimado. Si quieres, escribe 'cotizar' y te guiaré." },
+    { "keywords": ["hola", "buenos", "buenas", "saludo"], "answer": "Hola 👋, soy el asistente de Xlerion. Escribe 'menu' para ver las opciones de servicios o pregunta por cualquiera de ellos." }
+  ],
+  "fallback": "Lo siento, no entiendo exactamente. Prueba con 'menu' o pregunta por un servicio (ej. 'Toolkits')."
+}

@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="text-center mt-4">
-            <p>Copyright © Xlerion</p>
+            <p>Copyright © Xlerion - 2025 - 2026</p>
         </div>
     </div>
 </footer>

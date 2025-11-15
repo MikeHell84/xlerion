@@ -1,6 +1,11 @@
-<div class="parallax-image-container">
-    <img src="{{ asset('images/parallax/contacto-parallax.jpg') }}" alt="Contacto Parallax">
-</div>
+<section class="banner-section">
+    <div class="parallax-background rellax" data-rellax-speed="-7">
+        <img src="{{ asset('images/parallax/contacto-parallax.jpg') }}" alt="Fondo Parallax Contacto" class="parallax-image">
+    </div>
+    <div class="banner-content">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white uppercase font-heading">Contacto</h1>
+    </div>
+</section>
 
 <section>
     <h2 class="text-4xl font-bold text-center mb-6 text-teal-400">🤝 Contáctanos</h2>

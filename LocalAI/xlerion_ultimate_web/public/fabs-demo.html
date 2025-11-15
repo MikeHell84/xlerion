@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostración de Botones de Acción Flotante (FABs)</title>
+    <!-- Incorporación del CDN de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Contenido de prueba para simular scroll -->
+    <div class="max-w-4xl mx-auto p-8">
+        <h1 class="text-4xl font-bold mb-4">Página de Demostración</h1>
+        <p class="mb-4">Esta página contiene texto de relleno para simular una página larga y demostrar el comportamiento de los botones de acción flotante (FABs) que permanecen fijos en los bordes de la pantalla mientras te desplazas.</p>
+        <div class="space-y-4 text-justify">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum. Ut ut diam quis neque laoreet ultricies. Morbi vitae nunc aliquet, egestas eros eu, porttitor nunc. Integer in ante et justo varius pellentesque. Nullam sit amet nisi non ante dictum dapibus. Curabitur sed ipsum vel nibh commodo, pellentesque eu, consequat et, eros. Praesent nec leo nec libero scelerisque aliquet. Aenean id lorem et ipsum tincidunt tincidunt. Vivamus at arcu nec quam accumsan feugiat.</p>
+            <p>Donec euismod, nisl eget consectetur tempor, nisl nunc aliquet nisi, eu aliquet nisi nisl eget nisl. Donec euismod, nisl eget consectetur tempor, nisl nunc aliquet nisi, eu aliquet nisi nisl eget nisl. Donec euismod, nisl eget consectetur tempor, nisl nunc aliquet nisi, eu aliquet nisi nisl eget nisl. Donec euismod, nisl eget consectetur tempor, nisl nunc aliquet nisi, eu aliquet nisi nisl eget nisl. Donec euismod, nisl eget consectetur tempor, nisl nunc aliquet nisi, eu aliquet nisi nisl eget nisl.</p>
+            <p>Suspendisse potenti. In hac habitasse platea dictumst. Vivamus et erat eu nunc finibus hendrerit. Sed interdum, lacus et vulputate pellentesque, velit nulla commodo justo, et lacinia sem justo eu magna. Nam nec leo nec libero scelerisque aliquet. Aenean id lorem et ipsum tincidunt tincidunt. Vivamus at arcu nec quam accumsan feugiat. Integer in ante et justo varius pellentesque. Nullam sit amet nisi non ante dictum dapibus.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum. Ut ut diam quis neque laoreet ultricies. Morbi vitae nunc aliquet, egestas eros eu, porttitor nunc. Integer in ante et justo varius pellentesque. Nullam sit amet nisi non ante dictum dapibus. Curabitur sed ipsum vel nibh commodo, pellentesque eu, consequat et, eros. Praesent nec leo nec libero scelerisque aliquet. Aenean id lorem et ipsum tincidunt tincidunt. Vivamus at arcu nec quam accumsan feugiat.</p>
+            <p>Donec euismod, nisl eget consectetur tempor, nisl nunc aliquet nisi, eu aliquet nisi nisl eget nisl. Donec euismod, nisl eget consectetur tempor, nisl nunc aliquet nisi, eu aliquet nisi nisl eget nisl. Donec euismod, nisl eget consectetur tempor, nisl nunc aliquet nisi, eu aliquet nisi nisl eget nisl. Donec euismod, nisl eget consectetur tempor, nisl nunc aliquet nisi, eu aliquet nisi nisl eget nisl. Donec euismod, nisl eget consectetur tempor, nisl nunc aliquet nisi, eu aliquet nisi nisl eget nisl.</p>
+            <p>Suspendisse potenti. In hac habitasse platea dictumst. Vivamus et erat eu nunc finibus hendrerit. Sed interdum, lacus et vulputate pellentesque, velit nulla commodo justo, et lacinia sem justo eu magna. Nam nec leo nec libero scelerisque aliquet. Aenean id lorem et ipsum tincidunt tincidunt. Vivamus at arcu nec quam accumsan feugiat. Integer in ante et justo varius pellentesque. Nullam sit amet nisi non ante dictum dapibus.</p>
+        </div>
+    </div>
+
+    <!-- Contenedor de FABs Flotantes (Lado Derecho) -->
+    <div class="fixed top-1/2 -translate-y-1/2 right-0 z-50 flex flex-col space-y-4">
+        <!-- Widget 1: Chat Automatizado -->
+        <button 
+            onclick="console.log('Acción ejecutada: Chat Automatizado')"
+            class="bg-fuchsia-500 text-white py-3 pl-4 pr-6 rounded-l-full shadow-lg hover:bg-fuchsia-600 focus:outline-none focus:ring-2 focus:ring-fuchsia-400 focus:ring-offset-2 transition-all duration-300 ease-in-out transform hover:-translate-x-1"
+            aria-label="Abrir chat automatizado"
+        >
+            <span class="font-medium">Chat Automatizado</span>
+        </button>
+
+        <!-- Widget 2: Traducir Página -->
+        <button 
+            onclick="console.log('Acción ejecutada: Traducir Página')"
+            class="bg-yellow-400 text-black py-3 pl-4 pr-6 rounded-l-full shadow-lg hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 transition-all duration-300 ease-in-out transform hover:-translate-x-1"
+            aria-label="Traducir esta página"
+        >
+            <span class="font-medium">Traducir Página</span>
+        </button>
+    </div>
+
+    <!-- Contenedor de FABs Flotantes (Lado Izquierdo) -->
+    <div class="fixed top-1/2 -translate-y-1/2 left-0 z-50">
+        <!-- Widget 3: Contacto WhatsApp -->
+        <button 
+            onclick="console.log('Acción ejecutada: Contacto WhatsApp')"
+            class="bg-lime-500 text-white py-3 pr-4 pl-6 rounded-r-full shadow-lg hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:ring-offset-2 transition-all duration-300 ease-in-out transform hover:translate-x-1 flex items-center"
+            aria-label="Contactar por WhatsApp"
+        >
+            <!-- Placeholder para el ícono de WhatsApp -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.269.655 4.357 1.849 6.037l-1.092 3.996 4.042-1.052z"/>
+            </svg>
+            <span class="font-medium">WhatsApp</span>
+        </button>
+    </div>
+
+</body>
+</html>

@@ -11,6 +11,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Define clases CSS reutilizables */
+.section-container {
+    @apply bg-gray-900 border border-gray-700 rounded-lg shadow-lg overflow-hidden;
+}
+
+.section-title {
+    @apply text-3xl font-bold text-xlerion-tech-bright-blue uppercase font-heading;
+}
+
+.text-primary {
+    @apply text-gray-300;
+}
+
 /*
 |-------------------------------------------------------------------------------
 | Custom Styles and Component Definitions
@@ -43,13 +56,17 @@
 
 /* --- Parallax Video Styles --- */
 .video-parallax-container {
-  /* Removed perspective and transform-style to debug sizing */
   overflow: hidden;
-  height: 56.25vw; /* 16:9 aspect ratio */
-  max-height: 100vh; /* Cap height to screen height */
+  height: 60vh; /* Adjust as needed */
   width: 100%;
-  position: relative; /* Ensure it's a positioning context */
+  position: relative;
 }
+
+/* Archivo: app.css (REEMPLAZAR ESTA SECCIÓN) */
+
+/* --- Parallax Image Container Styles (Corregido para Mouse JS) --- */
+
+
 
 .parallax-video {
   position: absolute;
@@ -62,6 +79,13 @@
   transform: translateX(-50%) translateY(-50%); /* Center the video */
   object-fit: cover;
   z-index: -1; /* Push it to the very back */
+}
+
+.content-container {
+    background-color: rgba(26, 32, 44, 0.85); /* Dark background with 85% opacity */
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 /* --- Example Custom Styles --- */
@@ -101,7 +125,7 @@
 }
 
 body {
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -109,126 +133,22 @@ body {
     to { opacity: 1; }
 }
 
-/* --- Parallax Image Container Styles --- */
-.parallax-image-container {
-  perspective: 1px;
-  transform-style: preserve-3d;
-  overflow: hidden;
-  height: 56.25vw; /* 16:9 aspect ratio */
-  max-height: 80vh; /* Cap height */
-  width: 100%;
 
-}
 
-.parallax-image-container img {
-  transform: translateZ(-1px) scale(1.5); /* Enhanced parallax effect */
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensure image covers the container */
-  transition: transform 0.3s ease-out; /* Smooth transition for mouse leave */
 
-}
-
-/* --- JS Controlled Parallax Element Styles --- */
-.parallax-element-js {
-    height: 600px; /* Altura necesaria para ver el efecto */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: scroll; /* IMPORTANTE: Usa 'scroll' o 'unset' si JavaScript va a controlarlo */
-    background-position: center top; /* Punto de partida */
-    position: relative; /* Necesario para posicionar contenido dentro */
-    overflow: hidden; /* Asegura que el contenido no se desborde */
-}
-
-/* --- Ken Burns Effect --- */
-.ken-burns-container {
-    overflow: hidden;
-    position: relative;
-    height: 600px; /* Same height as the previous parallax element */
-
-}
-
-.ken-burns-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-/*    animation: kenburns 20s ease-in-out infinite; */
-    background-attachment: fixed;
-    filter: blur(2.1px); /* Slight blur for aesthetic */
-    transform: scale()
-
-}
-
-@keyframes kenburns {
-    0% {
-        transform: scale(1) translate(0, 0);
-    }
-    50% {
-        transform: scale(1.2) translate(5%, -5%);
-    }
-    100% {
-        transform: scale(1) translate(0, 0);
-    }
-}
-
-/* --- Footer Styles --- */
 footer {
     background-color: #1a202c; /* Dark background for the footer */
     color: #a0aec0; /* Light gray text color */
-    padding: 40px 20px; /* Ample padding */
-    text-align: center; /* Center align content */
-    border-top: 1px solid #2d3748; /* Subtle border at the top */
-    margin-top: 50px; /* Space above the footer */
-}
-
-footer a {
-    color: #63b3ed; /* Link color */
-    text-decoration: none; /* No underline for links */
-}
-
-footer a:hover {
-    text-decoration: underline; /* Underline on hover for links */
-}
-
-footer .footer-content {
-    max-width: 1200px; /* Max width for content */
-    margin: 0 auto; /* Center the content block */
-    display: flex; /* Use flexbox for layout */
-    flex-wrap: wrap; /* Allow items to wrap */
-    justify-content: space-around; /* Distribute items evenly */
-    gap: 20px; /* Space between flex items */
-}
-
-footer .footer-section {
-    flex: 1; /* Each section takes equal space */
-    min-width: 200px; /* Minimum width for sections before wrapping */
-    margin-bottom: 20px; /* Space below each section */
-}
-
-footer .footer-section h3 {
-    color: #ffffff; /* White color for headings */
-    margin-bottom: 15px; /* Space below headings */
-    font-size: 1.25rem; /* Larger font size for headings */
-}
-
-footer .footer-section ul {
-    list-style: none; /* Remove bullet points from lists */
-    padding: 0; /* Remove default padding */
-}
-
-footer .footer-section ul li {
-    margin-bottom: 10px; /* Space between list items */
-}
-
-footer .footer-bottom {
-    margin-top: 30px; /* Space above the bottom text */
-    padding-top: 20px; /* Padding above copyright */
-    border-top: 1px solid #2d3748; /* Separator line */
-    font-size: 0.9rem; /* Smaller font size for copyright */
-}
+    padding: 0px 20px; /* Ample padding */
+    text-align: left; /* Center align content */
+    border-top: -1px solid #2d3748; /* Subtle border at the top */
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+    /* Estilos extra para que se vea bien */
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    }

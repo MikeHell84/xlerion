@@ -49,6 +49,34 @@ document.addEventListener('DOMContentLoaded', () => {
         video.style.transform = `translate(-50%, calc(-50% + ${yOffset}px))`;
     }
 
+    // Función para el efecto parallax con el mouse en imágenes
+    function setupMouseParallax() {
+        const parallaxContainers = document.querySelectorAll('.parallax-image-container');
+
+        parallaxContainers.forEach(container => {
+            const image = container.querySelector('img'); // Asume que la imagen está dentro del contenedor
+
+            if (!image) return;
+
+            container.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = container.getBoundingClientRect();
+                const xAxis = (e.clientX - (left + width / 2)) / width;
+                const yAxis = (e.clientY - (top + height / 2)) / height;
+
+                // Ajusta estos valores para controlar la intensidad del efecto
+                const moveX = xAxis * 20; // Mueve la imagen 20px en X
+                const moveY = yAxis * 20; // Mueve la imagen 20px en Y
+
+                image.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+            });
+
+            container.addEventListener('mouseleave', () => {
+                // Vuelve la imagen a su posición original cuando el mouse sale
+                image.style.transform = `translate3d(0, 0, 0)`;
+            });
+        });
+    }
+
     // Usamos requestAnimationFrame para optimizar el rendimiento de la animación
     function loop() {
         parallaxScroll();
@@ -56,5 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Inicializa el bucle de animación
-    window.requestAnimationFrame(loop);
+    window.animFrame = window.requestAnimationFrame(loop); // Guardar la referencia para posible cancelación
+
+    // Inicializa el parallax de mouse
+    setupMouseParallax();
 });

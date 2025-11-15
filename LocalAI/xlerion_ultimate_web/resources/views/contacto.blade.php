@@ -42,25 +42,31 @@
         </div>
     </div>
 
-    {{-- Sección de Cotización --}}
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12">
-        <section id="cotizar-servicio" class="mb-12">
-            @include('quotation.form')
-        </section>
-    </div>
-
-    {{-- Main Content for Contacto --}}
+    {{-- Main Content for Contacto: row with text and image like other sections --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12">
         <section class="mb-12">
-            <h2 class="text-4xl font-bold text-center mb-6 text-teal-400 uppercase font-heading">📩 Contacto</h2>
-
-            {{-- Texto principal tomado de contenido.txt --}}
-            <div class="prose max-w-3xl mx-auto text-gray-300 mb-6">
-                <p>¿Deseas colaborar, invertir o conocer más sobre Xlerion? Estamos abiertos al diálogo y la co-creación.</p>
+            <div class="flex flex-col md:flex-row items-center gap-12 p-8 bg-gray-800/50 rounded-lg border border-gray-700 content-container">
+                <div class="md:w-2/3">
+                    <h2 class="text-4xl font-bold mb-4 text-teal-400 uppercase font-heading">📩 Contacto</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed">¿Deseas colaborar, invertir o conocer más sobre Xlerion? Estamos abiertos al diálogo y la co-creación.</p>
+                </div>
+                <div class="md:w-1/3">
+                    <img src="{{ asset('images/parallax/contacto-parallax.jpg') }}" alt="Contacto" class="rounded-lg shadow-xl border border-gray-600 w-full h-auto">
+                </div>
             </div>
+        </section>
 
+        {{-- Cotizar servicio (debe quedar encima del campo de contacto) --}}
+        <section id="cotizar-servicio" class="mb-10">
+            <div class="content-container p-6 rounded-lg shadow-lg border border-gray-700">
+                <h3 class="text-2xl font-semibold mb-4 text-white">Solicitar Cotización</h3>
+                @include('quotation.form')
+            </div>
+        </section>
+
+        {{-- Campo de contacto (formulario) --}}
+        <section class="mb-12">
             <div class="grid lg:grid-cols-3 gap-8">
-                {{-- Columna principal: Formulario y descripción breve --}}
                 <div class="lg:col-span-2 content-container p-8 rounded-xl shadow-lg border border-gray-700">
                     <h3 class="text-2xl font-semibold mb-4 text-white">Formulario de contacto</h3>
                     <p class="text-gray-400 mb-4">Envía tu consulta usando el formulario. Campos: Nombre, Correo electrónico y Mensaje.</p>
@@ -73,15 +79,12 @@
                         </div>
                         <textarea name="message" placeholder="Mensaje" rows="5" required class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white"></textarea>
                         <div class="flex items-center justify-between">
-                                <button type="submit" class="py-3 px-6 rounded-lg btn-xlerion">Enviar Mensaje</button>
-                                <a href="https://wa.me/573208605600" target="_blank" class="text-sm text-gray-300 btn-xlerion-ghost py-2 px-3 rounded">Enviar por WhatsApp</a>
-                            </div>
+                            <button type="submit" class="py-3 px-6 rounded-lg btn-xlerion">Enviar Mensaje</button>
+                            <a href="https://wa.me/573208605600" target="_blank" class="text-sm text-gray-300 btn-xlerion-ghost py-2 px-3 rounded">Enviar por WhatsApp</a>
+                        </div>
                     </form>
 
                     <div class="mt-8 pt-6 border-t border-gray-700">
-                        <h3 class="text-2xl font-semibold mb-4 text-white">Información adicional</h3>
-                        <p class="text-gray-400">Si buscas cotizar un servicio, utiliza la sección "Cotizar Servicio" más arriba. También puedes escribirnos directamente a cualquiera de los correos institucionales listados a la derecha.</p>
-
                         <h4 class="mt-6 text-lg font-semibold text-white">Acerca del Creador</h4>
                         <p class="text-gray-300">Miguel Eduardo Rodríguez Martínez es un desarrollador autodidacta con enfoque neurodivergente, especializado en videojuegos, software inteligente y soluciones web. Desde Nocaima, Cundinamarca, ha impulsado proyectos que integran técnica y narrativa.</p>
 
@@ -94,7 +97,6 @@
                     </div>
                 </div>
 
-                {{-- Columna derecha: Correos, WhatsApp y redes (exacto de contenido.txt) --}}
                 <aside class="lg:col-span-1 content-container p-8 rounded-xl shadow-lg border border-gray-700">
                     <h3 class="text-2xl font-semibold mb-4 text-white">Correos institucionales</h3>
                     <ul class="list-disc list-inside text-gray-300 space-y-1">

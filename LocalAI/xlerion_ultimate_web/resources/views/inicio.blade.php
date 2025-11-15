@@ -5,7 +5,7 @@
     <div class="relative overflow-hidden video-parallax-container">
         <!-- Video de fondo -->
         <video class="parallax-video filter-subtle" autoplay loop muted playsinline>
-            <source src="{{ asset('videos/intro.mp4') }}" type="video/mp4">
+            <source src="{{ asset('videos/xlerionIntro.mp4') }}" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
 
@@ -15,8 +15,8 @@
         <!-- Contenido principal del Hero -->
         <div class="relative z-1 flex flex-col items-center justify-center h-full text-center px-4">
             <h1 class="text-4xl md:text-6xl font-extrabold text-white font-heading uppercase">
-                <img src="{{ asset('img/LogoX.svg') }}" alt="Xlerion Logo" class="h-12 md:h-16 mx-auto">
-                <span class="block text-2xl md:text-4xl text-xlerion-tech-bright-blue mt-2">Soluciones modulares para un futuro escalable</span>
+                <img src="{{ asset('img/LogoX.svg') }}" alt="Xlerion Logo" class="h-12 md:h-28 mx-auto">
+                <span class="block text-2xl md:text-2xl text-xlerion-tech-bright-blue mt-2">Soluciones modulares para un futuro escalable</span>
             </h1>
 
             <div class="mt-8 flex flex-wrap justify-center gap-4">

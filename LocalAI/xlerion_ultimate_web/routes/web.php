@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuotationController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return view('inicio');
@@ -26,31 +28,15 @@ Route::get('/fundador', function () {
     return view('fundador');
 });
 
-Route::get('/convocatorias', function () {
-    return view('convocatorias');
-});
-
 Route::get('/blog', function () {
     return view('blog');
 });
 
-Route::get('/contacto', function () {
-    return view('contacto');
-});
+// Ruta para mostrar la página de contacto (incluye formulario de cotización)
+Route::get('/contacto', [ContactController::class, 'show'])->name('contact.show');
 
-Route::prefix('legal')->group(function () {
-    Route::get('/', function () {
-        return redirect('/legal/privacidad');
-    });
-    Route::get('/privacidad', function () {
-        return view('legal.privacidad');
-    });
-    Route::get('/terminos', function () {
-        return view('legal.terminos');
-    });
-    Route::get('/avisos', function () {
-        return view('legal.avisos');
-    });
-});
+// Ruta para procesar el formulario de contacto
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
-require __DIR__.'/auth.php';
+// Ruta para procesar el formulario de cotización
+Route::post('/quotation', [QuotationController::class, 'submit'])->name('quotation.submit');
