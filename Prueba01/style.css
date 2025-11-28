@@ -1,0 +1,110 @@
+/* Estilos personalizados para aplicar la fuente Inter */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0a0a0a;
+}
+body.modal-open {
+    overflow: hidden;
+}
+/* Texto con gradiente personalizado */
+.gradient-text {
+    background: linear-gradient(90deg, #38bdf8, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+/* Estilo para la infografía interactiva */
+.infographic-node {
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    transform-origin: center;
+}
+.infographic-node:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.6));
+}
+.infographic-line {
+    transition: stroke 0.3s ease-in-out;
+}
+.infographic-group:hover > .infographic-line {
+     stroke: #38bdf8;
+}
+/* Estilos del modal */
+.modal {
+    transition: opacity 0.3s ease;
+}
+.modal-panel {
+    transition: transform 0.3s ease;
+}
+/* Estilos de la línea de tiempo */
+.timeline-item {
+    position: relative;
+}
+.timeline-item-left {
+    position: relative;
+}
+.timeline-item-left::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: -32px;
+    height: 100%;
+    width: 2px;
+    background-color: #334155;
+}
+@media (min-width: 768px) {
+    .timeline-item-left::before {
+        top: 25px;
+        left: auto;
+        right: -17px; /* para alinear a la derecha del dot */
+        height: 2px;
+        width: 100%;
+        background-color: #334155;
+    }
+}
+.timeline-dot {
+    position: absolute;
+    left: -38px;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #0a0a0a;
+    border: 3px solid #334155;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    z-index: 1;
+}
+.timeline-item:last-child::before {
+    display: none;
+}
+.timeline-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.timeline-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.timeline-item.is-visible .timeline-dot {
+    background-color: #38bdf8;
+    border-color: #38bdf8;
+}
+.timeline-item-content {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.timeline-item-content:hover {
+    background-color: rgba(56, 189, 248, 0.1);
+}
+
+/* Estilos para el efecto de la animación 3D */
+#particle-container {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+}
+#particle-container canvas {
+    display: block;
+}

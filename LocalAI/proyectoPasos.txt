@@ -1,0 +1,92 @@
+Pasos para desplegar el proyecto Xlerion Web:
+
+**Pre-requisitos:**
+- Tener instalado PHP (versión compatible con Laravel 11), Composer, Node.js, y npm.
+- Tener un servidor de base de datos MySQL (o compatible) en ejecución.
+
+**Pasos de Instalación y Configuración:**
+
+1. **Clonar el Repositorio:**
+   - Clona el proyecto desde el repositorio de Git.
+   - `git clone <url-del-repositorio>`
+   - `cd xlerion_ultimate_web`
+
+2. **Instalar Dependencias de PHP:**
+   - Ejecuta Composer para instalar las librerías de backend.
+   - `composer install`
+
+3. **Instalar Dependencias de JavaScript:**
+   - Ejecuta npm para instalar las dependencias del frontend.
+   - `npm install`
+
+4. **Configurar el Entorno:**
+   - Copia el archivo de ejemplo para las variables de entorno.
+   - `copy .env.example .env`
+   - Genera la clave de la aplicación.
+   - `php artisan key:generate`
+   - Abre el archivo `.env` y configura los detalles de la base de datos (DB_DATABASE, DB_USERNAME, DB_PASSWORD).
+
+5. **Ejecutar las Migraciones de la Base de Datos:**
+   - Crea las tablas necesarias en la base de datos.
+   - `php artisan migrate`
+
+6. **Poblar la Base de Datos (Opcional):**
+   - Si existen seeders para datos iniciales, ejecútalos.
+   - `php artisan db:seed`
+
+7. **Construir los Assets del Frontend:**
+   - Compila los archivos JavaScript y CSS para producción.
+   - `npm run build`
+
+8. **Iniciar el Servidor de Desarrollo:**
+   - Inicia el servidor local para probar la aplicación.
+   - `php artisan serve`
+
+**Pasos Adicionales (Producción):**
+
+9. **Optimizar para Producción:**
+   - Cachea la configuración y las rutas para un mejor rendimiento.
+   - `php artisan config:cache`
+   - `php artisan route:cache`
+   - `php artisan view:cache`
+
+10. **Preparar y Subir los Archivos al Servidor:**
+
+    a. **Comprimir el Proyecto:**
+       - Crea un archivo ZIP con todo el contenido de la carpeta `xlerion_ultimate_web`.
+       - **Excluye** las siguientes carpetas y archivos para optimizar la subida y por seguridad:
+         - `node_modules/`
+         - `vendor/` (ya que se instalará en el servidor con Composer)
+         - `.git/`
+         - `.env` (se debe crear uno nuevo en el servidor)
+
+    b. **Subir y Descomprimir:**
+       - Sube el archivo ZIP a la carpeta destino en tu servidor (ej. `/var/www/xlerion_project` o `public_html/`).
+       - Descomprime el archivo en esa ubicación.
+
+    c. **Ajustes Críticos en el Servidor:**
+       - **Archivo de Entorno (`.env`)**: Este es el paso más importante. **No subas tu archivo `.env` local.** En el servidor, crea una copia de `.env.example` y renómbrala a `.env`. Luego, edita este nuevo archivo con la configuración de producción:
+         - `APP_ENV`: ponlo en `production`.
+         - `APP_DEBUG`: ponlo en `false`.
+         - `APP_URL`: la URL final de tu sitio (ej. `https://www.tudominio.com`).
+         - `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`: las credenciales de la base de datos de producción.
+         - `MAIL_MAILER`, `MAIL_HOST`, `MAIL_PORT`, etc.: la configuración de tu servicio de correo real.
+       - **Permisos de Carpetas**: El servidor web necesita permisos para escribir en las carpetas de `storage` y `bootstrap/cache`. Ejecuta los siguientes comandos (el usuario `www-data` puede variar según tu servidor):
+         - `sudo chown -R www-data:www-data storage bootstrap/cache`
+         - `sudo chmod -R 775 storage bootstrap/cache`
+
+11. **Configurar el Servidor Web (Apache/Nginx):**
+    - Apunta la raíz del documento de tu servidor web al directorio `public` del proyecto.
+    - Asegúrate de que los permisos de los directorios `storage` y `bootstrap/cache` sean correctos para que el servidor pueda escribir en ellos.
+
+12. **Ejecutar Comandos de Artisan desde el Navegador (Solo para Configuración Inicial):**
+    - **¡ADVERTENCIA DE SEGURIDAD!** El proyecto contiene rutas que permiten ejecutar comandos de Artisan directamente desde el navegador. Estas rutas son extremadamente peligrosas y solo deben usarse para la configuración inicial si no tienes acceso a la línea de comandos en tu servidor.
+    - Una vez que hayas configurado el proyecto, **DEBES ELIMINAR ESTAS RUTAS** del archivo `routes/web.php` para evitar vulnerabilidades de seguridad graves.
+    - Las rutas disponibles son:
+        - `/artisan/migrate`: Ejecuta las migraciones de la base de datos.
+        - `/artisan/storage-link`: Crea el enlace simbólico para el almacenamiento.
+        - `/artisan/config-cache`: Crea la caché de configuración.
+        - `/artisan/route-cache`: Crea la caché de rutas.
+        - `/artisan/view-cache`: Crea la caché de vistas.
+        - `/artisan/clear-all`: Limpia todas las cachés.
+    - Para usarlas, simplemente navega a `https://tu-dominio.com/artisan/comando`. Por ejemplo: `https://tu-dominio.com/artisan/migrate`.
