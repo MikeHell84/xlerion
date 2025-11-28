@@ -22,7 +22,16 @@ $checkpointScript = (Resolve-Path (Join-Path $scriptDir "precommit-checkpoint.ps
 $hookContent = @"
 #!/usr/bin/env pwsh
 # Auto-generated pre-commit hook to create a checkpoint
-pwsh -NoProfile -ExecutionPolicy Bypass -File `"$checkpointScript`" -Message "pre-commit automatic" -IncludeUncommitted
+# Skip running in CI environments
+if ($env:CI -or $env:GITHUB_ACTIONS -or $env:GITLAB_CI -or $env:CI_COMMIT_SHA) {
+    exit 0
+}
+try {
+    # run the wrapper quietly, discard output
+    pwsh -NoProfile -ExecutionPolicy Bypass -File `"$checkpointScript`" -Message "pre-commit automatic" -IncludeUncommitted *>$null
+} catch {
+    # ignore errors from checkpoint to avoid blocking commits
+}
 exit 0
 "@
 
