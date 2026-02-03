@@ -1,0 +1,19 @@
+
+   Error 
+
+  Class "App\Http\Controllers\Controller" not found
+
+  at app\Http\Controllers\AuthController.php:16
+     12Ôûò use App\Mail\WelcomeMail;
+     13Ôûò use App\Mail\PasswordResetMail;
+     14Ôûò use Illuminate\Support\Str;
+     15Ôûò 
+  Ô×£  16Ôûò class AuthController extends Controller
+     17Ôûò {
+     18Ôûò     public function register(Request $request)
+     19Ôûò     {
+     20Ôûò         $data = $request->only('name','email','password','password_confirmation','role');
+
+  1   vendor\composer\ClassLoader.php:576
+  2   vendor\composer\ClassLoader.php:427
+

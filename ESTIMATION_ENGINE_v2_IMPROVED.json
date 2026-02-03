@@ -1,0 +1,944 @@
+{
+  "version": "2.0",
+  "date": "2026-02-02",
+  "improvements": [
+    "Subtareas desglosadas (granularidad aumentada)",
+    "Rangos de horas mejorados (min/típico/max)",
+    "Multiplicadores acumulativos con tope x3.0",
+    "Mínimos obligatorios por tarea crítica",
+    "Validaciones y campos requeridos",
+    "Buffer mínimo automático +10-15%",
+    "Sanity checks para detección de anomalías"
+  ],
+  "services": [
+    {
+      "id": "desarrollo-web-movil",
+      "name": "Desarrollo Web y Móvil",
+      "description": "Sitios corporativos, e-commerce, landing pages, apps híbridas",
+      "icon": "Globe",
+      "base_tariff_range": {
+        "junior": {
+          "min": 12,
+          "max": 18,
+          "typical": 15,
+          "currency": "USD/hora"
+        },
+        "mid": { "min": 18, "max": 28, "typical": 23, "currency": "USD/hora" },
+        "senior": {
+          "min": 28,
+          "max": 45,
+          "typical": 36,
+          "currency": "USD/hora"
+        },
+        "architect": {
+          "min": 45,
+          "max": 70,
+          "typical": 57,
+          "currency": "USD/hora"
+        }
+      },
+      "required_fields": [
+        {
+          "field": "num_pages",
+          "label": "Número estimado de páginas/pantallas",
+          "validation": "number",
+          "min": 1,
+          "max": 100,
+          "explanation": "Impacta directamente en horas frontend y testing"
+        },
+        {
+          "field": "num_users_concurrent",
+          "label": "Usuarios concurrentes esperados (pico)",
+          "validation": "number",
+          "min": 1,
+          "max": 100000,
+          "explanation": "Aumenta complejidad backend si > 1000"
+        },
+        {
+          "field": "num_integrations",
+          "label": "Número de integraciones externas (APIs)",
+          "validation": "number",
+          "min": 0,
+          "max": 20,
+          "explanation": "Cada integración añade 20-40 horas backend"
+        }
+      ],
+      "tasks": [
+        {
+          "id": "discovery",
+          "name": "Discovery y Requierimientos",
+          "hours_range": { "min": 20, "max": 40, "typical": 30 },
+          "minimum_hours": 20,
+          "default_level": "mid",
+          "description": "Entrevistas stakeholders, wireframes, especificaciones funcionales",
+          "subtasks": [
+            {
+              "name": "Entrevistas y sesiones descubrimiento",
+              "hours": "8-15"
+            },
+            { "name": "Análisis competencia y benchmarking", "hours": "4-8" },
+            { "name": "Wireframes de flujos principales", "hours": "5-12" },
+            {
+              "name": "Documento de especificaciones funcionales",
+              "hours": "3-5"
+            }
+          ],
+          "critical": false,
+          "risk_if_skipped": "medium"
+        },
+        {
+          "id": "design",
+          "name": "Diseño UI/UX",
+          "hours_range": { "min": 30, "max": 60, "typical": 45 },
+          "minimum_hours": 25,
+          "default_level": "mid",
+          "description": "Mockups de alta fidelidad, prototipo interactivo, design system",
+          "subtasks": [
+            { "name": "Mockups UI (Figma/Adobe XD)", "hours": "15-25" },
+            { "name": "Prototipo interactivo", "hours": "8-15" },
+            {
+              "name": "Design system y componentes reutilizables",
+              "hours": "7-20"
+            }
+          ],
+          "multipliers": [
+            {
+              "variable": "num_pages",
+              "label": "Páginas únicas (más allá de 5)",
+              "formula": "base * (1 + (pages - 5) * 0.15)",
+              "min": 5,
+              "max": 50,
+              "explanation": "Cada página adicional requiere más diseño"
+            }
+          ],
+          "critical": false,
+          "risk_if_skipped": "high"
+        },
+        {
+          "id": "frontend",
+          "name": "Desarrollo Frontend (HTML/CSS/JS/React)",
+          "hours_range": { "min": 40, "max": 150, "typical": 80 },
+          "minimum_hours": 35,
+          "default_level": "mid",
+          "description": "Componentes React, CSS responsive, integraciones cliente",
+          "subtasks": [
+            {
+              "name": "Configuración proyecto y setup (webpack, vite, etc)",
+              "hours": "4-8"
+            },
+            {
+              "name": "Componentes reutilizables y estructura",
+              "hours": "15-40"
+            },
+            { "name": "Estilos CSS/Tailwind responsive", "hours": "12-30" },
+            {
+              "name": "Integraciones cliente (APIs, formularios)",
+              "hours": "15-50"
+            },
+            {
+              "name": "Optimización performance (lazy loading, code splitting)",
+              "hours": "8-20"
+            }
+          ],
+          "multipliers": [
+            {
+              "variable": "responsive_advanced",
+              "label": "Responsive avanzado (PWA, offline, adaptable)",
+              "factor": 1.25,
+              "applies_if": true
+            },
+            {
+              "variable": "animations",
+              "label": "Animaciones complejas (GSAP, Three.js)",
+              "factor": 1.2,
+              "applies_if": true
+            },
+            {
+              "variable": "accessibility",
+              "label": "Accesibilidad WCAG AA",
+              "factor": 1.15,
+              "applies_if": true
+            }
+          ],
+          "critical": true,
+          "risk_if_skipped": "critical"
+        },
+        {
+          "id": "backend",
+          "name": "Desarrollo Backend (Node/Python/PHP)",
+          "hours_range": { "min": 40, "max": 200, "typical": 100 },
+          "minimum_hours": 35,
+          "default_level": "senior",
+          "description": "APIs REST/GraphQL, base de datos, lógica negocio, autenticación",
+          "subtasks": [
+            { "name": "Modelado base de datos y migrations", "hours": "10-25" },
+            { "name": "Arquitectura API y endpoints base", "hours": "15-40" },
+            { "name": "Implementación lógica negocio", "hours": "20-60" },
+            {
+              "name": "Autenticación y autorización (JWT, OAuth)",
+              "hours": "8-20"
+            },
+            { "name": "Pruebas unitarias e integración", "hours": "15-40" },
+            { "name": "Documentación API (Swagger/OpenAPI)", "hours": "5-15" }
+          ],
+          "multipliers": [
+            {
+              "variable": "num_integrations",
+              "label": "Integraciones externas (cada una)",
+              "formula": "base + (integrations * 20)",
+              "min": 0,
+              "max": 10,
+              "explanation": "Cada integración: análisis + implementación + testing"
+            },
+            {
+              "variable": "num_users_concurrent",
+              "label": "Alto volumen de usuarios concurrentes (>1000)",
+              "factor": 1.4,
+              "applies_if": true,
+              "explanation": "Requiere optimización, caching, Load balancing"
+            },
+            {
+              "variable": "security_high",
+              "label": "Seguridad crítica (PCI, GDPR, HIPAA)",
+              "factor": 1.5,
+              "applies_if": true,
+              "explanation": "Auditoría, compliance, penetration testing"
+            }
+          ],
+          "critical": true,
+          "risk_if_skipped": "critical"
+        },
+        {
+          "id": "ecommerce",
+          "name": "Integración E-commerce",
+          "hours_range": { "min": 30, "max": 80, "typical": 50 },
+          "minimum_hours": 16,
+          "default_level": "mid",
+          "description": "Carrito, pasarelas pago, inventario, órdenes, reportes",
+          "subtasks": [
+            {
+              "name": "Carrito de compra (agregar, actualizar, validar)",
+              "hours": "8-15"
+            },
+            {
+              "name": "Integración pasarela de pago (Stripe, PayU, etc)",
+              "hours": "12-25"
+            },
+            { "name": "Gestión inventario y stock", "hours": "8-20" },
+            { "name": "Órdenes, facturación, notificaciones", "hours": "10-20" }
+          ],
+          "multipliers": [
+            {
+              "variable": "payment_gateways",
+              "label": "Múltiples pasarelas pago (cada una adicional)",
+              "formula": "base + (gateways - 1) * 10",
+              "min": 1,
+              "max": 5,
+              "explanation": "Primera pasarela 12-25h, cada adicional +10h"
+            },
+            {
+              "variable": "multi_currency",
+              "label": "Multi-moneda",
+              "factor": 1.15,
+              "applies_if": true
+            },
+            {
+              "variable": "inventory_complex",
+              "label": "Inventario complejo (SKU múltiple, variantes)",
+              "factor": 1.25,
+              "applies_if": true
+            }
+          ],
+          "critical": false,
+          "risk_if_skipped": "high"
+        },
+        {
+          "id": "mobile_app",
+          "name": "App Móvil (React Native/Flutter)",
+          "hours_range": { "min": 60, "max": 200, "typical": 120 },
+          "minimum_hours": 50,
+          "default_level": "senior",
+          "description": "Compilación iOS/Android, push notifications, offline storage, testing dispositivos",
+          "subtasks": [
+            {
+              "name": "Setup proyecto móvil (React Native/Flutter)",
+              "hours": "8-15"
+            },
+            { "name": "Adaptación UI componentes móviles", "hours": "20-50" },
+            { "name": "Push notifications y local storage", "hours": "10-20" },
+            { "name": "Compilación y firma iOS/Android", "hours": "8-15" },
+            {
+              "name": "Testing dispositivos reales (múltiples versiones)",
+              "hours": "15-40"
+            },
+            { "name": "Publicación App Store/Google Play", "hours": "5-10" }
+          ],
+          "multipliers": [
+            {
+              "variable": "platforms",
+              "label": "Multiplataforma nativa (iOS + Android + Web)",
+              "factor": 1.6,
+              "applies_if": true,
+              "explanation": "Desarrollar 3 plataformas vs híbrido requiere +60%"
+            },
+            {
+              "variable": "offline_sync",
+              "label": "Sync offline y sincronización datos",
+              "factor": 1.3,
+              "applies_if": true
+            }
+          ],
+          "critical": false,
+          "risk_if_skipped": "high"
+        },
+        {
+          "id": "testing",
+          "name": "Testing (QA Automatizado + Manual)",
+          "hours_range": { "min": 20, "max": 80, "typical": 40 },
+          "minimum_hours": 15,
+          "default_level": "mid",
+          "description": "Tests unitarios, integración, E2E, exploratorio",
+          "subtasks": [
+            { "name": "Tests unitarios (cobertura 70%+)", "hours": "10-25" },
+            { "name": "Tests de integración", "hours": "8-20" },
+            { "name": "Tests E2E (Cypress/Selenium)", "hours": "8-20" },
+            {
+              "name": "Testing exploratorio y regresión manual",
+              "hours": "5-15"
+            }
+          ],
+          "multipliers": [
+            {
+              "variable": "critical_systems",
+              "label": "Testing crítico (pagos, datos sensibles)",
+              "factor": 1.4,
+              "applies_if": true,
+              "explanation": "Requiere QA especializado + cobertura 90%+ + penetration testing"
+            },
+            {
+              "variable": "mobile_platforms",
+              "label": "Testing múltiples dispositivos/versiones",
+              "factor": 1.3,
+              "applies_if": true
+            }
+          ],
+          "critical": true,
+          "risk_if_skipped": "high"
+        },
+        {
+          "id": "deployment",
+          "name": "Deployment y DevOps",
+          "hours_range": { "min": 15, "max": 40, "typical": 25 },
+          "minimum_hours": 12,
+          "default_level": "senior",
+          "description": "CI/CD pipeline, configuración infraestructura, documentación",
+          "subtasks": [
+            {
+              "name": "CI/CD pipeline setup (GitHub Actions, etc)",
+              "hours": "8-15"
+            },
+            {
+              "name": "Configuración infraestructura (Docker, Kubernetes)",
+              "hours": "5-15"
+            },
+            { "name": "Monitoreo, logging y alertas", "hours": "5-10" },
+            { "name": "Documentación deployment y runbooks", "hours": "3-8" }
+          ],
+          "multipliers": [
+            {
+              "variable": "high_availability",
+              "label": "Alta disponibilidad (99.9%+ uptime)",
+              "factor": 1.5,
+              "applies_if": true,
+              "explanation": "Load balancing, replicación, failover"
+            }
+          ],
+          "critical": true,
+          "risk_if_skipped": "high"
+        },
+        {
+          "id": "security",
+          "name": "Seguridad y Compliance",
+          "hours_range": { "min": 15, "max": 50, "typical": 30 },
+          "minimum_hours": 10,
+          "default_level": "senior",
+          "description": "Auditoría seguridad, OWASP, PCI/GDPR/HIPAA si aplica",
+          "subtasks": [
+            { "name": "Análisis OWASP Top 10", "hours": "5-10" },
+            {
+              "name": "Implementación medidas seguridad (encryption, etc)",
+              "hours": "8-20"
+            },
+            { "name": "Penetration testing básico", "hours": "5-15" },
+            { "name": "Documentación seguridad y compliance", "hours": "3-8" }
+          ],
+          "critical": false,
+          "risk_if_skipped": "medium"
+        },
+        {
+          "id": "seo",
+          "name": "SEO y Optimización",
+          "hours_range": { "min": 10, "max": 30, "typical": 18 },
+          "minimum_hours": 8,
+          "default_level": "mid",
+          "description": "Meta tags, sitemap, schema markup, performance optimization",
+          "subtasks": [
+            {
+              "name": "On-page SEO (meta, schema, structured data)",
+              "hours": "5-8"
+            },
+            {
+              "name": "Optimización performance (Core Web Vitals)",
+              "hours": "5-15"
+            },
+            { "name": "Implementación sitemap, robots.txt", "hours": "2-4" },
+            { "name": "Análisis y recomendaciones", "hours": "3-5" }
+          ],
+          "critical": false,
+          "risk_if_skipped": "low"
+        },
+        {
+          "id": "documentation",
+          "name": "Documentación Técnica",
+          "hours_range": { "min": 10, "max": 25, "typical": 15 },
+          "minimum_hours": 8,
+          "default_level": "mid",
+          "description": "API docs, arquitectura, guías instalación y deployment",
+          "critical": false,
+          "risk_if_skipped": "low"
+        }
+      ],
+      "global_multipliers": [
+        {
+          "id": "multiidioma",
+          "label": "Multi-idioma (cada idioma adicional)",
+          "formula": "base * (1 + (idiomas - 1) * 0.20)",
+          "min": 1,
+          "max": 5,
+          "applies_to_tasks": ["discovery", "design", "frontend", "testing"],
+          "explanation": "Cada idioma añade traducción, testing L10n, duplicación de contenido"
+        },
+        {
+          "id": "compliance",
+          "label": "Compliance crítica (GDPR, PCI, HIPAA, CCPA)",
+          "factor": 1.5,
+          "applies_to_services": ["backend", "security"],
+          "explanation": "Auditoría externa, documentación exhaustiva, cambios arquitectura"
+        },
+        {
+          "id": "legacy_integration",
+          "label": "Integración con sistemas legacy complejos",
+          "factor": 1.4,
+          "explanation": "Requiere análisis profundo, adapters, testing extensivo"
+        }
+      ],
+      "buffer_rules": {
+        "automatic_minimum": 0.15,
+        "explanation": "Buffer mínimo automático +15% en todas las cotizaciones",
+        "additional_buffer_if": [
+          {
+            "condition": "incomplete_requirements",
+            "additional_percent": 0.2,
+            "total_buffer": 0.35,
+            "explanation": "Si faltan campos requeridos o hay incertidumbre alta"
+          },
+          {
+            "condition": "complex_integrations",
+            "additional_percent": 0.15,
+            "total_buffer": 0.3,
+            "explanation": "Si hay 5+ integraciones externas"
+          },
+          {
+            "condition": "new_technology",
+            "additional_percent": 0.25,
+            "total_buffer": 0.4,
+            "explanation": "Si se usa stack tecnológico desconocido para el equipo"
+          }
+        ]
+      },
+      "sanity_checks": [
+        {
+          "name": "Subestimación potencial",
+          "rule": "if estimated_hours < 0.4 * historical_average for similar projects",
+          "action": "flag_as_high_risk",
+          "message": "Estimado es 40% menor que proyectos similares. Recomendamos revisar manualmente o hacer discovery profunda."
+        },
+        {
+          "name": "Tarea crítica incompleta",
+          "rule": "if critical_task hours < minimum_hours",
+          "action": "force_minimum_and_notify",
+          "message": "Se forzó el mínimo de horas para tarea crítica: [task]. Total: [hours]h."
+        },
+        {
+          "name": "Multiplicador excesivo",
+          "rule": "if accumulated_multiplier > 3.0",
+          "action": "cap_at_3_0_and_warn",
+          "message": "Multiplicadores acumulativos superan x3.0. Recomendamos dividir proyecto o hacer discovery para reducir scope."
+        },
+        {
+          "name": "Seguridad en sistema sensible",
+          "rule": "if integrations include banking AND security_multiplier not applied",
+          "action": "auto_apply_security_multiplier",
+          "message": "Detectamos integración bancaria sin seguridad crítica. Se aplicó multiplicador x1.5 automáticamente."
+        }
+      ],
+      "pricing_model_options": [
+        {
+          "id": "fixed_price",
+          "name": "Precio Fijo (Fixed Price)",
+          "requires": "complete_discovery",
+          "description": "Cliente paga cantidad fija, requiere scope claro",
+          "advantage": "Predecibilidad para cliente",
+          "risk": "Riesgo scope creep alto si discovery incompleta"
+        },
+        {
+          "id": "time_and_materials",
+          "name": "Tiempo y Materiales (T&M)",
+          "requires": "none",
+          "description": "Se cobra por horas reales + gastos",
+          "advantage": "Flexibilidad si scope es incierto",
+          "risk": "Puede ser costoso para cliente si estimación es baja"
+        }
+      ]
+    },
+    {
+      "id": "desarrollo-erp",
+      "name": "Desarrollo ERP y Sistemas Empresariales",
+      "description": "Módulos ERP personalizados, sistemas administrativos, gestión datos masivos",
+      "base_tariff_range": {
+        "mid": { "min": 20, "max": 35, "typical": 27, "currency": "USD/hora" },
+        "senior": {
+          "min": 35,
+          "max": 55,
+          "typical": 45,
+          "currency": "USD/hora"
+        },
+        "architect": {
+          "min": 55,
+          "max": 85,
+          "typical": 70,
+          "currency": "USD/hora"
+        }
+      },
+      "required_fields": [
+        {
+          "field": "num_modules",
+          "label": "Número de módulos",
+          "validation": "number",
+          "min": 1,
+          "max": 50,
+          "explanation": "Cada módulo es unidad de desarrollo independiente"
+        },
+        {
+          "field": "num_users_concurrent",
+          "label": "Usuarios concurrentes esperados",
+          "validation": "number",
+          "min": 1,
+          "max": 50000,
+          "explanation": "Impacta arquitectura base de datos y caching"
+        },
+        {
+          "field": "num_records_forecast",
+          "label": "Volumen de registros esperados (millones)",
+          "validation": "number",
+          "min": 0.01,
+          "max": 1000,
+          "explanation": "Afecta indexación, particionamiento, reporting"
+        },
+        {
+          "field": "has_legacy_data",
+          "label": "¿Requiere migración de datos legacy?",
+          "validation": "boolean",
+          "explanation": "Agregar +30-50h por migración de datos complejos"
+        }
+      ],
+      "tasks": [
+        {
+          "id": "requirement_analysis",
+          "name": "Análisis de Requerimientos",
+          "hours_range": { "min": 30, "max": 60, "typical": 45 },
+          "minimum_hours": 25,
+          "default_level": "architect",
+          "description": "Mapeo procesos, diagnóstico sistemas existentes, especificación módulos"
+        },
+        {
+          "id": "data_modeling",
+          "name": "Modelado de Datos",
+          "hours_range": { "min": 40, "max": 80, "typical": 55 },
+          "minimum_hours": 35,
+          "default_level": "architect",
+          "description": "Diseño ER, normalización, índices, particionamiento",
+          "subtasks": [
+            { "name": "Análisis entidades y relaciones", "hours": "12-20" },
+            {
+              "name": "Diseño índices y queries optimizadas",
+              "hours": "10-20"
+            },
+            {
+              "name": "Plan de particionamiento (si > 10M registros)",
+              "hours": "8-15"
+            },
+            { "name": "Documentación modelo datos", "hours": "5-10" }
+          ]
+        },
+        {
+          "id": "api_backend",
+          "name": "APIs y Lógica Backend",
+          "hours_range": { "min": 80, "max": 150, "typical": 110 },
+          "minimum_hours": 70,
+          "default_level": "senior",
+          "description": "Endpoints módulos, reglas negocio, workflows"
+        },
+        {
+          "id": "frontend_forms",
+          "name": "Frontend (Formularios y Dashboards)",
+          "hours_range": { "min": 60, "max": 120, "typical": 85 },
+          "minimum_hours": 50,
+          "default_level": "mid",
+          "description": "Interfaces entrada datos, grillas, reportes interactivos"
+        },
+        {
+          "id": "reporting",
+          "name": "Reporting y Dashboards",
+          "hours_range": { "min": 40, "max": 80, "typical": 55 },
+          "minimum_hours": 30,
+          "default_level": "mid",
+          "description": "Reportes PDF, dashboards BI, exportación datos"
+        },
+        {
+          "id": "integrations_erp",
+          "name": "Integraciones (ERP, sistemas terceros)",
+          "hours_range": { "min": 40, "max": 100, "typical": 65 },
+          "minimum_hours": 35,
+          "default_level": "senior",
+          "description": "APIs externas, webhooks, colas de mensajes, batch jobs"
+        },
+        {
+          "id": "testing_erp",
+          "name": "Testing (Datos, Workflows, Performance)",
+          "hours_range": { "min": 40, "max": 100, "typical": 65 },
+          "minimum_hours": 35,
+          "default_level": "mid",
+          "description": "Tests carga, integridad datos, regresión, UAT"
+        },
+        {
+          "id": "data_migration",
+          "name": "Migración de Datos (si aplica)",
+          "hours_range": { "min": 30, "max": 150, "typical": 75 },
+          "minimum_hours": 25,
+          "default_level": "senior",
+          "description": "Extracción legacy, transformación, validación, rollback plan",
+          "applies_if": "has_legacy_data",
+          "multipliers": [
+            {
+              "variable": "data_complexity",
+              "label": "Complejidad de transformación (medio/alto)",
+              "factor": 1.5,
+              "explanation": "Si requiere custom logic para mapeo campos"
+            }
+          ]
+        }
+      ],
+      "global_multipliers": [
+        {
+          "id": "num_modules_factor",
+          "label": "Número de módulos (>3)",
+          "formula": "base * (1 + (modules - 3) * 0.25)",
+          "min": 1,
+          "max": 20,
+          "explanation": "Primeros 3 módulos base, cada adicional +25%"
+        },
+        {
+          "id": "high_availability_erp",
+          "label": "Alta disponibilidad (99.95%+ SLA)",
+          "factor": 1.7,
+          "explanation": "Requiere replicación sincrónica, failover automático, backup continuo"
+        },
+        {
+          "id": "compliance_data",
+          "label": "Compliance datos (GDPR, SOX, etc)",
+          "factor": 1.6,
+          "explanation": "Auditoría completa, trazabilidad, retención"
+        }
+      ]
+    },
+    {
+      "id": "desarrollo-blockchain",
+      "name": "Desarrollo Blockchain y Web3",
+      "description": "Smart contracts, dApps, tokenomics, auditoría seguridad",
+      "base_tariff_range": {
+        "mid": { "min": 35, "max": 55, "typical": 45, "currency": "USD/hora" },
+        "senior": {
+          "min": 55,
+          "max": 85,
+          "typical": 70,
+          "currency": "USD/hora"
+        },
+        "specialist_auditor": {
+          "min": 80,
+          "max": 150,
+          "typical": 110,
+          "currency": "USD/hora"
+        }
+      },
+      "required_fields": [
+        {
+          "field": "blockchain_networks",
+          "label": "Redes blockchain a soportar (Ethereum, Polygon, etc)",
+          "validation": "number",
+          "min": 1,
+          "max": 10,
+          "explanation": "Cada red adicional requiere testing y deployment separado"
+        },
+        {
+          "field": "requires_external_audit",
+          "label": "¿Requiere auditoría externa de seguridad?",
+          "validation": "boolean",
+          "explanation": "Auditoría profesional: +$15k-50k (no incluido en horas)"
+        },
+        {
+          "field": "tvl_forecast",
+          "label": "Total Value Locked esperado (en USD)",
+          "validation": "number",
+          "min": 0,
+          "max": 1000000000,
+          "explanation": "Mayor TVL = requiere auditoría más profunda y seguridad crítica"
+        }
+      ],
+      "tasks": [
+        {
+          "id": "smart_contract_dev",
+          "name": "Desarrollo Smart Contracts",
+          "hours_range": { "min": 50, "max": 150, "typical": 90 },
+          "minimum_hours": 45,
+          "default_level": "senior",
+          "description": "Codificación contratos (Solidity/Rust), funciones principales"
+        },
+        {
+          "id": "contract_security",
+          "name": "Auditoría Interna Smart Contracts",
+          "hours_range": { "min": 40, "max": 80, "typical": 55 },
+          "minimum_hours": 35,
+          "default_level": "senior",
+          "description": "Análisis OWASP blockchain, common pitfalls, reentrancy, overflow"
+        },
+        {
+          "id": "dapp_frontend",
+          "name": "Frontend dApp (Web3.js, ethers.js)",
+          "hours_range": { "min": 50, "max": 120, "typical": 80 },
+          "minimum_hours": 45,
+          "default_level": "senior",
+          "description": "Interfaz usuario, wallet integration, transacciones"
+        },
+        {
+          "id": "tokenomics",
+          "name": "Tokenomics y Game Design",
+          "hours_range": { "min": 30, "max": 80, "typical": 50 },
+          "minimum_hours": 25,
+          "default_level": "senior",
+          "description": "Diseño economía token, distribución, incentivos, simulación"
+        },
+        {
+          "id": "testnet_deployment",
+          "name": "Testing en Testnet",
+          "hours_range": { "min": 20, "max": 50, "typical": 32 },
+          "minimum_hours": 15,
+          "default_level": "senior",
+          "description": "Deployment testnet, testing transacciones, gas optimization"
+        },
+        {
+          "id": "mainnet_deployment",
+          "name": "Deployment en Mainnet",
+          "hours_range": { "min": 15, "max": 30, "typical": 22 },
+          "minimum_hours": 12,
+          "default_level": "senior",
+          "description": "Configuración producción, monitoreo, respuesta ante incidentes"
+        }
+      ],
+      "fixed_costs": [
+        {
+          "id": "external_audit",
+          "name": "Auditoría Externa Profesional",
+          "applies_if": "requires_external_audit",
+          "cost_range": { "min": 15000, "max": 50000, "typical": 25000 },
+          "currency": "USD",
+          "explanation": "OpenZeppelin, Certora, Chainsecurity, etc. Obligatorio para TVL > $10M"
+        }
+      ],
+      "global_multipliers": [
+        {
+          "id": "multichain",
+          "label": "Multichain deployment (cada red adicional)",
+          "formula": "base + (networks - 1) * 0.4 * base",
+          "min": 1,
+          "max": 10,
+          "explanation": "Segunda red +40%, tercera +80%, etc (cumulativo)"
+        },
+        {
+          "id": "tvl_security",
+          "label": "Seguridad crítica (TVL > $100M)",
+          "factor": 2.5,
+          "applies_if": "tvl_forecast > 100000000",
+          "explanation": "Auditoría exhaustiva, formal verification, code review múltiple"
+        }
+      ]
+    },
+    {
+      "id": "activos-3d",
+      "name": "Activos y Modelado 3D",
+      "description": "Modelos 3D, rigging, animación, texturas, asset packs",
+      "base_tariff_range": {
+        "junior_artist": {
+          "min": 25,
+          "max": 40,
+          "typical": 32,
+          "currency": "USD/hora"
+        },
+        "mid_artist": {
+          "min": 40,
+          "max": 60,
+          "typical": 50,
+          "currency": "USD/hora"
+        },
+        "senior_artist": {
+          "min": 60,
+          "max": 100,
+          "typical": 80,
+          "currency": "USD/hora"
+        },
+        "specialist": {
+          "min": 100,
+          "max": 150,
+          "typical": 125,
+          "currency": "USD/hora"
+        }
+      },
+      "required_fields": [
+        {
+          "field": "num_assets",
+          "label": "Número de assets (modelos, personajes, entornos)",
+          "validation": "number",
+          "min": 1,
+          "max": 1000,
+          "explanation": "Cada asset es unidad independiente de desarrollo"
+        },
+        {
+          "field": "asset_complexity",
+          "label": "Complejidad promedio (simple/medium/complex)",
+          "validation": "select",
+          "options": ["simple", "medium", "complex"],
+          "explanation": "Simple: 20h, Medium: 40-60h, Complex: 80-150h"
+        },
+        {
+          "field": "animation_count",
+          "label": "Número de animaciones requeridas",
+          "validation": "number",
+          "min": 0,
+          "max": 200,
+          "explanation": "Impacta rigging y animación"
+        }
+      ],
+      "tasks": [
+        {
+          "id": "modeling",
+          "name": "Modelado 3D (low/mid/high poly)",
+          "hours_range": { "min": 20, "max": 150, "typical": 60 },
+          "minimum_hours": 15,
+          "default_level": "mid_artist",
+          "description": "Creación geometría, topología, optimización",
+          "multipliers": [
+            {
+              "variable": "polygon_density",
+              "label": "High poly (detalles extremos)",
+              "factor": 1.4,
+              "explanation": "Requiere optimización y baking a texturas"
+            }
+          ]
+        },
+        {
+          "id": "texturing",
+          "name": "Texturizado (PBR, normal maps, roughness)",
+          "hours_range": { "min": 15, "max": 60, "typical": 35 },
+          "minimum_hours": 12,
+          "default_level": "mid_artist",
+          "description": "Creación y edición texturas, PBR workflow"
+        },
+        {
+          "id": "rigging",
+          "name": "Rigging (esqueletos, controles de animación)",
+          "hours_range": { "min": 8, "max": 40, "typical": 20 },
+          "minimum_hours": 8,
+          "default_level": "senior_artist",
+          "description": "Creación bones, weight painting, IK/FK setup",
+          "critical": false,
+          "applies_if": "asset_type = character OR needs_animation"
+        },
+        {
+          "id": "animation",
+          "name": "Animación (idle, walk, action, etc)",
+          "hours_range": { "min": 10, "max": 50, "typical": 28 },
+          "minimum_hours": 8,
+          "default_level": "senior_artist",
+          "description": "Creación keyframes, timing, polishing"
+        },
+        {
+          "id": "vfx",
+          "name": "VFX (partículas, efectos especiales)",
+          "hours_range": { "min": 10, "max": 60, "typical": 32 },
+          "minimum_hours": 8,
+          "default_level": "senior_artist",
+          "description": "Efectos dinámicos, simulaciones, composición"
+        },
+        {
+          "id": "optimization",
+          "name": "Optimización para Engine (Unity/Unreal/Godot)",
+          "hours_range": { "min": 5, "max": 25, "typical": 12 },
+          "minimum_hours": 4,
+          "default_level": "mid_artist",
+          "description": "Export formatos, LOD, performance optimization"
+        }
+      ],
+      "global_multipliers": [
+        {
+          "id": "assets_batch",
+          "label": "Número de assets (bulk discount -10% después de 10)",
+          "formula": "if assets > 10 then base * 0.90 else base",
+          "min": 1,
+          "max": 1000,
+          "explanation": "Producción en lote es más eficiente"
+        },
+        {
+          "id": "rig_complex",
+          "label": "Rigging ultra-complejo (cloth, hair, muscle)",
+          "factor": 2.0,
+          "applies_if": true,
+          "explanation": "Simulaciones avanzadas requieren tiempo exponencial"
+        }
+      ]
+    }
+  ],
+  "pricing_tiers": {
+    "small_project": {
+      "hours_threshold": 100,
+      "discount_percent": 0,
+      "description": "< 100 horas"
+    },
+    "medium_project": {
+      "hours_threshold": 300,
+      "discount_percent": 5,
+      "description": "100-300 horas"
+    },
+    "large_project": {
+      "hours_threshold": 1000,
+      "discount_percent": 10,
+      "description": "> 300 horas"
+    }
+  },
+  "historical_averages": {
+    "web_landing": 190,
+    "web_ecommerce": 557,
+    "erp_3_modules": 650,
+    "blockchain_mvp": 450,
+    "game_multiplayer": 1800
+  }
+}

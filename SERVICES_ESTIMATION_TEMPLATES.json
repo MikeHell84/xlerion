@@ -1,0 +1,1162 @@
+{
+  "services": [
+    {
+      "id": "desarrollo-web-movil",
+      "name": "Desarrollo Web y Móvil",
+      "description": "Sitios corporativos responsive, plataformas e-commerce, landing pages, apps híbridas multiplataforma",
+      "icon": "Globe",
+      "base_tariff_range": {
+        "junior": { "min": 12, "max": 18, "currency": "USD/hora" },
+        "mid": { "min": 18, "max": 28, "currency": "USD/hora" },
+        "senior": { "min": 28, "max": 45, "currency": "USD/hora" }
+      },
+      "tasks": [
+        {
+          "id": "discovery",
+          "name": "Discovery y Requierimientos",
+          "hours_range": { "min": 20, "max": 40 },
+          "default_level": "mid",
+          "description": "Entrevistas, wireframes, especificaciones funcionales",
+          "included_in": "all"
+        },
+        {
+          "id": "design",
+          "name": "Diseño UI/UX",
+          "hours_range": { "min": 30, "max": 60 },
+          "default_level": "mid",
+          "description": "Mockups, prototipo interactivo, design system",
+          "included_in": ["website", "app"]
+        },
+        {
+          "id": "frontend",
+          "name": "Desarrollo Frontend (HTML/CSS/JS/React)",
+          "hours_range": { "min": 40, "max": 150 },
+          "default_level": "mid",
+          "description": "Componentes, integraciones cliente, responsive design",
+          "multipliers": [
+            {
+              "variable": "num_pages",
+              "label": "Páginas (estimadas)",
+              "formula": "base * (pages / 5)",
+              "min": 1,
+              "max": 50
+            },
+            {
+              "variable": "responsive_advanced",
+              "label": "Responsive avanzado (PWA, offline)",
+              "factor": 1.2
+            },
+            {
+              "variable": "animations",
+              "label": "Animaciones complejas",
+              "factor": 1.15
+            }
+          ]
+        },
+        {
+          "id": "backend",
+          "name": "Desarrollo Backend (Node/PHP/Python)",
+          "hours_range": { "min": 40, "max": 200 },
+          "default_level": "senior",
+          "description": "APIs REST/GraphQL, base de datos, lógica negocio",
+          "multipliers": [
+            {
+              "variable": "num_integrations",
+              "label": "Integraciones externas (APIs)",
+              "formula": "base + (integrations * 25)",
+              "min": 0,
+              "max": 10
+            }
+          ]
+        },
+        {
+          "id": "ecommerce",
+          "name": "Integración E-commerce",
+          "hours_range": { "min": 30, "max": 80 },
+          "default_level": "mid",
+          "description": "Carrito, pasarela pago, inventario, órdenes",
+          "multipliers": [
+            {
+              "variable": "payment_gateways",
+              "label": "Pasarelas de pago (Stripe, PayU, etc)",
+              "factor": 1.15
+            },
+            {
+              "variable": "multi_currency",
+              "label": "Multi-moneda",
+              "factor": 1.1
+            }
+          ]
+        },
+        {
+          "id": "mobile_app",
+          "name": "App Móvil (React Native / Flutter)",
+          "hours_range": { "min": 60, "max": 200 },
+          "default_level": "senior",
+          "description": "Compilación Android/iOS, push notifications, offline storage",
+          "multipliers": [
+            {
+              "variable": "platforms",
+              "label": "Plataformas (iOS + Android)",
+              "factor": 1.3
+            }
+          ]
+        },
+        {
+          "id": "testing",
+          "name": "Testing y QA",
+          "hours_range": { "min": 20, "max": 80 },
+          "default_level": "mid",
+          "description": "Unit tests, integration tests, testing manual, reportes bugs",
+          "dependency": "all"
+        },
+        {
+          "id": "deployment",
+          "name": "Deployment y DevOps",
+          "hours_range": { "min": 15, "max": 40 },
+          "default_level": "mid",
+          "description": "Servidor, CI/CD, monitoreo, backups",
+          "multipliers": [
+            {
+              "variable": "scaling_required",
+              "label": "Alta escalabilidad (>10k usuarios)",
+              "factor": 1.3
+            }
+          ]
+        },
+        {
+          "id": "accessibility",
+          "name": "Accesibilidad (WCAG 2.1 AA)",
+          "hours_range": { "min": 10, "max": 30 },
+          "default_level": "mid",
+          "description": "Testing accesibilidad, auditoría, remediación",
+          "optional": true
+        },
+        {
+          "id": "security",
+          "name": "Seguridad (OWASP Top 10)",
+          "hours_range": { "min": 15, "max": 50 },
+          "default_level": "senior",
+          "description": "Auditoría seguridad, encriptación, autenticación, rate limiting",
+          "optional": true
+        },
+        {
+          "id": "seo",
+          "name": "Optimización SEO",
+          "hours_range": { "min": 10, "max": 30 },
+          "default_level": "mid",
+          "description": "Metadata, schema markup, sitemap, structured data",
+          "optional": true
+        },
+        {
+          "id": "documentation",
+          "name": "Documentación Técnica y API Docs",
+          "hours_range": { "min": 10, "max": 25 },
+          "default_level": "mid",
+          "description": "README, API docs (Swagger), diagrama arquitectura",
+          "optional": true
+        }
+      ],
+      "multipliers": [
+        {
+          "id": "multiidioma",
+          "name": "Multiidioma (2+ idiomas)",
+          "factor": 1.25,
+          "description": "i18n setup, traducción UI, testing por idioma"
+        },
+        {
+          "id": "responsive",
+          "name": "Responsive avanzado + PWA",
+          "factor": 1.2,
+          "description": "Testing múltiples breakpoints, offline capability"
+        },
+        {
+          "id": "compliance_gdpr",
+          "name": "Compliance GDPR/CCPA",
+          "factor": 1.3,
+          "description": "Privacy policy, data handling, audit log"
+        },
+        {
+          "id": "performance_critical",
+          "name": "Performance crítica (<1s)",
+          "factor": 1.2,
+          "description": "Optimización CDN, caching, minificación, inyecciones SQL prevention"
+        }
+      ],
+      "dependencies": {
+        "ecommerce": ["backend", "testing"],
+        "mobile_app": ["backend", "testing"]
+      },
+      "sprint_guidance": {
+        "hours_per_sprint": 120,
+        "typical_duration_weeks": "2-4 semanas por sprint",
+        "typical_project_sprints": "2-8 sprints según complejidad"
+      },
+      "buffer_percent": 25,
+      "pricing_model": "Time & Materials o Fixed-Price (recomendado con 25% buffer)",
+      "sources": [
+        "Payscale - Web Developer Colombia/Global 2026",
+        "Upwork Rate Card 2026",
+        "Clutch.co - Agency Benchmarks"
+      ]
+    },
+    {
+      "id": "software-empresarial",
+      "name": "Software Empresarial (ERP/CRM/POS)",
+      "description": "Sistemas ERP personalizados, soluciones CRM, sistemas POS, automatización procesos, integración pasarelas",
+      "icon": "Briefcase",
+      "base_tariff_range": {
+        "junior": { "min": 15, "max": 22, "currency": "USD/hora" },
+        "mid": { "min": 22, "max": 35, "currency": "USD/hora" },
+        "senior": { "min": 35, "max": 60, "currency": "USD/hora" }
+      },
+      "tasks": [
+        {
+          "id": "discovery",
+          "name": "Discovery y Análisis de Procesos",
+          "hours_range": { "min": 40, "max": 80 },
+          "default_level": "senior",
+          "description": "Mapeo de procesos, entrevistas stakeholders, definición de módulos"
+        },
+        {
+          "id": "architecture",
+          "name": "Arquitectura del Sistema",
+          "hours_range": { "min": 30, "max": 70 },
+          "default_level": "senior",
+          "description": "Diseño base de datos, patrones, escalabilidad, seguridad"
+        },
+        {
+          "id": "core_development",
+          "name": "Desarrollo Core (Base + Módulos)",
+          "hours_range": { "min": 100, "max": 400 },
+          "default_level": "mid",
+          "description": "Implementación funcionalidad núcleo, CRUD operations",
+          "multipliers": [
+            {
+              "variable": "num_modules",
+              "label": "Módulos adicionales (cada uno después del 1º)",
+              "formula": "base + (modules * 80)",
+              "min": 0,
+              "max": 15
+            }
+          ]
+        },
+        {
+          "id": "database_migration",
+          "name": "Migración de Datos",
+          "hours_range": { "min": 20, "max": 150 },
+          "default_level": "mid",
+          "description": "ETL, limpieza datos, validación, rollback plan",
+          "multipliers": [
+            {
+              "variable": "data_records",
+              "label": "Volumen datos (registros en miles)",
+              "formula": "base * (records / 10)",
+              "min": 0,
+              "max": 1000
+            }
+          ]
+        },
+        {
+          "id": "integrations",
+          "name": "Integraciones con Sistemas Existentes",
+          "hours_range": { "min": 30, "max": 120 },
+          "default_level": "senior",
+          "description": "APIs, webhooks, sincronización, mapeo de datos",
+          "multipliers": [
+            {
+              "variable": "num_integrations",
+              "label": "Sistemas a integrar",
+              "formula": "base + (systems * 30)",
+              "min": 0,
+              "max": 10
+            }
+          ]
+        },
+        {
+          "id": "reporting",
+          "name": "Reportería y BI",
+          "hours_range": { "min": 25, "max": 80 },
+          "default_level": "mid",
+          "description": "Dashboard, reportes customizados, exportes (Excel, PDF), KPIs"
+        },
+        {
+          "id": "workflow",
+          "name": "Automatización y Workflows",
+          "hours_range": { "min": 20, "max": 70 },
+          "default_level": "mid",
+          "description": "Business rules engine, flujos de aprobación, notificaciones"
+        },
+        {
+          "id": "user_management",
+          "name": "Gestión de Usuarios y Permisos",
+          "hours_range": { "min": 15, "max": 40 },
+          "default_level": "mid",
+          "description": "RBAC, SSO/LDAP, auditoría de accesos"
+        },
+        {
+          "id": "testing",
+          "name": "Testing y QA",
+          "hours_range": { "min": 40, "max": 150 },
+          "default_level": "mid",
+          "description": "Unit tests, integration tests, UAT support, defect tracking"
+        },
+        {
+          "id": "performance",
+          "name": "Optimización de Performance",
+          "hours_range": { "min": 20, "max": 80 },
+          "default_level": "senior",
+          "description": "Índices DB, caching, query optimization, load testing"
+        },
+        {
+          "id": "deployment",
+          "name": "Deployment y DevOps",
+          "hours_range": { "min": 20, "max": 50 },
+          "default_level": "mid",
+          "description": "Configuración servers, backups, disaster recovery, documentación ops"
+        },
+        {
+          "id": "training",
+          "name": "Capacitación de Usuarios",
+          "hours_range": { "min": 15, "max": 60 },
+          "default_level": "mid",
+          "description": "Manuales, sesiones de training, documentación end-user"
+        }
+      ],
+      "multipliers": [
+        {
+          "id": "high_concurrency",
+          "name": "Alto número de usuarios concurrentes (>100)",
+          "factor": 1.2
+        },
+        {
+          "id": "compliance",
+          "name": "Compliance regulatorio (GDPR, ISO, etc)",
+          "factor": 1.5
+        },
+        {
+          "id": "legacy_integration",
+          "name": "Integración con sistemas legacy complejos",
+          "factor": 1.4
+        },
+        { "id": "multi_tenant", "name": "Multi-tenant SaaS", "factor": 1.35 }
+      ],
+      "dependencies": {
+        "database_migration": ["core_development"],
+        "integrations": ["core_development"],
+        "reporting": ["database_migration"]
+      },
+      "sprint_guidance": {
+        "hours_per_sprint": 120,
+        "typical_duration_weeks": "3-4 semanas por sprint",
+        "typical_project_sprints": "8-20 sprints según módulos"
+      },
+      "buffer_percent": 30,
+      "pricing_model": "Fixed-Price fuerte (con 30% buffer incluido)",
+      "sources": [
+        "Clutch.co - ERP Development",
+        "Toptal - Enterprise Architects",
+        "LinkedIn Salary - Enterprise Software Engineers"
+      ]
+    },
+    {
+      "id": "transformacion-digital",
+      "name": "Consultoría en Transformación Digital",
+      "description": "Diagnóstico tecnológico, estrategia cloud, capacitación, implementación soluciones",
+      "icon": "Zap",
+      "base_tariff_range": {
+        "consultante": { "min": 40, "max": 65, "currency": "USD/hora" },
+        "arquitecto": { "min": 65, "max": 100, "currency": "USD/hora" },
+        "director_cto": { "min": 100, "max": 150, "currency": "USD/hora" }
+      },
+      "tasks": [
+        {
+          "id": "diagnosis",
+          "name": "Diagnóstico Tecnológico Completo",
+          "hours_range": { "min": 40, "max": 100 },
+          "default_level": "arquitecto",
+          "description": "Auditoría infraestructura, identificación problemas, análisis madurez digital"
+        },
+        {
+          "id": "strategy_roadmap",
+          "name": "Estrategia y Roadmap Digital",
+          "hours_range": { "min": 50, "max": 120 },
+          "default_level": "director_cto",
+          "description": "Definición visión, roadmap 3 años, KPIs, business case"
+        },
+        {
+          "id": "cloud_migration",
+          "name": "Estrategia de Migración Cloud",
+          "hours_range": { "min": 40, "max": 100 },
+          "default_level": "arquitecto",
+          "description": "Evaluación cloud providers, lift-and-shift vs refactor, plan ejecución"
+        },
+        {
+          "id": "architecture_design",
+          "name": "Diseño Arquitectura Moderna",
+          "hours_range": { "min": 30, "max": 80 },
+          "default_level": "arquitecto",
+          "description": "Microservicios, containers, CI/CD, escalabilidad"
+        },
+        {
+          "id": "poc",
+          "name": "Proof of Concept (PoC)",
+          "hours_range": { "min": 40, "max": 150 },
+          "default_level": "arquitecto",
+          "description": "Prototipo de solución, validación hipótesis, demo ejecutivos"
+        },
+        {
+          "id": "training",
+          "name": "Capacitación Especializada",
+          "hours_range": { "min": 20, "max": 80 },
+          "default_level": "consultante",
+          "description": "Workshops, bootcamps técnicos, documentación interna"
+        },
+        {
+          "id": "implementation",
+          "name": "Implementación y Soporte",
+          "hours_range": { "min": 60, "max": 200 },
+          "default_level": "arquitecto",
+          "description": "Despliegue solución, ajustes, soporte post-lanzamiento"
+        },
+        {
+          "id": "change_management",
+          "name": "Gestión del Cambio Organizacional",
+          "hours_range": { "min": 30, "max": 100 },
+          "default_level": "director_cto",
+          "description": "Plan comunicación, Change control board, métricas adopción"
+        },
+        {
+          "id": "governance",
+          "name": "Establecimiento de Governance IT",
+          "hours_range": { "min": 20, "max": 60 },
+          "default_level": "director_cto",
+          "description": "Políticas, comités, frameworks (COBIT, ITIL)"
+        }
+      ],
+      "multipliers": [
+        {
+          "id": "org_size_large",
+          "name": "Organización grande (>500 empleados)",
+          "factor": 1.3
+        },
+        {
+          "id": "multi_location",
+          "name": "Múltiples sedes geográficas",
+          "factor": 1.25
+        },
+        {
+          "id": "legacy_complexity",
+          "name": "Complejidad legacy alta",
+          "factor": 1.4
+        },
+        {
+          "id": "budget_dependent",
+          "name": "Análisis de ROI/Business case detallado",
+          "factor": 1.2
+        }
+      ],
+      "sprint_guidance": {
+        "hours_per_sprint": 160,
+        "typical_duration_weeks": "4-6 semanas por fase",
+        "typical_project_sprints": "3-6 fases (6-12 meses total)"
+      },
+      "buffer_percent": 20,
+      "pricing_model": "Time & Materials con retainer",
+      "sources": [
+        "McKinsey Digital Reports",
+        "Gartner - CIO Salary Survey",
+        "LinkedIn Salary - Enterprise Architects Colombia"
+      ]
+    },
+    {
+      "id": "tecnologias-blockchain",
+      "name": "Tecnologías Blockchain",
+      "description": "Smart contracts auditables, tokenización activos, integración sistemas, arquitectura escalable",
+      "icon": "Layers",
+      "base_tariff_range": {
+        "junior": { "min": 20, "max": 35, "currency": "USD/hora" },
+        "mid": { "min": 35, "max": 60, "currency": "USD/hora" },
+        "senior_auditor": { "min": 60, "max": 120, "currency": "USD/hora" }
+      },
+      "tasks": [
+        {
+          "id": "tokenomics",
+          "name": "Diseño de Tokenomics",
+          "hours_range": { "min": 30, "max": 80 },
+          "default_level": "mid",
+          "description": "Modelo económico, supply schedule, incentivos, game theory analysis"
+        },
+        {
+          "id": "smartcontract_design",
+          "name": "Diseño Smart Contracts",
+          "hours_range": { "min": 40, "max": 120 },
+          "default_level": "mid",
+          "description": "Arquitectura contratos, funcionalidades, testing simulaciones"
+        },
+        {
+          "id": "smartcontract_development",
+          "name": "Desarrollo Smart Contracts (Solidity/Rust)",
+          "hours_range": { "min": 50, "max": 200 },
+          "default_level": "senior_auditor",
+          "description": "Codificación, buenas prácticas, optimización gas, integración web3"
+        },
+        {
+          "id": "internal_audit",
+          "name": "Auditoría Interna de Seguridad",
+          "hours_range": { "min": 30, "max": 80 },
+          "default_level": "senior_auditor",
+          "description": "Code review, testing vulnerabilidades, pruebas de penetración"
+        },
+        {
+          "id": "external_audit",
+          "name": "Auditoría Externa (Tercero Independiente)",
+          "hours_range": { "min": 100, "max": 300 },
+          "default_level": "senior_auditor",
+          "description": "Auditoría completa por firma especializada (OpenZeppelin, Trail of Bits, etc)"
+        },
+        {
+          "id": "testnet_deployment",
+          "name": "Despliegue en Testnet (PoC)",
+          "hours_range": { "min": 15, "max": 40 },
+          "default_level": "mid",
+          "description": "Configuración testnet, faucets, primeras transacciones"
+        },
+        {
+          "id": "mainnet_deployment",
+          "name": "Despliegue en Mainnet",
+          "hours_range": { "min": 20, "max": 60 },
+          "default_level": "senior_auditor",
+          "description": "Optimización gas, verificación contratos, lanzamiento, monitoreo"
+        },
+        {
+          "id": "multi_chain",
+          "name": "Despliegue Multi-Chain",
+          "hours_range": { "min": 40, "max": 150 },
+          "default_level": "senior_auditor",
+          "description": "Porting a múltiples chains (Polygon, Arbitrum, Optimism, etc), puentes, sincronización"
+        },
+        {
+          "id": "integration",
+          "name": "Integración con Sistemas Existentes",
+          "hours_range": { "min": 25, "max": 80 },
+          "default_level": "mid",
+          "description": "APIs de interacción, oracles, front-end web3, wallets"
+        },
+        {
+          "id": "compliance_legal",
+          "name": "Análisis de Compliance y Riesgos Regulatorios",
+          "hours_range": { "min": 20, "max": 70 },
+          "default_level": "mid",
+          "description": "Evaluación regulatoria, AML/KYC considerations, documentación legal"
+        },
+        {
+          "id": "documentation",
+          "name": "Documentación y Explicación Técnica",
+          "hours_range": { "min": 15, "max": 40 },
+          "default_level": "mid",
+          "description": "Whitepaper técnico, diagrama arquitectura, manualesdevelopers"
+        }
+      ],
+      "multipliers": [
+        {
+          "id": "internal_audit",
+          "name": "Auditoría interna completa",
+          "factor": 1.8
+        },
+        {
+          "id": "external_audit",
+          "name": "Auditoría externa tercero",
+          "factor": 2.5
+        },
+        {
+          "id": "mainnet_optimization",
+          "name": "Optimización gas mainnet",
+          "factor": 1.35
+        },
+        {
+          "id": "multi_chain_full",
+          "name": "Soporte multi-chain completo",
+          "factor": 1.6
+        },
+        {
+          "id": "regulatory_complex",
+          "name": "Ambiente regulatorio complejo",
+          "factor": 1.5
+        }
+      ],
+      "dependencies": {
+        "external_audit": ["smartcontract_development"],
+        "mainnet_deployment": ["internal_audit"],
+        "multi_chain": ["mainnet_deployment"]
+      },
+      "sprint_guidance": {
+        "hours_per_sprint": 120,
+        "typical_duration_weeks": "2-4 semanas por sprint",
+        "typical_project_sprints": "4-8 sprints"
+      },
+      "buffer_percent": 35,
+      "pricing_model": "Fixed-Price con auditoría externa obligatoria",
+      "notes": "⚠️ RIESGO REGULATORIO: Recomendada asesoría legal especializada en criptoactivos",
+      "sources": [
+        "OpenZeppelin - Security Best Practices",
+        "Trail of Bits - Smart Contract Audits",
+        "Consensys - Developer Resources"
+      ]
+    },
+    {
+      "id": "diseño-branding",
+      "name": "Diseño Gráfico y Branding",
+      "description": "Identidad visual corporativa, material publicitario, diseño UX/UI, guías de marca",
+      "icon": "Palette",
+      "base_tariff_range": {
+        "junior": { "min": 10, "max": 18, "currency": "USD/hora" },
+        "mid": { "min": 18, "max": 35, "currency": "USD/hora" },
+        "senior_cd": { "min": 35, "max": 70, "currency": "USD/hora" }
+      },
+      "tasks": [
+        {
+          "id": "brand_brief",
+          "name": "Brand Brief y Estrategia",
+          "hours_range": { "min": 15, "max": 40 },
+          "default_level": "senior_cd",
+          "description": "Entrevistas, análisis competencia, definición posicionamiento, moodboards"
+        },
+        {
+          "id": "logo_design",
+          "name": "Diseño de Logo y Isotipo",
+          "hours_range": { "min": 20, "max": 50 },
+          "default_level": "mid",
+          "description": "Conceptos, versiones, variaciones monocromo, ajustes cliente"
+        },
+        {
+          "id": "color_typography",
+          "name": "Paleta de Color y Tipografía",
+          "hours_range": { "min": 10, "max": 25 },
+          "default_level": "mid",
+          "description": "Selección colores, fuentes, guía de uso"
+        },
+        {
+          "id": "brand_guidelines",
+          "name": "Guía de Marca Completa",
+          "hours_range": { "min": 25, "max": 60 },
+          "default_level": "mid",
+          "description": "Manual identidad, logo usage, espacios, aplicaciones"
+        },
+        {
+          "id": "ui_design",
+          "name": "Diseño UI/UX Web o App",
+          "hours_range": { "min": 30, "max": 100 },
+          "default_level": "mid",
+          "description": "Wireframes, mockups, prototipo interactivo, design system"
+        },
+        {
+          "id": "marketing_collateral",
+          "name": "Material Publicitario (Print/Digital)",
+          "hours_range": { "min": 20, "max": 60 },
+          "default_level": "mid",
+          "description": "Business cards, flyers, banners web, social media templates",
+          "multipliers": [
+            {
+              "variable": "num_pieces",
+              "label": "Número de piezas diseño",
+              "formula": "base * (pieces / 3)",
+              "min": 1,
+              "max": 50
+            }
+          ]
+        },
+        {
+          "id": "illustration",
+          "name": "Ilustración Personalizada",
+          "hours_range": { "min": 30, "max": 100 },
+          "default_level": "mid",
+          "description": "Ilustraciones únicas, iconografía customizada, decorativos",
+          "optional": true
+        },
+        {
+          "id": "animation",
+          "name": "Animación y Motion Graphics",
+          "hours_range": { "min": 25, "max": 80 },
+          "default_level": "mid",
+          "description": "Animaciones UI, splash screens, promo videos",
+          "optional": true
+        },
+        {
+          "id": "revisions",
+          "name": "Rondas de Revisión",
+          "hours_range": { "min": 0, "max": 40 },
+          "default_level": "mid",
+          "description": "Ajustes cliente (típicamente 2-3 rondas incluidas)",
+          "multipliers": [
+            {
+              "variable": "extra_revisions",
+              "label": "Rondas de revisión adicionales",
+              "formula": "10 * revisions",
+              "min": 0,
+              "max": 10
+            }
+          ]
+        }
+      ],
+      "multipliers": [
+        {
+          "id": "rush_delivery",
+          "name": "Entrega express (1-2 semanas)",
+          "factor": 1.4
+        },
+        {
+          "id": "unlimited_revisions",
+          "name": "Revisiones ilimitadas",
+          "factor": 1.5
+        },
+        {
+          "id": "illustration_heavy",
+          "name": "Proyecto con muchas ilustraciones",
+          "factor": 1.3
+        }
+      ],
+      "sprint_guidance": {
+        "hours_per_sprint": 80,
+        "typical_duration_weeks": "2-3 semanas por sprint",
+        "typical_project_sprints": "2-4 sprints"
+      },
+      "buffer_percent": 20,
+      "pricing_model": "Fixed-Price o por proyecto",
+      "sources": [
+        "99designs - Designer Rates",
+        "Dribbble - Community Surveys",
+        "Computrabajo Colombia - Diseñador Gráfico"
+      ]
+    },
+    {
+      "id": "marketing-digital",
+      "name": "Marketing Digital",
+      "description": "Gestión redes sociales, campañas publicitarias, optimización SEO, análisis métricas",
+      "icon": "TrendingUp",
+      "base_tariff_range": {
+        "junior": { "min": 12, "max": 20, "currency": "USD/hora" },
+        "manager": { "min": 20, "max": 40, "currency": "USD/hora" },
+        "director": { "min": 40, "max": 75, "currency": "USD/hora" }
+      },
+      "tasks": [
+        {
+          "id": "strategy",
+          "name": "Estrategia Digital y Análisis Competencia",
+          "hours_range": { "min": 20, "max": 60 },
+          "default_level": "director",
+          "description": "Audit digital, benchmarking, plan anual, KPIs"
+        },
+        {
+          "id": "content_planning",
+          "name": "Planificación y Creación de Contenidos",
+          "hours_range": { "min": 30, "max": 100 },
+          "default_level": "manager",
+          "description": "Editorial calendar, textos, imágenes, videos, scheduling",
+          "multipliers": [
+            {
+              "variable": "num_channels",
+              "label": "Canales gestionados (Instagram, Facebook, LinkedIn, TikTok, etc)",
+              "formula": "base * channels",
+              "min": 1,
+              "max": 10
+            }
+          ]
+        },
+        {
+          "id": "social_management",
+          "name": "Gestión Redes Sociales (Mensual)",
+          "hours_range": { "min": 30, "max": 80 },
+          "default_level": "manager",
+          "description": "Publicaciones diarias, community management, respuesta comentarios, reportes"
+        },
+        {
+          "id": "paid_ads",
+          "name": "Gestión Campañas Publicitarias Pagadas",
+          "hours_range": { "min": 25, "max": 80 },
+          "default_level": "manager",
+          "description": "Setup Google Ads, Facebook Ads, LinkedIn Ads, optimización, análisis ROI",
+          "multipliers": [
+            {
+              "variable": "ads_budget",
+              "label": "Presupuesto Ads mensual (en USD)",
+              "formula": "base + (budget / 100)",
+              "min": 500,
+              "max": 50000
+            }
+          ]
+        },
+        {
+          "id": "seo_onpage",
+          "name": "SEO On-Page y Técnico",
+          "hours_range": { "min": 20, "max": 60 },
+          "default_level": "manager",
+          "description": "Keyword research, meta optimization, structured data, site speed, indexing"
+        },
+        {
+          "id": "seo_offpage",
+          "name": "SEO Off-Page y Link Building",
+          "hours_range": { "min": 20, "max": 100 },
+          "default_level": "manager",
+          "description": "Backlinks, guest posting, relaciones públicas digital, domain authority"
+        },
+        {
+          "id": "email_marketing",
+          "name": "Email Marketing y Automation",
+          "hours_range": { "min": 15, "max": 50 },
+          "default_level": "manager",
+          "description": "Setup Mailchimp/Klaviyo, secuencias, segmentación, plantillas"
+        },
+        {
+          "id": "analytics",
+          "name": "Analytics y Reportería",
+          "hours_range": { "min": 15, "max": 50 },
+          "default_level": "manager",
+          "description": "Setup GA4, dashboards, reportes mensuales, insights, CRO"
+        },
+        {
+          "id": "conversion_optimization",
+          "name": "Optimización de Conversiones (CRO)",
+          "hours_range": { "min": 20, "max": 80 },
+          "default_level": "manager",
+          "description": "A/B testing, heatmaps, user testing, mejoras funnel conversión"
+        },
+        {
+          "id": "influencer",
+          "name": "Gestión Influencers y Partnerships",
+          "hours_range": { "min": 15, "max": 60 },
+          "default_level": "manager",
+          "description": "Identificación, negociación, seguimiento campañas, reportes"
+        }
+      ],
+      "multipliers": [
+        {
+          "id": "multi_channel",
+          "name": "Multicanalidad (3+ canales)",
+          "factor": 1.25
+        },
+        {
+          "id": "high_volume_content",
+          "name": "Alto volumen contenido (diario+)",
+          "factor": 1.2
+        },
+        {
+          "id": "advanced_analytics",
+          "name": "Analytics avanzado y custom reports",
+          "factor": 1.15
+        }
+      ],
+      "sprint_guidance": {
+        "hours_per_sprint": 120,
+        "typical_duration_weeks": "1 mes = ejecución mensual",
+        "typical_project_sprints": "3-12 meses (retainer)"
+      },
+      "buffer_percent": 15,
+      "pricing_model": "Retainer mensual (Time & Materials)",
+      "sources": [
+        "HubSpot - Digital Marketing Salary Survey",
+        "SEMrush - Industry Reports",
+        "Computrabajo Colombia - Social Media Manager"
+      ]
+    },
+    {
+      "id": "videojuegos",
+      "name": "Desarrollo de Videojuegos",
+      "description": "Diseño gameplay, programación C#/C++, integración sistemas, publicación plataformas",
+      "icon": "Gamepad2",
+      "base_tariff_range": {
+        "programmer": { "min": 18, "max": 35, "currency": "USD/hora" },
+        "designer": { "min": 15, "max": 30, "currency": "USD/hora" },
+        "tech_lead": { "min": 35, "max": 70, "currency": "USD/hora" }
+      },
+      "tasks": [
+        {
+          "id": "gdd",
+          "name": "Game Design Document (GDD)",
+          "hours_range": { "min": 30, "max": 80 },
+          "default_level": "designer",
+          "description": "Concepto, mecánicas, historia, niveles, balance, arte visual"
+        },
+        {
+          "id": "vertical_slice",
+          "name": "Vertical Slice (Prototipo Jugable)",
+          "hours_range": { "min": 40, "max": 120 },
+          "default_level": "programmer",
+          "description": "Demo de primer nivel, mecánicas core, arte placeholder"
+        },
+        {
+          "id": "core_systems",
+          "name": "Desarrollo Sistemas Core (Engine Setup)",
+          "hours_range": { "min": 50, "max": 200 },
+          "default_level": "tech_lead",
+          "description": "Physics, input, camera, UI framework, assetmanagement"
+        },
+        {
+          "id": "gameplay_features",
+          "name": "Desarrollo Features de Gameplay",
+          "hours_range": { "min": 60, "max": 300 },
+          "default_level": "programmer",
+          "description": "Mecánicas principales, controles, interacciones",
+          "multipliers": [
+            {
+              "variable": "num_features",
+              "label": "Número features principales",
+              "formula": "base * (features / 5)",
+              "min": 1,
+              "max": 20
+            }
+          ]
+        },
+        {
+          "id": "art_assets",
+          "name": "Creación Assets Gráficos (3D/2D)",
+          "hours_range": { "min": 50, "max": 250 },
+          "default_level": "designer",
+          "description": "Modelos, texturas, animaciones, VFX, UI art"
+        },
+        {
+          "id": "audio",
+          "name": "Audio y Música",
+          "hours_range": { "min": 20, "max": 80 },
+          "default_level": "designer",
+          "description": "Composición música, SFX, implementación en engine, mezcla"
+        },
+        {
+          "id": "ai_systems",
+          "name": "Sistemas de IA y Enemigos",
+          "hours_range": { "min": 40, "max": 150 },
+          "default_level": "programmer",
+          "description": "Pathfinding, comportamiento enemigos, diálogos NPC",
+          "optional": true
+        },
+        {
+          "id": "networking",
+          "name": "Networking y Multiplayer",
+          "hours_range": { "min": 60, "max": 200 },
+          "default_level": "tech_lead",
+          "description": "Servidor, sincronización, matchmaking, lag compensation",
+          "optional": true
+        },
+        {
+          "id": "monetization",
+          "name": "Integración Monetización (IAP/Ads)",
+          "hours_range": { "min": 15, "max": 40 },
+          "default_level": "programmer",
+          "description": "In-app purchases, ads, analytics integración"
+        },
+        {
+          "id": "localization",
+          "name": "Localización (Idiomas, Culturas)",
+          "hours_range": { "min": 15, "max": 60 },
+          "default_level": "programmer",
+          "description": "Traducción UI, voces, textos dinámicos, testing regional"
+        },
+        {
+          "id": "qa_testing",
+          "name": "QA y Testing Completo",
+          "hours_range": { "min": 40, "max": 120 },
+          "default_level": "programmer",
+          "description": "Functional testing, gameplay testing, bug fixes, performance optimization"
+        },
+        {
+          "id": "publishing",
+          "name": "Publicación en Plataformas",
+          "hours_range": { "min": 15, "max": 50 },
+          "default_level": "tech_lead",
+          "description": "Store listings, submissions (Steam, App Store, Play Store), certificaciones"
+        },
+        {
+          "id": "post_launch",
+          "name": "Post-Launch Support y Patches",
+          "hours_range": { "min": 30, "max": 120 },
+          "default_level": "programmer",
+          "description": "Hotfixes, contenido adicional, actualizaciones (3 meses típico)"
+        }
+      ],
+      "multipliers": [
+        {
+          "id": "multiplayer",
+          "name": "Multiplayer networking",
+          "factor": 1.5
+        },
+        {
+          "id": "advanced_ai",
+          "name": "IA y pathfinding avanzado",
+          "factor": 1.4
+        },
+        {
+          "id": "multi_platform",
+          "name": "Porting a 2+ plataformas",
+          "factor": 1.6
+        },
+        { "id": "vr_support", "name": "Soporte VR/AR", "factor": 1.8 },
+        {
+          "id": "post_launch_full",
+          "name": "Post-launch support (6 meses o más)",
+          "factor": 1.5
+        }
+      ],
+      "dependencies": {
+        "networking": ["core_systems"],
+        "ai_systems": ["gameplay_features"]
+      },
+      "sprint_guidance": {
+        "hours_per_sprint": 120,
+        "typical_duration_weeks": "2-4 semanas por sprint",
+        "typical_project_sprints": "6-16 sprints (indie MVP vs AAA)"
+      },
+      "buffer_percent": 30,
+      "pricing_model": "Fixed-Price por fases (GDD, Vertical Slice, Alpha, Beta, Release)",
+      "sources": [
+        "GameIndustry.biz - Salary Data",
+        "GDC Salary Survey 2025",
+        "Unity Asset Store - Pricing"
+      ]
+    },
+    {
+      "id": "modelado-3d",
+      "name": "Modelado 3D y Animación",
+      "description": "Modelado personajes detallados, escenarios 3D, assets optimizados, animaciones rigged",
+      "icon": "Cube",
+      "base_tariff_range": {
+        "junior": { "min": 12, "max": 22, "currency": "USD/hora" },
+        "mid": { "min": 22, "max": 40, "currency": "USD/hora" },
+        "senior": { "min": 40, "max": 80, "currency": "USD/hora" }
+      },
+      "tasks": [
+        {
+          "id": "concept_art",
+          "name": "Concept Art y Diseño",
+          "hours_range": { "min": 10, "max": 40 },
+          "default_level": "mid",
+          "description": "Sketches, color studies, referencias, aprobación cliente"
+        },
+        {
+          "id": "blockout",
+          "name": "Blockout y Proporción",
+          "hours_range": { "min": 10, "max": 30 },
+          "default_level": "junior",
+          "description": "Volúmenes básicos, proporciones, layout inicial"
+        },
+        {
+          "id": "highpoly",
+          "name": "Modelado High-Poly",
+          "hours_range": { "min": 20, "max": 80 },
+          "default_level": "mid",
+          "description": "Detalles complejos, superficies suaves, geometría completa"
+        },
+        {
+          "id": "lowpoly",
+          "name": "Retopología y Low-Poly",
+          "hours_range": { "min": 15, "max": 50 },
+          "default_level": "mid",
+          "description": "Optimización para game/real-time, topology limpia"
+        },
+        {
+          "id": "uvunwrap",
+          "name": "UV Unwrapping y Layout",
+          "hours_range": { "min": 10, "max": 40 },
+          "default_level": "junior",
+          "description": "Despliegue UVs, minimize overlaps, densidad consistente"
+        },
+        {
+          "id": "texturing",
+          "name": "Texturización PBR",
+          "hours_range": { "min": 20, "max": 80 },
+          "default_level": "mid",
+          "description": "Albedo, normal maps, roughness, metallic, AO; substance painter/marmoset"
+        },
+        {
+          "id": "rigging",
+          "name": "Rigging y Skinning",
+          "hours_range": { "min": 15, "max": 60 },
+          "default_level": "mid",
+          "description": "Esqueleto, weights, deformaciones, rig controls"
+        },
+        {
+          "id": "animation",
+          "name": "Animación (Ciclos y Acciones)",
+          "hours_range": { "min": 20, "max": 100 },
+          "default_level": "mid",
+          "description": "Walk, run, idle, acciones específicas; motion capture cleanup si aplica",
+          "multipliers": [
+            {
+              "variable": "num_animations",
+              "label": "Número de animaciones",
+              "formula": "base * (animations / 4)",
+              "min": 1,
+              "max": 50
+            }
+          ]
+        },
+        {
+          "id": "lod",
+          "name": "Generación LOD (Levels of Detail)",
+          "hours_range": { "min": 10, "max": 30 },
+          "default_level": "junior",
+          "description": "LOD0, LOD1, LOD2 para optimización performance"
+        },
+        {
+          "id": "optimization",
+          "name": "Optimización y Performance",
+          "hours_range": { "min": 15, "max": 40 },
+          "default_level": "senior",
+          "description": "Polygon count, draw calls, material consolidation, testing en target engine"
+        },
+        {
+          "id": "documentation",
+          "name": "Documentación y Entrega",
+          "hours_range": { "min": 5, "max": 15 },
+          "default_level": "junior",
+          "description": "Especificaciones técnicas, guía de uso, archivos organizados"
+        }
+      ],
+      "multipliers": [
+        {
+          "id": "hero_character",
+          "name": "Personaje principal (hero/protagonista)",
+          "factor": 1.5
+        },
+        {
+          "id": "complex_outfit",
+          "name": "Outfit o equipo complejo con accesorios",
+          "factor": 1.25
+        },
+        {
+          "id": "facial_rig",
+          "name": "Facial rigging avanzado (FACS/blendshapes)",
+          "factor": 1.4
+        },
+        {
+          "id": "motion_capture",
+          "name": "Motion capture cleanup y retargeting",
+          "factor": 1.35
+        },
+        {
+          "id": "environment",
+          "name": "Asset ambiental grande/complejo",
+          "factor": 1.3
+        }
+      ],
+      "sprint_guidance": {
+        "hours_per_sprint": 80,
+        "typical_duration_weeks": "2-3 semanas por asset",
+        "typical_project_sprints": "1-2 sprints por personaje; 0.5-1 sprint por asset ambiental"
+      },
+      "buffer_percent": 20,
+      "pricing_model": "Por asset o por paquete",
+      "sources": [
+        "ArtStation Marketplace - Pricing",
+        "CGTrader - Asset Pricing",
+        "Polycount - Industry Standards"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "created": "2026-02-02",
+    "currency": "USD",
+    "language": "es",
+    "notes": "Motor de estimación dinámico para cotizador Xlerion. Todos los rangos en horas y USD/hora. Multiplicadores son acumulativos con tope máximo indicado por servicio."
+  }
+}
