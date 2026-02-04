@@ -6,7 +6,7 @@ import {
   Target, Send, AtSign, MessageCircle,
   Briefcase, Clock, CheckCircle2, Users, MapPin,
   Heart, Shield, Database, AlertTriangle, Info, Terminal, ShoppingBag,
-  TrendingUp, BookOpen, Wrench, Linkedin, Instagram
+  TrendingUp, BookOpen, Wrench, Linkedin, Instagram, Radio
 } from 'lucide-react';
 
 import Footer from './components/Footer';
@@ -649,6 +649,7 @@ export default function App() {
           <XlCard title={t('projects_toolkit')} icon={Terminal} to="/proyectos/toolkit">{t('projects_toolkit_desc')}</XlCard>
           <XlCard title={t('projects_transit')} icon={Activity} to="/proyectos/transito-movilidad">{t('projects_transit_desc')}</XlCard>
           <XlCard title={t('projects_technology')} icon={Heart} to="/proyectos/tecnologias-comunidad">{t('projects_technology_desc')}</XlCard>
+          <XlCard title={t('projects_radio_nocaima')} icon={Radio} to="/projects/radio-nocaima-demo">{t('projects_radio_nocaima_desc')}</XlCard>
           <XlCard title={t('projects_redemthor')} icon={Activity} href="/redemthor/">{t('projects_redemthor_desc')}</XlCard>
           <XlCard title={t('projects_el_ropero_title')} icon={ShoppingBag} href="/el-ropero/">{t('projects_el_ropero_desc')}</XlCard>
         </div>
