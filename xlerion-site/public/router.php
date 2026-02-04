@@ -57,6 +57,11 @@ if (strpos($uri, '/api/send-email.php') === 0) {
     exit;
 }
 
+if (strpos($uri, '/api/roadmaps.php') === 0 || strpos($uri, '/api/roadmaps/') === 0) {
+    require __DIR__ . '/api/roadmaps.php';
+    exit;
+}
+
 if (strpos($uri, '/total-darkness/api/auth.php') === 0) {
     require __DIR__ . '/total-darkness/api/auth.php';
     exit;

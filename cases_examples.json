@@ -1,0 +1,276 @@
+{
+  "version": "1.0",
+  "language": "bilingual",
+  "cases": [
+    {
+      "id": "case_01_landing",
+      "name": { "es": "Landing page", "en": "Landing page" },
+      "template_ref": "web_landing",
+      "inputs": {
+        "num_sections": 6,
+        "conversion_goal": "lead",
+        "integrations": 1,
+        "requirements_complete": true
+      },
+      "scope": "MVP",
+      "adjustments": {
+        "es": ["Se reduce a 1 variante A/B", "Se omite CMS"],
+        "en": ["Reduced to 1 A/B variant", "CMS omitted"]
+      },
+      "resulting_sprints": ["S1", "S2", "S3"],
+      "milestones": ["Mockup aprobado", "Go‑live"],
+      "total_duration_weeks": 3,
+      "explanation": {
+        "es": "Landing orientada a leads con 6 secciones e integración a CRM. Roadmap compacto de 3 sprints sin Discovery por requisitos completos.",
+        "en": "Lead‑focused landing with 6 sections and CRM integration. Compact 3‑sprint roadmap without Discovery because requirements are complete."
+      }
+    },
+    {
+      "id": "case_02_ecommerce",
+      "name": { "es": "E‑commerce estándar", "en": "Standard e‑commerce" },
+      "template_ref": "web_ecommerce",
+      "inputs": {
+        "num_products": 300,
+        "payment_gateways": 1,
+        "inventory_sync": true,
+        "multi_language": 1,
+        "requirements_complete": false
+      },
+      "scope": "Standard",
+      "adjustments": {
+        "es": ["Se agrega Sprint 0 Discovery", "Inventario sincronizado"],
+        "en": ["Added Sprint 0 Discovery", "Inventory sync enabled"]
+      },
+      "resulting_sprints": ["S0", "S1", "S2", "S3", "S4"],
+      "milestones": ["Demo catálogo", "Pagos aprobados", "Go‑live"],
+      "total_duration_weeks": 9,
+      "explanation": {
+        "es": "Tienda con 300 SKUs y sincronización requiere Discovery y mayor integración. Roadmap de 5 sprints con QA y Go‑live.",
+        "en": "Store with 300 SKUs and inventory sync requires Discovery and deeper integration. 5‑sprint roadmap with QA and go‑live."
+      }
+    },
+    {
+      "id": "case_03_hybrid_app",
+      "name": { "es": "App híbrida", "en": "Hybrid app" },
+      "template_ref": "web_hybrid_apps",
+      "inputs": {
+        "platforms": 2,
+        "offline_mode": true,
+        "integrations": 3,
+        "requirements_complete": true
+      },
+      "scope": "Standard",
+      "adjustments": {
+        "es": ["Se habilita modo offline", "Integraciones 3"],
+        "en": ["Offline mode enabled", "3 integrations"]
+      },
+      "resulting_sprints": ["S1", "S2", "S3", "S4"],
+      "milestones": ["Vertical slice", "UAT", "Go‑live"],
+      "total_duration_weeks": 10,
+      "explanation": {
+        "es": "App híbrida 2 plataformas con offline y 3 integraciones. Se mantiene roadmap estándar sin Discovery.",
+        "en": "2‑platform hybrid app with offline and 3 integrations. Standard roadmap without Discovery."
+      }
+    },
+    {
+      "id": "case_04_erp",
+      "name": { "es": "ERP 3 módulos", "en": "3‑module ERP" },
+      "template_ref": "erp_custom",
+      "inputs": {
+        "modules": 3,
+        "legacy_migration": true,
+        "integrations": 2,
+        "requirements_complete": false
+      },
+      "scope": "Standard",
+      "adjustments": {
+        "es": ["Discovery obligatorio", "Migración legacy activada"],
+        "en": ["Discovery required", "Legacy migration enabled"]
+      },
+      "resulting_sprints": ["S0", "S1", "S2", "S3", "S4"],
+      "milestones": ["Blueprint aprobado", "Vertical slice", "Go‑live"],
+      "total_duration_weeks": 18,
+      "explanation": {
+        "es": "ERP con migración legacy necesita Discovery y sprint de migración dedicado. Duración media.",
+        "en": "ERP with legacy migration requires Discovery and a dedicated migration sprint. Medium duration."
+      }
+    },
+    {
+      "id": "case_05_blockchain_poc",
+      "name": { "es": "PoC blockchain", "en": "Blockchain PoC" },
+      "template_ref": "smart_contracts",
+      "inputs": {
+        "num_contracts": 1,
+        "audit_required": false,
+        "requirements_complete": true
+      },
+      "scope": "MVP",
+      "adjustments": {
+        "es": ["Se omite auditoría externa", "Solo testnet"],
+        "en": ["External audit omitted", "Testnet only"]
+      },
+      "resulting_sprints": ["S1", "S2"],
+      "milestones": ["Testnet"],
+      "total_duration_weeks": 3,
+      "explanation": {
+        "es": "PoC rápido con 1 contrato en testnet. Roadmap reducido sin auditoría.",
+        "en": "Quick PoC with 1 contract on testnet. Reduced roadmap without audit."
+      }
+    },
+    {
+      "id": "case_06_multichannel_campaign",
+      "name": { "es": "Campaña multicanal", "en": "Multi‑channel campaign" },
+      "template_ref": "ads",
+      "inputs": {
+        "num_campaigns": 3,
+        "num_creatives": 8,
+        "requirements_complete": true
+      },
+      "scope": "Standard",
+      "adjustments": {
+        "es": ["Incluye 3 campañas", "8 creatividades"],
+        "en": ["Includes 3 campaigns", "8 creatives"]
+      },
+      "resulting_sprints": ["S1", "S2"],
+      "milestones": ["Lanzamiento campañas", "Optimización"],
+      "total_duration_weeks": 4,
+      "explanation": {
+        "es": "Campaña multicanal con 3 campañas y optimización. Roadmap corto con foco en performance.",
+        "en": "Multi‑channel campaign with 3 campaigns and optimization. Short roadmap focused on performance."
+      }
+    },
+    {
+      "id": "case_07_indie_mvp",
+      "name": { "es": "Juego indie MVP", "en": "Indie game MVP" },
+      "template_ref": "gdd_prototyping",
+      "inputs": {
+        "num_mechanics": 3,
+        "platforms": 1,
+        "requirements_complete": true
+      },
+      "scope": "MVP",
+      "adjustments": {
+        "es": ["Se prioriza vertical slice"],
+        "en": ["Vertical slice prioritized"]
+      },
+      "resulting_sprints": ["S1", "S2"],
+      "milestones": ["GDD aprobado", "Prototipo validado"],
+      "total_duration_weeks": 5,
+      "explanation": {
+        "es": "MVP de juego indie con 3 mecánicas, 1 plataforma. Prototipo jugable en 5 semanas.",
+        "en": "Indie MVP with 3 mechanics, 1 platform. Playable prototype in 5 weeks."
+      }
+    },
+    {
+      "id": "case_08_multiplayer_game",
+      "name": { "es": "Juego multiplayer", "en": "Multiplayer game" },
+      "template_ref": "game_programming",
+      "inputs": {
+        "num_levels": 6,
+        "multiplayer": true,
+        "requirements_complete": false
+      },
+      "scope": "Complete",
+      "adjustments": {
+        "es": ["Discovery obligatorio", "QA extendido"],
+        "en": ["Discovery required", "Extended QA"]
+      },
+      "resulting_sprints": ["S0", "S1", "S2", "S3"],
+      "milestones": ["Vertical slice", "Release candidate"],
+      "total_duration_weeks": 16,
+      "explanation": {
+        "es": "Juego multiplayer con 6 niveles requiere Discovery y QA reforzado. Duración larga.",
+        "en": "Multiplayer game with 6 levels requires Discovery and reinforced QA. Long duration."
+      }
+    },
+    {
+      "id": "case_09_3d_assets_pack",
+      "name": { "es": "Pack 10 assets 3D", "en": "10 3D assets pack" },
+      "template_ref": "character_assets_pipeline",
+      "inputs": {
+        "num_assets": 10,
+        "poly_level": "mid",
+        "num_animations": 3,
+        "requirements_complete": true
+      },
+      "scope": "Standard",
+      "adjustments": {
+        "es": ["Se agrupan assets por lote", "Animaciones mínimas"],
+        "en": ["Assets batched", "Minimum animations"]
+      },
+      "resulting_sprints": ["S1", "S2", "S3", "S4"],
+      "milestones": ["Concept aprobado", "Modelo final", "Entrega"],
+      "total_duration_weeks": 12,
+      "explanation": {
+        "es": "Paquete de 10 assets mid‑poly con 3 animaciones. Pipeline completo sin Discovery.",
+        "en": "Pack of 10 mid‑poly assets with 3 animations. Full pipeline without Discovery."
+      }
+    },
+    {
+      "id": "case_10_branding",
+      "name": { "es": "Branding completo", "en": "Full branding" },
+      "template_ref": "visual_identity",
+      "inputs": {
+        "num_concepts": 4,
+        "num_applications": 8,
+        "requirements_complete": true
+      },
+      "scope": "Complete",
+      "adjustments": {
+        "es": ["4 conceptos", "8 aplicaciones"],
+        "en": ["4 concepts", "8 applications"]
+      },
+      "resulting_sprints": ["S1", "S2"],
+      "milestones": ["Concepto aprobado", "Identidad final"],
+      "total_duration_weeks": 8,
+      "explanation": {
+        "es": "Branding completo con múltiples conceptos y aplicaciones. Roadmap creativo de 8 semanas.",
+        "en": "Full branding with multiple concepts and applications. 8‑week creative roadmap."
+      }
+    },
+    {
+      "id": "case_11_cloud_migration",
+      "name": { "es": "Migración cloud", "en": "Cloud migration" },
+      "template_ref": "cloud_strategy",
+      "inputs": {
+        "num_workloads": 5,
+        "regulatory": true,
+        "requirements_complete": false
+      },
+      "scope": "Standard",
+      "adjustments": {
+        "es": ["Discovery obligatorio", "Compliance reforzado"],
+        "en": ["Discovery required", "Compliance reinforced"]
+      },
+      "resulting_sprints": ["S0", "S1", "S2", "S3"],
+      "milestones": ["Blueprint aprobado", "Go‑live"],
+      "total_duration_weeks": 10,
+      "explanation": {
+        "es": "Migración de 5 workloads con regulación requiere Discovery y QA reforzado.",
+        "en": "Migration of 5 workloads with regulation requires Discovery and reinforced QA."
+      }
+    },
+    {
+      "id": "case_12_consulting_poc",
+      "name": { "es": "Consultoría con PoC", "en": "Consulting with PoC" },
+      "template_ref": "tech_diagnostic",
+      "inputs": {
+        "num_systems": 4,
+        "security_review": true,
+        "requirements_complete": true
+      },
+      "scope": "Standard",
+      "adjustments": {
+        "es": ["Incluye PoC breve", "Security review"],
+        "en": ["Includes brief PoC", "Security review"]
+      },
+      "resulting_sprints": ["S1", "S2"],
+      "milestones": ["Diagnóstico entregado"],
+      "total_duration_weeks": 4,
+      "explanation": {
+        "es": "Diagnóstico de 4 sistemas con revisión de seguridad y PoC corto.",
+        "en": "Assessment of 4 systems with security review and short PoC."
+      }
+    }
+  ]
+}

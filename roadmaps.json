@@ -1,0 +1,5146 @@
+{
+  "version": "1.0",
+  "generated_date": "2026-02-04",
+  "languages": ["es", "en"],
+  "phases": {
+    "es": [
+      "Discovery",
+      "Diseño",
+      "Desarrollo",
+      "Integración",
+      "QA",
+      "Deploy",
+      "Post‑lanzamiento"
+    ],
+    "en": [
+      "Discovery",
+      "Design",
+      "Development",
+      "Integration",
+      "QA",
+      "Deploy",
+      "Post‑launch"
+    ]
+  },
+  "services": [
+    {
+      "id": "web_mobile",
+      "name": {
+        "es": "Desarrollo Web y Móvil",
+        "en": "Web & Mobile Development"
+      },
+      "subservices": [
+        {
+          "id": "web_corporate_responsive",
+          "name": {
+            "es": "Sitios corporativos responsive",
+            "en": "Responsive corporate sites"
+          },
+          "parameters": [
+            {
+              "id": "num_pages",
+              "type": "integer",
+              "required": true,
+              "validation": "min 5",
+              "affects": ["S1", "S2"],
+              "examples": [5, 12, 25]
+            },
+            {
+              "id": "languages",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S2", "S3"],
+              "examples": [1, 2]
+            },
+            {
+              "id": "cms",
+              "type": "boolean",
+              "required": true,
+              "affects": ["S2", "S3"],
+              "examples": [true, false]
+            },
+            {
+              "id": "integrations",
+              "type": "integer",
+              "required": false,
+              "validation": "min 0",
+              "affects": ["S3"],
+              "examples": [0, 2]
+            }
+          ],
+          "phases": [
+            "Discovery",
+            "Diseño",
+            "Desarrollo",
+            "Integración",
+            "QA",
+            "Deploy",
+            "Post‑lanzamiento"
+          ],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": {
+                "es": "Sprint 0 — Discovery",
+                "en": "Sprint 0 — Discovery"
+              },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": [
+                  "Alinear objetivos y KPI",
+                  "Inventario de contenidos",
+                  "Mapa del sitio y arquitectura"
+                ],
+                "en": [
+                  "Align goals and KPIs",
+                  "Content inventory",
+                  "Site map and information architecture"
+                ]
+              },
+              "deliverables": {
+                "es": [
+                  "Brief aprobado",
+                  "Mapa del sitio",
+                  "Alcance priorizado"
+                ],
+                "en": ["Approved brief", "Site map", "Prioritized scope"]
+              },
+              "acceptance_criteria": {
+                "es": ["Brief firmado", "Mapa del sitio validado"],
+                "en": ["Signed brief", "Validated site map"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 30 },
+                { "role": "UX", "allocation_percent": 40 },
+                { "role": "Tech Lead", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Requisitos incompletos", "Retrasos de contenido"],
+                "en": ["Incomplete requirements", "Content delays"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Diseño UI/UX", "en": "UI/UX Design" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": [
+                  "Wireframes clave",
+                  "Design system básico",
+                  "Prototipo navegable"
+                ],
+                "en": [
+                  "Key wireframes",
+                  "Basic design system",
+                  "Clickable prototype"
+                ]
+              },
+              "deliverables": {
+                "es": ["Wireframes", "UI kit", "Prototipo"],
+                "en": ["Wireframes", "UI kit", "Prototype"]
+              },
+              "acceptance_criteria": {
+                "es": [
+                  "Prototipo aprobado",
+                  "Accesibilidad AA en pantallas clave"
+                ],
+                "en": ["Prototype approved", "AA accessibility on key screens"]
+              },
+              "roles": [
+                { "role": "Designer", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 20 },
+                { "role": "Tech Lead", "allocation_percent": 10 }
+              ],
+              "risks": {
+                "es": ["Cambios tardíos de marca"],
+                "en": ["Late brand changes"]
+              },
+              "dependencies": {
+                "es": ["Brief aprobado"],
+                "en": ["Approved brief"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": {
+                "es": "Desarrollo Front‑end",
+                "en": "Front‑end Development"
+              },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": [
+                  "Implementar layout responsive",
+                  "Componentes principales",
+                  "SEO técnico"
+                ],
+                "en": [
+                  "Build responsive layout",
+                  "Core components",
+                  "Technical SEO"
+                ]
+              },
+              "deliverables": {
+                "es": [
+                  "Home + secciones",
+                  "Componentes reutilizables",
+                  "Metadatos SEO"
+                ],
+                "en": ["Home + sections", "Reusable components", "SEO metadata"]
+              },
+              "acceptance_criteria": {
+                "es": ["Lighthouse ≥ 85", "Responsive en 3 breakpoints"],
+                "en": ["Lighthouse ≥ 85", "Responsive across 3 breakpoints"]
+              },
+              "roles": [
+                { "role": "Frontend Dev", "allocation_percent": 70 },
+                { "role": "Designer", "allocation_percent": 20 },
+                { "role": "QA", "allocation_percent": 10 }
+              ],
+              "risks": {
+                "es": ["Assets incompletos"],
+                "en": ["Incomplete assets"]
+              },
+              "dependencies": {
+                "es": ["Prototipo aprobado"],
+                "en": ["Approved prototype"]
+              }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "Integración y QA", "en": "Integration & QA" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": [
+                  "Integrar CMS (si aplica)",
+                  "QA funcional",
+                  "Checklist SEO"
+                ],
+                "en": [
+                  "Integrate CMS (if any)",
+                  "Functional QA",
+                  "SEO checklist"
+                ]
+              },
+              "deliverables": {
+                "es": ["CMS conectado", "Reporte QA", "Checklist SEO"],
+                "en": ["CMS connected", "QA report", "SEO checklist"]
+              },
+              "acceptance_criteria": {
+                "es": ["0 bugs críticos", "Contenido editable validado"],
+                "en": ["0 critical bugs", "Editable content validated"]
+              },
+              "roles": [
+                { "role": "Frontend Dev", "allocation_percent": 40 },
+                { "role": "QA", "allocation_percent": 40 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Integración CMS retrasa"],
+                "en": ["CMS integration delays"]
+              },
+              "dependencies": {
+                "es": ["Componentes finalizados"],
+                "en": ["Components completed"]
+              }
+            },
+            {
+              "id": "S4",
+              "name": {
+                "es": "Deploy y Post‑lanzamiento",
+                "en": "Deploy & Post‑launch"
+              },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": [
+                  "Deploy a producción",
+                  "Monitoreo básico",
+                  "Capacitación"
+                ],
+                "en": ["Production deploy", "Basic monitoring", "Training"]
+              },
+              "deliverables": {
+                "es": ["Sitio en producción", "Guía de uso", "Plan de soporte"],
+                "en": ["Live site", "Usage guide", "Support plan"]
+              },
+              "acceptance_criteria": {
+                "es": ["Go‑live aprobado", "Uptime 99% 7 días"],
+                "en": ["Go‑live approved", "99% uptime for 7 days"]
+              },
+              "roles": [
+                { "role": "DevOps", "allocation_percent": 40 },
+                { "role": "PM", "allocation_percent": 30 },
+                { "role": "Frontend Dev", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["DNS/SSL"], "en": ["DNS/SSL"] },
+              "dependencies": { "es": ["QA aprobado"], "en": ["QA approved"] }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Kickoff aprobado", "en": "Kickoff approved" },
+              "deliverables": { "es": ["Brief"], "en": ["Brief"] },
+              "acceptance_criteria": {
+                "es": ["Firma de stakeholders"],
+                "en": ["Stakeholder sign‑off"]
+              }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Demo navegación", "en": "Navigation demo" },
+              "deliverables": { "es": ["Prototipo"], "en": ["Prototype"] },
+              "acceptance_criteria": {
+                "es": ["Validación UX"],
+                "en": ["UX validation"]
+              }
+            },
+            {
+              "id": "M3",
+              "name": { "es": "Go‑live", "en": "Go‑live" },
+              "deliverables": {
+                "es": ["Sitio en producción"],
+                "en": ["Live site"]
+              },
+              "acceptance_criteria": {
+                "es": ["Checklist de lanzamiento"],
+                "en": ["Launch checklist"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Designer", "count": 1 },
+            { "role": "Frontend Dev", "count": 1 },
+            { "role": "QA", "count": 1 },
+            { "role": "DevOps", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "4-6" },
+            "medium": { "weeks": "6-8" },
+            "large": { "weeks": "8-10" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": [
+              "Discovery obligatorio si faltan requisitos",
+              "Recalibrar cada 3‑4 sprints"
+            ],
+            "en": [
+              "Discovery is mandatory if requirements are missing",
+              "Recalibrate every 3‑4 sprints"
+            ]
+          },
+          "recommended_calibration_projects": [
+            "Sitio corporativo 10‑20 páginas",
+            "Sitio con CMS y 2 idiomas"
+          ]
+        },
+        {
+          "id": "web_ecommerce",
+          "name": {
+            "es": "Plataformas e‑commerce",
+            "en": "E‑commerce platforms"
+          },
+          "parameters": [
+            {
+              "id": "num_products",
+              "type": "integer",
+              "required": true,
+              "validation": "min 50",
+              "affects": ["S2", "S3"],
+              "examples": [100, 1000]
+            },
+            {
+              "id": "payment_gateways",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S3"],
+              "examples": [1, 2]
+            },
+            {
+              "id": "inventory_sync",
+              "type": "boolean",
+              "required": false,
+              "affects": ["S3"],
+              "examples": [true, false]
+            },
+            {
+              "id": "multi_language",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S2", "S4"],
+              "examples": [1, 2]
+            }
+          ],
+          "phases": [
+            "Discovery",
+            "Diseño",
+            "Desarrollo",
+            "Integración",
+            "QA",
+            "Deploy",
+            "Post‑lanzamiento"
+          ],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": {
+                "es": "Sprint 0 — Discovery",
+                "en": "Sprint 0 — Discovery"
+              },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": [
+                  "Definir catálogo y reglas",
+                  "Mapa de checkout",
+                  "Riesgos legales"
+                ],
+                "en": [
+                  "Define catalog and rules",
+                  "Checkout map",
+                  "Legal risks"
+                ]
+              },
+              "deliverables": {
+                "es": ["Backlog priorizado", "Mapa de compra"],
+                "en": ["Prioritized backlog", "Purchase map"]
+              },
+              "acceptance_criteria": {
+                "es": ["Scope firmado"],
+                "en": ["Signed scope"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 30 },
+                { "role": "UX", "allocation_percent": 40 },
+                { "role": "Tech Lead", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Reglas fiscales"], "en": ["Tax rules"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": {
+                "es": "UX + Diseño Catálogo",
+                "en": "Catalog UX + Design"
+              },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": [
+                  "Diseño de catálogo y PDP",
+                  "Carrito y checkout",
+                  "Prototipo"
+                ],
+                "en": ["Catalog & PDP design", "Cart and checkout", "Prototype"]
+              },
+              "deliverables": {
+                "es": ["Prototipo completo"],
+                "en": ["Full prototype"]
+              },
+              "acceptance_criteria": {
+                "es": ["Flujos aprobados"],
+                "en": ["Flows approved"]
+              },
+              "roles": [
+                { "role": "Designer", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 20 },
+                { "role": "QA", "allocation_percent": 10 }
+              ],
+              "risks": {
+                "es": ["Cambios de pricing"],
+                "en": ["Pricing changes"]
+              },
+              "dependencies": {
+                "es": ["Backlog priorizado"],
+                "en": ["Prioritized backlog"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": {
+                "es": "Desarrollo Catálogo",
+                "en": "Catalog Development"
+              },
+              "duration_weeks": 3,
+              "objectives": {
+                "es": ["Catálogo y búsqueda", "PDP", "SEO"],
+                "en": ["Catalog & search", "PDP", "SEO"]
+              },
+              "deliverables": {
+                "es": ["Catálogo funcional", "PDP"],
+                "en": ["Functional catalog", "PDP"]
+              },
+              "acceptance_criteria": {
+                "es": ["Búsqueda relevante"],
+                "en": ["Relevant search"]
+              },
+              "roles": [
+                { "role": "Frontend Dev", "allocation_percent": 60 },
+                { "role": "Backend Dev", "allocation_percent": 30 },
+                { "role": "QA", "allocation_percent": 10 }
+              ],
+              "risks": {
+                "es": ["Datos inconsistentes"],
+                "en": ["Inconsistent data"]
+              },
+              "dependencies": {
+                "es": ["Prototipo aprobado"],
+                "en": ["Approved prototype"]
+              }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "Checkout + Pagos", "en": "Checkout + Payments" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Pasarela de pago", "Impuestos/envíos", "Seguridad"],
+                "en": ["Payment gateway", "Taxes/shipping", "Security"]
+              },
+              "deliverables": {
+                "es": ["Checkout integrado", "Logs de pago"],
+                "en": ["Integrated checkout", "Payment logs"]
+              },
+              "acceptance_criteria": {
+                "es": ["Transacciones test ok"],
+                "en": ["Test transactions ok"]
+              },
+              "roles": [
+                { "role": "Backend Dev", "allocation_percent": 50 },
+                { "role": "Frontend Dev", "allocation_percent": 30 },
+                { "role": "QA", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Aprobación bancaria"],
+                "en": ["Bank approval"]
+              },
+              "dependencies": {
+                "es": ["Catálogo funcional"],
+                "en": ["Catalog functional"]
+              }
+            },
+            {
+              "id": "S4",
+              "name": { "es": "QA + Go‑live", "en": "QA + Go‑live" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["UAT", "Plan de rollback", "Go‑live"],
+                "en": ["UAT", "Rollback plan", "Go‑live"]
+              },
+              "deliverables": {
+                "es": ["UAT firmado", "Plan de rollback"],
+                "en": ["Signed UAT", "Rollback plan"]
+              },
+              "acceptance_criteria": {
+                "es": ["0 bugs críticos"],
+                "en": ["0 critical bugs"]
+              },
+              "roles": [
+                { "role": "QA", "allocation_percent": 50 },
+                { "role": "DevOps", "allocation_percent": 30 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Picos de tráfico"], "en": ["Traffic spikes"] },
+              "dependencies": {
+                "es": ["Checkout integrado"],
+                "en": ["Checkout integrated"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Demo catálogo", "en": "Catalog demo" },
+              "deliverables": { "es": ["Catálogo"], "en": ["Catalog"] },
+              "acceptance_criteria": {
+                "es": ["Aprobación PM"],
+                "en": ["PM approval"]
+              }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Pagos aprobados", "en": "Payments approved" },
+              "deliverables": { "es": ["Checkout"], "en": ["Checkout"] },
+              "acceptance_criteria": {
+                "es": ["Pruebas exitosas"],
+                "en": ["Successful tests"]
+              }
+            },
+            {
+              "id": "M3",
+              "name": { "es": "Go‑live", "en": "Go‑live" },
+              "deliverables": {
+                "es": ["Tienda en producción"],
+                "en": ["Store in production"]
+              },
+              "acceptance_criteria": {
+                "es": ["UAT firmado"],
+                "en": ["Signed UAT"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Designer", "count": 1 },
+            { "role": "Frontend Dev", "count": 2 },
+            { "role": "Backend Dev", "count": 1 },
+            { "role": "QA", "count": 1 },
+            { "role": "DevOps", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "6-8" },
+            "medium": { "weeks": "8-10" },
+            "large": { "weeks": "10-14" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": [
+              "Discovery obligatorio si catálogo o pricing no están definidos"
+            ],
+            "en": ["Discovery is mandatory if catalog or pricing are undefined"]
+          },
+          "recommended_calibration_projects": [
+            "E‑commerce 100‑300 SKUs",
+            "E‑commerce con 2 pasarelas"
+          ]
+        },
+        {
+          "id": "web_landing",
+          "name": {
+            "es": "Landing pages optimizadas",
+            "en": "Optimized landing pages"
+          },
+          "parameters": [
+            {
+              "id": "num_sections",
+              "type": "integer",
+              "required": true,
+              "validation": "min 4",
+              "affects": ["S1", "S2"],
+              "examples": [5, 8]
+            },
+            {
+              "id": "conversion_goal",
+              "type": "string",
+              "required": true,
+              "affects": ["S0", "S1"],
+              "examples": ["lead", "sale"]
+            },
+            {
+              "id": "integrations",
+              "type": "integer",
+              "required": false,
+              "validation": "min 0",
+              "affects": ["S2"],
+              "examples": [0, 1]
+            }
+          ],
+          "phases": [
+            "Discovery",
+            "Diseño",
+            "Desarrollo",
+            "QA",
+            "Deploy",
+            "Post‑lanzamiento"
+          ],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": {
+                "es": "Sprint 0 — Discovery",
+                "en": "Sprint 0 — Discovery"
+              },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "conversion_goal == null || requirements_complete == false"
+              },
+              "objectives": {
+                "es": [
+                  "Definir hipótesis de conversión",
+                  "Auditoría de competidores",
+                  "Métricas"
+                ],
+                "en": [
+                  "Define conversion hypothesis",
+                  "Competitor audit",
+                  "Metrics"
+                ]
+              },
+              "deliverables": {
+                "es": ["Brief de conversión"],
+                "en": ["Conversion brief"]
+              },
+              "acceptance_criteria": {
+                "es": ["KPI definidos"],
+                "en": ["KPIs defined"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 30 },
+                { "role": "UX", "allocation_percent": 50 },
+                { "role": "Marketing", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Sin datos históricos"],
+                "en": ["No historical data"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Copy + Diseño", "en": "Copy + Design" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": [
+                  "Copy persuasivo",
+                  "Diseño centrado en CTA",
+                  "Variantes A/B"
+                ],
+                "en": ["Persuasive copy", "CTA‑focused design", "A/B variants"]
+              },
+              "deliverables": {
+                "es": ["Copy aprobado", "Mockups"],
+                "en": ["Approved copy", "Mockups"]
+              },
+              "acceptance_criteria": {
+                "es": ["CTA principal validado"],
+                "en": ["Primary CTA validated"]
+              },
+              "roles": [
+                { "role": "Designer", "allocation_percent": 50 },
+                { "role": "Copywriter", "allocation_percent": 30 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Cambios en copy"], "en": ["Copy changes"] },
+              "dependencies": {
+                "es": ["Brief de conversión"],
+                "en": ["Conversion brief"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Implementación", "en": "Implementation" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Maquetación", "Integraciones", "Optimización"],
+                "en": ["Layout", "Integrations", "Optimization"]
+              },
+              "deliverables": {
+                "es": ["Landing funcional"],
+                "en": ["Functional landing"]
+              },
+              "acceptance_criteria": {
+                "es": ["LCP < 2.5s"],
+                "en": ["LCP < 2.5s"]
+              },
+              "roles": [
+                { "role": "Frontend Dev", "allocation_percent": 70 },
+                { "role": "QA", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Scripts de terceros"],
+                "en": ["Third‑party scripts"]
+              },
+              "dependencies": { "es": ["Mockups"], "en": ["Mockups"] }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "QA + Go‑live", "en": "QA + Go‑live" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["QA", "Analytics", "Deploy"],
+                "en": ["QA", "Analytics", "Deploy"]
+              },
+              "deliverables": {
+                "es": ["Landing en producción", "Dashboard analytics"],
+                "en": ["Live landing", "Analytics dashboard"]
+              },
+              "acceptance_criteria": {
+                "es": ["Eventos trackeados"],
+                "en": ["Events tracked"]
+              },
+              "roles": [
+                { "role": "QA", "allocation_percent": 40 },
+                { "role": "DevOps", "allocation_percent": 30 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Tracking incompleto"],
+                "en": ["Incomplete tracking"]
+              },
+              "dependencies": {
+                "es": ["Landing funcional"],
+                "en": ["Functional landing"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Mockup aprobado", "en": "Mockup approved" },
+              "deliverables": { "es": ["Mockups"], "en": ["Mockups"] },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Go‑live", "en": "Go‑live" },
+              "deliverables": { "es": ["Landing"], "en": ["Landing"] },
+              "acceptance_criteria": {
+                "es": ["Tracking activo"],
+                "en": ["Tracking live"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Designer", "count": 1 },
+            { "role": "Copywriter", "count": 1 },
+            { "role": "Frontend Dev", "count": 1 },
+            { "role": "QA", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "2-3" },
+            "medium": { "weeks": "3-4" },
+            "large": { "weeks": "4-5" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Forzar Discovery si no hay objetivo de conversión"],
+            "en": ["Force Discovery if conversion goal is missing"]
+          },
+          "recommended_calibration_projects": [
+            "Landing con 1 integración",
+            "Landing con A/B"
+          ]
+        },
+        {
+          "id": "web_hybrid_apps",
+          "name": {
+            "es": "Apps híbridas multiplataforma",
+            "en": "Cross‑platform hybrid apps"
+          },
+          "parameters": [
+            {
+              "id": "platforms",
+              "type": "integer",
+              "required": true,
+              "validation": "min 2",
+              "affects": ["S2", "S3"],
+              "examples": [2, 3]
+            },
+            {
+              "id": "offline_mode",
+              "type": "boolean",
+              "required": false,
+              "affects": ["S3"],
+              "examples": [true, false]
+            },
+            {
+              "id": "integrations",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S3"],
+              "examples": [1, 4]
+            }
+          ],
+          "phases": [
+            "Discovery",
+            "Diseño",
+            "Desarrollo",
+            "Integración",
+            "QA",
+            "Deploy",
+            "Post‑lanzamiento"
+          ],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": {
+                "es": "Sprint 0 — Discovery",
+                "en": "Sprint 0 — Discovery"
+              },
+              "duration_weeks": 2,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Definir MVP", "Mapa de APIs", "Arquitectura"],
+                "en": ["Define MVP", "API map", "Architecture"]
+              },
+              "deliverables": {
+                "es": ["Backlog MVP", "Arquitectura"],
+                "en": ["MVP backlog", "Architecture"]
+              },
+              "acceptance_criteria": {
+                "es": ["MVP aprobado"],
+                "en": ["MVP approved"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 30 },
+                { "role": "Tech Lead", "allocation_percent": 40 },
+                { "role": "UX", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Alcance inflado"], "en": ["Scope inflation"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "UX + Prototipo", "en": "UX + Prototype" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": [
+                  "Flujos principales",
+                  "Prototipo móvil",
+                  "Design system"
+                ],
+                "en": ["Core flows", "Mobile prototype", "Design system"]
+              },
+              "deliverables": { "es": ["Prototipo"], "en": ["Prototype"] },
+              "acceptance_criteria": {
+                "es": ["Sign‑off UX"],
+                "en": ["UX sign‑off"]
+              },
+              "roles": [
+                { "role": "Designer", "allocation_percent": 60 },
+                { "role": "PM", "allocation_percent": 20 },
+                { "role": "QA", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Cambios tardíos"], "en": ["Late changes"] },
+              "dependencies": { "es": ["MVP aprobado"], "en": ["MVP approved"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Desarrollo Core", "en": "Core Development" },
+              "duration_weeks": 4,
+              "objectives": {
+                "es": ["Autenticación", "Módulos core", "Estado global"],
+                "en": ["Authentication", "Core modules", "State management"]
+              },
+              "deliverables": {
+                "es": ["App funcional"],
+                "en": ["Functional app"]
+              },
+              "acceptance_criteria": {
+                "es": ["Flujos core completos"],
+                "en": ["Core flows complete"]
+              },
+              "roles": [
+                { "role": "Frontend Dev", "allocation_percent": 50 },
+                { "role": "Backend Dev", "allocation_percent": 30 },
+                { "role": "QA", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Integraciones inestables"],
+                "en": ["Unstable integrations"]
+              },
+              "dependencies": { "es": ["Prototipo"], "en": ["Prototype"] }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "Integración + QA", "en": "Integration + QA" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": [
+                  "Integraciones",
+                  "Testing multiplataforma",
+                  "Performance"
+                ],
+                "en": ["Integrations", "Cross‑platform testing", "Performance"]
+              },
+              "deliverables": {
+                "es": ["Build estable", "Reporte QA"],
+                "en": ["Stable build", "QA report"]
+              },
+              "acceptance_criteria": {
+                "es": ["Crash‑free > 98%"],
+                "en": ["Crash‑free > 98%"]
+              },
+              "roles": [
+                { "role": "QA", "allocation_percent": 50 },
+                { "role": "Frontend Dev", "allocation_percent": 30 },
+                { "role": "DevOps", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Store review"], "en": ["Store review"] },
+              "dependencies": {
+                "es": ["App funcional"],
+                "en": ["Functional app"]
+              }
+            },
+            {
+              "id": "S4",
+              "name": {
+                "es": "Release + Monitoreo",
+                "en": "Release + Monitoring"
+              },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Publicación", "Monitoreo", "Hotfix plan"],
+                "en": ["Release", "Monitoring", "Hotfix plan"]
+              },
+              "deliverables": {
+                "es": ["App publicada", "Runbook"],
+                "en": ["Published app", "Runbook"]
+              },
+              "acceptance_criteria": {
+                "es": ["Go‑live aprobado"],
+                "en": ["Go‑live approved"]
+              },
+              "roles": [
+                { "role": "DevOps", "allocation_percent": 40 },
+                { "role": "PM", "allocation_percent": 30 },
+                { "role": "QA", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Rechazo en tiendas"],
+                "en": ["Store rejection"]
+              },
+              "dependencies": {
+                "es": ["Build estable"],
+                "en": ["Stable build"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Vertical slice", "en": "Vertical slice" },
+              "deliverables": {
+                "es": ["MVP navegable"],
+                "en": ["Navigable MVP"]
+              },
+              "acceptance_criteria": {
+                "es": ["Aprobación stakeholders"],
+                "en": ["Stakeholder approval"]
+              }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "UAT", "en": "UAT" },
+              "deliverables": { "es": ["Reporte QA"], "en": ["QA report"] },
+              "acceptance_criteria": {
+                "es": ["UAT firmado"],
+                "en": ["Signed UAT"]
+              }
+            },
+            {
+              "id": "M3",
+              "name": { "es": "Go‑live", "en": "Go‑live" },
+              "deliverables": {
+                "es": ["App publicada"],
+                "en": ["Published app"]
+              },
+              "acceptance_criteria": {
+                "es": ["Checklist release"],
+                "en": ["Release checklist"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Designer", "count": 1 },
+            { "role": "Frontend Dev", "count": 2 },
+            { "role": "Backend Dev", "count": 1 },
+            { "role": "QA", "count": 1 },
+            { "role": "DevOps", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "8-10" },
+            "medium": { "weeks": "10-14" },
+            "large": { "weeks": "14-20" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Recalibrar cada 3‑4 sprints"],
+            "en": ["Recalibrate every 3‑4 sprints"]
+          },
+          "recommended_calibration_projects": [
+            "App híbrida 2 plataformas",
+            "App híbrida con 3+ integraciones"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enterprise_software",
+      "name": { "es": "Software Empresarial", "en": "Enterprise Software" },
+      "subservices": [
+        {
+          "id": "erp_custom",
+          "name": { "es": "ERP personalizados", "en": "Custom ERP" },
+          "parameters": [
+            {
+              "id": "modules",
+              "type": "integer",
+              "required": true,
+              "validation": "min 3",
+              "affects": ["S2", "S3"],
+              "examples": [3, 6]
+            },
+            {
+              "id": "legacy_migration",
+              "type": "boolean",
+              "required": true,
+              "affects": ["S2", "S4"],
+              "examples": [true, false]
+            },
+            {
+              "id": "integrations",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S3"],
+              "examples": [2, 6]
+            }
+          ],
+          "phases": [
+            "Discovery",
+            "Diseño",
+            "Desarrollo",
+            "Integración",
+            "QA",
+            "Deploy",
+            "Post‑lanzamiento"
+          ],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": {
+                "es": "Sprint 0 — Discovery",
+                "en": "Sprint 0 — Discovery"
+              },
+              "duration_weeks": 2,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Levantamiento procesos", "Mapa de datos", "Riesgos"],
+                "en": ["Process discovery", "Data map", "Risks"]
+              },
+              "deliverables": {
+                "es": ["Mapa de procesos", "Backlog módulos"],
+                "en": ["Process map", "Module backlog"]
+              },
+              "acceptance_criteria": {
+                "es": ["Alcance aprobado"],
+                "en": ["Scope approved"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 25 },
+                { "role": "BA", "allocation_percent": 45 },
+                { "role": "Tech Lead", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Datos legacy incompletos"],
+                "en": ["Incomplete legacy data"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Diseño funcional", "en": "Functional design" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Blueprint módulos", "Modelo de datos", "Permisos"],
+                "en": ["Module blueprint", "Data model", "Permissions"]
+              },
+              "deliverables": {
+                "es": ["Especificación funcional"],
+                "en": ["Functional spec"]
+              },
+              "acceptance_criteria": {
+                "es": ["Aprobación negocio"],
+                "en": ["Business approval"]
+              },
+              "roles": [
+                { "role": "BA", "allocation_percent": 50 },
+                { "role": "Architect", "allocation_percent": 30 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Cambios de proceso"],
+                "en": ["Process changes"]
+              },
+              "dependencies": {
+                "es": ["Mapa de procesos"],
+                "en": ["Process map"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": {
+                "es": "Desarrollo Módulos",
+                "en": "Module Development"
+              },
+              "duration_weeks": 6,
+              "objectives": {
+                "es": ["Módulos core", "APIs", "Seguridad"],
+                "en": ["Core modules", "APIs", "Security"]
+              },
+              "deliverables": {
+                "es": ["Módulos core"],
+                "en": ["Core modules"]
+              },
+              "acceptance_criteria": {
+                "es": ["Cobertura de procesos"],
+                "en": ["Process coverage"]
+              },
+              "roles": [
+                { "role": "Backend Dev", "allocation_percent": 60 },
+                { "role": "Frontend Dev", "allocation_percent": 20 },
+                { "role": "QA", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Complejidad integración"],
+                "en": ["Integration complexity"]
+              },
+              "dependencies": {
+                "es": ["Especificación funcional"],
+                "en": ["Functional spec"]
+              }
+            },
+            {
+              "id": "S3",
+              "name": {
+                "es": "Integración + Migración",
+                "en": "Integration + Migration"
+              },
+              "duration_weeks": 3,
+              "objectives": {
+                "es": ["Integraciones", "Migración datos", "Validaciones"],
+                "en": ["Integrations", "Data migration", "Validations"]
+              },
+              "deliverables": {
+                "es": ["Migración piloto"],
+                "en": ["Pilot migration"]
+              },
+              "acceptance_criteria": {
+                "es": ["Errores < 2%"],
+                "en": ["Errors < 2%"]
+              },
+              "roles": [
+                { "role": "Backend Dev", "allocation_percent": 40 },
+                { "role": "Data Eng", "allocation_percent": 30 },
+                { "role": "QA", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Calidad de datos"], "en": ["Data quality"] },
+              "dependencies": { "es": ["Módulos core"], "en": ["Core modules"] }
+            },
+            {
+              "id": "S4",
+              "name": { "es": "UAT + Go‑live", "en": "UAT + Go‑live" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["UAT", "Capacitación", "Go‑live"],
+                "en": ["UAT", "Training", "Go‑live"]
+              },
+              "deliverables": {
+                "es": ["UAT firmado", "Manual"],
+                "en": ["Signed UAT", "Manual"]
+              },
+              "acceptance_criteria": {
+                "es": ["0 bugs críticos"],
+                "en": ["0 critical bugs"]
+              },
+              "roles": [
+                { "role": "QA", "allocation_percent": 50 },
+                { "role": "PM", "allocation_percent": 30 },
+                { "role": "DevOps", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Resistencia al cambio"],
+                "en": ["Change resistance"]
+              },
+              "dependencies": {
+                "es": ["Migración piloto"],
+                "en": ["Pilot migration"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": {
+                "es": "Blueprint aprobado",
+                "en": "Blueprint approved"
+              },
+              "deliverables": {
+                "es": ["Especificación funcional"],
+                "en": ["Functional spec"]
+              },
+              "acceptance_criteria": {
+                "es": ["Sign‑off negocio"],
+                "en": ["Business sign‑off"]
+              }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Vertical slice", "en": "Vertical slice" },
+              "deliverables": { "es": ["Módulo core"], "en": ["Core module"] },
+              "acceptance_criteria": {
+                "es": ["Demo aceptada"],
+                "en": ["Demo accepted"]
+              }
+            },
+            {
+              "id": "M3",
+              "name": { "es": "Go‑live", "en": "Go‑live" },
+              "deliverables": {
+                "es": ["ERP en producción"],
+                "en": ["ERP in production"]
+              },
+              "acceptance_criteria": {
+                "es": ["UAT firmado"],
+                "en": ["Signed UAT"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "BA", "count": 1 },
+            { "role": "Architect", "count": 1 },
+            { "role": "Backend Dev", "count": 2 },
+            { "role": "Frontend Dev", "count": 1 },
+            { "role": "QA", "count": 2 },
+            { "role": "DevOps", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "12-16" },
+            "medium": { "weeks": "16-24" },
+            "large": { "weeks": "24-36" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": [
+              "Migración legacy aumenta riesgo",
+              "Recalibrar cada 3‑4 sprints"
+            ],
+            "en": [
+              "Legacy migration increases risk",
+              "Recalibrate every 3‑4 sprints"
+            ]
+          },
+          "recommended_calibration_projects": [
+            "ERP 3 módulos con migración",
+            "ERP 6 módulos con 3 integraciones"
+          ]
+        },
+        {
+          "id": "crm",
+          "name": { "es": "CRM", "en": "CRM" },
+          "parameters": [
+            {
+              "id": "pipelines",
+              "type": "integer",
+              "required": true,
+              "validation": "min 2",
+              "affects": ["S2"],
+              "examples": [2, 5]
+            },
+            {
+              "id": "integrations",
+              "type": "integer",
+              "required": false,
+              "validation": "min 0",
+              "affects": ["S3"],
+              "examples": [0, 3]
+            }
+          ],
+          "phases": [
+            "Discovery",
+            "Diseño",
+            "Desarrollo",
+            "Integración",
+            "QA",
+            "Deploy"
+          ],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": {
+                "es": "Sprint 0 — Discovery",
+                "en": "Sprint 0 — Discovery"
+              },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Mapear pipeline", "Definir KPIs"],
+                "en": ["Map pipeline", "Define KPIs"]
+              },
+              "deliverables": { "es": ["Backlog CRM"], "en": ["CRM backlog"] },
+              "acceptance_criteria": {
+                "es": ["KPIs definidos"],
+                "en": ["KPIs defined"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 40 },
+                { "role": "BA", "allocation_percent": 60 }
+              ],
+              "risks": {
+                "es": ["Procesos inconsistentes"],
+                "en": ["Inconsistent processes"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": {
+                "es": "Diseño + Data model",
+                "en": "Design + Data model"
+              },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Modelo de datos", "Roles y permisos"],
+                "en": ["Data model", "Roles & permissions"]
+              },
+              "deliverables": {
+                "es": ["Modelo de datos"],
+                "en": ["Data model"]
+              },
+              "acceptance_criteria": {
+                "es": ["Modelo aprobado"],
+                "en": ["Model approved"]
+              },
+              "roles": [
+                { "role": "Architect", "allocation_percent": 40 },
+                { "role": "BA", "allocation_percent": 40 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Cambios de procesos"],
+                "en": ["Process changes"]
+              },
+              "dependencies": { "es": ["Backlog CRM"], "en": ["CRM backlog"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Desarrollo", "en": "Development" },
+              "duration_weeks": 3,
+              "objectives": {
+                "es": ["Pipelines", "Automatizaciones", "Reportes"],
+                "en": ["Pipelines", "Automations", "Reports"]
+              },
+              "deliverables": {
+                "es": ["CRM funcional"],
+                "en": ["Functional CRM"]
+              },
+              "acceptance_criteria": {
+                "es": ["Reportes básicos listos"],
+                "en": ["Basic reports ready"]
+              },
+              "roles": [
+                { "role": "Backend Dev", "allocation_percent": 50 },
+                { "role": "Frontend Dev", "allocation_percent": 30 },
+                { "role": "QA", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Automatizaciones incompletas"],
+                "en": ["Incomplete automations"]
+              },
+              "dependencies": {
+                "es": ["Modelo aprobado"],
+                "en": ["Approved model"]
+              }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "Integración + QA", "en": "Integration + QA" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Integraciones", "QA", "UAT"],
+                "en": ["Integrations", "QA", "UAT"]
+              },
+              "deliverables": { "es": ["CRM listo"], "en": ["CRM ready"] },
+              "acceptance_criteria": {
+                "es": ["UAT firmado"],
+                "en": ["Signed UAT"]
+              },
+              "roles": [
+                { "role": "QA", "allocation_percent": 50 },
+                { "role": "PM", "allocation_percent": 30 },
+                { "role": "DevOps", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Integraciones tardías"],
+                "en": ["Late integrations"]
+              },
+              "dependencies": {
+                "es": ["CRM funcional"],
+                "en": ["Functional CRM"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Modelo aprobado", "en": "Model approved" },
+              "deliverables": {
+                "es": ["Modelo de datos"],
+                "en": ["Data model"]
+              },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "UAT", "en": "UAT" },
+              "deliverables": { "es": ["CRM listo"], "en": ["CRM ready"] },
+              "acceptance_criteria": {
+                "es": ["UAT firmado"],
+                "en": ["Signed UAT"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "BA", "count": 1 },
+            { "role": "Backend Dev", "count": 1 },
+            { "role": "Frontend Dev", "count": 1 },
+            { "role": "QA", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "6-8" },
+            "medium": { "weeks": "8-10" },
+            "large": { "weeks": "10-12" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si KPIs no definidos"],
+            "en": ["Discovery mandatory if KPIs are undefined"]
+          },
+          "recommended_calibration_projects": [
+            "CRM 2 pipelines",
+            "CRM con 3 integraciones"
+          ]
+        },
+        {
+          "id": "pos",
+          "name": { "es": "POS", "en": "POS" },
+          "parameters": [
+            {
+              "id": "num_locations",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S2", "S3"],
+              "examples": [1, 5]
+            },
+            {
+              "id": "hardware_integration",
+              "type": "boolean",
+              "required": true,
+              "affects": ["S3"],
+              "examples": [true, false]
+            }
+          ],
+          "phases": [
+            "Discovery",
+            "Diseño",
+            "Desarrollo",
+            "Integración",
+            "QA",
+            "Deploy"
+          ],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": {
+                "es": "Sprint 0 — Discovery",
+                "en": "Sprint 0 — Discovery"
+              },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Flujos de caja", "Hardware"],
+                "en": ["Cashier flows", "Hardware"]
+              },
+              "deliverables": { "es": ["Backlog POS"], "en": ["POS backlog"] },
+              "acceptance_criteria": {
+                "es": ["Flujos validados"],
+                "en": ["Flows validated"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 40 },
+                { "role": "Tech Lead", "allocation_percent": 60 }
+              ],
+              "risks": {
+                "es": ["Compatibilidad hardware"],
+                "en": ["Hardware compatibility"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": {
+                "es": "Diseño + Arquitectura",
+                "en": "Design + Architecture"
+              },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["UX caja", "Arquitectura offline"],
+                "en": ["Cashier UX", "Offline architecture"]
+              },
+              "deliverables": { "es": ["Prototipo"], "en": ["Prototype"] },
+              "acceptance_criteria": {
+                "es": ["Prototipo aprobado"],
+                "en": ["Prototype approved"]
+              },
+              "roles": [
+                { "role": "Designer", "allocation_percent": 50 },
+                { "role": "Architect", "allocation_percent": 50 }
+              ],
+              "risks": {
+                "es": ["Requisitos de fiscalización"],
+                "en": ["Fiscalization requirements"]
+              },
+              "dependencies": { "es": ["Backlog POS"], "en": ["POS backlog"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Desarrollo Core", "en": "Core Development" },
+              "duration_weeks": 3,
+              "objectives": {
+                "es": ["Ventas", "Inventario", "Cierre"],
+                "en": ["Sales", "Inventory", "Close"]
+              },
+              "deliverables": {
+                "es": ["POS funcional"],
+                "en": ["Functional POS"]
+              },
+              "acceptance_criteria": {
+                "es": ["Ventas completas"],
+                "en": ["Sales complete"]
+              },
+              "roles": [
+                { "role": "Backend Dev", "allocation_percent": 40 },
+                { "role": "Frontend Dev", "allocation_percent": 40 },
+                { "role": "QA", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Sincronización offline"],
+                "en": ["Offline sync"]
+              },
+              "dependencies": { "es": ["Prototipo"], "en": ["Prototype"] }
+            },
+            {
+              "id": "S3",
+              "name": {
+                "es": "Integración hardware + QA",
+                "en": "Hardware integration + QA"
+              },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Impresoras", "Lectores", "QA"],
+                "en": ["Printers", "Scanners", "QA"]
+              },
+              "deliverables": {
+                "es": ["POS integrado"],
+                "en": ["Integrated POS"]
+              },
+              "acceptance_criteria": {
+                "es": ["Pruebas de caja ok"],
+                "en": ["Cashier tests ok"]
+              },
+              "roles": [
+                { "role": "QA", "allocation_percent": 50 },
+                { "role": "Tech Lead", "allocation_percent": 30 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Drivers de hardware"],
+                "en": ["Hardware drivers"]
+              },
+              "dependencies": {
+                "es": ["POS funcional"],
+                "en": ["Functional POS"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "POS demo", "en": "POS demo" },
+              "deliverables": {
+                "es": ["POS funcional"],
+                "en": ["Functional POS"]
+              },
+              "acceptance_criteria": {
+                "es": ["Demo aprobada"],
+                "en": ["Demo approved"]
+              }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Go‑live", "en": "Go‑live" },
+              "deliverables": {
+                "es": ["POS en producción"],
+                "en": ["POS in production"]
+              },
+              "acceptance_criteria": {
+                "es": ["Checklist"],
+                "en": ["Checklist"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Architect", "count": 1 },
+            { "role": "Frontend Dev", "count": 1 },
+            { "role": "Backend Dev", "count": 1 },
+            { "role": "QA", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "6-8" },
+            "medium": { "weeks": "8-10" },
+            "large": { "weeks": "10-12" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si hardware no definido"],
+            "en": ["Discovery mandatory if hardware is undefined"]
+          },
+          "recommended_calibration_projects": [
+            "POS 1 sede",
+            "POS 3 sedes con hardware"
+          ]
+        },
+        {
+          "id": "process_automation",
+          "name": {
+            "es": "Automatización de procesos",
+            "en": "Process automation"
+          },
+          "parameters": [
+            {
+              "id": "num_workflows",
+              "type": "integer",
+              "required": true,
+              "validation": "min 2",
+              "affects": ["S2"],
+              "examples": [2, 6]
+            },
+            {
+              "id": "integrations",
+              "type": "integer",
+              "required": false,
+              "validation": "min 0",
+              "affects": ["S3"],
+              "examples": [0, 4]
+            }
+          ],
+          "phases": [
+            "Discovery",
+            "Diseño",
+            "Desarrollo",
+            "Integración",
+            "QA",
+            "Deploy"
+          ],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Mapear procesos", "Priorizar workflows"],
+                "en": ["Map processes", "Prioritize workflows"]
+              },
+              "deliverables": {
+                "es": ["Backlog workflows"],
+                "en": ["Workflow backlog"]
+              },
+              "acceptance_criteria": {
+                "es": ["Backlog aprobado"],
+                "en": ["Backlog approved"]
+              },
+              "roles": [
+                { "role": "BA", "allocation_percent": 60 },
+                { "role": "PM", "allocation_percent": 40 }
+              ],
+              "risks": {
+                "es": ["Proceso no estandarizado"],
+                "en": ["Non‑standardized process"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": {
+                "es": "Diseño automatizaciones",
+                "en": "Automation design"
+              },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Reglas y excepciones"],
+                "en": ["Rules and exceptions"]
+              },
+              "deliverables": {
+                "es": ["Modelo de reglas"],
+                "en": ["Rules model"]
+              },
+              "acceptance_criteria": {
+                "es": ["Casos borde definidos"],
+                "en": ["Edge cases defined"]
+              },
+              "roles": [
+                { "role": "BA", "allocation_percent": 50 },
+                { "role": "Architect", "allocation_percent": 50 }
+              ],
+              "risks": {
+                "es": ["Excepciones omitidas"],
+                "en": ["Missed exceptions"]
+              },
+              "dependencies": {
+                "es": ["Backlog workflows"],
+                "en": ["Workflow backlog"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Implementación", "en": "Implementation" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Automatizaciones", "Logs y alertas"],
+                "en": ["Automations", "Logs and alerts"]
+              },
+              "deliverables": {
+                "es": ["Workflows activos"],
+                "en": ["Active workflows"]
+              },
+              "acceptance_criteria": {
+                "es": ["SLA cumplido"],
+                "en": ["SLA met"]
+              },
+              "roles": [
+                { "role": "Backend Dev", "allocation_percent": 60 },
+                { "role": "QA", "allocation_percent": 40 }
+              ],
+              "risks": {
+                "es": ["Integraciones externas"],
+                "en": ["External integrations"]
+              },
+              "dependencies": {
+                "es": ["Modelo de reglas"],
+                "en": ["Rules model"]
+              }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "Integración + QA", "en": "Integration + QA" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Pruebas end‑to‑end"],
+                "en": ["End‑to‑end tests"]
+              },
+              "deliverables": { "es": ["Reporte QA"], "en": ["QA report"] },
+              "acceptance_criteria": {
+                "es": ["0 incidentes críticos"],
+                "en": ["0 critical incidents"]
+              },
+              "roles": [
+                { "role": "QA", "allocation_percent": 60 },
+                { "role": "PM", "allocation_percent": 40 }
+              ],
+              "risks": {
+                "es": ["Cambios de proceso"],
+                "en": ["Process changes"]
+              },
+              "dependencies": {
+                "es": ["Workflows activos"],
+                "en": ["Active workflows"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Reglas aprobadas", "en": "Rules approved" },
+              "deliverables": {
+                "es": ["Modelo de reglas"],
+                "en": ["Rules model"]
+              },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Go‑live", "en": "Go‑live" },
+              "deliverables": {
+                "es": ["Workflows activos"],
+                "en": ["Active workflows"]
+              },
+              "acceptance_criteria": {
+                "es": ["SLA cumplido"],
+                "en": ["SLA met"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "BA", "count": 1 },
+            { "role": "Backend Dev", "count": 1 },
+            { "role": "QA", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "4-6" },
+            "medium": { "weeks": "6-8" },
+            "large": { "weeks": "8-10" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si procesos no documentados"],
+            "en": ["Discovery mandatory if processes are undocumented"]
+          },
+          "recommended_calibration_projects": [
+            "Automatización 2 workflows",
+            "Automatización 6 workflows"
+          ]
+        },
+        {
+          "id": "payment_integration",
+          "name": {
+            "es": "Integración con pasarelas de pago",
+            "en": "Payment gateway integration"
+          },
+          "parameters": [
+            {
+              "id": "gateways",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S2"],
+              "examples": [1, 2]
+            },
+            {
+              "id": "fraud_rules",
+              "type": "boolean",
+              "required": false,
+              "affects": ["S2", "S3"],
+              "examples": [true, false]
+            }
+          ],
+          "phases": ["Discovery", "Desarrollo", "Integración", "QA", "Deploy"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Revisar API de pasarela", "Definir flujos"],
+                "en": ["Review gateway API", "Define flows"]
+              },
+              "deliverables": {
+                "es": ["Checklist de integración"],
+                "en": ["Integration checklist"]
+              },
+              "acceptance_criteria": {
+                "es": ["Checklist aprobado"],
+                "en": ["Checklist approved"]
+              },
+              "roles": [
+                { "role": "Tech Lead", "allocation_percent": 60 },
+                { "role": "PM", "allocation_percent": 40 }
+              ],
+              "risks": { "es": ["Cambios API"], "en": ["API changes"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Implementación", "en": "Implementation" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Cobros", "Webhooks", "Reembolsos"],
+                "en": ["Charges", "Webhooks", "Refunds"]
+              },
+              "deliverables": {
+                "es": ["Pasarela integrada"],
+                "en": ["Integrated gateway"]
+              },
+              "acceptance_criteria": {
+                "es": ["Pruebas sandbox ok"],
+                "en": ["Sandbox tests ok"]
+              },
+              "roles": [
+                { "role": "Backend Dev", "allocation_percent": 70 },
+                { "role": "QA", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Rechazos bancarios"],
+                "en": ["Bank rejections"]
+              },
+              "dependencies": {
+                "es": ["Checklist aprobado"],
+                "en": ["Checklist approved"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "QA + Go‑live", "en": "QA + Go‑live" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Pruebas end‑to‑end", "Go‑live"],
+                "en": ["End‑to‑end tests", "Go‑live"]
+              },
+              "deliverables": {
+                "es": ["Integración en producción"],
+                "en": ["Production integration"]
+              },
+              "acceptance_criteria": {
+                "es": ["Transacciones reales ok"],
+                "en": ["Real transactions ok"]
+              },
+              "roles": [
+                { "role": "QA", "allocation_percent": 50 },
+                { "role": "DevOps", "allocation_percent": 30 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Fraude"], "en": ["Fraud"] },
+              "dependencies": {
+                "es": ["Pasarela integrada"],
+                "en": ["Integrated gateway"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Sandbox aprobado", "en": "Sandbox approved" },
+              "deliverables": {
+                "es": ["Pasarela integrada"],
+                "en": ["Integrated gateway"]
+              },
+              "acceptance_criteria": {
+                "es": ["Pruebas sandbox"],
+                "en": ["Sandbox tests"]
+              }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Go‑live", "en": "Go‑live" },
+              "deliverables": {
+                "es": ["Transacciones reales"],
+                "en": ["Live transactions"]
+              },
+              "acceptance_criteria": { "es": ["UAT"], "en": ["UAT"] }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Backend Dev", "count": 1 },
+            { "role": "QA", "count": 1 },
+            { "role": "DevOps", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "3-4" },
+            "medium": { "weeks": "4-6" },
+            "large": { "weeks": "6-8" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay API docs"],
+            "en": ["Discovery mandatory if API docs are missing"]
+          },
+          "recommended_calibration_projects": [
+            "Pasarela única",
+            "Pasarela dual con fraude"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consulting",
+      "name": {
+        "es": "Consultoría en Transformación Digital",
+        "en": "Digital Transformation Consulting"
+      },
+      "subservices": [
+        {
+          "id": "tech_diagnostic",
+          "name": {
+            "es": "Diagnóstico tecnológico",
+            "en": "Technology assessment"
+          },
+          "parameters": [
+            {
+              "id": "num_systems",
+              "type": "integer",
+              "required": true,
+              "validation": "min 2",
+              "affects": ["S1"],
+              "examples": [3, 8]
+            },
+            {
+              "id": "security_review",
+              "type": "boolean",
+              "required": true,
+              "affects": ["S1", "S2"],
+              "examples": [true, false]
+            }
+          ],
+          "phases": ["Discovery", "Diagnóstico", "Recomendación", "Entrega"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Alcance", "Accesos"],
+                "en": ["Scope", "Access"]
+              },
+              "deliverables": {
+                "es": ["Plan de diagnóstico"],
+                "en": ["Assessment plan"]
+              },
+              "acceptance_criteria": {
+                "es": ["Accesos aprobados"],
+                "en": ["Access approved"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 40 },
+                { "role": "Consultant", "allocation_percent": 60 }
+              ],
+              "risks": {
+                "es": ["Accesos limitados"],
+                "en": ["Limited access"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Evaluación", "en": "Evaluation" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Revisión arquitectura", "Deuda técnica", "Seguridad"],
+                "en": ["Architecture review", "Tech debt", "Security"]
+              },
+              "deliverables": { "es": ["Hallazgos"], "en": ["Findings"] },
+              "acceptance_criteria": {
+                "es": ["Hallazgos validados"],
+                "en": ["Findings validated"]
+              },
+              "roles": [
+                { "role": "Consultant", "allocation_percent": 70 },
+                { "role": "Security", "allocation_percent": 20 },
+                { "role": "PM", "allocation_percent": 10 }
+              ],
+              "risks": {
+                "es": ["Falta de documentación"],
+                "en": ["Missing documentation"]
+              },
+              "dependencies": {
+                "es": ["Plan aprobado"],
+                "en": ["Plan approved"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": {
+                "es": "Roadmap y recomendaciones",
+                "en": "Roadmap & recommendations"
+              },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Priorización", "Costos", "Riesgos"],
+                "en": ["Prioritization", "Costs", "Risks"]
+              },
+              "deliverables": {
+                "es": ["Roadmap ejecutivo"],
+                "en": ["Executive roadmap"]
+              },
+              "acceptance_criteria": {
+                "es": ["Aprobación stakeholders"],
+                "en": ["Stakeholder approval"]
+              },
+              "roles": [
+                { "role": "Consultant", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Expectativas"], "en": ["Expectations"] },
+              "dependencies": { "es": ["Hallazgos"], "en": ["Findings"] }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": {
+                "es": "Diagnóstico entregado",
+                "en": "Assessment delivered"
+              },
+              "deliverables": { "es": ["Reporte"], "en": ["Report"] },
+              "acceptance_criteria": {
+                "es": ["Presentación ejecutiva"],
+                "en": ["Executive presentation"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Consultant", "count": 2 },
+            { "role": "Security", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "3-4" },
+            "medium": { "weeks": "4-6" },
+            "large": { "weeks": "6-8" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si faltan accesos"],
+            "en": ["Discovery mandatory if access is missing"]
+          },
+          "recommended_calibration_projects": [
+            "Diagnóstico 3 sistemas",
+            "Diagnóstico 8 sistemas"
+          ]
+        },
+        {
+          "id": "cloud_strategy",
+          "name": {
+            "es": "Estrategia cloud y migración",
+            "en": "Cloud strategy and migration"
+          },
+          "parameters": [
+            {
+              "id": "num_workloads",
+              "type": "integer",
+              "required": true,
+              "validation": "min 2",
+              "affects": ["S2", "S3"],
+              "examples": [2, 6]
+            },
+            {
+              "id": "regulatory",
+              "type": "boolean",
+              "required": false,
+              "affects": ["S1", "S2"],
+              "examples": [true, false]
+            }
+          ],
+          "phases": ["Discovery", "Estrategia", "Migración", "QA", "Go‑live"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Inventario workloads", "Riesgos"],
+                "en": ["Workload inventory", "Risks"]
+              },
+              "deliverables": { "es": ["Inventario"], "en": ["Inventory"] },
+              "acceptance_criteria": {
+                "es": ["Inventario validado"],
+                "en": ["Inventory validated"]
+              },
+              "roles": [
+                { "role": "Cloud Architect", "allocation_percent": 60 },
+                { "role": "PM", "allocation_percent": 40 }
+              ],
+              "risks": { "es": ["Datos sensibles"], "en": ["Sensitive data"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Estrategia", "en": "Strategy" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Modelo target", "Costos", "Seguridad"],
+                "en": ["Target model", "Costs", "Security"]
+              },
+              "deliverables": {
+                "es": ["Blueprint cloud"],
+                "en": ["Cloud blueprint"]
+              },
+              "acceptance_criteria": {
+                "es": ["Aprobación stakeholders"],
+                "en": ["Stakeholder approval"]
+              },
+              "roles": [
+                { "role": "Cloud Architect", "allocation_percent": 70 },
+                { "role": "Security", "allocation_percent": 20 },
+                { "role": "PM", "allocation_percent": 10 }
+              ],
+              "risks": { "es": ["Compliance"], "en": ["Compliance"] },
+              "dependencies": { "es": ["Inventario"], "en": ["Inventory"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Migración", "en": "Migration" },
+              "duration_weeks": 3,
+              "objectives": {
+                "es": ["Lift‑and‑shift", "Refactor selectivo"],
+                "en": ["Lift‑and‑shift", "Selective refactor"]
+              },
+              "deliverables": {
+                "es": ["Workloads migrados"],
+                "en": ["Migrated workloads"]
+              },
+              "acceptance_criteria": {
+                "es": ["SLA cumplido"],
+                "en": ["SLA met"]
+              },
+              "roles": [
+                { "role": "Cloud Engineer", "allocation_percent": 60 },
+                { "role": "DevOps", "allocation_percent": 20 },
+                { "role": "QA", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Downtime"], "en": ["Downtime"] },
+              "dependencies": {
+                "es": ["Blueprint cloud"],
+                "en": ["Cloud blueprint"]
+              }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "QA + Go‑live", "en": "QA + Go‑live" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Validación", "Go‑live"],
+                "en": ["Validation", "Go‑live"]
+              },
+              "deliverables": { "es": ["Runbook"], "en": ["Runbook"] },
+              "acceptance_criteria": {
+                "es": ["Checklist"],
+                "en": ["Checklist"]
+              },
+              "roles": [
+                { "role": "QA", "allocation_percent": 40 },
+                { "role": "DevOps", "allocation_percent": 40 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Costos imprevistos"],
+                "en": ["Unexpected costs"]
+              },
+              "dependencies": {
+                "es": ["Workloads migrados"],
+                "en": ["Migrated workloads"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": {
+                "es": "Blueprint aprobado",
+                "en": "Blueprint approved"
+              },
+              "deliverables": {
+                "es": ["Blueprint cloud"],
+                "en": ["Cloud blueprint"]
+              },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Go‑live", "en": "Go‑live" },
+              "deliverables": {
+                "es": ["Workloads migrados"],
+                "en": ["Migrated workloads"]
+              },
+              "acceptance_criteria": { "es": ["SLA"], "en": ["SLA"] }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Cloud Architect", "count": 1 },
+            { "role": "Cloud Engineer", "count": 2 },
+            { "role": "DevOps", "count": 1 },
+            { "role": "QA", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "6-8" },
+            "medium": { "weeks": "8-12" },
+            "large": { "weeks": "12-16" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si workloads no inventariados"],
+            "en": ["Discovery mandatory if workloads are not inventoried"]
+          },
+          "recommended_calibration_projects": [
+            "Migración 2 workloads",
+            "Migración 6 workloads"
+          ]
+        },
+        {
+          "id": "training_implementation",
+          "name": {
+            "es": "Capacitación e implementación",
+            "en": "Training & implementation"
+          },
+          "parameters": [
+            {
+              "id": "num_teams",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S1", "S2"],
+              "examples": [1, 4]
+            },
+            {
+              "id": "num_sessions",
+              "type": "integer",
+              "required": true,
+              "validation": "min 2",
+              "affects": ["S2"],
+              "examples": [2, 6]
+            }
+          ],
+          "phases": ["Discovery", "Diseño", "Ejecución", "Cierre"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Diagnóstico de habilidades", "Plan de formación"],
+                "en": ["Skills assessment", "Training plan"]
+              },
+              "deliverables": {
+                "es": ["Plan de capacitación"],
+                "en": ["Training plan"]
+              },
+              "acceptance_criteria": {
+                "es": ["Plan aprobado"],
+                "en": ["Plan approved"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 30 },
+                { "role": "Trainer", "allocation_percent": 70 }
+              ],
+              "risks": { "es": ["Baja asistencia"], "en": ["Low attendance"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Diseño de contenidos", "en": "Content design" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Materiales", "Labs"],
+                "en": ["Materials", "Labs"]
+              },
+              "deliverables": { "es": ["Materiales"], "en": ["Materials"] },
+              "acceptance_criteria": {
+                "es": ["Materiales validados"],
+                "en": ["Materials validated"]
+              },
+              "roles": [
+                { "role": "Trainer", "allocation_percent": 80 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Cambios de alcance"],
+                "en": ["Scope changes"]
+              },
+              "dependencies": {
+                "es": ["Plan aprobado"],
+                "en": ["Plan approved"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Ejecución", "en": "Delivery" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Sesiones", "Evaluaciones"],
+                "en": ["Sessions", "Assessments"]
+              },
+              "deliverables": {
+                "es": ["Registro de asistencia"],
+                "en": ["Attendance log"]
+              },
+              "acceptance_criteria": {
+                "es": [">80% asistencia"],
+                "en": [">80% attendance"]
+              },
+              "roles": [
+                { "role": "Trainer", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Rotación del personal"],
+                "en": ["Staff turnover"]
+              },
+              "dependencies": { "es": ["Materiales"], "en": ["Materials"] }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Plan aprobado", "en": "Plan approved" },
+              "deliverables": {
+                "es": ["Plan de capacitación"],
+                "en": ["Training plan"]
+              },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            },
+            {
+              "id": "M2",
+              "name": {
+                "es": "Capacitación completada",
+                "en": "Training completed"
+              },
+              "deliverables": {
+                "es": ["Certificados"],
+                "en": ["Certificates"]
+              },
+              "acceptance_criteria": {
+                "es": [">80% asistencia"],
+                "en": [">80% attendance"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Trainer", "count": 2 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "3-4" },
+            "medium": { "weeks": "4-6" },
+            "large": { "weeks": "6-8" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay diagnóstico"],
+            "en": ["Discovery mandatory if no assessment"]
+          },
+          "recommended_calibration_projects": [
+            "Capacitación 2 sesiones",
+            "Capacitación 6 sesiones"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blockchain",
+      "name": {
+        "es": "Tecnologías en Blockchain",
+        "en": "Blockchain Technologies"
+      },
+      "subservices": [
+        {
+          "id": "smart_contracts",
+          "name": { "es": "Smart contracts", "en": "Smart contracts" },
+          "parameters": [
+            {
+              "id": "num_contracts",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S2"],
+              "examples": [1, 4]
+            },
+            {
+              "id": "audit_required",
+              "type": "boolean",
+              "required": true,
+              "affects": ["S3"],
+              "examples": [true, false]
+            }
+          ],
+          "phases": ["Discovery", "Diseño", "Desarrollo", "QA", "Deploy"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Requerimientos", "Riesgos"],
+                "en": ["Requirements", "Risks"]
+              },
+              "deliverables": {
+                "es": ["Especificación"],
+                "en": ["Specification"]
+              },
+              "acceptance_criteria": {
+                "es": ["Scope firmado"],
+                "en": ["Signed scope"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 30 },
+                { "role": "Blockchain Architect", "allocation_percent": 70 }
+              ],
+              "risks": {
+                "es": ["Ambigüedad legal"],
+                "en": ["Legal ambiguity"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Diseño de contratos", "en": "Contract design" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Modelos", "Eventos"],
+                "en": ["Models", "Events"]
+              },
+              "deliverables": { "es": ["Diseño"], "en": ["Design"] },
+              "acceptance_criteria": {
+                "es": ["Revisión técnica"],
+                "en": ["Technical review"]
+              },
+              "roles": [
+                { "role": "Blockchain Architect", "allocation_percent": 70 },
+                { "role": "Security", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Vulnerabilidades"],
+                "en": ["Vulnerabilities"]
+              },
+              "dependencies": {
+                "es": ["Especificación"],
+                "en": ["Specification"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Implementación", "en": "Implementation" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Contratos", "Pruebas"],
+                "en": ["Contracts", "Tests"]
+              },
+              "deliverables": {
+                "es": ["Contratos en testnet"],
+                "en": ["Contracts on testnet"]
+              },
+              "acceptance_criteria": {
+                "es": ["Cobertura tests"],
+                "en": ["Test coverage"]
+              },
+              "roles": [
+                { "role": "Blockchain Dev", "allocation_percent": 70 },
+                { "role": "QA", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Gas cost"], "en": ["Gas cost"] },
+              "dependencies": { "es": ["Diseño"], "en": ["Design"] }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "Audit + Deploy", "en": "Audit + Deploy" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Auditoría", "Deploy mainnet"],
+                "en": ["Audit", "Mainnet deploy"]
+              },
+              "deliverables": {
+                "es": ["Reporte auditoría", "Contratos en mainnet"],
+                "en": ["Audit report", "Contracts on mainnet"]
+              },
+              "acceptance_criteria": {
+                "es": ["Hallazgos críticos = 0"],
+                "en": ["Critical findings = 0"]
+              },
+              "roles": [
+                { "role": "Security", "allocation_percent": 50 },
+                { "role": "Blockchain Dev", "allocation_percent": 30 },
+                { "role": "DevOps", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Retraso auditoría"], "en": ["Audit delay"] },
+              "dependencies": {
+                "es": ["Contratos en testnet"],
+                "en": ["Testnet contracts"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Testnet", "en": "Testnet" },
+              "deliverables": { "es": ["Contratos"], "en": ["Contracts"] },
+              "acceptance_criteria": { "es": ["Tests ok"], "en": ["Tests ok"] }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Mainnet", "en": "Mainnet" },
+              "deliverables": { "es": ["Deploy"], "en": ["Deploy"] },
+              "acceptance_criteria": {
+                "es": ["Audit aprobado"],
+                "en": ["Audit approved"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Blockchain Dev", "count": 2 },
+            { "role": "Security", "count": 1 },
+            { "role": "DevOps", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "4-6" },
+            "medium": { "weeks": "6-8" },
+            "large": { "weeks": "8-12" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Auditoría externa recomendada"],
+            "en": ["External audit recommended"]
+          },
+          "recommended_calibration_projects": [
+            "1 contrato simple",
+            "4 contratos con auditoría"
+          ]
+        },
+        {
+          "id": "tokenization",
+          "name": { "es": "Tokenización", "en": "Tokenization" },
+          "parameters": [
+            {
+              "id": "asset_types",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S1", "S2"],
+              "examples": [1, 3]
+            },
+            {
+              "id": "custody_required",
+              "type": "boolean",
+              "required": false,
+              "affects": ["S3"],
+              "examples": [true, false]
+            }
+          ],
+          "phases": ["Discovery", "Diseño", "Desarrollo", "QA", "Deploy"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Modelo legal", "Activos"],
+                "en": ["Legal model", "Assets"]
+              },
+              "deliverables": {
+                "es": ["Definición token"],
+                "en": ["Token definition"]
+              },
+              "acceptance_criteria": {
+                "es": ["Legal review"],
+                "en": ["Legal review"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 30 },
+                { "role": "Blockchain Architect", "allocation_percent": 70 }
+              ],
+              "risks": { "es": ["Regulación"], "en": ["Regulation"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Diseño", "en": "Design" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Economía token", "Supply"],
+                "en": ["Token economics", "Supply"]
+              },
+              "deliverables": { "es": ["Tokenomics"], "en": ["Tokenomics"] },
+              "acceptance_criteria": {
+                "es": ["Aprobación negocio"],
+                "en": ["Business approval"]
+              },
+              "roles": [
+                { "role": "Blockchain Architect", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Volatilidad"], "en": ["Volatility"] },
+              "dependencies": {
+                "es": ["Definición token"],
+                "en": ["Token definition"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Implementación", "en": "Implementation" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Contratos", "Pruebas"],
+                "en": ["Contracts", "Tests"]
+              },
+              "deliverables": {
+                "es": ["Token en testnet"],
+                "en": ["Token on testnet"]
+              },
+              "acceptance_criteria": {
+                "es": ["Pruebas ok"],
+                "en": ["Tests ok"]
+              },
+              "roles": [
+                { "role": "Blockchain Dev", "allocation_percent": 70 },
+                { "role": "QA", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Errores supply"], "en": ["Supply errors"] },
+              "dependencies": { "es": ["Tokenomics"], "en": ["Tokenomics"] }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "Deploy", "en": "Deploy" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Mainnet", "Monitoreo"],
+                "en": ["Mainnet", "Monitoring"]
+              },
+              "deliverables": {
+                "es": ["Token en mainnet"],
+                "en": ["Token on mainnet"]
+              },
+              "acceptance_criteria": {
+                "es": ["Checklist"],
+                "en": ["Checklist"]
+              },
+              "roles": [
+                { "role": "DevOps", "allocation_percent": 40 },
+                { "role": "Blockchain Dev", "allocation_percent": 40 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Costos gas"], "en": ["Gas costs"] },
+              "dependencies": {
+                "es": ["Token en testnet"],
+                "en": ["Token on testnet"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": {
+                "es": "Tokenomics aprobado",
+                "en": "Tokenomics approved"
+              },
+              "deliverables": { "es": ["Tokenomics"], "en": ["Tokenomics"] },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Mainnet", "en": "Mainnet" },
+              "deliverables": { "es": ["Token"], "en": ["Token"] },
+              "acceptance_criteria": {
+                "es": ["Checklist"],
+                "en": ["Checklist"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Blockchain Dev", "count": 1 },
+            { "role": "QA", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "4-5" },
+            "medium": { "weeks": "5-7" },
+            "large": { "weeks": "7-10" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio por regulación"],
+            "en": ["Discovery mandatory due to regulation"]
+          },
+          "recommended_calibration_projects": [
+            "Token simple",
+            "Token con custodia"
+          ]
+        },
+        {
+          "id": "blockchain_integration",
+          "name": {
+            "es": "Integración con sistemas",
+            "en": "Systems integration"
+          },
+          "parameters": [
+            {
+              "id": "num_systems",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S2"],
+              "examples": [1, 4]
+            },
+            {
+              "id": "oracle_required",
+              "type": "boolean",
+              "required": false,
+              "affects": ["S2", "S3"],
+              "examples": [true, false]
+            }
+          ],
+          "phases": ["Discovery", "Diseño", "Integración", "QA", "Deploy"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Mapeo de sistemas"],
+                "en": ["System mapping"]
+              },
+              "deliverables": {
+                "es": ["Mapa de integración"],
+                "en": ["Integration map"]
+              },
+              "acceptance_criteria": {
+                "es": ["Mapa aprobado"],
+                "en": ["Map approved"]
+              },
+              "roles": [
+                { "role": "Architect", "allocation_percent": 60 },
+                { "role": "PM", "allocation_percent": 40 }
+              ],
+              "risks": { "es": ["APIs inestables"], "en": ["Unstable APIs"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Diseño", "en": "Design" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Esquemas", "Seguridad"],
+                "en": ["Schemas", "Security"]
+              },
+              "deliverables": {
+                "es": ["Especificación"],
+                "en": ["Specification"]
+              },
+              "acceptance_criteria": {
+                "es": ["Revisión técnica"],
+                "en": ["Technical review"]
+              },
+              "roles": [
+                { "role": "Architect", "allocation_percent": 70 },
+                { "role": "Security", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Cambios de API"], "en": ["API changes"] },
+              "dependencies": {
+                "es": ["Mapa de integración"],
+                "en": ["Integration map"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Integración", "en": "Integration" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Oráculos", "Pipelines"],
+                "en": ["Oracles", "Pipelines"]
+              },
+              "deliverables": {
+                "es": ["Integración operativa"],
+                "en": ["Operational integration"]
+              },
+              "acceptance_criteria": {
+                "es": ["Datos consistentes"],
+                "en": ["Consistent data"]
+              },
+              "roles": [
+                { "role": "Blockchain Dev", "allocation_percent": 50 },
+                { "role": "Backend Dev", "allocation_percent": 30 },
+                { "role": "QA", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Latencia"], "en": ["Latency"] },
+              "dependencies": {
+                "es": ["Especificación"],
+                "en": ["Specification"]
+              }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "QA + Deploy", "en": "QA + Deploy" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Pruebas", "Deploy"],
+                "en": ["Tests", "Deploy"]
+              },
+              "deliverables": {
+                "es": ["Integración en producción"],
+                "en": ["Production integration"]
+              },
+              "acceptance_criteria": {
+                "es": ["UAT firmado"],
+                "en": ["Signed UAT"]
+              },
+              "roles": [
+                { "role": "QA", "allocation_percent": 60 },
+                { "role": "DevOps", "allocation_percent": 40 }
+              ],
+              "risks": {
+                "es": ["Caídas de oráculo"],
+                "en": ["Oracle outages"]
+              },
+              "dependencies": {
+                "es": ["Integración operativa"],
+                "en": ["Operational integration"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Integración demo", "en": "Integration demo" },
+              "deliverables": { "es": ["Pipeline"], "en": ["Pipeline"] },
+              "acceptance_criteria": {
+                "es": ["Demo aprobada"],
+                "en": ["Demo approved"]
+              }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Go‑live", "en": "Go‑live" },
+              "deliverables": { "es": ["Integración"], "en": ["Integration"] },
+              "acceptance_criteria": { "es": ["UAT"], "en": ["UAT"] }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Architect", "count": 1 },
+            { "role": "Blockchain Dev", "count": 1 },
+            { "role": "Backend Dev", "count": 1 },
+            { "role": "QA", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "4-6" },
+            "medium": { "weeks": "6-8" },
+            "large": { "weeks": "8-10" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay APIs"],
+            "en": ["Discovery mandatory if APIs are missing"]
+          },
+          "recommended_calibration_projects": [
+            "Integración 1 sistema",
+            "Integración 4 sistemas"
+          ]
+        },
+        {
+          "id": "scalable_architecture",
+          "name": {
+            "es": "Arquitectura escalable",
+            "en": "Scalable architecture"
+          },
+          "parameters": [
+            {
+              "id": "target_tps",
+              "type": "integer",
+              "required": true,
+              "validation": "min 10",
+              "affects": ["S1", "S2"],
+              "examples": [100, 1000]
+            },
+            {
+              "id": "multi_chain",
+              "type": "boolean",
+              "required": false,
+              "affects": ["S2"],
+              "examples": [true, false]
+            }
+          ],
+          "phases": ["Discovery", "Diseño", "Implementación", "QA", "Deploy"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Requerimientos de escalabilidad"],
+                "en": ["Scalability requirements"]
+              },
+              "deliverables": {
+                "es": ["Requerimientos"],
+                "en": ["Requirements"]
+              },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] },
+              "roles": [
+                { "role": "Architect", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Supuestos erróneos"],
+                "en": ["Wrong assumptions"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Diseño", "en": "Design" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Topología", "Costos"],
+                "en": ["Topology", "Costs"]
+              },
+              "deliverables": {
+                "es": ["Arquitectura"],
+                "en": ["Architecture"]
+              },
+              "acceptance_criteria": {
+                "es": ["Revisión técnica"],
+                "en": ["Technical review"]
+              },
+              "roles": [
+                { "role": "Architect", "allocation_percent": 80 },
+                { "role": "Security", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Costos altos"], "en": ["High costs"] },
+              "dependencies": {
+                "es": ["Requerimientos"],
+                "en": ["Requirements"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Implementación", "en": "Implementation" },
+              "duration_weeks": 3,
+              "objectives": {
+                "es": ["Infra", "CI/CD", "Observabilidad"],
+                "en": ["Infra", "CI/CD", "Observability"]
+              },
+              "deliverables": {
+                "es": ["Infra deployable"],
+                "en": ["Deployable infra"]
+              },
+              "acceptance_criteria": {
+                "es": ["Pruebas carga"],
+                "en": ["Load tests"]
+              },
+              "roles": [
+                { "role": "DevOps", "allocation_percent": 60 },
+                { "role": "Blockchain Dev", "allocation_percent": 20 },
+                { "role": "QA", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Baja performance"],
+                "en": ["Low performance"]
+              },
+              "dependencies": { "es": ["Arquitectura"], "en": ["Architecture"] }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "QA + Deploy", "en": "QA + Deploy" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Validación", "Go‑live"],
+                "en": ["Validation", "Go‑live"]
+              },
+              "deliverables": { "es": ["Runbook"], "en": ["Runbook"] },
+              "acceptance_criteria": { "es": ["SLA"], "en": ["SLA"] },
+              "roles": [
+                { "role": "QA", "allocation_percent": 40 },
+                { "role": "DevOps", "allocation_percent": 40 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Costos"], "en": ["Costs"] },
+              "dependencies": {
+                "es": ["Infra deployable"],
+                "en": ["Deployable infra"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": {
+                "es": "Arquitectura aprobada",
+                "en": "Architecture approved"
+              },
+              "deliverables": {
+                "es": ["Arquitectura"],
+                "en": ["Architecture"]
+              },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Go‑live", "en": "Go‑live" },
+              "deliverables": { "es": ["Infra"], "en": ["Infra"] },
+              "acceptance_criteria": { "es": ["SLA"], "en": ["SLA"] }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Architect", "count": 1 },
+            { "role": "DevOps", "count": 2 },
+            { "role": "QA", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "6-8" },
+            "medium": { "weeks": "8-12" },
+            "large": { "weeks": "12-16" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si metas TPS no definidas"],
+            "en": ["Discovery mandatory if TPS targets are undefined"]
+          },
+          "recommended_calibration_projects": [
+            "Arquitectura 100 TPS",
+            "Arquitectura 1000 TPS"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "design_branding",
+      "name": {
+        "es": "Diseño Gráfico y Branding",
+        "en": "Graphic Design & Branding"
+      },
+      "subservices": [
+        {
+          "id": "visual_identity",
+          "name": { "es": "Identidad visual", "en": "Visual identity" },
+          "parameters": [
+            {
+              "id": "num_concepts",
+              "type": "integer",
+              "required": true,
+              "validation": "min 2",
+              "affects": ["S1"],
+              "examples": [2, 4]
+            },
+            {
+              "id": "num_applications",
+              "type": "integer",
+              "required": true,
+              "validation": "min 3",
+              "affects": ["S2"],
+              "examples": [3, 8]
+            }
+          ],
+          "phases": ["Discovery", "Diseño", "Validación", "Entrega"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Brief de marca", "Referencias"],
+                "en": ["Brand brief", "References"]
+              },
+              "deliverables": { "es": ["Brief"], "en": ["Brief"] },
+              "acceptance_criteria": {
+                "es": ["Brief aprobado"],
+                "en": ["Brief approved"]
+              },
+              "roles": [
+                { "role": "Brand Strategist", "allocation_percent": 60 },
+                { "role": "PM", "allocation_percent": 40 }
+              ],
+              "risks": {
+                "es": ["Identidad ambigua"],
+                "en": ["Ambiguous identity"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Conceptos", "en": "Concepts" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Exploración visual", "Variantes"],
+                "en": ["Visual exploration", "Variants"]
+              },
+              "deliverables": {
+                "es": ["2‑4 conceptos"],
+                "en": ["2‑4 concepts"]
+              },
+              "acceptance_criteria": {
+                "es": ["Concepto seleccionado"],
+                "en": ["Concept selected"]
+              },
+              "roles": [
+                { "role": "Designer", "allocation_percent": 80 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Feedback tardío"], "en": ["Late feedback"] },
+              "dependencies": { "es": ["Brief"], "en": ["Brief"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Sistema visual", "en": "Visual system" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Logo final", "Aplicaciones"],
+                "en": ["Final logo", "Applications"]
+              },
+              "deliverables": {
+                "es": ["Logo final", "Mockups aplicaciones"],
+                "en": ["Final logo", "Application mockups"]
+              },
+              "acceptance_criteria": {
+                "es": ["Aprobación final"],
+                "en": ["Final approval"]
+              },
+              "roles": [
+                { "role": "Designer", "allocation_percent": 70 },
+                { "role": "Brand Strategist", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Cambios de alcance"],
+                "en": ["Scope changes"]
+              },
+              "dependencies": {
+                "es": ["Concepto seleccionado"],
+                "en": ["Concept selected"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Concepto aprobado", "en": "Concept approved" },
+              "deliverables": { "es": ["Concepto"], "en": ["Concept"] },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Identidad final", "en": "Final identity" },
+              "deliverables": { "es": ["Logo final"], "en": ["Final logo"] },
+              "acceptance_criteria": {
+                "es": ["Aprobación final"],
+                "en": ["Final approval"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Designer", "count": 2 },
+            { "role": "Brand Strategist", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "4-6" },
+            "medium": { "weeks": "6-8" },
+            "large": { "weeks": "8-10" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay brief"],
+            "en": ["Discovery mandatory if no brief"]
+          },
+          "recommended_calibration_projects": [
+            "Identidad con 2 conceptos",
+            "Identidad con 4 conceptos"
+          ]
+        },
+        {
+          "id": "advertising_material",
+          "name": {
+            "es": "Material publicitario",
+            "en": "Advertising collateral"
+          },
+          "parameters": [
+            {
+              "id": "num_pieces",
+              "type": "integer",
+              "required": true,
+              "validation": "min 5",
+              "affects": ["S1", "S2"],
+              "examples": [5, 20]
+            },
+            {
+              "id": "formats",
+              "type": "integer",
+              "required": true,
+              "validation": "min 2",
+              "affects": ["S2"],
+              "examples": [2, 5]
+            }
+          ],
+          "phases": ["Discovery", "Diseño", "Entrega"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Brief de campaña"],
+                "en": ["Campaign brief"]
+              },
+              "deliverables": { "es": ["Brief"], "en": ["Brief"] },
+              "acceptance_criteria": {
+                "es": ["Brief aprobado"],
+                "en": ["Brief approved"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 40 },
+                { "role": "Designer", "allocation_percent": 60 }
+              ],
+              "risks": {
+                "es": ["Cambios de campaña"],
+                "en": ["Campaign changes"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Diseño de piezas", "en": "Asset design" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Diseño multiformato", "Adaptaciones"],
+                "en": ["Multi‑format design", "Adaptations"]
+              },
+              "deliverables": {
+                "es": ["Piezas diseñadas"],
+                "en": ["Designed assets"]
+              },
+              "acceptance_criteria": {
+                "es": ["Piezas aprobadas"],
+                "en": ["Assets approved"]
+              },
+              "roles": [
+                { "role": "Designer", "allocation_percent": 80 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Re‑trabajo"], "en": ["Rework"] },
+              "dependencies": { "es": ["Brief"], "en": ["Brief"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Entrega", "en": "Delivery" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Exportación", "Checklist"],
+                "en": ["Export", "Checklist"]
+              },
+              "deliverables": {
+                "es": ["Paquete final"],
+                "en": ["Final package"]
+              },
+              "acceptance_criteria": {
+                "es": ["Archivos correctos"],
+                "en": ["Correct files"]
+              },
+              "roles": [
+                { "role": "Designer", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Errores de formatos"],
+                "en": ["Format errors"]
+              },
+              "dependencies": {
+                "es": ["Piezas diseñadas"],
+                "en": ["Designed assets"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Piezas aprobadas", "en": "Assets approved" },
+              "deliverables": { "es": ["Piezas"], "en": ["Assets"] },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Designer", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "2-3" },
+            "medium": { "weeks": "3-4" },
+            "large": { "weeks": "4-6" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay brief"],
+            "en": ["Discovery mandatory if no brief"]
+          },
+          "recommended_calibration_projects": [
+            "5 piezas 2 formatos",
+            "20 piezas 5 formatos"
+          ]
+        },
+        {
+          "id": "ux_ui",
+          "name": { "es": "Diseño UX/UI", "en": "UX/UI design" },
+          "parameters": [
+            {
+              "id": "num_screens",
+              "type": "integer",
+              "required": true,
+              "validation": "min 5",
+              "affects": ["S1", "S2"],
+              "examples": [5, 20]
+            },
+            {
+              "id": "user_testing",
+              "type": "boolean",
+              "required": false,
+              "affects": ["S2"],
+              "examples": [true, false]
+            }
+          ],
+          "phases": ["Discovery", "Diseño", "Validación", "Entrega"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Research", "Personas"],
+                "en": ["Research", "Personas"]
+              },
+              "deliverables": { "es": ["Personas"], "en": ["Personas"] },
+              "acceptance_criteria": {
+                "es": ["Research aprobado"],
+                "en": ["Research approved"]
+              },
+              "roles": [
+                { "role": "UX", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Falta de usuarios"], "en": ["Lack of users"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Wireframes", "en": "Wireframes" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Flujos", "Arquitectura"],
+                "en": ["Flows", "Architecture"]
+              },
+              "deliverables": { "es": ["Wireframes"], "en": ["Wireframes"] },
+              "acceptance_criteria": {
+                "es": ["Wireframes aprobados"],
+                "en": ["Wireframes approved"]
+              },
+              "roles": [
+                { "role": "UX", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Cambios de flujo"], "en": ["Flow changes"] },
+              "dependencies": { "es": ["Personas"], "en": ["Personas"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "UI + Testing", "en": "UI + Testing" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["UI kit", "Prototipo", "Testing"],
+                "en": ["UI kit", "Prototype", "Testing"]
+              },
+              "deliverables": {
+                "es": ["UI kit", "Prototipo"],
+                "en": ["UI kit", "Prototype"]
+              },
+              "acceptance_criteria": {
+                "es": ["Testing validado"],
+                "en": ["Testing validated"]
+              },
+              "roles": [
+                { "role": "Designer", "allocation_percent": 70 },
+                { "role": "UX", "allocation_percent": 20 },
+                { "role": "PM", "allocation_percent": 10 }
+              ],
+              "risks": { "es": ["Feedback tardío"], "en": ["Late feedback"] },
+              "dependencies": { "es": ["Wireframes"], "en": ["Wireframes"] }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": {
+                "es": "Wireframes aprobados",
+                "en": "Wireframes approved"
+              },
+              "deliverables": { "es": ["Wireframes"], "en": ["Wireframes"] },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "UI final", "en": "Final UI" },
+              "deliverables": { "es": ["UI kit"], "en": ["UI kit"] },
+              "acceptance_criteria": {
+                "es": ["Aprobación final"],
+                "en": ["Final approval"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "UX", "count": 1 },
+            { "role": "Designer", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "4-6" },
+            "medium": { "weeks": "6-8" },
+            "large": { "weeks": "8-10" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay research"],
+            "en": ["Discovery mandatory if no research"]
+          },
+          "recommended_calibration_projects": [
+            "UX 5 pantallas",
+            "UX 20 pantallas"
+          ]
+        },
+        {
+          "id": "brand_guidelines",
+          "name": { "es": "Guías de marca", "en": "Brand guidelines" },
+          "parameters": [
+            {
+              "id": "num_sections",
+              "type": "integer",
+              "required": true,
+              "validation": "min 5",
+              "affects": ["S1"],
+              "examples": [6, 12]
+            },
+            {
+              "id": "formats",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S2"],
+              "examples": [1, 2]
+            }
+          ],
+          "phases": ["Discovery", "Diseño", "Entrega"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Contenido guía", "Stakeholders"],
+                "en": ["Guide content", "Stakeholders"]
+              },
+              "deliverables": { "es": ["Estructura"], "en": ["Structure"] },
+              "acceptance_criteria": {
+                "es": ["Estructura aprobada"],
+                "en": ["Structure approved"]
+              },
+              "roles": [
+                { "role": "Brand Strategist", "allocation_percent": 60 },
+                { "role": "PM", "allocation_percent": 40 }
+              ],
+              "risks": { "es": ["Falta de assets"], "en": ["Missing assets"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Redacción + diseño", "en": "Writing + design" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Redacción", "Visuales"],
+                "en": ["Writing", "Visuals"]
+              },
+              "deliverables": {
+                "es": ["Guía borrador"],
+                "en": ["Draft guide"]
+              },
+              "acceptance_criteria": {
+                "es": ["Revisión interna"],
+                "en": ["Internal review"]
+              },
+              "roles": [
+                { "role": "Designer", "allocation_percent": 60 },
+                { "role": "Brand Strategist", "allocation_percent": 40 }
+              ],
+              "risks": { "es": ["Cambios tardíos"], "en": ["Late changes"] },
+              "dependencies": { "es": ["Estructura"], "en": ["Structure"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Entrega", "en": "Delivery" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Exportación", "Checklist"],
+                "en": ["Export", "Checklist"]
+              },
+              "deliverables": { "es": ["Guía final"], "en": ["Final guide"] },
+              "acceptance_criteria": {
+                "es": ["Aprobación final"],
+                "en": ["Final approval"]
+              },
+              "roles": [
+                { "role": "Designer", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Errores de formato"],
+                "en": ["Format errors"]
+              },
+              "dependencies": { "es": ["Guía borrador"], "en": ["Draft guide"] }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Guía final", "en": "Final guide" },
+              "deliverables": { "es": ["Guía"], "en": ["Guide"] },
+              "acceptance_criteria": {
+                "es": ["Aprobación final"],
+                "en": ["Final approval"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Designer", "count": 1 },
+            { "role": "Brand Strategist", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "3-4" },
+            "medium": { "weeks": "4-6" },
+            "large": { "weeks": "6-8" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay assets"],
+            "en": ["Discovery mandatory if assets are missing"]
+          },
+          "recommended_calibration_projects": [
+            "Guía 6 secciones",
+            "Guía 12 secciones"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "digital_marketing",
+      "name": { "es": "Marketing Digital", "en": "Digital Marketing" },
+      "subservices": [
+        {
+          "id": "social_media",
+          "name": { "es": "Gestión de redes", "en": "Social media management" },
+          "parameters": [
+            {
+              "id": "num_channels",
+              "type": "integer",
+              "required": true,
+              "validation": "min 2",
+              "affects": ["S1", "S2"],
+              "examples": [2, 4]
+            },
+            {
+              "id": "posts_per_week",
+              "type": "integer",
+              "required": true,
+              "validation": "min 3",
+              "affects": ["S2"],
+              "examples": [3, 10]
+            }
+          ],
+          "phases": ["Discovery", "Planificación", "Ejecución", "Reporting"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Auditoría canales"],
+                "en": ["Channel audit"]
+              },
+              "deliverables": { "es": ["Diagnóstico"], "en": ["Diagnosis"] },
+              "acceptance_criteria": {
+                "es": ["Diagnóstico aprobado"],
+                "en": ["Diagnosis approved"]
+              },
+              "roles": [
+                { "role": "PM", "allocation_percent": 40 },
+                { "role": "Marketing", "allocation_percent": 60 }
+              ],
+              "risks": { "es": ["Objetivos difusos"], "en": ["Unclear goals"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Plan de contenidos", "en": "Content plan" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Calendario", "Tonos"],
+                "en": ["Calendar", "Tone"]
+              },
+              "deliverables": { "es": ["Calendario"], "en": ["Calendar"] },
+              "acceptance_criteria": {
+                "es": ["Calendario aprobado"],
+                "en": ["Calendar approved"]
+              },
+              "roles": [
+                { "role": "Marketing", "allocation_percent": 70 },
+                { "role": "Designer", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Cambios de campaña"],
+                "en": ["Campaign changes"]
+              },
+              "dependencies": { "es": ["Diagnóstico"], "en": ["Diagnosis"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Ejecución", "en": "Execution" },
+              "duration_weeks": 4,
+              "objectives": {
+                "es": ["Publicaciones", "Moderación"],
+                "en": ["Publishing", "Moderation"]
+              },
+              "deliverables": {
+                "es": ["Posts publicados"],
+                "en": ["Published posts"]
+              },
+              "acceptance_criteria": {
+                "es": ["Cumplimiento calendario"],
+                "en": ["Calendar compliance"]
+              },
+              "roles": [
+                { "role": "Marketing", "allocation_percent": 60 },
+                { "role": "Designer", "allocation_percent": 20 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Baja interacción"], "en": ["Low engagement"] },
+              "dependencies": { "es": ["Calendario"], "en": ["Calendar"] }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "Reporting", "en": "Reporting" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Analítica", "Insights"],
+                "en": ["Analytics", "Insights"]
+              },
+              "deliverables": { "es": ["Reporte"], "en": ["Report"] },
+              "acceptance_criteria": {
+                "es": ["Reporte entregado"],
+                "en": ["Report delivered"]
+              },
+              "roles": [
+                { "role": "Marketing", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Datos incompletos"],
+                "en": ["Incomplete data"]
+              },
+              "dependencies": {
+                "es": ["Posts publicados"],
+                "en": ["Published posts"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": {
+                "es": "Calendario aprobado",
+                "en": "Calendar approved"
+              },
+              "deliverables": { "es": ["Calendario"], "en": ["Calendar"] },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Reporte mensual", "en": "Monthly report" },
+              "deliverables": { "es": ["Reporte"], "en": ["Report"] },
+              "acceptance_criteria": { "es": ["Revisión"], "en": ["Review"] }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Marketing", "count": 1 },
+            { "role": "Designer", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "4-6" },
+            "medium": { "weeks": "8-12" },
+            "large": { "weeks": "12-24" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay objetivos"],
+            "en": ["Discovery mandatory if goals are missing"]
+          },
+          "recommended_calibration_projects": [
+            "2 canales 3 posts/sem",
+            "4 canales 10 posts/sem"
+          ]
+        },
+        {
+          "id": "ads",
+          "name": { "es": "Campañas Ads", "en": "Ads campaigns" },
+          "parameters": [
+            {
+              "id": "num_campaigns",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S1", "S2"],
+              "examples": [1, 4]
+            },
+            {
+              "id": "num_creatives",
+              "type": "integer",
+              "required": true,
+              "validation": "min 3",
+              "affects": ["S2"],
+              "examples": [3, 10]
+            }
+          ],
+          "phases": ["Discovery", "Planificación", "Ejecución", "Optimización"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Objetivos", "Audiencias"],
+                "en": ["Goals", "Audiences"]
+              },
+              "deliverables": { "es": ["Brief Ads"], "en": ["Ads brief"] },
+              "acceptance_criteria": {
+                "es": ["Brief aprobado"],
+                "en": ["Brief approved"]
+              },
+              "roles": [
+                { "role": "Marketing", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Tracking incompleto"],
+                "en": ["Incomplete tracking"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Setup campañas", "en": "Campaign setup" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Estructura", "Conversiones"],
+                "en": ["Structure", "Conversions"]
+              },
+              "deliverables": {
+                "es": ["Campañas configuradas"],
+                "en": ["Configured campaigns"]
+              },
+              "acceptance_criteria": {
+                "es": ["Tracking activo"],
+                "en": ["Tracking active"]
+              },
+              "roles": [
+                { "role": "Marketing", "allocation_percent": 80 },
+                { "role": "Designer", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Rechazo anuncios"], "en": ["Ad rejection"] },
+              "dependencies": { "es": ["Brief Ads"], "en": ["Ads brief"] }
+            },
+            {
+              "id": "S2",
+              "name": {
+                "es": "Ejecución + optimización",
+                "en": "Execution + optimization"
+              },
+              "duration_weeks": 3,
+              "objectives": {
+                "es": ["A/B", "Optimización"],
+                "en": ["A/B", "Optimization"]
+              },
+              "deliverables": { "es": ["Resultados"], "en": ["Results"] },
+              "acceptance_criteria": {
+                "es": ["CPA dentro objetivo"],
+                "en": ["CPA within target"]
+              },
+              "roles": [
+                { "role": "Marketing", "allocation_percent": 70 },
+                { "role": "Analyst", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Costos altos"], "en": ["High costs"] },
+              "dependencies": {
+                "es": ["Campañas configuradas"],
+                "en": ["Configured campaigns"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Lanzamiento campañas", "en": "Campaign launch" },
+              "deliverables": { "es": ["Campañas"], "en": ["Campaigns"] },
+              "acceptance_criteria": {
+                "es": ["Tracking activo"],
+                "en": ["Tracking active"]
+              }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Optimización", "en": "Optimization" },
+              "deliverables": { "es": ["Reporte"], "en": ["Report"] },
+              "acceptance_criteria": {
+                "es": ["CPA objetivo"],
+                "en": ["CPA target"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Marketing", "count": 1 },
+            { "role": "Designer", "count": 1 },
+            { "role": "Analyst", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "3-4" },
+            "medium": { "weeks": "4-6" },
+            "large": { "weeks": "6-8" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay tracking"],
+            "en": ["Discovery mandatory if tracking is missing"]
+          },
+          "recommended_calibration_projects": [
+            "1 campaña 3 creatividades",
+            "4 campañas 10 creatividades"
+          ]
+        },
+        {
+          "id": "seo",
+          "name": { "es": "SEO", "en": "SEO" },
+          "parameters": [
+            {
+              "id": "num_pages",
+              "type": "integer",
+              "required": true,
+              "validation": "min 5",
+              "affects": ["S2"],
+              "examples": [5, 50]
+            },
+            {
+              "id": "technical_audit",
+              "type": "boolean",
+              "required": true,
+              "affects": ["S1"],
+              "examples": [true, false]
+            }
+          ],
+          "phases": ["Discovery", "Auditoría", "Implementación", "Reporting"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Objetivos SEO", "KPIs"],
+                "en": ["SEO goals", "KPIs"]
+              },
+              "deliverables": { "es": ["Brief SEO"], "en": ["SEO brief"] },
+              "acceptance_criteria": {
+                "es": ["KPIs definidos"],
+                "en": ["KPIs defined"]
+              },
+              "roles": [
+                { "role": "SEO", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Sin analítica"], "en": ["No analytics"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Auditoría", "en": "Audit" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Auditoría técnica", "Contenido"],
+                "en": ["Technical audit", "Content"]
+              },
+              "deliverables": { "es": ["Reporte SEO"], "en": ["SEO report"] },
+              "acceptance_criteria": {
+                "es": ["Backlog priorizado"],
+                "en": ["Prioritized backlog"]
+              },
+              "roles": [
+                { "role": "SEO", "allocation_percent": 80 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": {
+                "es": ["Cambios de algoritmo"],
+                "en": ["Algorithm changes"]
+              },
+              "dependencies": { "es": ["Brief SEO"], "en": ["SEO brief"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Implementación", "en": "Implementation" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Quick wins", "Correcciones"],
+                "en": ["Quick wins", "Fixes"]
+              },
+              "deliverables": {
+                "es": ["Mejoras SEO"],
+                "en": ["SEO improvements"]
+              },
+              "acceptance_criteria": {
+                "es": ["Core Web Vitals"],
+                "en": ["Core Web Vitals"]
+              },
+              "roles": [
+                { "role": "SEO", "allocation_percent": 50 },
+                { "role": "Frontend Dev", "allocation_percent": 30 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Dependencia dev"], "en": ["Dev dependency"] },
+              "dependencies": { "es": ["Reporte SEO"], "en": ["SEO report"] }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "Reporting", "en": "Reporting" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Reporte", "Plan mensual"],
+                "en": ["Report", "Monthly plan"]
+              },
+              "deliverables": { "es": ["Reporte SEO"], "en": ["SEO report"] },
+              "acceptance_criteria": {
+                "es": ["Plan aprobado"],
+                "en": ["Plan approved"]
+              },
+              "roles": [
+                { "role": "SEO", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Datos insuficientes"],
+                "en": ["Insufficient data"]
+              },
+              "dependencies": {
+                "es": ["Mejoras SEO"],
+                "en": ["SEO improvements"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Auditoría entregada", "en": "Audit delivered" },
+              "deliverables": { "es": ["Reporte"], "en": ["Report"] },
+              "acceptance_criteria": {
+                "es": ["Backlog priorizado"],
+                "en": ["Prioritized backlog"]
+              }
+            },
+            {
+              "id": "M2",
+              "name": {
+                "es": "Mejoras implementadas",
+                "en": "Improvements implemented"
+              },
+              "deliverables": { "es": ["SEO fixes"], "en": ["SEO fixes"] },
+              "acceptance_criteria": {
+                "es": ["CWV dentro objetivo"],
+                "en": ["CWV within target"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "SEO", "count": 1 },
+            { "role": "Frontend Dev", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "4-6" },
+            "medium": { "weeks": "6-8" },
+            "large": { "weeks": "8-12" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay KPIs"],
+            "en": ["Discovery mandatory if KPIs are missing"]
+          },
+          "recommended_calibration_projects": [
+            "SEO 5 páginas",
+            "SEO 50 páginas"
+          ]
+        },
+        {
+          "id": "analytics_reporting",
+          "name": {
+            "es": "Analítica y reporting",
+            "en": "Analytics & reporting"
+          },
+          "parameters": [
+            {
+              "id": "num_dashboards",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S2"],
+              "examples": [1, 4]
+            },
+            {
+              "id": "data_sources",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S1", "S2"],
+              "examples": [1, 5]
+            }
+          ],
+          "phases": ["Discovery", "Diseño", "Implementación", "Entrega"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["KPIs", "Fuentes"],
+                "en": ["KPIs", "Sources"]
+              },
+              "deliverables": { "es": ["Mapa de datos"], "en": ["Data map"] },
+              "acceptance_criteria": {
+                "es": ["Mapa aprobado"],
+                "en": ["Map approved"]
+              },
+              "roles": [
+                { "role": "Analyst", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Datos incompletos"],
+                "en": ["Incomplete data"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Diseño dashboards", "en": "Dashboard design" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Wireframes", "Definir métricas"],
+                "en": ["Wireframes", "Define metrics"]
+              },
+              "deliverables": { "es": ["Wireframes"], "en": ["Wireframes"] },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] },
+              "roles": [
+                { "role": "Analyst", "allocation_percent": 60 },
+                { "role": "Designer", "allocation_percent": 20 },
+                { "role": "PM", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["KPIs ambiguos"], "en": ["Ambiguous KPIs"] },
+              "dependencies": { "es": ["Mapa de datos"], "en": ["Data map"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Implementación", "en": "Implementation" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Conexiones", "Dashboards"],
+                "en": ["Connections", "Dashboards"]
+              },
+              "deliverables": { "es": ["Dashboards"], "en": ["Dashboards"] },
+              "acceptance_criteria": {
+                "es": ["Datos consistentes"],
+                "en": ["Consistent data"]
+              },
+              "roles": [
+                { "role": "Data Engineer", "allocation_percent": 50 },
+                { "role": "Analyst", "allocation_percent": 30 },
+                { "role": "QA", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Limitaciones de API"], "en": ["API limits"] },
+              "dependencies": { "es": ["Wireframes"], "en": ["Wireframes"] }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "Entrega", "en": "Delivery" },
+              "duration_weeks": 1,
+              "objectives": {
+                "es": ["Capacitación", "Runbook"],
+                "en": ["Training", "Runbook"]
+              },
+              "deliverables": { "es": ["Manual"], "en": ["Manual"] },
+              "acceptance_criteria": {
+                "es": ["Usuarios entrenados"],
+                "en": ["Users trained"]
+              },
+              "roles": [
+                { "role": "Analyst", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Baja adopción"], "en": ["Low adoption"] },
+              "dependencies": { "es": ["Dashboards"], "en": ["Dashboards"] }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Dashboards listos", "en": "Dashboards ready" },
+              "deliverables": { "es": ["Dashboards"], "en": ["Dashboards"] },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Analyst", "count": 1 },
+            { "role": "Data Engineer", "count": 1 },
+            { "role": "QA", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "4-6" },
+            "medium": { "weeks": "6-8" },
+            "large": { "weeks": "8-10" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay KPIs"],
+            "en": ["Discovery mandatory if KPIs are missing"]
+          },
+          "recommended_calibration_projects": [
+            "1 dashboard 2 fuentes",
+            "4 dashboards 5 fuentes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "video_games",
+      "name": {
+        "es": "Desarrollo de Videojuegos",
+        "en": "Video Game Development"
+      },
+      "subservices": [
+        {
+          "id": "gdd_prototyping",
+          "name": { "es": "GDD y prototipado", "en": "GDD & prototyping" },
+          "parameters": [
+            {
+              "id": "num_mechanics",
+              "type": "integer",
+              "required": true,
+              "validation": "min 2",
+              "affects": ["S1"],
+              "examples": [2, 6]
+            },
+            {
+              "id": "platforms",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S2"],
+              "examples": [1, 3]
+            }
+          ],
+          "phases": ["Discovery", "Diseño", "Prototipo", "Validación"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Visión de juego", "Pilares"],
+                "en": ["Game vision", "Pillars"]
+              },
+              "deliverables": {
+                "es": ["Brief creativo"],
+                "en": ["Creative brief"]
+              },
+              "acceptance_criteria": {
+                "es": ["Pilares aprobados"],
+                "en": ["Pillars approved"]
+              },
+              "roles": [
+                { "role": "Game Designer", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Scope creativo"], "en": ["Creative scope"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "GDD", "en": "GDD" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Mecánicas", "Loops"],
+                "en": ["Mechanics", "Loops"]
+              },
+              "deliverables": { "es": ["GDD"], "en": ["GDD"] },
+              "acceptance_criteria": {
+                "es": ["GDD aprobado"],
+                "en": ["GDD approved"]
+              },
+              "roles": [
+                { "role": "Game Designer", "allocation_percent": 70 },
+                { "role": "Tech Lead", "allocation_percent": 30 }
+              ],
+              "risks": {
+                "es": ["Cambios de mecánicas"],
+                "en": ["Mechanics changes"]
+              },
+              "dependencies": {
+                "es": ["Brief creativo"],
+                "en": ["Creative brief"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Prototipo", "en": "Prototype" },
+              "duration_weeks": 3,
+              "objectives": {
+                "es": ["Vertical slice", "Validación"],
+                "en": ["Vertical slice", "Validation"]
+              },
+              "deliverables": {
+                "es": ["Prototipo jugable"],
+                "en": ["Playable prototype"]
+              },
+              "acceptance_criteria": {
+                "es": ["Feedback positivo"],
+                "en": ["Positive feedback"]
+              },
+              "roles": [
+                { "role": "Game Dev", "allocation_percent": 60 },
+                { "role": "Designer", "allocation_percent": 20 },
+                { "role": "QA", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Rendimiento"], "en": ["Performance"] },
+              "dependencies": { "es": ["GDD"], "en": ["GDD"] }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "GDD aprobado", "en": "GDD approved" },
+              "deliverables": { "es": ["GDD"], "en": ["GDD"] },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            },
+            {
+              "id": "M2",
+              "name": {
+                "es": "Prototipo validado",
+                "en": "Prototype validated"
+              },
+              "deliverables": { "es": ["Prototipo"], "en": ["Prototype"] },
+              "acceptance_criteria": {
+                "es": ["Feedback validado"],
+                "en": ["Feedback validated"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Game Designer", "count": 1 },
+            { "role": "Game Dev", "count": 1 },
+            { "role": "QA", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "4-6" },
+            "medium": { "weeks": "6-8" },
+            "large": { "weeks": "8-10" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay visión"],
+            "en": ["Discovery mandatory if vision is missing"]
+          },
+          "recommended_calibration_projects": [
+            "GDD 2 mecánicas",
+            "GDD 6 mecánicas"
+          ]
+        },
+        {
+          "id": "game_programming",
+          "name": {
+            "es": "Programación (C#/C++)",
+            "en": "Programming (C#/C++)"
+          },
+          "parameters": [
+            {
+              "id": "num_levels",
+              "type": "integer",
+              "required": true,
+              "validation": "min 3",
+              "affects": ["S2"],
+              "examples": [3, 10]
+            },
+            {
+              "id": "multiplayer",
+              "type": "boolean",
+              "required": false,
+              "affects": ["S3"],
+              "examples": [true, false]
+            }
+          ],
+          "phases": ["Discovery", "Desarrollo", "Integración", "QA", "Deploy"],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Arquitectura", "Stack"],
+                "en": ["Architecture", "Stack"]
+              },
+              "deliverables": {
+                "es": ["Plan técnico"],
+                "en": ["Technical plan"]
+              },
+              "acceptance_criteria": {
+                "es": ["Plan aprobado"],
+                "en": ["Plan approved"]
+              },
+              "roles": [
+                { "role": "Tech Lead", "allocation_percent": 70 },
+                { "role": "PM", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Deuda técnica"], "en": ["Tech debt"] },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Core gameplay", "en": "Core gameplay" },
+              "duration_weeks": 4,
+              "objectives": {
+                "es": ["Movimiento", "Combate"],
+                "en": ["Movement", "Combat"]
+              },
+              "deliverables": { "es": ["Loop core"], "en": ["Core loop"] },
+              "acceptance_criteria": {
+                "es": ["Loop estable"],
+                "en": ["Stable loop"]
+              },
+              "roles": [
+                { "role": "Game Dev", "allocation_percent": 70 },
+                { "role": "QA", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Rendimiento"], "en": ["Performance"] },
+              "dependencies": {
+                "es": ["Plan técnico"],
+                "en": ["Technical plan"]
+              }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Contenido", "en": "Content" },
+              "duration_weeks": 4,
+              "objectives": { "es": ["Niveles", "IA"], "en": ["Levels", "AI"] },
+              "deliverables": { "es": ["Niveles"], "en": ["Levels"] },
+              "acceptance_criteria": {
+                "es": ["Niveles jugables"],
+                "en": ["Playable levels"]
+              },
+              "roles": [
+                { "role": "Game Dev", "allocation_percent": 60 },
+                { "role": "Designer", "allocation_percent": 20 },
+                { "role": "QA", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Scope creep"], "en": ["Scope creep"] },
+              "dependencies": { "es": ["Loop core"], "en": ["Core loop"] }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "Integración + QA", "en": "Integration + QA" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Build final", "QA"],
+                "en": ["Final build", "QA"]
+              },
+              "deliverables": { "es": ["Build RC"], "en": ["RC build"] },
+              "acceptance_criteria": {
+                "es": ["0 bugs críticos"],
+                "en": ["0 critical bugs"]
+              },
+              "roles": [
+                { "role": "QA", "allocation_percent": 60 },
+                { "role": "Game Dev", "allocation_percent": 40 }
+              ],
+              "risks": {
+                "es": ["Multiplayer inestable"],
+                "en": ["Unstable multiplayer"]
+              },
+              "dependencies": { "es": ["Niveles"], "en": ["Levels"] }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Vertical slice", "en": "Vertical slice" },
+              "deliverables": { "es": ["Loop core"], "en": ["Core loop"] },
+              "acceptance_criteria": {
+                "es": ["Demo aprobada"],
+                "en": ["Demo approved"]
+              }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Release candidate", "en": "Release candidate" },
+              "deliverables": { "es": ["Build RC"], "en": ["RC build"] },
+              "acceptance_criteria": { "es": ["QA ok"], "en": ["QA ok"] }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Game Dev", "count": 2 },
+            { "role": "QA", "count": 2 },
+            { "role": "Designer", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "8-12" },
+            "medium": { "weeks": "12-20" },
+            "large": { "weeks": "20-32" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Recalibrar cada 3‑4 sprints"],
+            "en": ["Recalibrate every 3‑4 sprints"]
+          },
+          "recommended_calibration_projects": [
+            "Juego indie 3 niveles",
+            "Juego 10 niveles"
+          ]
+        },
+        {
+          "id": "integration_publishing",
+          "name": {
+            "es": "Integración y publicación",
+            "en": "Integration & publishing"
+          },
+          "parameters": [
+            {
+              "id": "platforms",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S1"],
+              "examples": [1, 3]
+            },
+            {
+              "id": "store_requirements",
+              "type": "boolean",
+              "required": true,
+              "affects": ["S2"],
+              "examples": [true, false]
+            }
+          ],
+          "phases": ["Integración", "QA", "Publish"],
+          "sprints": [
+            {
+              "id": "S1",
+              "name": {
+                "es": "Integración plataformas",
+                "en": "Platform integration"
+              },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["SDKs", "Builds"],
+                "en": ["SDKs", "Builds"]
+              },
+              "deliverables": {
+                "es": ["Builds por plataforma"],
+                "en": ["Platform builds"]
+              },
+              "acceptance_criteria": {
+                "es": ["Builds ejecutan"],
+                "en": ["Builds run"]
+              },
+              "roles": [
+                { "role": "Game Dev", "allocation_percent": 60 },
+                { "role": "DevOps", "allocation_percent": 40 }
+              ],
+              "risks": { "es": ["Errores de SDK"], "en": ["SDK errors"] },
+              "dependencies": { "es": ["Build RC"], "en": ["RC build"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "QA + publicación", "en": "QA + publishing" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["QA final", "Store submission"],
+                "en": ["Final QA", "Store submission"]
+              },
+              "deliverables": {
+                "es": ["Juego publicado"],
+                "en": ["Published game"]
+              },
+              "acceptance_criteria": {
+                "es": ["Aprobación store"],
+                "en": ["Store approval"]
+              },
+              "roles": [
+                { "role": "QA", "allocation_percent": 60 },
+                { "role": "PM", "allocation_percent": 20 },
+                { "role": "DevOps", "allocation_percent": 20 }
+              ],
+              "risks": { "es": ["Rechazo store"], "en": ["Store rejection"] },
+              "dependencies": {
+                "es": ["Builds por plataforma"],
+                "en": ["Platform builds"]
+              }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Builds listos", "en": "Builds ready" },
+              "deliverables": { "es": ["Builds"], "en": ["Builds"] },
+              "acceptance_criteria": { "es": ["QA básico"], "en": ["Basic QA"] }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Publicación", "en": "Publishing" },
+              "deliverables": {
+                "es": ["Juego publicado"],
+                "en": ["Published game"]
+              },
+              "acceptance_criteria": {
+                "es": ["Aprobación store"],
+                "en": ["Store approval"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Game Dev", "count": 1 },
+            { "role": "QA", "count": 1 },
+            { "role": "DevOps", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "3-4" },
+            "medium": { "weeks": "4-6" },
+            "large": { "weeks": "6-8" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Requisitos de store pueden variar"],
+            "en": ["Store requirements may vary"]
+          },
+          "recommended_calibration_projects": [
+            "Publicación 1 plataforma",
+            "Publicación 3 plataformas"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "modeling_3d",
+      "name": {
+        "es": "Modelado 3D de Personajes y Assets",
+        "en": "3D Character & Asset Modeling"
+      },
+      "subservices": [
+        {
+          "id": "character_assets_pipeline",
+          "name": {
+            "es": "Concept → Modelado → Texturizado → Rigging → Animación",
+            "en": "Concept → Modeling → Texturing → Rigging → Animation"
+          },
+          "parameters": [
+            {
+              "id": "num_assets",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S2", "S3"],
+              "examples": [1, 10]
+            },
+            {
+              "id": "poly_level",
+              "type": "string",
+              "required": true,
+              "validation": "low|mid|high",
+              "affects": ["S2"],
+              "examples": ["mid", "high"]
+            },
+            {
+              "id": "num_animations",
+              "type": "integer",
+              "required": true,
+              "validation": "min 1",
+              "affects": ["S4"],
+              "examples": [3, 20]
+            }
+          ],
+          "phases": [
+            "Discovery",
+            "Concept",
+            "Modelado",
+            "Texturizado",
+            "Rigging",
+            "Animación",
+            "QA",
+            "Entrega"
+          ],
+          "sprints": [
+            {
+              "id": "S0",
+              "name": { "es": "Discovery", "en": "Discovery" },
+              "duration_weeks": 1,
+              "conditional": {
+                "requires_discovery": true,
+                "when": "requirements_complete == false"
+              },
+              "objectives": {
+                "es": ["Referencias", "Estilo"],
+                "en": ["References", "Style"]
+              },
+              "deliverables": {
+                "es": ["Brief visual"],
+                "en": ["Visual brief"]
+              },
+              "acceptance_criteria": {
+                "es": ["Brief aprobado"],
+                "en": ["Brief approved"]
+              },
+              "roles": [
+                { "role": "Art Director", "allocation_percent": 60 },
+                { "role": "PM", "allocation_percent": 40 }
+              ],
+              "risks": {
+                "es": ["Referencias ambiguas"],
+                "en": ["Ambiguous references"]
+              },
+              "dependencies": { "es": [], "en": [] }
+            },
+            {
+              "id": "S1",
+              "name": { "es": "Concept art", "en": "Concept art" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Explorar siluetas", "Color"],
+                "en": ["Explore silhouettes", "Color"]
+              },
+              "deliverables": { "es": ["Concepts"], "en": ["Concepts"] },
+              "acceptance_criteria": {
+                "es": ["Concept aprobado"],
+                "en": ["Approved concept"]
+              },
+              "roles": [
+                { "role": "Concept Artist", "allocation_percent": 70 },
+                { "role": "Art Director", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Cambios de estilo"], "en": ["Style changes"] },
+              "dependencies": { "es": ["Brief visual"], "en": ["Visual brief"] }
+            },
+            {
+              "id": "S2",
+              "name": { "es": "Modelado + UV", "en": "Modeling + UV" },
+              "duration_weeks": 3,
+              "objectives": {
+                "es": ["Modelado", "UVs"],
+                "en": ["Modeling", "UVs"]
+              },
+              "deliverables": { "es": ["Modelo base"], "en": ["Base model"] },
+              "acceptance_criteria": {
+                "es": ["Topología validada"],
+                "en": ["Topology validated"]
+              },
+              "roles": [
+                { "role": "3D Artist", "allocation_percent": 70 },
+                { "role": "Art Director", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Retopología"], "en": ["Retopology"] },
+              "dependencies": {
+                "es": ["Concept aprobado"],
+                "en": ["Approved concept"]
+              }
+            },
+            {
+              "id": "S3",
+              "name": { "es": "Texturizado", "en": "Texturing" },
+              "duration_weeks": 2,
+              "objectives": {
+                "es": ["Materiales PBR", "Baking"],
+                "en": ["PBR materials", "Baking"]
+              },
+              "deliverables": { "es": ["Texturas"], "en": ["Textures"] },
+              "acceptance_criteria": {
+                "es": ["Texturas aprobadas"],
+                "en": ["Textures approved"]
+              },
+              "roles": [
+                { "role": "3D Artist", "allocation_percent": 70 },
+                { "role": "QA", "allocation_percent": 30 }
+              ],
+              "risks": { "es": ["Artefactos"], "en": ["Artifacts"] },
+              "dependencies": { "es": ["Modelo base"], "en": ["Base model"] }
+            },
+            {
+              "id": "S4",
+              "name": {
+                "es": "Rigging + Animación",
+                "en": "Rigging + Animation"
+              },
+              "duration_weeks": 3,
+              "objectives": {
+                "es": ["Rig", "Animaciones"],
+                "en": ["Rig", "Animations"]
+              },
+              "deliverables": {
+                "es": ["Rig + animaciones"],
+                "en": ["Rig + animations"]
+              },
+              "acceptance_criteria": {
+                "es": ["Deformaciones correctas"],
+                "en": ["Correct deformations"]
+              },
+              "roles": [
+                { "role": "Rigger", "allocation_percent": 60 },
+                { "role": "Animator", "allocation_percent": 40 }
+              ],
+              "risks": {
+                "es": ["Complejidad de rig"],
+                "en": ["Rig complexity"]
+              },
+              "dependencies": { "es": ["Texturas"], "en": ["Textures"] }
+            }
+          ],
+          "milestones": [
+            {
+              "id": "M1",
+              "name": { "es": "Concept aprobado", "en": "Concept approved" },
+              "deliverables": { "es": ["Concept"], "en": ["Concept"] },
+              "acceptance_criteria": { "es": ["Sign‑off"], "en": ["Sign‑off"] }
+            },
+            {
+              "id": "M2",
+              "name": { "es": "Modelo final", "en": "Final model" },
+              "deliverables": { "es": ["Modelo"], "en": ["Model"] },
+              "acceptance_criteria": {
+                "es": ["Checklist técnico"],
+                "en": ["Technical checklist"]
+              }
+            },
+            {
+              "id": "M3",
+              "name": { "es": "Entrega", "en": "Delivery" },
+              "deliverables": {
+                "es": ["Rig + animaciones"],
+                "en": ["Rig + animations"]
+              },
+              "acceptance_criteria": {
+                "es": ["Validación QA"],
+                "en": ["QA validation"]
+              }
+            }
+          ],
+          "recommended_team": [
+            { "role": "PM", "count": 1 },
+            { "role": "Art Director", "count": 1 },
+            { "role": "Concept Artist", "count": 1 },
+            { "role": "3D Artist", "count": 1 },
+            { "role": "Rigger", "count": 1 },
+            { "role": "Animator", "count": 1 },
+            { "role": "QA", "count": 1 }
+          ],
+          "typical_duration": {
+            "small": { "weeks": "6-8" },
+            "medium": { "weeks": "8-12" },
+            "large": { "weeks": "12-18" }
+          },
+          "buffers": {
+            "discovery": "10-20%",
+            "development": "10-15%",
+            "change_requests": "15-30%"
+          },
+          "notes": {
+            "es": ["Discovery obligatorio si no hay referencias"],
+            "en": ["Discovery mandatory if references are missing"]
+          },
+          "recommended_calibration_projects": [
+            "1 personaje high‑poly",
+            "10 assets mid‑poly"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -26,6 +26,9 @@ export default function CotizacionServiciosPage() {
     const [sendingEmail, setSendingEmail] = useState(false);
     const [emailSent, setEmailSent] = useState(false);
     const [emailError, setEmailError] = useState('');
+    const [sellerPassword, setSellerPassword] = useState('');
+    const [sellerUnlocked, setSellerUnlocked] = useState(false);
+    const [sellerError, setSellerError] = useState('');
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -37,6 +40,7 @@ export default function CotizacionServiciosPage() {
 
     // IVA para Colombia (19%)
     const IVA = 0.19;
+    const SELLER_PASSWORD = '81720164';
 
     // Tabla de precios base por hora (USD 2026, sin IVA - se aplica al final)
     // Precios actualizados automáticamente usando referencias públicas (Feb 01, 2026).
@@ -421,6 +425,129 @@ export default function CotizacionServiciosPage() {
             ]
         }
     ], [t]);
+
+    const vendorGuide = useMemo(() => ({
+        'desarrollo-web-movil': {
+            glossary: [
+                { term: t('quote_vendor_web_glossary_term_1'), description: t('quote_vendor_web_glossary_desc_1') },
+                { term: t('quote_vendor_web_glossary_term_2'), description: t('quote_vendor_web_glossary_desc_2') }
+            ],
+            examples: [
+                t('quote_vendor_web_example_1'),
+                t('quote_vendor_web_example_2')
+            ],
+            integration: [
+                t('quote_vendor_web_integration_1'),
+                t('quote_vendor_web_integration_2'),
+                t('quote_vendor_web_integration_3')
+            ]
+        },
+        'software-empresarial': {
+            glossary: [
+                { term: t('quote_vendor_enterprise_glossary_term_1'), description: t('quote_vendor_enterprise_glossary_desc_1') },
+                { term: t('quote_vendor_enterprise_glossary_term_2'), description: t('quote_vendor_enterprise_glossary_desc_2') }
+            ],
+            examples: [
+                t('quote_vendor_enterprise_example_1'),
+                t('quote_vendor_enterprise_example_2')
+            ],
+            integration: [
+                t('quote_vendor_enterprise_integration_1'),
+                t('quote_vendor_enterprise_integration_2'),
+                t('quote_vendor_enterprise_integration_3')
+            ]
+        },
+        'transformacion-digital': {
+            glossary: [
+                { term: t('quote_vendor_transform_glossary_term_1'), description: t('quote_vendor_transform_glossary_desc_1') },
+                { term: t('quote_vendor_transform_glossary_term_2'), description: t('quote_vendor_transform_glossary_desc_2') }
+            ],
+            examples: [
+                t('quote_vendor_transform_example_1'),
+                t('quote_vendor_transform_example_2')
+            ],
+            integration: [
+                t('quote_vendor_transform_integration_1'),
+                t('quote_vendor_transform_integration_2'),
+                t('quote_vendor_transform_integration_3')
+            ]
+        },
+        'tecnologias-blockchain': {
+            glossary: [
+                { term: t('quote_vendor_blockchain_glossary_term_1'), description: t('quote_vendor_blockchain_glossary_desc_1') },
+                { term: t('quote_vendor_blockchain_glossary_term_2'), description: t('quote_vendor_blockchain_glossary_desc_2') }
+            ],
+            examples: [
+                t('quote_vendor_blockchain_example_1'),
+                t('quote_vendor_blockchain_example_2')
+            ],
+            integration: [
+                t('quote_vendor_blockchain_integration_1'),
+                t('quote_vendor_blockchain_integration_2'),
+                t('quote_vendor_blockchain_integration_3')
+            ]
+        },
+        'diseño-branding': {
+            glossary: [
+                { term: t('quote_vendor_branding_glossary_term_1'), description: t('quote_vendor_branding_glossary_desc_1') },
+                { term: t('quote_vendor_branding_glossary_term_2'), description: t('quote_vendor_branding_glossary_desc_2') }
+            ],
+            examples: [
+                t('quote_vendor_branding_example_1'),
+                t('quote_vendor_branding_example_2')
+            ],
+            integration: [
+                t('quote_vendor_branding_integration_1'),
+                t('quote_vendor_branding_integration_2'),
+                t('quote_vendor_branding_integration_3')
+            ]
+        },
+        'marketing-digital': {
+            glossary: [
+                { term: t('quote_vendor_marketing_glossary_term_1'), description: t('quote_vendor_marketing_glossary_desc_1') },
+                { term: t('quote_vendor_marketing_glossary_term_2'), description: t('quote_vendor_marketing_glossary_desc_2') }
+            ],
+            examples: [
+                t('quote_vendor_marketing_example_1'),
+                t('quote_vendor_marketing_example_2')
+            ],
+            integration: [
+                t('quote_vendor_marketing_integration_1'),
+                t('quote_vendor_marketing_integration_2'),
+                t('quote_vendor_marketing_integration_3')
+            ]
+        },
+        'videojuegos': {
+            glossary: [
+                { term: t('quote_vendor_games_glossary_term_1'), description: t('quote_vendor_games_glossary_desc_1') },
+                { term: t('quote_vendor_games_glossary_term_2'), description: t('quote_vendor_games_glossary_desc_2') }
+            ],
+            examples: [
+                t('quote_vendor_games_example_1'),
+                t('quote_vendor_games_example_2')
+            ],
+            integration: [
+                t('quote_vendor_games_integration_1'),
+                t('quote_vendor_games_integration_2'),
+                t('quote_vendor_games_integration_3')
+            ]
+        },
+        'modelado-3d': {
+            glossary: [
+                { term: t('quote_vendor_3d_glossary_term_1'), description: t('quote_vendor_3d_glossary_desc_1') },
+                { term: t('quote_vendor_3d_glossary_term_2'), description: t('quote_vendor_3d_glossary_desc_2') }
+            ],
+            examples: [
+                t('quote_vendor_3d_example_1'),
+                t('quote_vendor_3d_example_2')
+            ],
+            integration: [
+                t('quote_vendor_3d_integration_1'),
+                t('quote_vendor_3d_integration_2'),
+                t('quote_vendor_3d_integration_3')
+            ]
+        }
+    }), [t]);
 
     // Desglose de horas por servicio (cuando se elige "Por Hora")
     const hourBreakdown = useMemo(() => ({
@@ -876,6 +1003,27 @@ Fecha: ${new Date().toLocaleString('es-CO')}
         }));
     };
 
+    const handleSellerUnlock = (e) => {
+        e.preventDefault();
+        if (!sellerPassword.trim()) {
+            setSellerError(t('quote_vendor_password_required'));
+            return;
+        }
+        if (sellerPassword === SELLER_PASSWORD) {
+            setSellerUnlocked(true);
+            setSellerError('');
+        } else {
+            setSellerUnlocked(false);
+            setSellerError(t('quote_vendor_password_error'));
+        }
+    };
+
+    const handleSellerLock = () => {
+        setSellerUnlocked(false);
+        setSellerPassword('');
+        setSellerError('');
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Cotización solicitada:', formData);
@@ -1084,6 +1232,131 @@ Fecha: ${new Date().toLocaleString('es-CO')}
                                 </div>
                             </section>
 
+                            <section className="mb-12 sm:mb-20">
+                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                                    <div>
+                                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 font-mono uppercase tracking-wider">
+                                            {t('quote_vendor_title')}
+                                        </h3>
+                                        <p className="text-sm text-gray-400">
+                                            {t('quote_vendor_subtitle')}
+                                        </p>
+                                    </div>
+                                    <span
+                                        className={`text-xs uppercase tracking-wider px-3 py-1 rounded-full border ${sellerUnlocked
+                                            ? 'text-emerald-300 bg-emerald-400/10 border-emerald-400/30'
+                                            : 'text-amber-300 bg-amber-400/10 border-amber-400/30'
+                                            }`}
+                                    >
+                                        {sellerUnlocked ? t('quote_vendor_status_unlocked') : t('quote_vendor_status_locked')}
+                                    </span>
+                                </div>
+
+                                {!sellerUnlocked ? (
+                                    <form onSubmit={handleSellerUnlock} className="bg-black/60 border border-gray-700 rounded-lg p-4 sm:p-6">
+                                        <label className="block text-xs sm:text-sm font-semibold text-gray-300 mb-2 uppercase tracking-wide">
+                                            {t('quote_vendor_password_label')}
+                                        </label>
+                                        <div className="flex flex-col sm:flex-row gap-3">
+                                            <input
+                                                type="password"
+                                                value={sellerPassword}
+                                                onChange={(e) => setSellerPassword(e.target.value)}
+                                                className="flex-1 px-4 py-3 bg-black/40 border border-gray-600 rounded-md text-white placeholder-gray-500 focus:border-[#00e9fa] focus:outline-none transition-colors"
+                                                placeholder={t('quote_vendor_password_placeholder')}
+                                            />
+                                            <button
+                                                type="submit"
+                                                className="px-4 py-3 bg-[#00e9fa] text-black font-semibold uppercase tracking-wider rounded-md hover:bg-[#00e9fa]/90 transition-colors"
+                                            >
+                                                {t('quote_vendor_unlock_button')}
+                                            </button>
+                                        </div>
+                                        {sellerError && (
+                                            <p className="text-xs text-red-400 mt-2">
+                                                {sellerError}
+                                            </p>
+                                        )}
+                                        <p className="text-xs text-gray-500 mt-2">
+                                            {t('quote_vendor_password_hint')}
+                                        </p>
+                                    </form>
+                                ) : (
+                                    <div className="space-y-6">
+                                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                                            <p className="text-xs text-gray-400">
+                                                {t('quote_vendor_access_note')}
+                                            </p>
+                                            <button
+                                                type="button"
+                                                onClick={handleSellerLock}
+                                                className="text-xs text-gray-300 border border-gray-600 px-3 py-1 rounded-md hover:border-gray-400 transition-colors"
+                                            >
+                                                {t('quote_vendor_lock_button')}
+                                            </button>
+                                        </div>
+                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                                            {services.map(service => {
+                                                const guide = vendorGuide[service.id];
+                                                if (!guide) return null;
+                                                return (
+                                                    <div key={service.id} className="p-4 sm:p-5 rounded-lg border border-gray-700 bg-black/50">
+                                                        <div className="mb-4">
+                                                            <h4 className="text-base sm:text-lg font-bold text-[#00e9fa] mb-1">
+                                                                {service.name}
+                                                            </h4>
+                                                            <p className="text-xs sm:text-sm text-gray-400">
+                                                                {service.description}
+                                                            </p>
+                                                        </div>
+                                                        <div className="space-y-4 text-xs sm:text-sm">
+                                                            <div>
+                                                                <p className="text-xs font-semibold text-gray-300 uppercase tracking-wide mb-2">
+                                                                    {t('quote_vendor_glossary_title')}
+                                                                </p>
+                                                                <ul className="space-y-2">
+                                                                    {guide.glossary.map((item, idx) => (
+                                                                        <li key={idx} className="text-gray-400">
+                                                                            <span className="text-white font-semibold">{item.term}:</span> {item.description}
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                            <div>
+                                                                <p className="text-xs font-semibold text-gray-300 uppercase tracking-wide mb-2">
+                                                                    {t('quote_vendor_examples_title')}
+                                                                </p>
+                                                                <ul className="space-y-1">
+                                                                    {guide.examples.map((example, idx) => (
+                                                                        <li key={idx} className="text-gray-400 flex items-start gap-2">
+                                                                            <span className="text-[#00e9fa] mt-0.5">•</span>
+                                                                            <span>{example}</span>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                            <div>
+                                                                <p className="text-xs font-semibold text-gray-300 uppercase tracking-wide mb-2">
+                                                                    {t('quote_vendor_integration_title')}
+                                                                </p>
+                                                                <ol className="space-y-1">
+                                                                    {guide.integration.map((step, idx) => (
+                                                                        <li key={idx} className="text-gray-400 flex items-start gap-2">
+                                                                            <span className="text-[#00e9fa] mt-0.5">{idx + 1}.</span>
+                                                                            <span>{step}</span>
+                                                                        </li>
+                                                                    ))}
+                                                                </ol>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                )}
+                            </section>
+
                             {/* Form */}
                             <section className="bg-black/60 border border-gray-700 rounded-lg p-4 sm:p-8 md:p-12">
                                 <div className="flex items-center gap-3 mb-6 sm:mb-8">
@@ -1228,6 +1501,34 @@ Fecha: ${new Date().toLocaleString('es-CO')}
                                             {calculatorStep === 0 ? t('quote_calculator_select_duration') : calculatorStep <= currentQuestionnaire.length ? `${t('quote_calculator_question_of')} ${calculatorStep} ${t('quote_calculator_question_total')} ${currentQuestionnaire.length}` : t('quote_calculator_result_title')}
                                         </p>
                                     </div>
+
+                                    {/* CONTADOR DE MONTO ACUMULADO - Visible durante el cuestionario */}
+                                    {calculatorStep > 0 && calculatorStep <= currentQuestionnaire.length && estimatedCost && (
+                                        <div className="mb-6 p-4 bg-gradient-to-r from-[#00e9fa]/10 to-[#00e9fa]/5 border-2 border-[#00e9fa] rounded-xl">
+                                            <div className="flex items-center justify-between flex-wrap gap-4">
+                                                <div>
+                                                    <p className="text-xs sm:text-sm text-gray-400 mb-1">💰 {t('quote_calculator_running_total')}</p>
+                                                    <p className="text-2xl sm:text-3xl font-bold text-[#00e9fa]">
+                                                        ${estimatedCost.totalWithTax.toLocaleString('en-US')} USD
+                                                    </p>
+                                                    <p className="text-xs sm:text-sm text-gray-400 mt-1">
+                                                        {t('quote_calculator_running_cop')}: ${(estimatedCost.totalWithTax * 4200).toLocaleString('es-CO')} COP
+                                                    </p>
+                                                </div>
+                                                <div className="text-right">
+                                                    <p className="text-xs text-gray-500">{t('quote_calculator_includes_iva')}</p>
+                                                    <p className="text-lg sm:text-xl text-gray-300">
+                                                        {t('quote_calculator_subtotal')}: ${estimatedCost.subtotal.toLocaleString('en-US')}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="mt-3 pt-3 border-t border-[#00e9fa]/30">
+                                                <p className="text-xs text-gray-400">
+                                                    ℹ️ {t('quote_calculator_estimate_updates')}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    )}
 
                                     {calculatorStep === 0 && (
                                         <div>

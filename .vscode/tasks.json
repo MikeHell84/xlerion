@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Vite Dev Server (xlerion-site)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--prefix",
+				"x:\\Programacion\\XlerionWeb\\xlerion-site",
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}
