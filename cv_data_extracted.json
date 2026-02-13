@@ -1,0 +1,139 @@
+{
+  "resumen_profesional": "Miguel Eduardo Rodríguez Martínez es un desarrollador full-stack con experiencia en arquitectura de software, IA/ML, Blockchain y desarrollo de videojuegos. Especialista en infraestructura cloud, edge computing y soluciones escalables.",
+  "experiencia_laboral": [
+    {
+      "puesto": "Lead Game Designer",
+      "empresa": "Xlerion",
+      "ubicacion": "Bogotá, Colombia",
+      "periodo": "2027 - Presente",
+      "responsabilidades": [
+        "Dirección de diseño y desarrollo de videojuegos",
+        "Integración de modelado 3D y animación",
+        "Sistemas modulares para optimización de prototipado",
+        "Coordinación de proyectos con IA y Blockchain"
+      ]
+    },
+    {
+      "puesto": "Desarrollador Web",
+      "empresa": "Alcaldía de Caucasia (FOVIS)",
+      "periodo": "2025",
+      "responsabilidades": [
+        "Plataforma de gestión de datos para vivienda",
+        "ReactJS + Django + MySQL",
+        "Integración de APIs en tiempo real",
+        "Optimización de visualización de información"
+      ]
+    },
+    {
+      "puesto": "Diseñador Software/Hardware",
+      "empresa": "Xtam",
+      "periodo": "2023 - 2024",
+      "responsabilidades": [
+        "Sistemas IoT de videovigilancia",
+        "Integración Raspberry Pi + Nginx",
+        "Scripts Python para streaming seguro"
+      ]
+    },
+    {
+      "puesto": "Senior Developer",
+      "empresa": "STS & AONC Neuroscientific Strategies",
+      "periodo": "2021 - 2023",
+      "responsabilidades": [
+        "Investigación en IA y reconocimiento de voz",
+        "Integración Blockchain y contratos inteligentes",
+        "Consultoría técnica para empresas"
+      ]
+    }
+  ],
+  "habilidades_tecnicas": [
+    "ReactJS",
+    "NodeJS",
+    "Django",
+    "Python",
+    "JavaScript",
+    "TypeScript",
+    "Docker",
+    "Kubernetes",
+    "AWS",
+    "Azure",
+    "Google Cloud",
+    "AI/ML",
+    "TensorFlow",
+    "PyTorch",
+    "Blockchain",
+    "Solidity",
+    "Web3",
+    "Edge Computing",
+    "NVIDIA Jetson",
+    "LiDAR",
+    "Unity",
+    "Unreal Engine",
+    "Blender",
+    "PostgreSQL",
+    "MySQL",
+    "MongoDB",
+    "Redis",
+    "GraphQL",
+    "REST APIs",
+    "gRPC"
+  ],
+  "certificaciones": [
+    "Unreal Engine 5 Masterclass - SAE Institute México (2024)",
+    "Intro a Inteligencia Artificial - University of California Irvine (2024)",
+    "Generative AI: Prompt Engineering - IBM & Coursera (2024)",
+    "Advanced Machine Learning - Coursera (2023)",
+    "Cloud Architecture Certification - AWS (2023)"
+  ],
+  "educacion": [
+    {
+      "carrera": "Programación de Dispositivos Móviles",
+      "institucion": "SENA",
+      "ano": 2016
+    },
+    {
+      "carrera": "Prototipado Digital",
+      "institucion": "SENA",
+      "ano": 2015
+    },
+    {
+      "carrera": "Formación Autodidacta Continua",
+      "enfasis": "Ingeniería de Software, Arquitectura Cloud, Computer Graphics"
+    }
+  ],
+  "proyectos_destacados": [
+    {
+      "nombre": "GreenWave Dashboard",
+      "descripcion": "Sistema de monitoreo ambiental con visualización en tiempo real",
+      "tecnologias": "React, D3.js, Node.js, PostgreSQL",
+      "impacto": "95% de satisfacción de usuarios"
+    },
+    {
+      "nombre": "Redemthor Platform",
+      "descripcion": "Plataforma modular de educación y entretenimiento",
+      "tecnologias": "Vite, React, Three.js, Tailwind",
+      "impacto": "40% reducción de tiempos de desarrollo"
+    },
+    {
+      "nombre": "IoT Surveillance System",
+      "descripcion": "Sistema integrado de videovigilancia con edge computing",
+      "tecnologias": "Raspberry Pi, Python, Nginx, LiDAR",
+      "impacto": "<100ms de latencia en procesamiento"
+    }
+  ],
+  "idiomas": [
+    {
+      "idioma": "Español",
+      "nivel": "Nativo"
+    },
+    {
+      "idioma": "Inglés",
+      "nivel": "Fluido (B2-C1)"
+    }
+  ],
+  "informacion_adicional": {
+    "ubicacion": "Bogotá, Colombia",
+    "disponibilidad": "Disponible para proyectos freelance y tiempo completo",
+    "experiencia_anos": "8+ años en desarrollo software",
+    "enfoque": "Innovación tecnológica con impacto social"
+  }
+}

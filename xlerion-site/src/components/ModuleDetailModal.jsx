@@ -538,7 +538,7 @@ Hola y bienvenido al equipo Xlerion! Esta guía te preparará para contribuir ef
 
 ### Día 2-3: Exploración
 - Recorrer la estructura del proyecto
-- Leer EstiloWeb.md para entender diseño system
+- Revisar documentación interna local para entender el design system
 - Revisar LanguageContext.jsx para i18n
 - Crear tu primer commit
 
@@ -569,7 +569,7 @@ Hola y bienvenido al equipo Xlerion! Esta guía te preparará para contribuir ef
 - Ejecutar: \`npm run test\`
 
 ## Recursos Clave
-- Documentación: \`/media/EstiloWeb.md\`
+- Documentación: \`docs-md/\` (local)
 - Componentes: \`/src/components/\`
 - Rutas: \`/src/main.jsx\`
 - i18n: \`/src/context/LanguageContext.jsx\`
@@ -629,7 +629,7 @@ Contacta a @lead-dev en Slack o abre issue en GitHub
 - Generación automática de sitemap
 
 ### Migration Guide
-Ver \`MIGRATION.md\` para detalles de upgrade desde v1.x
+Consultar la guía interna local para detalles de upgrade desde v1.x
 
 ---
 

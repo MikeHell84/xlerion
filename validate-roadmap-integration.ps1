@@ -5,6 +5,13 @@ Write-Host "`n🔍 Validando integracion del sistema de roadmaps...`n" -Foregrou
 
 $errors = 0
 $warnings = 0
+$docsRoot = "docs-md"
+
+function Get-DocsPath {
+    param([string]$relativePath)
+    $safeName = ($relativePath -replace "[/\\]", "__")
+    return Join-Path $docsRoot $safeName
+}
 
 # Function to check file exists
 function Test-FileExists {
@@ -58,12 +65,12 @@ Write-Host "`n📁 Data Files:" -ForegroundColor Yellow
 Test-FileHasContent "roadmaps.json" "roadmaps.json (plantillas)" 20000
 Test-FileHasContent "cases_examples.json" "cases_examples.json" 5000
 
-Write-Host "`n📁 Documentation:" -ForegroundColor Yellow
-Test-FileHasContent "ui_flow.md" "ui_flow.md" 1000
-Test-FileHasContent "endpoints.md" "endpoints.md" 1000
-Test-FileHasContent "hours_to_sprints.md" "hours_to_sprints.md" 1000
-Test-FileHasContent "ROADMAP_INTEGRATION_GUIDE.md" "ROADMAP_INTEGRATION_GUIDE.md" 5000
-Test-FileHasContent "ROADMAP_INTEGRATION_SUMMARY.md" "ROADMAP_INTEGRATION_SUMMARY.md" 3000
+Write-Host "`n📁 Documentation (local):" -ForegroundColor Yellow
+Test-FileHasContent (Get-DocsPath "ui_flow.md") "ui_flow.md" 1000
+Test-FileHasContent (Get-DocsPath "endpoints.md") "endpoints.md" 1000
+Test-FileHasContent (Get-DocsPath "hours_to_sprints.md") "hours_to_sprints.md" 1000
+Test-FileHasContent (Get-DocsPath "ROADMAP_INTEGRATION_GUIDE.md") "ROADMAP_INTEGRATION_GUIDE.md" 5000
+Test-FileHasContent (Get-DocsPath "ROADMAP_INTEGRATION_SUMMARY.md") "ROADMAP_INTEGRATION_SUMMARY.md" 3000
 
 Write-Host "`n📁 Summary Docs:" -ForegroundColor Yellow
 $summaryDocs = @(
@@ -78,7 +85,7 @@ $summaryDocs = @(
 )
 
 foreach ($doc in $summaryDocs) {
-    Test-FileExists $doc (Split-Path $doc -Leaf)
+    Test-FileExists (Get-DocsPath $doc) (Split-Path $doc -Leaf)
 }
 
 # Check JSON structure

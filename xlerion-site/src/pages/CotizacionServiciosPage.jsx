@@ -740,33 +740,13 @@ export default function CotizacionServiciosPage() {
         return answeredCount >= Math.ceil(questionnaire.length / 2);
     }, [selectedService, calculatorAnswers, questionnaires]);
 
-    // Fetch roadmap markdown when the roadmap panel is opened or when questionnaire finishes
+    // Roadmaps are local-only (sensitive docs removed from repo)
     useEffect(() => {
         if (!showRoadmap || !selectedService) return;
-        setRoadmapLoading(true);
-        setRoadmapError(null);
+        setRoadmapLoading(false);
         setRoadmapContent('');
-
-        const map = {
-            'desarrollo-web-movil': 'desarrollo-web-movil.md',
-            'software-empresarial': 'software-empresarial.md',
-            'transformacion-digital': 'transformacion-digital.md',
-            'diseño-branding': 'diseno-branding.md',
-            'marketing-digital': 'marketing-digital.md',
-            'videojuegos': 'desarrollo-videojuegos.md',
-            'modelado-3d': 'modelado-3d.md'
-        };
-
-        const filename = map[selectedService] || `${selectedService}.md`;
-        fetch(`/roadmaps/${filename}`)
-            .then(res => {
-                if (!res.ok) throw new Error(`Roadmap no disponible (${res.status})`);
-                return res.text();
-            })
-            .then(text => setRoadmapContent(text))
-            .catch(err => setRoadmapError(err.message))
-            .finally(() => setRoadmapLoading(false));
-    }, [showRoadmap, selectedService]);
+        setRoadmapError(t('roadmap_local_only'));
+    }, [showRoadmap, selectedService, t]);
 
     // Minimal markdown -> HTML for inline rendering (headings, lists, paragraphs)
     const mdToHtmlInline = (md) => {

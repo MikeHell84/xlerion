@@ -1,4 +1,0 @@
-FROM codellama
-
-PARAMETER temperature 0.2
-PARAMETER num_predict 256

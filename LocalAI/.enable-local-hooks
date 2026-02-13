@@ -1,4 +1,0 @@
-# Create this file to opt-in to local pre-commit checkpoint hooks.
-# The pre-commit hook created by LocalAI/tools/install_precommit_hook.ps1 will only run when
-# this file exists in the repository root or when FORCE_LOCAL_HOOKS env var is set.
-# Remove this file to opt-out on this machine.

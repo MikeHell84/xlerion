@@ -20,13 +20,13 @@ import useScrollAnimation from './hooks/useScrollAnimation';
 
 /**
  * XLERION CORPORATE WEB V3.1 - FIX & OPTIMIZATION
- * Arquitectura basada en EstiloWeb.md y ContenidoWeb.md
+ * Arquitectura basada en documentación interna local
  * 
  * Analytics Integration:
  * Rastrea vistas de página, tiempo de permanencia, IP, dispositivo e idioma
  */
 
-// Componente de Escena 3D con animaciones mapeadas de ANIMACIONES_3D.md
+// Componente de Escena 3D con animaciones mapeadas desde documentación interna
 const ThreeScene = ({ actionType }) => {
   const containerRef = useRef(null);
   const rendererRef = useRef(null);

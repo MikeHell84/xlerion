@@ -3,3 +3,9 @@
 
 # Local docs archive
 /docs-md/
+
+# Local sensitive folders
+/LocalAI/
+/media/
+/Prueba01/
+/xlerion-studio/

@@ -131,12 +131,10 @@ export const XlerionRightsNotice = () => {
                     {/* CTA */}
                     <div className="ml-8 flex flex-col gap-2">
                         <a
-                            href="/documentos/TAX_TRACKER_TERMINOS_DE_USO.md"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="mailto:legal@xlerion.com"
                             className="inline-flex items-center gap-2 text-[#00e9fa] hover:text-white text-xs font-mono transition-colors"
                         >
-                            Ver Términos Completos
+                            Solicitar términos completos
                             <ExternalLink size={14} />
                         </a>
                         <a
@@ -162,11 +160,8 @@ export const XlerionCopyright = () => {
             <p className="text-xs text-gray-400 text-center">
                 © 2026 <span className="text-[#00e9fa] font-bold">Xlerion SAS</span> -
                 Todos los derechos reservados |
-                <a href="/documentos/TAX_TRACKER_TERMINOS_DE_USO.md" className="text-[#00e9fa] hover:text-white ml-1">
-                    Términos de Uso
-                </a> |
                 <a href="mailto:legal@xlerion.com" className="text-[#00e9fa] hover:text-white ml-1">
-                    Legal
+                    Solicitar términos
                 </a>
             </p>
         </div>

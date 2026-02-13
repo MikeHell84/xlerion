@@ -47,20 +47,20 @@
 
 📁 ARCHIVOS CREADOS (Documentación & Herramientas):
 
-   📄 SEO_FIX_STATUS_20260114.md (7.6 KB)
-      └─ Guía técnica completa de la solución
+   📄 Documentación técnica interna (local)
+      └─ Guía completa de la solución
       └─ Explicación línea-por-línea de cambios
       └─ Pasos de deployment
       └─ Timeline esperado
       └─ Troubleshooting
 
-   📄 DEPLOYMENT_CHECKLIST_SEO_FIX.md (8.4 KB)
-      └─ Quick reference table de cambios
+   📄 Checklist interno (local)
+      └─ Quick reference de cambios
       └─ Workflow step-by-step
       └─ Validación post-deploy
       └─ Checklist pre-deployment
 
-   📄 FILES_TO_DEPLOY.md (7.6 KB)
+   📄 Guía interna de archivos a transferir (local)
       └─ Rutas exactas de archivos a transferir
       └─ Instrucciones por método (panel, FTP, SSH)
       └─ Verificación post-upload
@@ -91,7 +91,7 @@
    │  └─ index.html (con favicon refs múltiples)
    ├─ 📋 Métodos: Panel de control / FTP / SSH
    ├─ ✅ Validación: curl -I https://xlerion.com/views
-   └─ 📝 Ver: FILES_TO_DEPLOY.md
+   └─ 📝 Ver: documentación interna local
 
    FASE 2: GOOGLE SEARCH CONSOLE (24-48h después)
    ├─ ⏱️ Tiempo: 15 minutos de setup
@@ -185,13 +185,13 @@
 📚 DOCUMENTACIÓN COMPLETA:
 
    Empezar aquí:
-   1. FILES_TO_DEPLOY.md ← Qué archivos transferir y cómo
+   1. Documentación interna local ← Qué archivos transferir y cómo
    
    Para entender la técnica:
-   2. SEO_FIX_STATUS_20260114.md ← Explicación detallada
+   2. Documentación técnica interna ← Explicación detallada
    
    Para validar:
-   3. DEPLOYMENT_CHECKLIST_SEO_FIX.md ← Verificación paso-a-paso
+   3. Checklist interno ← Verificación paso-a-paso
    
    Para Search Console:
    4. SITEMAP_CLEANUP.txt ← Guía de limpieza de índice
