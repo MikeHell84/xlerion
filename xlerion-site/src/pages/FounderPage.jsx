@@ -2,9 +2,11 @@ import React from 'react';
 import { User, Linkedin, Instagram, Briefcase, Award, Palette } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function FounderPage() {
     const { t } = useLanguage();
+    useAnalytics('Fundador', 'page');
 
     return (
         <Layout>

@@ -2,9 +2,11 @@ import React from 'react';
 import { Shield, CheckCircle2, Eye, Lock } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function PrivacyPage() {
     const { t } = useLanguage();
+    useAnalytics('Privacidad', 'page');
 
     return (
         <Layout>

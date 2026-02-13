@@ -15,10 +15,15 @@ import EvolutionaryScene from './components/EvolutionaryScene';
 import SiteNav from './components/SiteNav';
 import DocumentacionSection from './components/DocumentacionSection';
 import { useLanguage } from './context/LanguageContext';
+import { useAnalytics } from './hooks/useAnalytics';
+import useScrollAnimation from './hooks/useScrollAnimation';
 
 /**
  * XLERION CORPORATE WEB V3.1 - FIX & OPTIMIZATION
  * Arquitectura basada en EstiloWeb.md y ContenidoWeb.md
+ * 
+ * Analytics Integration:
+ * Rastrea vistas de página, tiempo de permanencia, IP, dispositivo e idioma
  */
 
 // Componente de Escena 3D con animaciones mapeadas de ANIMACIONES_3D.md
@@ -397,7 +402,13 @@ export default function App() {
     };
     safeScroll(el.offsetTop - 80);
   });
-  const { lang, setLang, t } = useLanguage();
+  const { t } = useLanguage();
+
+  // Analytics: Rastrear vistas de página
+  useAnalytics('Home', 'page');
+
+  // Enable modern scroll animations for all sections
+  useScrollAnimation({ enabled: true, selector: 'section' });
 
   // Memoize the onNavReady handler so its identity is stable across renders.
   const handleNavReady = useCallback((fn) => {
@@ -651,7 +662,7 @@ export default function App() {
           <XlCard title={t('projects_technology')} icon={Heart} to="/proyectos/tecnologias-comunidad">{t('projects_technology_desc')}</XlCard>
           <XlCard title={t('projects_radio_nocaima')} icon={Radio} to="/projects/radio-nocaima-demo">{t('projects_radio_nocaima_desc')}</XlCard>
           <XlCard title={t('projects_redemthor')} icon={Activity} href="/redemthor/">{t('projects_redemthor_desc')}</XlCard>
-          <XlCard title={t('projects_el_ropero_title')} icon={ShoppingBag} href="/el-ropero/">{t('projects_el_ropero_desc')}</XlCard>
+          <XlCard title={t('projects_el_ropero_title')} icon={ShoppingBag} to="/el-ropero/">{t('projects_el_ropero_desc')}</XlCard>
         </div>
       </section >
 

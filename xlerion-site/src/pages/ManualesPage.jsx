@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Database, FileText, Code } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function ManualesPage() {
     const { t } = useLanguage();
+    useAnalytics('Manuales', 'documentation');
     const [manuales, setManuales] = useState([]);
     useEffect(() => {
         fetch('/api/manuales.php')

@@ -1,0 +1,5 @@
+# Ignore all markdown docs (kept locally only)
+*.md
+
+# Local docs archive
+/docs-md/

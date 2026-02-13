@@ -3,8 +3,16 @@ import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import { useLanguage } from '../context/LanguageContext';
 import SiteNav from './SiteNav';
+// Note: randomized reveal hook is intentionally not imported here to avoid
+// applying curriculum behavior site-wide. Keep the hook available for
+// opt-in use in individual pages/components.
 
-export default function Layout({ children }) {
+export default function Layout({
+    children,
+    navVariant = 'full',
+    showFooter = true,
+    onLogoClick
+}) {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [empresaOpen, setEmpresaOpen] = useState(false);
@@ -48,6 +56,8 @@ export default function Layout({ children }) {
             document.body.style.overflow = 'unset';
         };
     }, [mobileMenuOpen]);
+
+    // randomized reveal intentionally not enabled here
 
     const navTo = (id) => {
         setMobileMenuOpen(false); // Cerrar menú móvil al navegar
@@ -93,11 +103,11 @@ export default function Layout({ children }) {
 
     return (
         <div className="min-h-screen bg-black text-white flex flex-col">
-            <SiteNav onNavReady={handleNavReady} />
+            <SiteNav onNavReady={handleNavReady} variant={navVariant} onLogoClick={onLogoClick} />
 
             {/* Contenido */}
             <main className="flex-1">{children}</main>
-            <Footer navTo={navToFn} />
+            {showFooter && <Footer navTo={navToFn} />}
         </div>
     );
 }

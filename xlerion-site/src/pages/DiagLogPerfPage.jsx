@@ -2,9 +2,11 @@ import React from 'react';
 import { Activity, Terminal, Gauge, Bell } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function DiagLogPerfPage() {
     const { t } = useLanguage();
+    useAnalytics('Diagnóstico, Logging y Performance', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

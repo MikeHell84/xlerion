@@ -3,9 +3,11 @@ import { Lock, Shield, Link2, FileCheck, ChevronDown, Code, Zap, Database, Netwo
 import Layout from '../components/Layout';
 import TaxTrackerDemo from '../components/AIDemo/TaxTrackerDemo';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function BlockchainIntegrationPage() {
     const { t } = useLanguage();
+    useAnalytics('Blockchain Integration', 'service');
     const [expandedFeature, setExpandedFeature] = useState(null);
 
     const cryptoAlgorithms = [

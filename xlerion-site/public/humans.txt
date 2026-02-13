@@ -1,6 +1,6 @@
 /* TEAM */
 
-Founder & Lead Developer: Miguel Eduardo Rodríguez Martínez
+Founder & Lead Developer: Miguel Rodríguez Martínez
 Site: https://xlerion.com
 Email: contacto@xlerion.tech
 Location: Bogotá, Colombia

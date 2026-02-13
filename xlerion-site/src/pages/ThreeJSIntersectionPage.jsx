@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import ThreeJSIntersection from '../components/ThreeJSIntersection';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function ThreeJSIntersectionPage() {
+    useAnalytics('Three.JS Intersection Demo', 'project');
     useEffect(() => {
         // Metadatos SEO
         const pageTitle = 'GreenWave 3D - Simulador Inteligente de Tráfico | Xlerion';

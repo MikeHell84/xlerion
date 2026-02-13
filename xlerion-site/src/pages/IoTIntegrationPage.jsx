@@ -1,10 +1,12 @@
 import React from 'react';
-import { Box, Radio, Wifi, Activity } from 'lucide-react';
+import { Wifi, Zap, Shield, Activity } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function IoTIntegrationPage() {
     const { t } = useLanguage();
+    useAnalytics('IoT Integration', 'service');
 
     return (
         <Layout>

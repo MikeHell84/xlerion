@@ -2,9 +2,11 @@ import React from 'react';
 import { Car, Brain, BarChart3, MapPin } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function TransitoMovilidadPage() {
     const { t } = useLanguage();
+    useAnalytics('Tránsito y Movilidad', 'project');
 
     return (
         <Layout>

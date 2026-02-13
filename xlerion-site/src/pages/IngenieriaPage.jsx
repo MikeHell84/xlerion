@@ -2,9 +2,11 @@ import React from 'react';
 import { Cpu, Wrench, Layers, BookOpen } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function IngenieriaPage() {
     const { t } = useLanguage();
+    useAnalytics('Ingeniería Creativa', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

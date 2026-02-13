@@ -2,9 +2,11 @@ import React from 'react';
 import { Code, ListChecks, Layers, Sliders } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function ToolkitsPage() {
     const { t } = useLanguage();
+    useAnalytics('Toolkits', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

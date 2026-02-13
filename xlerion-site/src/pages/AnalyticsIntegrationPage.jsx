@@ -2,9 +2,11 @@ import React from 'react';
 import { BarChart3, PieChart, LineChart, TrendingUp } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function AnalyticsIntegrationPage() {
     const { t } = useLanguage();
+    useAnalytics('Analytics Integration', 'service');
 
     return (
         <Layout>

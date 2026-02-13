@@ -2,9 +2,11 @@ import React from 'react';
 import { Users, GraduationCap, ClipboardList, Mic } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function CapacitacionPage() {
     const { t } = useLanguage();
+    useAnalytics('Capacitación', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

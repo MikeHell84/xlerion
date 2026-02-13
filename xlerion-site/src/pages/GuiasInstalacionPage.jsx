@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Shield, Download, CheckCircle2 } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function GuiasInstalacionPage() {
     const { t } = useLanguage();
+    useAnalytics('Guías de Instalación', 'documentation');
     const [guias, setGuias] = useState([]);
     useEffect(() => {
         fetch('/api/guias-instalacion.php')

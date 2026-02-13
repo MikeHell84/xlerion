@@ -2,9 +2,11 @@ import React from 'react';
 import { CheckCircle2, Shield, ListChecks, AlertTriangle } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function ValidationPage() {
     const { t } = useLanguage();
+    useAnalytics('Validación', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

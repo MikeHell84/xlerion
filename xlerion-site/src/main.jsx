@@ -47,7 +47,12 @@ import SimulationIntegrationPage from './pages/SimulationIntegrationPage.jsx'
 import TaxTrackerPage from './pages/TaxTrackerPage.jsx'
 import Renders3DGalleryPage from './pages/Renders3DGalleryPage.jsx'
 import CotizacionServiciosPage from './pages/CotizacionServiciosPage.jsx'
-import RadioNocaimaPage from './pages/RadioNocaimaPage.jsx'
+import RadioNocaimaPageFixed from './pages/RadioNocaimaPageFixed.jsx'
+import TestRadio from './pages/TestRadio.jsx'
+import ElRoperoPage from './pages/ElRoperoPage.jsx'
+import AnalyticsAdminPage from './pages/AnalyticsAdminPage.jsx'
+import VideoGamesPage from './pages/VideoGamesPage.jsx'
+import PublicidadPage from './pages/PublicidadPage.jsx'
 
 function Root() {
   // In development (localhost) skip the intro so the nav is accessible immediately.
@@ -99,7 +104,8 @@ function Root() {
           <Route path="/proyectos/smart-integration/simulation" element={<SimulationIntegrationPage />} />
           <Route path="/proyectos/transito-movilidad" element={<TransitoMovilidadPage />} />
           <Route path="/proyectos/tecnologias-comunidad" element={<TecnologiasComunidadPage />} />
-          <Route path="/projects/radio-nocaima-demo" element={<RadioNocaimaPage />} />
+          <Route path="/proyectos/videojuegos" element={<VideoGamesPage />} />
+          <Route path="/projects/radio-nocaima-demo" element={<RadioNocaimaPageFixed />} />
           <Route path="/documentacion/manuales" element={<ManualesPage />} />
           <Route path="/documentacion/diagramas-flujos" element={<DiagramasFlujosPage />} />
           <Route path="/documentacion/guias-instalacion" element={<GuiasInstalacionPage />} />
@@ -110,6 +116,9 @@ function Root() {
           <Route path="/portfolio/renders-3d" element={<Renders3DGalleryPage />} />
           <Route path="/demo/greenwave" element={<XlerionGreenWavePage />} />
           <Route path="/demo/greenwave-3d" element={<ThreeJSIntersectionPage />} />
+          <Route path="/el-ropero/*" element={<ElRoperoPage />} />
+          <Route path="/recursos/analiticas" element={<AnalyticsAdminPage />} />
+          <Route path="/recursos/publicidad" element={<PublicidadPage />} />
         </Routes>
       </BrowserRouter>
     </>

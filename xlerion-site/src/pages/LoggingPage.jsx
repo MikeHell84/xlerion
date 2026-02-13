@@ -2,9 +2,11 @@ import React from 'react';
 import { Terminal, Database, BarChart3, Bell } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function LoggingPage() {
     const { t } = useLanguage();
+    useAnalytics('Logging', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

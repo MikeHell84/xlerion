@@ -2,9 +2,11 @@ import React from 'react';
 import { Zap, Gauge, Play, Settings } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function SimulationIntegrationPage() {
     const { t } = useLanguage();
+    useAnalytics('Simulation Integration', 'service');
 
     return (
         <Layout>

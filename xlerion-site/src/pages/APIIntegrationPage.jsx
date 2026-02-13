@@ -2,9 +2,11 @@ import React from 'react';
 import { GitBranch, Plug, Server, Zap } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function APIIntegrationPage() {
     const { t } = useLanguage();
+    useAnalytics('API Integration', 'service');
 
     return (
         <Layout>

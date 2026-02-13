@@ -2,9 +2,11 @@ import React from 'react';
 import { Info, ShieldCheck, Scale, FileText } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function TermsPage() {
     const { t } = useLanguage();
+    useAnalytics('Términos y Condiciones', 'page');
 
     return (
         <Layout>

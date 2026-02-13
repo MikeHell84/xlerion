@@ -57,6 +57,28 @@
     },
     "values": ["Inclusión", "Transparencia", "Participación", "Sostenibilidad", "Educación"]
   },
+  "socials": [
+    {
+      "id": "facebook",
+      "label": "Facebook",
+      "url": "https://www.facebook.com/LeonesStereoNocaima"
+    },
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/LeonesStereoNocaima"
+    },
+    {
+      "id": "youtube",
+      "label": "YouTube",
+      "url": "https://www.youtube.com/@LeonesStereoNocaima"
+    },
+    {
+      "id": "whatsapp",
+      "label": "WhatsApp",
+      "url": "https://wa.me/573001234567?text=Quiero%20comunicarme%20con%20Leones%20Stereo%20Nocaima"
+    }
+  ],
   "live_player": {
     "section_id": "live-player",
     "title": "Transmisión en Vivo",

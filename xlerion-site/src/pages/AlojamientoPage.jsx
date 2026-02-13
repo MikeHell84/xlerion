@@ -2,9 +2,11 @@ import React from 'react';
 import { Heart, BedDouble, Ruler, Shield } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function AlojamientoPage() {
     const { t } = useLanguage();
+    useAnalytics('Alojamiento Adaptado', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

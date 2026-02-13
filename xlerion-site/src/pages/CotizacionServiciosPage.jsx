@@ -3,9 +3,11 @@ import { DollarSign, CheckCircle, FileText, Mail, Calculator, ChevronRight, Aler
 import Layout from '../components/Layout';
 import RoadmapModal from '../components/RoadmapModal';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function CotizacionServiciosPage() {
     const { t } = useLanguage();
+    useAnalytics('Cotización de Servicios', 'page');
     const [selectedService, setSelectedService] = useState(null);
     const [activeTab, setActiveTab] = useState('servicios'); // 'servicios' o 'calculador'
     const [calculatorStep, setCalculatorStep] = useState(0);

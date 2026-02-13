@@ -2,9 +2,11 @@ import React from 'react';
 import { Target, Palette, Sparkles, Layout as LayoutIcon } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function BrandingPage() {
     const { t } = useLanguage();
+    useAnalytics('Branding', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

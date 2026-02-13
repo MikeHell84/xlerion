@@ -2,9 +2,11 @@ import React from 'react';
 import { Briefcase, Map, BarChart3, Workflow } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function ConsultoriaPage() {
     const { t } = useLanguage();
+    useAnalytics('Consultoría Modular', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

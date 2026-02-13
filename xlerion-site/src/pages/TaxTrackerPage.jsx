@@ -2,8 +2,10 @@ import React from 'react';
 import { DollarSign, Zap, ArrowRight } from 'lucide-react';
 import Layout from '../components/Layout';
 import TaxTrackerDemo from '../components/AIDemo/TaxTrackerDemo';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function TaxTrackerPage() {
+    useAnalytics('Tax Tracker', 'service');
 
     return (
         <Layout>

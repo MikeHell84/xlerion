@@ -136,3 +136,56 @@
     @apply text-primary mt-2 text-sm font-mono tracking-widest uppercase;
   }
 }
+
+/* Reveal item animation used when sections are randomized */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-item.item-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Modern scroll animations */
+.xl-animate-pending {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.xl-animate-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.xl-child-animate-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Ensure child elements start hidden only if parent is still pending */
+.xl-animate-pending .xl-card,
+.xl-animate-pending .grid>*,
+.xl-animate-pending .space-y-6>*,
+.xl-animate-pending .space-y-8>*,
+.xl-animate-pending .space-y-12>* {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Show child elements when parent animates in (even without xl-child-animate-in class) */
+.xl-animate-in .xl-card,
+.xl-animate-in .grid>*,
+.xl-animate-in .space-y-6>*,
+.xl-animate-in .space-y-8>*,
+.xl-animate-in .space-y-12>*,
+.xl-animate-in>* {
+  opacity: 1;
+  transform: translateY(0);
+}

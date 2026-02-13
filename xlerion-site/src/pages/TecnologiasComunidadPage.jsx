@@ -2,9 +2,11 @@ import React from 'react';
 import { Heart, Smartphone, Users, Lightbulb } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function TecnologiasComunidadPage() {
     const { t } = useLanguage();
+    useAnalytics('Tecnologías para la Comunidad', 'project');
 
     return (
         <Layout>

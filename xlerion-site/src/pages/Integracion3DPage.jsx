@@ -2,9 +2,11 @@ import React from 'react';
 import { Cpu, MonitorSmartphone, RefreshCcw, Link as LinkIcon } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function Integracion3DPage() {
     const { t } = useLanguage();
+    useAnalytics('Integración 3D', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

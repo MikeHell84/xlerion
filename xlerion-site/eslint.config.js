@@ -9,9 +9,13 @@ export default defineConfig([
     'dist',
     'public/total-darkness/**',
     'public/redemthor/**',
+    'public/el-ropero/**',
+    'src/sub-apps/el-ropero/**',
     'server/**',
     'scripts/**',
     '**/*.min.js',
+    '**/vendor/**',
+    '**/build/**',
   ]),
   {
     files: ['**/*.{js,jsx}'],

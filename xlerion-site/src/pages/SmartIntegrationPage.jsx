@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { Zap, Box, Brain, Lock, GitBranch, BarChart3 } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function SmartIntegrationPage() {
     const { t } = useLanguage();
+    useAnalytics('Smart Integration', 'project');
 
     return (
         <Layout>

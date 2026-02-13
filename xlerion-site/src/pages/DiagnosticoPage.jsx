@@ -2,9 +2,11 @@ import React from 'react';
 import { Activity, Stethoscope, Bug, Wrench } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function DiagnosticoPage() {
     const { t } = useLanguage();
+    useAnalytics('Diagnóstico', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

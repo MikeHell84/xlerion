@@ -3,9 +3,11 @@ import { BookOpen, FileText, Share2, ShieldCheck, GitBranch, Users, Zap, Databas
 import Layout from '../components/Layout';
 import ModuleDetailModal from '../components/ModuleDetailModal';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function DocsStructPage() {
     const { t } = useLanguage();
+    useAnalytics('Documentación Estructurada', 'service');
     const [activePhase, setActivePhase] = useState(0);
     const [selectedModule, setSelectedModule] = useState(null);
 

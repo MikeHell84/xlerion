@@ -138,12 +138,12 @@ $smtpPass = getenv('SMTP_PASS') ?: getenv('SMTP_PASSWORD');
 $smtpHost = getenv('SMTP_HOST') ?: 'mail.xlerion.com';
 $smtpPort = getenv('SMTP_PORT') ?: 465;
 $smtpResult = [false, ''];
+
+// Si SMTP está configurado, intentar envío
 if (!empty($smtpUser) && !empty($smtpPass)) {
     error_log("Attempting SMTP auth send to $smtpHost:$smtpPort as $smtpUser");
     list($ok, $info) = smtp_send_auth_ssl($smtpHost, $smtpPort, $smtpUser, $smtpPass, $from, $to, $subject, $body, $headersString);
     $smtpResult = [$ok, $info];
-} else {
-    $smtpResult = [false, 'No SMTP credentials configured'];
 }
 
 // Si SMTP fue exitoso marcar como enviado, si no intentar mail() nativo
@@ -151,7 +151,8 @@ if ($smtpResult[0]) {
     $mailSent = true;
     error_log("Email enviado vía SMTP: " . $smtpResult[1]);
 } else {
-    error_log("SMTP no disponible o falló: " . $smtpResult[1] . ". Intentando mail() nativo...");
+    // Si SMTP no está configurado o falló, intentar mail() nativo
+    error_log("SMTP no disponible o falló. Intentando mail() nativo...");
     $mailSent = @mail($to, $subject, $body, $headersString);
 }
 

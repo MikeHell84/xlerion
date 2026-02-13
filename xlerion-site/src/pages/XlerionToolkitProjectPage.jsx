@@ -2,9 +2,11 @@ import React from 'react';
 import { Terminal, Activity, Zap, Shield } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function XlerionToolkitProjectPage() {
     const { t } = useLanguage();
+    useAnalytics('Xlerion Toolkit', 'project');
 
     return (
         <Layout>

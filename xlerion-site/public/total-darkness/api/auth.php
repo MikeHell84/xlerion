@@ -19,10 +19,9 @@ $smtp_username = getenv('SMTP_USERNAME') ?: 'support@xlerion.com';
 $smtp_password = getenv('SMTP_PASSWORD');
 
 if (!$smtp_password) {
-    error_log('ERROR: SMTP_PASSWORD no está configurada');
-    http_response_code(500);
-    echo json_encode(['error' => 'Configuración del servidor no completa']);
-    exit(1);
+    error_log('WARNING: SMTP_PASSWORD no está configurada, email fallback enabled');
+    // No retornar error 500, permitir que continúe con fallback a mail() nativo
+    $smtp_password = '';
 }
 
 define('SMTP_HOST', $smtp_host);

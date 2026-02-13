@@ -3,9 +3,11 @@ import { Brain, Cpu, TrendingUp, Database } from 'lucide-react';
 import AIDetectionDemo from '../components/AIDemo/AIDetectionDemo';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function AIIntegrationPage() {
     const { t } = useLanguage();
+    useAnalytics('AI Integration', 'service');
 
     return (
         <Layout>

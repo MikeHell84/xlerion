@@ -3,9 +3,11 @@ import { useLocation } from 'react-router-dom';
 import { TrendingUp, Workflow, GitBranch } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function DiagramasFlujosPage() {
     const { t } = useLanguage();
+    useAnalytics('Diagramas de Flujos', 'documentation');
     const [diagramas, setDiagramas] = useState([]);
     const location = useLocation();
     useEffect(() => {

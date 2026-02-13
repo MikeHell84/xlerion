@@ -2,9 +2,11 @@ import React from 'react';
 import { Zap, Gauge, Cpu, Timer } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function PerformancePage() {
     const { t } = useLanguage();
+    useAnalytics('Performance', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

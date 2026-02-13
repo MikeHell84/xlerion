@@ -4,9 +4,11 @@ import { ArrowLeft, Play, ExternalLink, Code, Video, Image as ImageIcon, Layers 
 import Layout from '../components/Layout';
 import rendersConfig from '../data/rendersConfig.json';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 const PortfolioReelsPage = () => {
     const { t, lang } = useLanguage();
+    useAnalytics('Portfolio', 'portfolio');
     const navigate = useNavigate();
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [selectedItem, setSelectedItem] = useState(null);
@@ -181,6 +183,16 @@ const PortfolioReelsPage = () => {
             thumbnail: '/images/portfolio/3d-placeholder.png',
             link: '/curriculum.html',
             tags: ['CV', 'Profile', 'Download']
+        },
+        {
+            id: 8,
+            type: 'demo',
+            category: 'demos',
+            title: t('portfolio_item_8_title'),
+            description: t('portfolio_item_8_desc'),
+            thumbnail: '/images/portfolio/videogames-thumb.jpg',
+            link: '/proyectos/videojuegos',
+            tags: ['Unity 3D', 'C#', 'Game Development']
         }
     ]), [t, rendersThumbnail]);
 

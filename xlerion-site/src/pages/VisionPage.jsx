@@ -2,9 +2,11 @@ import React from 'react';
 import { Rocket } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function VisionPage() {
     const { t } = useLanguage();
+    useAnalytics('Visión', 'page');
 
     return (
         <Layout>

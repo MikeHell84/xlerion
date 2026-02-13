@@ -2,9 +2,11 @@ import React from 'react';
 import { Shield, LifeBuoy, RefreshCcw, Clock } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function SoportePage() {
     const { t } = useLanguage();
+    useAnalytics('Soporte y Actualización', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

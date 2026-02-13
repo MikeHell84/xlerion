@@ -2,9 +2,11 @@ import React from 'react';
 import { Wrench, Puzzle, Layers, Sparkles } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function SolucionesMedidaPage() {
     const { t } = useLanguage();
+    useAnalytics('Soluciones a Medida', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

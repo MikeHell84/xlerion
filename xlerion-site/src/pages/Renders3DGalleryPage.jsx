@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import rendersConfig from "../data/rendersConfig.json";
 import { generateRenderMetadata } from "../utils/renderMetadataGenerator";
+import { useAnalytics } from '../hooks/useAnalytics';
 
 // Initialize renders from config and validate that images exist
 const initializeRenders = () => {
@@ -27,6 +28,7 @@ let renders = initializeRenders();
 
 export default function Renders3DGalleryPage() {
     const { t } = useLanguage();
+    useAnalytics('Renders 3D', 'portfolio');
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [validRenders, setValidRenders] = useState(renders);
     const [loadedImages, setLoadedImages] = useState(new Set());

@@ -2,9 +2,11 @@ import React from 'react';
 import { MapPin, Navigation, Compass, Users } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function TurismoPage() {
     const { t } = useLanguage();
+    useAnalytics('Turismo Incluyente', 'service');
     return (
         <Layout>
             {/* Banner Parallax */}

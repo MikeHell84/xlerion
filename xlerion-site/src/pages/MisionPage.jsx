@@ -2,9 +2,11 @@ import React from 'react';
 import { Target } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../context/LanguageContext';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export default function MisionPage() {
     const { t } = useLanguage();
+    useAnalytics('Misión', 'page');
 
     return (
         <Layout>

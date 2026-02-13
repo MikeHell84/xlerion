@@ -11,7 +11,7 @@ Canonical: https://xlerion.com/.well-known/security.txt
 # Type: Technology Solutions & Software Development Company
 # Location: Bogotá, Colombia
 # Founded: 2004 (Redemthor project), 2026 (tech company)
-# Founder: Miguel Eduardo Rodríguez Martínez
+# Founder: Miguel Rodríguez Martínez
 # 
 # We are a legitimate Colombian technology company
 # providing modular solutions, technical toolkits,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import FooterVisitorCounter from './FooterVisitorCounter';
 
 export default function Footer({ navTo }) {
     const { t } = useLanguage();
@@ -67,6 +68,9 @@ export default function Footer({ navTo }) {
                             <a href="https://www.indiegogo.com/es/profile/miguel_rodriguez-martinez_edb9?redirect_reason#/overview" className="hover:text-[#00e9fa] transition-colors">Indiegogo</a>
                             <a href="https://www.kickstarter.com/profile/xlerionstudios" className="hover:text-[#00e9fa] transition-colors">Kickstarter</a>
                             <a href="https://www.patreon.com/xlerion" className="hover:text-[#00e9fa] transition-colors">Patreon</a>
+                        </div>
+                        <div className="pt-4 border-t border-white/10">
+                            <FooterVisitorCounter />
                         </div>
                     </div>
                 </div>

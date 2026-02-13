@@ -57,6 +57,46 @@ if (strpos($uri, '/api/send-email.php') === 0) {
     exit;
 }
 
+if (strpos($uri, '/api/analytics-visitor-count.php') === 0) {
+    require __DIR__ . '/api/analytics-visitor-count.php';
+    exit;
+}
+
+if (strpos($uri, '/api/analytics.php') === 0) {
+    require __DIR__ . '/api/analytics.php';
+    exit;
+}
+
+if (strpos($uri, '/api/analytics-ping.php') === 0) {
+    require __DIR__ . '/api/analytics-ping.php';
+    exit;
+}
+
+if (strpos($uri, '/api/analytics-event.php') === 0) {
+    require __DIR__ . '/api/analytics-event.php';
+    exit;
+}
+
+if (strpos($uri, '/api/analytics-admin-login.php') === 0) {
+    require __DIR__ . '/api/analytics-admin-login.php';
+    exit;
+}
+
+if (strpos($uri, '/api/analytics-admin-logout.php') === 0) {
+    require __DIR__ . '/api/analytics-admin-logout.php';
+    exit;
+}
+
+if (strpos($uri, '/api/analytics-admin-data.php') === 0) {
+    require __DIR__ . '/api/analytics-admin-data.php';
+    exit;
+}
+
+if (strpos($uri, '/api/analytics-dashboard.php') === 0) {
+    require __DIR__ . '/api/analytics-dashboard.php';
+    exit;
+}
+
 if (strpos($uri, '/api/roadmaps.php') === 0 || strpos($uri, '/api/roadmaps/') === 0) {
     require __DIR__ . '/api/roadmaps.php';
     exit;
