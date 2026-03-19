@@ -1,0 +1,100 @@
+# Xlerion — Development & Deployment Notes
+
+This document summarizes the steps and fixes applied to get the Xlerion project working locally and on Railway, including .NET API changes, client setup (React + Vite), repository hygiene, and misc tooling.
+
+== Overview ==
+The repository contains multiple parts:
+
+- Projects/api — Xlerion Leaderboard API (.NET 8, EF Core 8, Npgsql)
+- Projects/client — React + Vite frontend for leaderboard + player stats
+- xlerion-site — legacy frontend and other site assets
+- Other tooling: PowerBI data in `PowerBi_Data/`, local `LocalAI/`, and various scripts.
+
+This file documents what was changed to make the system run and how to set it up locally.
+
+## Key Changes Made
+
+1. API (Projects/api)
+
+- Switched EF provider to PostgreSQL (Npgsql) and added parsing for `DATABASE_URL` used by Railway.
+- Enabled `Swagger` in all environments (not only Development) to allow access remotely.
+- Updated `Program.cs` CORS policy to allow any `localhost` port during development and to accept production domains `xlerion.com` and `*.xlerion.com`.
+- Added JSON options to controllers to ignore reference cycles and omit nulls.
+- Created initial EF migrations and applied them during startup with `db.Database.Migrate()`.
+- Removed sensitive `appsettings.json`/`appsettings.Development.json` from the repo and cleaned history (force-push/mirror cleanup) when secrets were found.
+
+1. Client (Projects/client)
+
+- Scaffolded Vite + React app and added Tailwind CSS via `postcss` and `tailwind.config.js`.
+- Added `src/api/leaderboard.js` with `getLeaderboard`, `getPlayerStats`, and `submitScore` wrappers.
+- Implemented pages: `Leaderboard.jsx`, `SubmitScore.jsx`, `PlayerStats.jsx` (now uses input-based lookup instead of URL param).
+- Created `Navbar.jsx` with navigation links (ensured `/player` route used).
+- Fixed Vite config ESM/CJS mismatch by using `vite.config.mjs`.
+
+1. Repository hygiene & Git
+
+- Detected a leaked DB password in `appsettings.json` — removed it from HEAD and rewrote history to purge sensitive files from the repository.
+- Added `.gitignore` entries for local dev files, `node_modules`, and large artifacts (`*.zip`) to avoid future large-file commits.
+- Resolved accidental commits that included `node_modules` and large zip files by resetting, stashing, and selectively committing only safe files.
+
+1. CI / Deploy
+
+- Pushed `Projects/` changes to `https://github.com/MikeHell84/xlerion-leaderboard-api.git` (Railway deploy target). Railway will redeploy automatically when `main` updates.
+
+## Local Setup
+
+Requirements:
+
+- .NET 8 SDK
+- Node.js 18+ (npm)
+- PostgreSQL locally if you want to run DB locally (or use Railway remote DB via `DATABASE_URL` environment variable)
+- PowerShell (Windows) or bash
+
+Steps:
+
+1. Backend (API)
+
+- If you use Railway, set the `DATABASE_URL` env var. Railway format is `postgresql://user:password@host:port/database`.
+- Run the API locally with:
+
+```powershell
+$env:ASPNETCORE_ENVIRONMENT='Development'; dotnet run --project Projects/api/XlerionLeaderboardAPI.csproj --urls http://localhost:5000
+```
+
+- The app will apply migrations on startup. If you prefer to manage migrations manually, use `dotnet ef migrations add <Name>` and `dotnet ef database update`.
+
+1. Frontend (Client)
+
+- Install deps and start dev server (from repository root):
+
+```powershell
+npm --prefix "Projects/client" install
+npm --prefix "Projects/client" run dev
+```
+
+- Vite may select a different port if `3000`/`3001` are taken (e.g., `3002`). The terminal will show the effective URL.
+
+1. Environment notes
+
+- For local testing against Railway DB you can set `DATABASE_URL` in your environment or in a local `appsettings.Development.json` (do NOT commit it).
+- Keep secrets out of Git — use environment variables or a secrets manager.
+
+## Troubleshooting
+
+- Large pushes rejected by GitHub: remove large files (zip artifacts) and add `.gitignore` entries; rewrite history if necessary.
+- Vite ESM plugin errors: ensure `vite.config.mjs` is present and `vite.config.js` removed to avoid require/ESM mismatches.
+- Duplicate React symbols / multiple default export errors: ensure each file exports a single default component and no duplicate imports.
+- Stash/merge conflicts: when stashing local changes to rebase, prefer to resolve conflicts carefully and keep working-tree versions you trust.
+
+## Power BI / Other
+
+- Power BI files are stored in `PowerBi_Data/`. Large PBIX files should be kept out of Git or managed via a drive/storage service.
+
+## Notes & Next Actions
+
+- Recommended: clean up the repo to remove embedded repository mirrors (e.g., `xlerion-leaderboard-api-mirror.git`) and large zip builds. Use `git rm --cached` or move them to an archive outside the repo.
+- Add Git LFS if you really need to track large binary assets.
+- Consider adding a `.gitattributes` and `pre-commit` hooks to prevent accidental commits of secrets or large files.
+
+---
+Generated by your assistant as a consolidated development note on 2026-03-18.

@@ -1,5 +1,7 @@
 # Ignore all markdown docs (kept locally only)
 *.md
+# Allow our development guide to be tracked
+!DEVELOPMENT_SETUP.md
 
 # Local docs archive
 /docs-md/
